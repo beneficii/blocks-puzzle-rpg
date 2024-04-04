@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e242ffcf8a002064a810e546642ca84a, type: 3}
+  m_Name: GameData
+  m_EditorClassIdentifier: 
+  gridSize: {x: 8, y: 8}
+  spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
+  prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
+  prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}
