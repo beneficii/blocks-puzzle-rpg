@@ -18,7 +18,7 @@ public class BtBlock : MonoBehaviour
 
     public void SetGridRender()
     {
-        render.rendererPriority--;
+        render.sortingOrder--;
     }
 
     public bool Collect()

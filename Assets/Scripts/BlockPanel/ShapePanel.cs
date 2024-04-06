@@ -18,7 +18,7 @@ public class ShapePanel : MonoBehaviour
     {
         var shape = pool[poolIdx];
         poolIdx = (poolIdx + 1) % pool.Count;
-        return shape;
+        return pool.Rand();
     }
 
     public void Clear()
@@ -35,11 +35,12 @@ public class ShapePanel : MonoBehaviour
     {
         Clear();
 
+        int idx = 0;
         foreach (var slot in slots)
         {
             var data = GetNextShape();
             var instance = Instantiate(DataManager.current.gameData.prefabShape, slot.position, slot.rotation, slot);
-            instance.Init(data, colors.Rand());
+            instance.Init(data, colors.Rand(), idx++);
             shapes.Add(instance);
             instance.OnUsed += HandleShapeUsed;
         }
@@ -48,7 +49,6 @@ public class ShapePanel : MonoBehaviour
     private void Start()
     {
         pool = DataManager.current.shapes
-            .Select(x => new BtShapeData(x))
             .OrderBy(x => System.Guid.NewGuid())
             .ToList();
 

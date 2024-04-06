@@ -123,9 +123,9 @@ public class BtGrid : MonoBehaviour
         return instance;
     }
 
-    public List<BtBlock> PlaceShape(int x, int y, BtShapeData data)
+    public List<BtBlock> PlaceShape(int x, int y, BtShapeData data, int rotation)
     {
-        foreach (var item in data.GetBlocks())
+        foreach (var item in data.GetBlockPlacement(rotation))
         {
             var ix = item.x + x;
             var iy = item.y + y;
@@ -136,7 +136,7 @@ public class BtGrid : MonoBehaviour
         }
 
         var result = new List<BtBlock>();
-        foreach (var item in data.GetBlocks())
+        foreach (var item in data.GetBlockPlacement(rotation))
         {
             var ix = item.x + x;
             var iy = item.y + y;
@@ -148,11 +148,11 @@ public class BtGrid : MonoBehaviour
         return result;
     }
 
-    public List<BtBlock> PlaceShape(Vector2 worldPos, BtShapeData data)
+    public List<BtBlock> PlaceShape(Vector2 worldPos, BtShapeData data, int rotation)
     {
         var (x, y) = GetXY(worldPos);
 
-        return PlaceShape(x, y, data);
+        return PlaceShape(x, y, data, rotation);
     }
 
     public IEnumerable<BtBlock> GetAdjacentItems(int x, int y)

@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
 
     public GameData gameData;
 
-    public List<ShapeInfo> shapes;// { get; private set; }
+    public List<BtShapeData> shapes;// { get; private set; }
 
     private void Awake()
     {

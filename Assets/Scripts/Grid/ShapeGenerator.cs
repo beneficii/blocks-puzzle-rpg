@@ -8,9 +8,8 @@ public class ShapeGenerator : ScriptableObject
     [SerializeField] Texture2D image;
 
     [SerializeField] Vector2Int cellSize = new Vector2Int(5, 5);
-    [SerializeField] Vector2Int cellOffset = new Vector2Int(2, 2);
 
-    ShapeInfo GetShape(int x, int y)
+    BtShapeData GetShape(int x, int y)
     {
         var result = new List<Vector2Int>();
         for (int cellY = 0; cellY < cellSize.y; cellY++)
@@ -21,20 +20,17 @@ public class ShapeGenerator : ScriptableObject
 
                 if (pixelColor == Color.white)
                 {
-                    result.Add(new Vector2Int(cellX, cellY) - cellOffset);
+                    result.Add(new Vector2Int(cellX, cellY));
                 }
             }
         }
 
-        return new ShapeInfo
-        {
-            deltas = result
-        };
+        return new BtShapeData(result);
     }
 
-    public List<ShapeInfo> Generate()
+    public List<BtShapeData> Generate()
     {
-        var result = new List<ShapeInfo>();
+        var result = new List<BtShapeData>();
 
         // Iterate through the image by 5x5 cells
         for (int y = 0; y < image.height; y += cellSize.y)
@@ -42,7 +38,7 @@ public class ShapeGenerator : ScriptableObject
             for (int x = 0; x < image.width; x += cellSize.x)
             {
                 var data = GetShape(x,y);
-                if (data != null && data.deltas.Count > 0)
+                if (data)
                 {
                     result.Add(data);
                 }
