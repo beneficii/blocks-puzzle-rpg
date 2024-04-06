@@ -10,6 +10,8 @@ public class DataManager : MonoBehaviour
 
     public GameData gameData;
 
+    public List<ShapeInfo> shapes;// { get; private set; }
+
     private void Awake()
     {
         if (current != null)
@@ -20,11 +22,13 @@ public class DataManager : MonoBehaviour
 
         current = this;
         DontDestroyOnLoad(gameObject);
+
+        shapes = gameData.shapeGenerator.Generate();
     }
 
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
     }
 }

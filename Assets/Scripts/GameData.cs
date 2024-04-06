@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "RTS/GameData")]
+[CreateAssetMenu(menuName = "Game/GameData")]
 public class GameData : ScriptableObject
 {
+    public ShapeGenerator shapeGenerator;
     public Vector2Int gridSize = new Vector2Int(8, 8);
 
     public TileColors tileColorsGrid;

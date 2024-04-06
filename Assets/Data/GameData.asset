@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e242ffcf8a002064a810e546642ca84a, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  shapeGenerator: {fileID: 11400000, guid: db101c63780bb6747859e35330cd61ea, type: 2}
   gridSize: {x: 8, y: 8}
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}

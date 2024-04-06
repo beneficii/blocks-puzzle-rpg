@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
@@ -10,18 +11,14 @@ public class ShapePanel : MonoBehaviour
 
     [SerializeField] List<Color> colors;
 
+    List<BtShapeData> pool;
+    int poolIdx = 0;
+
     public BtShapeData GetNextShape()
     {
-        var rand = Random.Range(0, 3);
-
-        return BtShapeData.TestB;
-        switch (rand)
-        {
-            case 1: return BtShapeData.TestVertical;
-            case 2: return BtShapeData.TestT;
-
-            default: return BtShapeData.TestBasic;
-        }
+        var shape = pool[poolIdx];
+        poolIdx = (poolIdx + 1) % pool.Count;
+        return shape;
     }
 
     public void Clear()
@@ -50,6 +47,11 @@ public class ShapePanel : MonoBehaviour
 
     private void Start()
     {
+        pool = DataManager.current.shapes
+            .Select(x => new BtShapeData(x))
+            .OrderBy(x => System.Guid.NewGuid())
+            .ToList();
+
         GenerateNew();
     }
 
