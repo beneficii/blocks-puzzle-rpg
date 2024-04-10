@@ -9,6 +9,8 @@ public class GameData : ScriptableObject
     public ShapeGenerator shapeGenerator;
     public Vector2Int gridSize = new Vector2Int(8, 8);
 
+    public List<BtBlockData> blocks;
+
     public TileColors tileColorsGrid;
     public Sprite spriteBlock;
     public BtBlock prefabBlock;

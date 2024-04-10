@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BtBlockData
+[CreateAssetMenu(menuName = "Game/Blocks/Basic")]
+public class BtBlockData : ScriptableObject
 {
-    public Sprite sprite => DataManager.current.gameData.spriteBlock;
-    // regular block so far
+    public Sprite sprite;
+    public BtBlockType type;
+}
+
+public enum BtBlockType
+{
+    None,
+    Sword,
+    Shield,
+    Fire
 }

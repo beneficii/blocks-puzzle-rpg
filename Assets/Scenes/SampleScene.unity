@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4114307fe3f191a4a9bcad5769c5ef69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteTile: {fileID: -1180923126277214982, guid: d345f6f476302864590623dab372f214, type: 3}
+  spriteTile: {fileID: 21300000, guid: d345f6f476302864590623dab372f214, type: 3}
   colorTile1: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 0.5882353}
   colorTile2: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 0.5882353}
 --- !u!4 &2099245189 stripped

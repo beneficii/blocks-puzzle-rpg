@@ -10,7 +10,9 @@ public class DataManager : MonoBehaviour
 
     public GameData gameData;
 
-    public List<BtShapeData> shapes;// { get; private set; }
+    public List<BtShapeData> shapes; //{ get; private set; }
+
+    public Dictionary<BtBlockType, BtBlockData> blocks;
 
     private void Awake()
     {
@@ -23,6 +25,7 @@ public class DataManager : MonoBehaviour
         current = this;
         DontDestroyOnLoad(gameObject);
 
+        blocks = gameData.blocks.ToDictionary(x => x.type);
         shapes = gameData.shapeGenerator.Generate();
     }
 

@@ -125,23 +125,21 @@ public class BtGrid : MonoBehaviour
 
     public List<BtBlock> PlaceShape(int x, int y, BtShapeData data, int rotation)
     {
-        foreach (var item in data.GetBlockPlacement(rotation))
+        foreach (var item in data.GetBlocks(rotation))
         {
-            var ix = item.x + x;
-            var iy = item.y + y;
-            if (!InBounds(ix, iy)) return null;
+            var pos = item.pos + new Vector2Int(x,y);
+            if (!InBounds(pos.x, pos.y)) return null;
 
-            var other = GetItem(ix, iy);
+            var other = GetItem(pos.x, pos.y);
             if (other) return null;
         }
 
         var result = new List<BtBlock>();
-        foreach (var item in data.GetBlockPlacement(rotation))
+        foreach (var item in data.GetBlocks(rotation))
         {
-            var ix = item.x + x;
-            var iy = item.y + y;
+            var pos = item.pos + new Vector2Int(x, y);
 
-            var block = PlaceBlock(ix, iy, item.data);
+            var block = PlaceBlock(pos.x, pos.y, item.data);
             result.Add(block);
         }
 

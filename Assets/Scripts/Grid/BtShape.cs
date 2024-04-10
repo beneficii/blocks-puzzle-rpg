@@ -20,10 +20,10 @@ public class BtShape : MonoBehaviour
         this.color = color;
         this.data = data;
         this.rotation = rotation;
-        foreach (var item in data.GetBlockPlacement(rotation))
+        foreach (var item in data.GetBlocks(rotation))
         {
             var instance = Instantiate(DataManager.current.gameData.prefabBlock, transform);
-            instance.transform.localPosition = new Vector3(item.x, item.y);
+            instance.transform.localPosition = item.pos.ToFloatVector();
             instance.Init(item.data);
             instance.SetColor(color);
         }

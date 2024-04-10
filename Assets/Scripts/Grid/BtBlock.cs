@@ -1,24 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FancyToolkit;
 
 public class BtBlock : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer render;
+    [SerializeField] SpriteRenderer bgRender;
+    [SerializeField] SpriteRenderer iconRender;
 
     public void Init(BtBlockData data)
     {
-        render.sprite = data.sprite;
+        iconRender.sprite = data.sprite;
     }
 
     public void SetColor(Color color)
     {
-        render.color = color;
+        bgRender.color = color;
     }
 
     public void SetGridRender()
     {
-        render.sortingOrder--;
+        int offset = 4;
+        bgRender.sortingOrder -= offset;
+        iconRender.sortingOrder -= offset;
     }
 
     public bool Collect()
@@ -29,15 +33,14 @@ public class BtBlock : MonoBehaviour
 
     IEnumerator CollectRoutine()
     {
-        var color = render.color;
         float fadeSpeed = 4f;
         float alpha = 1f;
 
         while (alpha > 0)
         {
             alpha -= Time.deltaTime * fadeSpeed;
-            color.a = alpha;
-            render.color = color;
+            iconRender.SetAlpha(alpha);
+            bgRender.SetAlpha(alpha);
             transform.localScale = Vector3.one * (0.7f +  0.6f*(1-alpha));
             yield return null;
         }

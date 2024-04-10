@@ -25,6 +25,13 @@ namespace FancyToolkit
             return rb2d.position == target;
         }
 
+        public static void SetAlpha(this SpriteRenderer render, float alpha)
+        {
+            var color = render.color;
+            color.a = alpha;
+            render.color = color;
+        }
+
         public static IEnumerator SmoothMoveRoutine(this Transform transform, Vector3 endPosition, float time)
         {
             float elapsedTime = 0;
