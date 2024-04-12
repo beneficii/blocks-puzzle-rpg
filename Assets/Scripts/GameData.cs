@@ -15,6 +15,7 @@ public class GameData : ScriptableObject
     public Sprite spriteBlock;
     public BtBlock prefabBlock;
     public BtShape prefabShape;
+    public Bullet prefabBullet;
 
     public class TileColors
     {

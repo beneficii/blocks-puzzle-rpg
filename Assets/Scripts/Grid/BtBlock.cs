@@ -8,8 +8,11 @@ public class BtBlock : MonoBehaviour
     [SerializeField] SpriteRenderer bgRender;
     [SerializeField] SpriteRenderer iconRender;
 
+    public BtBlockData data { get; private set; }
+
     public void Init(BtBlockData data)
     {
+        this.data = data;
         iconRender.sprite = data.sprite;
     }
 

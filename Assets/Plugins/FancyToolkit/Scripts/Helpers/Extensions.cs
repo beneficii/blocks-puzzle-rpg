@@ -13,6 +13,11 @@ namespace FancyToolkit
 
     public static class Extensions
     {
+        public static T MakeInstance<T>(this T prefab, Vector3 position) where T : Component
+        {
+            return Component.Instantiate<T>(prefab, position, Quaternion.identity);
+        }
+
         public static bool MoveTowards(this Transform transform, Vector3 target, float speed)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, speed);

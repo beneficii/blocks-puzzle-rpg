@@ -11,6 +11,8 @@ public class BtGrid : MonoBehaviour
 {
     public static BtGrid current { get; private set; }
 
+    public static System.Action<List<BtBlock>, int> OnLinesCleared;
+
     public int width { get; private set; }
     public int height { get; private set; }
 
@@ -166,21 +168,21 @@ public class BtGrid : MonoBehaviour
         }
     }
 
-    void RemoveBlock(int x, int y, bool collect)
+    BtBlock CollectBlock(int x, int y)
     {
         var block = blocks[x, y];
+        if (!block) return null;
 
-        if (!block) return;
-
-        bool success = collect ? block.Collect() : true;
-
-        if (!collect) Destroy(block);
-
-        if (success)
+        if (block.Collect())
         {
             blocks[x, y] = null;
             columnBlockCount[x]--;
             rowBlockCount[y]--;
+            return block;
+        }
+        else
+        {
+            return null;
         }
     }
 
@@ -191,21 +193,30 @@ public class BtGrid : MonoBehaviour
         var removeColumns = new List<int>();
         var removeRows = new List<int>();
 
+        var blocksRemoved = new List<BtBlock>();
+
         for (int i = 0; i < width; i++)
         {
-            if (columnBlockCount[i] >= height) removeColumns.Add(i);
+            if (columnBlockCount[i] >= height)
+            {
+                removeColumns.Add(i);
+            }
         }
 
         for (int i = 0; i < height; i++)
         {
-            if (rowBlockCount[i] >= width) removeRows.Add(i);
+            if (rowBlockCount[i] >= width)
+            {
+                removeRows.Add(i);
+            }
         }
 
         foreach (var x in removeColumns)
         {
             for (int y = 0; y < height; y++)
             {
-                RemoveBlock(x, y, true);
+                var block = CollectBlock(x, y);
+                if (block) blocksRemoved.Add(block);
             }
         }
 
@@ -213,11 +224,14 @@ public class BtGrid : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                RemoveBlock(x, y, true);
+                var block = CollectBlock(x, y);
+                if (block) blocksRemoved.Add(block);
             }
         }
 
         calculateGrid = false;
+
+        OnLinesCleared?.Invoke(blocksRemoved, removeColumns.Count + removeRows.Count);
     }
 
     private void Update()

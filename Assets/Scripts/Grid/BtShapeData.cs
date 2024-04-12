@@ -7,8 +7,9 @@ public class BtShapeData
 {
     List<BtBlockInfo> blocks;
     Vector2Int size;
+    public int level { get; private set; }
 
-    public BtShapeData(List<Vector2Int> deltas)
+    public BtShapeData(List<Vector2Int> deltas, int level)
     {
         if (deltas.Count == 0) return;  // will be easier to find error
 
@@ -23,11 +24,13 @@ public class BtShapeData
             if (d.y < min.y) min.y = d.y;
         }
 
-        size = max + Vector2Int.one - min ;
+        size = max + Vector2Int.one - min;
 
         blocks = deltas
             .Select(d => new BtBlockInfo(RandomBlock(), d - min))
             .ToList();
+
+        this.level = level;
     }
 
     public static implicit operator bool(BtShapeData item)

@@ -24,6 +24,8 @@ namespace FancyToolkit
         [SerializeField] float oldValueDelay = 0.15f;
         //[SerializeField] float animationCatchupSpeed = 1f;
 
+        [SerializeField] bool HiddenInitially = false;
+
         int currentValue;
         int maxValue;
         public int Value
@@ -55,7 +57,7 @@ namespace FancyToolkit
         {
             maxValue = max;
             Set(current);
-            gameObject.SetActive(false);
+            if (HiddenInitially) gameObject.SetActive(false);
         }
 
         void RefreshInstant()
@@ -85,7 +87,7 @@ namespace FancyToolkit
             if (oldValue == currentValue) return;
 
             
-            if (!gameObject.activeSelf) gameObject.SetActive(false);
+            if (HiddenInitially && !gameObject.activeSelf) gameObject.SetActive(false);
 
             if (currentValue == maxValue) OnFull?.Invoke();
             else if (currentValue == 0) OnZero?.Invoke();
@@ -120,14 +122,17 @@ namespace FancyToolkit
             SetAnimated(currentValue + amount);
         }
 
+        void Animate()
+        {
+
+        }
+
         private void Update()
         {
             if (oldValue != currentValue && Time.time > animationCatchupTime)
             {
-                if (oldValue == currentValue)
-                {
-                    RefreshInstant();
-                }
+                //Animate();
+                RefreshInstant();
             }
         }
     }

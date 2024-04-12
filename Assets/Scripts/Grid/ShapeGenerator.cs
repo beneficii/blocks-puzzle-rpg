@@ -25,7 +25,7 @@ public class ShapeGenerator : ScriptableObject
             }
         }
 
-        return new BtShapeData(result);
+        return new BtShapeData(result, y / cellSize.y);
     }
 
     public List<BtShapeData> Generate()
@@ -38,10 +38,8 @@ public class ShapeGenerator : ScriptableObject
             for (int x = 0; x < image.width; x += cellSize.x)
             {
                 var data = GetShape(x,y);
-                if (data)
-                {
-                    result.Add(data);
-                }
+                if (!data) continue;
+                result.Add(data);
             }
         }
 

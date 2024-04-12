@@ -6,19 +6,27 @@ using FancyToolkit;
 
 public class ShapePanel : MonoBehaviour
 {
+    public static System.Action<bool> OnShapesGenerated;
+
     [SerializeField] List<Transform> slots;
     HashSet<BtShape> shapes = new();
 
     [SerializeField] List<Color> colors;
 
     List<BtShapeData> pool;
-    int poolIdx = 0;
+    //int poolIdx = 0;
+    int generates = 55;
 
     public BtShapeData GetNextShape()
     {
-        var shape = pool[poolIdx];
-        poolIdx = (poolIdx + 1) % pool.Count;
-        return pool.Rand();
+        int level = Random.Range(0, ++generates/20);
+        return pool
+            .Where(e => e.level <= level)
+            .Rand();
+
+        //var shape = pool[poolIdx];
+        //poolIdx = (poolIdx + 1) % pool.Count;
+        //return pool.Rand();
     }
 
     public void Clear()
@@ -31,7 +39,7 @@ public class ShapePanel : MonoBehaviour
         shapes.Clear();
     }
 
-    public void GenerateNew()
+    public void GenerateNew(bool initial)
     {
         Clear();
 
@@ -44,6 +52,8 @@ public class ShapePanel : MonoBehaviour
             shapes.Add(instance);
             instance.OnUsed += HandleShapeUsed;
         }
+
+        OnShapesGenerated?.Invoke(initial);
     }
 
     private void Start()
@@ -52,14 +62,14 @@ public class ShapePanel : MonoBehaviour
             .OrderBy(x => System.Guid.NewGuid())
             .ToList();
 
-        GenerateNew();
+        GenerateNew(true);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            GenerateNew();
+            GenerateNew(true);
         }
     }
 
@@ -68,7 +78,7 @@ public class ShapePanel : MonoBehaviour
         shapes.Remove(shape);
         if (shapes.Count == 0)
         {
-            GenerateNew();
+            GenerateNew(false);
         }
     }
 }
