@@ -13,7 +13,8 @@ public class Game : MonoBehaviour
         current = this;
     }
 
-    private void Start()
+    public void RestartLevel()
     {
+        Helpers.RestartScene();
     }
 }

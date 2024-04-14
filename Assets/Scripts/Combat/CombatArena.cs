@@ -20,4 +20,6 @@ public class CombatArena : MonoBehaviour
 
     public Unit hero;
     public Unit enemy;
+
+    public List<Unit> summons;
 }

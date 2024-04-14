@@ -5,7 +5,7 @@ using FancyToolkit;
 
 public class LineMatchListener : MonoBehaviour
 {
-    //CooldownComponent animationCooldown;
+    [SerializeField] float bulletDelaySpacing = 0.1f;
 
     struct MyAction
     {
@@ -17,13 +17,6 @@ public class LineMatchListener : MonoBehaviour
             this.data = data;
             this.origin = origin;
         }
-    }
-
-    //Queue<MyAction> actionQueue = new Queue<MyAction>();
-
-    private void Awake()
-    {
-        //animationCooldown = new CooldownComponent(0.15f);
     }
 
     private void OnEnable()
@@ -40,10 +33,11 @@ public class LineMatchListener : MonoBehaviour
 
     void CreateDamage(int value, BtBlockData data, Vector2 origin, Unit target, float delay)
     {
-        var bullet = DataManager.current.gameData.prefabBullet.MakeInstance(origin);
-        bullet.Init(target, value);
-        bullet.SetSprite(data.sprite);
-        bullet.SetLaunchDelay(delay);
+        DataManager.current.gameData.prefabBullet.MakeInstance(origin)
+            .SetTarget(target)
+            .SetDamage(value)
+            .SetSprite(data.sprite)
+            .SetLaunchDelay(delay);
     }
 
     void ExecuteAction(BtBlockData data, Vector2 origin, float delay)
@@ -60,6 +54,17 @@ public class LineMatchListener : MonoBehaviour
                 break;
             case BtBlockType.Fire:
                 CreateDamage(10, data, origin, arena.enemy, delay);
+                /*DataManager.current.gameData.prefabBullet.MakeInstance(origin)
+                    .SetTarget(arena.enemy)
+                    .SetAction((obj)=>
+                    {
+                        if (!obj.TryGetComponent<Unit>(out var unit)) return;
+                        unit.SpecialTestAction();
+
+                    })
+                    .SetSprite(data.sprite)
+                    .SetLaunchDelay(delay);
+                */
                 break;
             default:
                 break;
@@ -68,30 +73,11 @@ public class LineMatchListener : MonoBehaviour
 
     void HandleLinesCleared(List<BtBlock> blocks, int totalLines)
     {
-        //var arena = CombatArena.current;
-
         float delay = 0;
         foreach (var block in blocks)
         {
             ExecuteAction(block.data, block.transform.position, delay);
-            delay += 0.1f;
-            //if (block.data.type != BtBlockType.None) actionQueue.Enqueue(new MyAction(block.data, block.transform.position));
-            /*
-            switch (block.data.type)
-            {
-                case BtBlockType.Sword:
-                    CreateDamage(3, block, arena.enemy);
-                    break;
-                case BtBlockType.Shield:
-                    CreateDamage(-2, block, arena.hero);
-                    break;
-                case BtBlockType.Fire:
-                    CreateDamage(10, block, arena.enemy);
-                    break;
-                default:
-                    break;
-            }
-            */
+            delay += bulletDelaySpacing;
         }
     }
 
@@ -101,14 +87,4 @@ public class LineMatchListener : MonoBehaviour
 
         CombatArena.current.hero.RemoveHp(5);
     }
-    /*
-    private void Update()
-    {
-        if (actionQueue.Count > 0 && animationCooldown.Use())
-        {
-            var action = actionQueue.Dequeue();
-
-            ExecuteAction(action.data, action.origin);
-        }
-    }*/
 }

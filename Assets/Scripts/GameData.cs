@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using FancyToolkit;
 
 [CreateAssetMenu(menuName = "Game/GameData")]
 public class GameData : ScriptableObject
@@ -15,7 +15,7 @@ public class GameData : ScriptableObject
     public Sprite spriteBlock;
     public BtBlock prefabBlock;
     public BtShape prefabShape;
-    public Bullet prefabBullet;
+    public GenericBullet prefabBullet;
 
     public class TileColors
     {

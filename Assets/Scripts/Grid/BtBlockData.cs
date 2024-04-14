@@ -14,5 +14,6 @@ public enum BtBlockType
     None,
     Sword,
     Shield,
-    Fire
+    Fire,
+    Summon,
 }

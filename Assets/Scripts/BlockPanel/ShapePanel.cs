@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
 
+[DefaultExecutionOrder(+1)]
 public class ShapePanel : MonoBehaviour
 {
     public static System.Action<bool> OnShapesGenerated;
@@ -14,19 +15,47 @@ public class ShapePanel : MonoBehaviour
     [SerializeField] List<Color> colors;
 
     List<BtShapeData> pool;
-    //int poolIdx = 0;
-    int generates = 55;
+    int poolIdx = 0;
 
-    public BtShapeData GetNextShape()
+    List<Vector2Int> hints;
+
+    public BtShapeData GetShapeFromPool()
     {
-        int level = Random.Range(0, ++generates/20);
-        return pool
-            .Where(e => e.level <= level)
-            .Rand();
+        var shape = pool[poolIdx];
+        if (++poolIdx >= pool.Count)
+        {
+            pool.Shuffle();
+            poolIdx = 0;
+        }
 
-        //var shape = pool[poolIdx];
-        //poolIdx = (poolIdx + 1) % pool.Count;
-        //return pool.Rand();
+        return shape;
+    }
+
+    public BtShapeData GetNextShape(out int rotation, BtGrid.TempGridState gridState)
+    {
+        rotation = Random.Range(0, 4);
+
+        BtShapeData shape = null;
+        for (int i = 0; i < 20; i++)
+        {
+            shape = GetShapeFromPool();
+            for (int j = 0; j < 4; j++)
+            {
+                int rot = (rotation + j) % 4;
+                var blocks = shape.GetBlocks(rot)
+                    .Select(b => b.pos)
+                    .ToList();
+                if (gridState.AddPiece(blocks))
+                {
+                    rotation = rot;
+                    hints.Add(gridState.hint);
+                    return shape;
+                }
+            }
+        }
+
+        Debug.Log("Nothing fits!");
+        return shape;
     }
 
     public void Clear()
@@ -43,12 +72,14 @@ public class ShapePanel : MonoBehaviour
     {
         Clear();
 
-        int idx = 0;
+        var tempGrid = BtGrid.current.MakeTempGrid();
+        hints = new List<Vector2Int>();
+
         foreach (var slot in slots)
         {
-            var data = GetNextShape();
+            var data = GetNextShape(out var rotation, tempGrid);
             var instance = Instantiate(DataManager.current.gameData.prefabShape, slot.position, slot.rotation, slot);
-            instance.Init(data, colors.Rand(), idx++);
+            instance.Init(data, colors.Rand(), rotation);
             shapes.Add(instance);
             instance.OnUsed += HandleShapeUsed;
         }
@@ -71,6 +102,21 @@ public class ShapePanel : MonoBehaviour
         {
             GenerateNew(true);
         }
+
+        if (hints != null && Input.GetKeyDown(KeyCode.H))
+        {
+            BtGrid.current.ShowHint(hints);
+        }
+    }
+
+    public void BtnShowHint()
+    {
+        BtGrid.current.ShowHint(hints);
+    }
+
+    public void BtnGenerateNewShapes()
+    {
+        GenerateNew(false);
     }
 
     void HandleShapeUsed(BtShape shape)

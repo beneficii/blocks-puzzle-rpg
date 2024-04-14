@@ -13,5 +13,10 @@ namespace FancyToolkit
         {
             SceneManager.LoadScene(sceneName);
         }
+
+        public void RestartCurrent()
+        {
+            Helpers.RestartScene();
+        }
     }
 }
