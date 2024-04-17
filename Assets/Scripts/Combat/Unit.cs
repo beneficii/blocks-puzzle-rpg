@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IDamagable
 {
     [SerializeField] ValueBar health;
 

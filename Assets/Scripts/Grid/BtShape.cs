@@ -9,15 +9,15 @@ public class BtShape : MonoBehaviour
 
     public const float offsetDrag = 3f;
 
-    BtShapeData data;
+    public BtShapeData data { get; private set; }
+    public int rotation { get; private set; }
+    
     bool isDragging;
-
     Color color;
-    int rotation;
 
-    public void Init(BtShapeData data, Color color, int rotation)
+    public void Init(BtShapeData data, int rotation)
     {
-        this.color = color;
+        this.color = BtGrid.current.settings.blockColors.Rand();
         this.data = data;
         this.rotation = rotation;
         foreach (var item in data.GetBlocks(rotation))
@@ -29,6 +29,11 @@ public class BtShape : MonoBehaviour
         }
 
         SetDragState(false);
+    }
+
+    public void Init(BtShapeInfo info)
+    {
+        Init(info.data, info.rotation);
     }
 
     void SetDragState(bool value)
@@ -66,9 +71,9 @@ public class BtShape : MonoBehaviour
         if (isDragging) transform.position = DragPosition();
     }
 
-    public void DropAt(Vector2 pos)
+    public bool DropAt(Vector2Int pos)
     {
-        var placed = BtGrid.current.PlaceShape(pos, data, rotation);
+        var placed = BtGrid.current.PlaceShape(pos.x, pos.y, data, rotation);
         if (placed != null)
         {
             foreach (var block in placed)
@@ -78,10 +83,19 @@ public class BtShape : MonoBehaviour
             }
             OnUsed?.Invoke(this);
             Destroy(gameObject);
+            return true;
         }
         else
         {
             transform.localPosition = Vector3.zero;
+            return false;
         }
+
+    }
+
+    public bool DropAt(Vector2 worldPos)
+    {
+        var gridPos = BtGrid.current.GetGridPos(worldPos);
+        return DropAt(gridPos);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -9,7 +8,7 @@ using UnityEditor;
 #endif
 
 [DefaultExecutionOrder(-1)]
-public class BtGrid : MonoBehaviour
+public partial class BtGrid : MonoBehaviour
 {
     public static BtGrid current { get; private set; }
 
@@ -17,6 +16,8 @@ public class BtGrid : MonoBehaviour
 
     public int width { get; private set; }
     public int height { get; private set; }
+
+    public BtSettings settings;
 
     [SerializeField] Sprite spriteTile;
     [SerializeField] HintTile prefabHintTile;
@@ -59,6 +60,29 @@ public class BtGrid : MonoBehaviour
         return render;
     }
 
+    public void LoadBlockArray(BtBlockData[,] datas)
+    {
+        var arr = new BtBlock[width, height];
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                var oldBlock = blocks[x, y];
+                if (oldBlock) Destroy(oldBlock.gameObject);
+
+                var data = datas[x, y];
+
+                if (data)
+                {
+                    arr[x, y] = PlaceBlock(x, y, datas[x, y]);
+                }
+            }
+        }
+
+        blocks = arr;
+    }
+
     void Start()
     {
         var gridSize = DataManager.current.gameData.gridSize;
@@ -91,6 +115,12 @@ public class BtGrid : MonoBehaviour
         int y = (int)(pos.y - transform.position.y);
 
         return (x, y);
+    }
+
+    public Vector2Int GetGridPos(Vector2 worldPos)
+    {
+        var (x, y) = GetXY(worldPos);
+        return new Vector2Int(x, y);
     }
 
     bool InBounds(int x, int y)
@@ -277,7 +307,7 @@ public class BtGrid : MonoBehaviour
 
     private void Update()
     {
-        CalculateGrid();
+        CheckBoardState();
     }
 
 #if UNITY_EDITOR
@@ -322,139 +352,10 @@ public class BtGrid : MonoBehaviour
         }
     }
 
-    public class TempGridState
+    void CheckBoardState()
     {
-        public bool[,] ocupied;
-        int width;
-        int height;
-
-        int[] rows;
-        int[] columns;
-
-        List<Vector2Int> searchPoints;
-
-        public Vector2Int hint { get; private set; }
-
-        void MakeRandomSearchPoints()
-        {
-            searchPoints = new List<Vector2Int>();
-            for (int x = 0; x <= width; x++)
-            {
-                for (int y = 0; y <= height; y++)
-                {
-                    searchPoints.Add(new Vector2Int(x, y));
-                }
-            }
-
-            searchPoints.Shuffle();
-        }
-
-        bool InBounds(int x, int y)
-        {
-            if (x < 0 || x >= width || y < 0 || y >= height) return false;
-
-            return true;
-        }
-
-        public TempGridState(BtGrid grid)
-        {
-            width = grid.width;
-            height = grid.height;
-            ocupied = new bool[width, height];
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    ocupied[x, y] = (bool)grid.blocks[x, y];
-                }
-            }
-            rows = grid.rowBlockCount.ToArray();
-            columns = grid.columnBlockCount.ToArray();
-            MakeRandomSearchPoints();
-        }
-
-        void CheckLines()
-        {
-            var removeColumns = new List<int>();
-            var removeRows = new List<int>();
-
-            for (int i = 0; i < width; i++)
-            {
-                if (columns[i] >= height)
-                {
-                    removeColumns.Add(i);
-                }
-            }
-
-            for (int i = 0; i < height; i++)
-            {
-                if (rows[i] >= width)
-                {
-                    removeRows.Add(i);
-                }
-            }
-
-            foreach (var x in removeColumns)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    if (ocupied[x,y])
-                    {
-                        ocupied[x, y] = false;
-                        columns[x]--;
-                        rows[y]--;
-                    }
-                }
-            }
-
-            foreach (var y in removeRows)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    if (ocupied[x, y])
-                    {
-                        ocupied[x, y] = false;
-                        columns[x]--;
-                        rows[y]--;
-                    }
-                }
-            }
-        }
-
-        bool CanFit(Vector2Int origin, List<Vector2Int> blocks)
-        {
-            foreach (var item in blocks)
-            {
-                var pos = origin + item;
-
-                if (!InBounds(pos.x, pos.y)) return false;
-                if (ocupied[pos.x, pos.y]) return false;
-            }
-
-            return true;
-        }
-
-        public bool AddPiece(List<Vector2Int> blocks)
-        {
-            foreach (var pos in searchPoints)
-            {
-                if (CanFit(pos, blocks))
-                {
-                    foreach (var block in blocks)
-                    {
-                        var bpos = pos + block;
-                        
-                        ocupied[bpos.x, bpos.y] = true;
-                        columns[bpos.x]++;
-                        rows[bpos.y]++;
-                    }
-                    CheckLines();
-                    hint = pos;
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        CalculateGrid();
+        ShapePanel.current.CheckSlots();
     }
 }
+

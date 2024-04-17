@@ -9,15 +9,16 @@ public class BtShapeData
     Vector2Int size;
     public int level { get; private set; }
 
-    public BtShapeData(List<Vector2Int> deltas, int level)
+    public BtShapeData(List<BtBlockInfo> blocks, int level = 0)
     {
-        if (deltas.Count == 0) return;  // will be easier to find error
+        if (blocks.Count == 0) return;  // will be easier to find error
 
         var min = new Vector2Int(99, 99);
         var max = new Vector2Int(-1, -1);
 
-        foreach (var d in deltas)
+        foreach (var block in blocks)
         {
+            var d = block.pos;
             if (d.x > max.x) max.x = d.x;
             if (d.x < min.x) min.x = d.x;
             if (d.y > max.y) max.y = d.y;
@@ -26,13 +27,16 @@ public class BtShapeData
 
         size = max + Vector2Int.one - min;
 
-        blocks = deltas
-            .Select(d => new BtBlockInfo(RandomBlock(), d - min))
+        this.blocks = blocks
+            .Select(b => new BtBlockInfo(b.data, b.pos - min))
             .ToList();
 
         this.level = level;
     }
 
+    public BtShapeData(List<Vector2Int> deltas, int level)
+        : this(deltas.Select(d => new BtBlockInfo(RandomBlock(), d)).ToList(), level) { }
+    
     public static implicit operator bool(BtShapeData item)
         => item.blocks != null && item.blocks.Count > 0;
 
@@ -66,7 +70,7 @@ public class BtShapeData
             .ToList();
     }
 
-    BtBlockData RandomBlock()
+    static BtBlockData RandomBlock()
     {
         int rand = Random.Range(0, 10);
         var type = BtBlockType.None;
