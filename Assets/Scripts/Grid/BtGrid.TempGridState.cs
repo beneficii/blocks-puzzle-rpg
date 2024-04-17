@@ -141,6 +141,15 @@ public partial class BtGrid
 
             return false;
         }
+
+        public bool AddPiece(BtShapeInfo info)
+        {
+            var blocks = info.data.GetBlocks(info.rotation)
+                        .Select(b => b.pos)
+                        .ToList();
+
+            return AddPiece(blocks);
+        }
     }
 }
 

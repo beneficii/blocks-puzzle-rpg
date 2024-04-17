@@ -56,15 +56,12 @@ public class ShapePanel : MonoBehaviour
             for (int j = 0; j < 4; j++)
             {
                 int rot = (rotation + j) % 4;
-                var blocks = shape.GetBlocks(rot)
-                    .Select(b => b.pos)
-                    .ToList();
+                var info = new BtShapeInfo(shape, rot);
 
-                if (gridState.AddPiece(blocks))
+                if (gridState.AddPiece(info))
                 {
-                    rotation = rot;
                     hints.Add(gridState.hint);
-                    return new BtShapeInfo(shape, rotation);
+                    return info;
                 }
             }
         }
@@ -72,11 +69,7 @@ public class ShapePanel : MonoBehaviour
 
         // give a block that fits everywhere
         var wispShape = BtGrid.current.settings.GetWispShapeInfo();
-        var wispBlocks = wispShape.data.GetBlocks()
-                    .Select(b => b.pos)
-                    .ToList();
-
-        if (gridState.AddPiece(wispBlocks))
+        if (gridState.AddPiece(wispShape))
         {
             hints.Add(gridState.hint);
             return wispShape;
@@ -165,6 +158,20 @@ public class ShapePanel : MonoBehaviour
         StartCoroutine(AutoPlay());
     }
 
+    public void CheckDeadEnd()
+    {
+        foreach (var shape in shapes)
+        {
+            var tempGrid = BtGrid.current.MakeTempGrid();
+            if (tempGrid.AddPiece(shape.GetInfo()))
+            {
+                return; // all good
+            }
+        }
+
+        Game.ToDo("Dead end! Offer rewind");
+    }
+
     public void CheckSlots()
     {
         if (!shouldCheckSlots) return;
@@ -173,7 +180,10 @@ public class ShapePanel : MonoBehaviour
         if (shapes.Count == 0)
         {
             GenerateNew(false);
+            return;
         }
+
+        CheckDeadEnd();
     }
 
     void HandleShapeUsed(BtShape shape)

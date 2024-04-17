@@ -11,6 +11,8 @@ public class BtShape : MonoBehaviour
 
     public BtShapeData data { get; private set; }
     public int rotation { get; private set; }
+
+    public BtShapeInfo GetInfo() => new BtShapeInfo(data, rotation);
     
     bool isDragging;
     Color color;

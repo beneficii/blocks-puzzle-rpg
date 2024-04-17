@@ -17,4 +17,9 @@ public class Game : MonoBehaviour
     {
         Helpers.RestartScene();
     }
+
+    public static void ToDo(string message)
+    {
+        Debug.Log($"ToDo: {message}");
+    }
 }
