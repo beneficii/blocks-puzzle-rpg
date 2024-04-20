@@ -35,7 +35,7 @@ public class BtShapeData
     }
 
     public BtShapeData(List<Vector2Int> deltas, int level)
-        : this(deltas.Select(d => new BtBlockInfo(RandomBlock(), d)).ToList(), level) { }
+        : this(deltas.Select(d => new BtBlockInfo(DataManager.current.emptyBlock, d)).ToList(), level) { }
     
     public static implicit operator bool(BtShapeData item)
         => item.blocks != null && item.blocks.Count > 0;
@@ -70,19 +70,26 @@ public class BtShapeData
             .ToList();
     }
 
-    static BtBlockData RandomBlock()
+    public BtBlockData SpecialBlock()
     {
-        int rand = Random.Range(0, 10);
-        var type = BtBlockType.None;
+        foreach (var item in blocks)
+        {
+            if (item.data.type != BtBlockType.None)
+            {
+                return item.data;
+            }
+        }
 
-        if (rand < 2) type = BtBlockType.Sword;
-        else if (rand < 4) type = BtBlockType.Shield;
-        else if (rand == 4) type = BtBlockType.Fire;
+        return null;
+    }
 
-        return DataManager.current.blocks[type];
+    public bool HasEmptyBlocks()
+    {
+        return blocks.Any(x => x.data.type == BtBlockType.None);
     }
 }
 
+[System.Serializable]
 public class BtBlockInfo
 {
     public BtBlockData data;

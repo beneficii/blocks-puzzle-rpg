@@ -38,8 +38,7 @@ public class ShapePanel : MonoBehaviour
         var shape = pool[poolIdx];
         if (++poolIdx >= pool.Count)
         {
-            pool.Shuffle();
-            poolIdx = 0;
+            GeneratePool();
         }
 
         return shape;
@@ -116,12 +115,17 @@ public class ShapePanel : MonoBehaviour
         BtSave.Create();
     }
 
-    private void Start()
+    public void GeneratePool()
     {
         pool = DataManager.current.shapes
             .OrderBy(x => System.Guid.NewGuid())
             .ToList();
+        poolIdx = 0;
+    }
 
+    private void Start()
+    {
+        GeneratePool();
         GenerateNew(true);
     }
 
@@ -135,6 +139,17 @@ public class ShapePanel : MonoBehaviour
         if (hints != null && Input.GetKeyDown(KeyCode.H))
         {
             BtGrid.current.ShowHint(hints);
+        }
+
+        int upgradeLevel = -1;
+        if (Input.GetKeyDown(KeyCode.Alpha0)) upgradeLevel = 0;
+        if (Input.GetKeyDown(KeyCode.Alpha1)) upgradeLevel = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) upgradeLevel = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) upgradeLevel = 3;
+
+        if (upgradeLevel >= 0)
+        {
+            BtUpgradeCtrl.Show((BtUpgradeRarity)upgradeLevel, 3);
         }
     }
 

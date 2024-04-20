@@ -179,7 +179,7 @@ namespace FancyToolkit
             n = Mathf.Min(list.Count(), n);
 
             return list
-                .OrderBy(x => UnityEngine.Random.Range(0, 1f))
+                .OrderBy(x => System.Guid.NewGuid())
                 .Take(n)
                 .ToList();
         }
@@ -261,6 +261,23 @@ namespace FancyToolkit
         {
             if (slider.value == value) return;
             slider.value = Mathf.MoveTowards(slider.value, value, Time.deltaTime * speed);
+        }
+
+        public static Color32[,] Get2DColors32(this Texture2D texture)
+        {
+            Color32[] colors = texture.GetPixels32();
+            var colorArray = new Color32[texture.width, texture.height];
+
+            for (int x = 0; x < texture.width; x++)
+            {
+                for (int y = 0; y < texture.height; y++)
+                {
+                    int index = y * texture.width + x;
+                    colorArray[x, y] = colors[index];
+                }
+            }
+
+            return colorArray;
         }
 
         public static string SignedStr(this int value)

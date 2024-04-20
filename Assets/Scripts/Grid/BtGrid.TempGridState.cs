@@ -43,8 +43,8 @@ public partial class BtGrid
 
         public TempGridState(BtGrid grid)
         {
-            width = grid.width;
-            height = grid.height;
+            width = BtGrid.width;
+            height = BtGrid.height;
             ocupied = new bool[width, height];
             for (int y = 0; y < height; y++)
             {

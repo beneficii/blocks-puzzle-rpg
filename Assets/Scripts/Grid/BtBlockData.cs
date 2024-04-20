@@ -7,6 +7,9 @@ public class BtBlockData : ScriptableObject
 {
     public Sprite sprite;
     public BtBlockType type;
+    public int level;
+
+    public virtual string GetDescription() => "ToDo: empty description";
 }
 
 public enum BtBlockType

@@ -14,8 +14,8 @@ public partial class BtGrid : MonoBehaviour
 
     public static System.Action<List<BtBlock>, int> OnLinesCleared;
 
-    public int width { get; private set; }
-    public int height { get; private set; }
+    public const int width = 8;
+    public const int height = 8;
 
     public BtSettings settings;
 
@@ -60,9 +60,12 @@ public partial class BtGrid : MonoBehaviour
         return render;
     }
 
-    public void LoadBlockArray(BtBlockData[,] datas)
+    public void LoadPreBoard(BtBoardInfo preBoard)
     {
         var arr = new BtBlock[width, height];
+
+        columnBlockCount = new int[width];
+        rowBlockCount = new int[height];
 
         for (int y = 0; y < height; y++)
         {
@@ -70,25 +73,20 @@ public partial class BtGrid : MonoBehaviour
             {
                 var oldBlock = blocks[x, y];
                 if (oldBlock) Destroy(oldBlock.gameObject);
-
-                var data = datas[x, y];
-
-                if (data)
-                {
-                    arr[x, y] = PlaceBlock(x, y, datas[x, y]);
-                }
             }
         }
 
+        foreach (var info in preBoard.blocks)
+        {
+            var pos = info.pos;
+            arr[pos.x, pos.y] = PlaceBlock(pos.x, pos.y, info.data);
+        }
+        
         blocks = arr;
     }
 
     void Start()
     {
-        var gridSize = DataManager.current.gameData.gridSize;
-        width = gridSize.x;
-        height = gridSize.y;
-
         columnBlockCount = new int[width];
         rowBlockCount = new int[height];
 
@@ -101,13 +99,14 @@ public partial class BtGrid : MonoBehaviour
                 tiles[x,y] = CreateTileSprite(x, y);
             }
         }
+
+        LoadPreBoard(DataManager.current.preBoards.Rand());
     }
 
     public TempGridState MakeTempGrid()
     {
         return new TempGridState(this);
     }
-
 
     (int, int) GetXY(Vector2 pos)
     {
@@ -160,6 +159,7 @@ public partial class BtGrid : MonoBehaviour
         Assert.IsTrue(rowBlockCount[x] <= width, "Row block count overflow!");
 
         calculateGrid = true;
+        instance.SetGridRender();
 
         return instance;
     }
@@ -313,7 +313,11 @@ public partial class BtGrid : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        if (columnBlockCount == null) return;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position + new Vector3(width / 2f, height / 2f), new Vector3(width, height, 1));
+
+        if (Application.isPlaying) return;
+        if (columnBlockCount == null || columnBlockCount.Length < width) return;
 
         var style = new GUIStyle();
         style.normal.textColor = Color.white;

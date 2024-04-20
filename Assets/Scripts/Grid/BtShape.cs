@@ -81,7 +81,6 @@ public class BtShape : MonoBehaviour
             foreach (var block in placed)
             {
                 block.SetColor(color);
-                block.SetGridRender();
             }
             OnUsed?.Invoke(this);
             Destroy(gameObject);

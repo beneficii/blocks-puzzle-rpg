@@ -7,6 +7,8 @@ public class LineMatchListener : MonoBehaviour
 {
     [SerializeField] float bulletDelaySpacing = 0.1f;
 
+    CombatArena arena;
+
     struct MyAction
     {
         public BtBlockData data;
@@ -23,12 +25,14 @@ public class LineMatchListener : MonoBehaviour
     {
         BtGrid.OnLinesCleared += HandleLinesCleared;
         ShapePanel.OnShapesGenerated += HandleShapesGenerated;
+        Unit.OnKilled += HandleUnitKilled;
     }
 
     private void OnDisable()
     {
         BtGrid.OnLinesCleared -= HandleLinesCleared;
         ShapePanel.OnShapesGenerated -= HandleShapesGenerated;
+        Unit.OnKilled += HandleUnitKilled;
     }
 
     void CreateDamage(int value, BtBlockData data, Vector2 origin, Unit target, float delay)
@@ -42,15 +46,13 @@ public class LineMatchListener : MonoBehaviour
 
     void ExecuteAction(BtBlockData data, Vector2 origin, float delay)
     {
-        var arena = CombatArena.current;
-
         switch (data.type)
         {
             case BtBlockType.Sword:
-                CreateDamage(3, data, origin, arena.enemy, delay);
+                CreateDamage(5, data, origin, arena.enemy, delay);
                 break;
             case BtBlockType.Shield:
-                CreateDamage(-2, data, origin, arena.hero, delay);
+                CreateDamage(-2, data, origin, arena.player, delay);
                 break;
             case BtBlockType.Fire:
                 CreateDamage(10, data, origin, arena.enemy, delay);
@@ -71,9 +73,22 @@ public class LineMatchListener : MonoBehaviour
         }
     }
 
+    int upgradeOfferCtr = 0;
+    void HandleUnitKilled(Unit unit)
+    {
+        if (unit == arena.enemy)
+        {
+            arena.SpawnEnemy();
+            upgradeOfferCtr++;
+            var rarity = upgradeOfferCtr % 5 == 0 ? BtUpgradeRarity.Rare : BtUpgradeRarity.Common;
+            BtUpgradeCtrl.Show(rarity, 3);
+        }
+    }
+
     void HandleLinesCleared(List<BtBlock> blocks, int totalLines)
     {
         float delay = 0;
+        arena.enemy.RemoveHp(totalLines);
         foreach (var block in blocks)
         {
             ExecuteAction(block.data, block.transform.position, delay);
@@ -85,6 +100,12 @@ public class LineMatchListener : MonoBehaviour
     {
         if (initial) return;
 
-        CombatArena.current.hero.RemoveHp(5);
+        
+        arena.player.RemoveHp(arena.enemy.data.damage);
+    }
+
+    private void Awake()
+    {
+        arena = CombatArena.current;
     }
 }

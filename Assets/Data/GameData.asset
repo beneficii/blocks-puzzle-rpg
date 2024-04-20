@@ -19,7 +19,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2b734186f258f84fb0b1d38d2c02bc3, type: 2}
   - {fileID: 11400000, guid: 147ee2d488658424b83a5dd10cb4498d, type: 2}
   - {fileID: 11400000, guid: bcf314db68f011642af35f4d40f014b2, type: 2}
+  - {fileID: 11400000, guid: c24cd315523a0fc4e895ffc5af79fea2, type: 2}
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
   prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}
   prefabBullet: {fileID: 7667046944190593093, guid: 1876af816686cf94d80eae434ee347c4, type: 3}
+  spriteTempHero: {fileID: -728255665444098679, guid: b59a3015d7aeabd4e87fc27eabae5231, type: 3}
+  spriteTempEnemy: {fileID: 3800871404644214177, guid: ea96cef721f0ab8419dfdc04d30756a0, type: 3}

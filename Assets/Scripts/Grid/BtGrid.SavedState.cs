@@ -6,8 +6,8 @@
 
         public SavedState(BtGrid grid)
         {
-            var width = grid.width;
-            var height = grid.height;
+            var width = BtGrid.width;
+            var height = BtGrid.height;
             var arr = new BtBlockData[width, height];
 
             for (int y = 0; y < height; y++)
@@ -23,8 +23,8 @@
 
         public void Load(BtGrid grid)
         {
-            var width = grid.width;
-            var height = grid.height;
+            var width = BtGrid.width;
+            var height = BtGrid.height;
             var arr = new BtBlock[width, height];
 
             grid.columnBlockCount = new int[width];

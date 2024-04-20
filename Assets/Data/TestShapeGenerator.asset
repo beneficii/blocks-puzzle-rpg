@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5a013dc30135942ba9bb6953c62f70, type: 3}
   m_Name: TestShapeGenerator
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 8b3693257fdebb24e815bd66388d0696, type: 3}
-  cellSize: {x: 5, y: 5}
-  cellOffset: {x: 2, y: 2}
+  textureShapes: {fileID: 2800000, guid: 957c918d15012934e9a997957bab20cb, type: 3}
+  textureBoards: {fileID: 2800000, guid: 63bb885e403171b478cdc7712fa3437c, type: 3}
+  colorsToBlocks:
+  - color:
+      serializedVersion: 2
+      rgba: 4283082452
+    data: {fileID: 11400000, guid: bcf314db68f011642af35f4d40f014b2, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4294967295
+    data: {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
+  shapeCellSize: {x: 5, y: 5}

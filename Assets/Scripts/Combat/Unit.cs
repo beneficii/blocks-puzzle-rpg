@@ -6,34 +6,29 @@ using FancyToolkit;
 public class Unit : MonoBehaviour, IDamagable
 {
     [SerializeField] ValueBar health;
+    [SerializeField] SpriteRenderer render;
 
-    private void Awake()
+    public static System.Action<Unit> OnKilled;
+
+    public UnitData data { get; private set; }
+
+    public void Init(UnitData data)
     {
-        health.Init(100);
+        this.data = data;
+        render.sprite = data.sprite;
+        health.Init(data.hp);
         health.OnZero += HandleOutOfHealth;
-    }
-
-    void Start()
-    {
-
     }
 
     void HandleOutOfHealth()
     {
+        OnKilled?.Invoke(this);
         Destroy(gameObject);
     }
 
-    void Update()
+    public void SetFlip(bool value)
     {
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            health.Add(5);
-        } else if (Input.GetKeyDown(KeyCode.S))
-        {
-            health.Remove(5);
-        }
-#endif
+        render.flipX = value;
     }
 
     public void RemoveHp(int value)

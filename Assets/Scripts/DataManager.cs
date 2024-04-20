@@ -11,8 +11,8 @@ public class DataManager : MonoBehaviour
     public GameData gameData;
 
     public List<BtShapeData> shapes; //{ get; private set; }
-
-    public Dictionary<BtBlockType, BtBlockData> blocks;
+    public List<BtBoardInfo> preBoards;
+    public BtBlockData emptyBlock;
 
     private void Awake()
     {
@@ -25,8 +25,8 @@ public class DataManager : MonoBehaviour
         current = this;
         DontDestroyOnLoad(gameObject);
 
-        blocks = gameData.blocks.ToDictionary(x => x.type);
-        shapes = gameData.shapeGenerator.Generate();
+        shapes = gameData.shapeGenerator.GenerateShapes();
+        preBoards = gameData.shapeGenerator.GenerateBoards();
     }
 
 

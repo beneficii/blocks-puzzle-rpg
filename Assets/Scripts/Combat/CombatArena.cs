@@ -18,8 +18,49 @@ public class CombatArena : MonoBehaviour
         }
     }
 
-    public Unit hero;
-    public Unit enemy;
+    [SerializeField] Transform spotPlayer;
+    [SerializeField] Transform spotEnemy;
+    public Unit prefabUnit;
+
+    public Unit player { get; private set; }
+    public Unit enemy { get; private set; }
 
     public List<Unit> summons;
+
+    int level = 1;
+    public void SpawnEnemy()
+    {
+        var data = new UnitData
+        {
+            sprite = DataManager.current.gameData.spriteTempEnemy,
+            damage = level * 2,
+            hp = level * 10,
+        };
+        level++;
+
+        var unit = Instantiate(prefabUnit, spotEnemy);
+        unit.Init(data);
+        enemy = unit;
+    }
+
+    public void SpawnPlayer()
+    {
+        var data = new UnitData
+        {
+            sprite = DataManager.current.gameData.spriteTempHero,
+            damage = 1,
+            hp = 100,
+        };
+
+        var unit = Instantiate(prefabUnit, spotPlayer);
+        unit.Init(data);
+
+        player = unit;
+    }
+
+    private void Start()
+    {
+        SpawnPlayer();
+        SpawnEnemy();
+    }
 }
