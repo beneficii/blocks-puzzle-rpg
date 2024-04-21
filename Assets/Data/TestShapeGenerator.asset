@@ -17,10 +17,18 @@ MonoBehaviour:
   colorsToBlocks:
   - color:
       serializedVersion: 2
-      rgba: 4283082452
-    data: {fileID: 11400000, guid: bcf314db68f011642af35f4d40f014b2, type: 2}
+      rgba: 4283888280
+    data: {fileID: 11400000, guid: 2b84f90507c9eb8419bfe4cd529ef986, type: 2}
   - color:
       serializedVersion: 2
       rgba: 4294967295
     data: {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4283596797
+    data: {fileID: 11400000, guid: 147ee2d488658424b83a5dd10cb4498d, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4278190080
+    data: {fileID: 0}
   shapeCellSize: {x: 5, y: 5}

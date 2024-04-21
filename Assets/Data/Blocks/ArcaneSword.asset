@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3f383513ea13e47a463b1f412d84b9, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: 2522e36ceb8cb3c43ba696daaac6ba25, type: 3}
+  m_Name: ArcaneSword
   m_EditorClassIdentifier: 
-  sprite: {fileID: -152554757, guid: 8fd0421420ec5d6479cc8024c6af6055, type: 3}
-  type: 1
-  level: 1
+  sprite: {fileID: -689808054, guid: 7b25feb9680300f4ab581125d7446b20, type: 3}
+  level: 3
+  priority: 101
+  tags: 04000000
+  damageMultiplier: 4

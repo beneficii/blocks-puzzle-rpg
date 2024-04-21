@@ -6,17 +6,21 @@ using UnityEngine;
 public class BtBlockData : ScriptableObject
 {
     public Sprite sprite;
-    public BtBlockType type;
+    public virtual BtBlockType type => BtBlockType.None;
     public int level;
+    public int priority;
 
-    public virtual string GetDescription() => "ToDo: empty description";
+    public virtual string GetDescription() => "";
+
+    public virtual void HandleMatch(BtBlock parent, BtLineClearInfo info)
+    {
+        // nothing
+    }
 }
 
 public enum BtBlockType
 {
     None,
-    Sword,
-    Shield,
-    Fire,
-    Summon,
+    Basic,
+    Special,
 }

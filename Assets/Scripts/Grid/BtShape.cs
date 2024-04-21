@@ -5,21 +5,37 @@ using FancyToolkit;
 
 public class BtShape : MonoBehaviour
 {
-    public System.Action<BtShape> OnUsed;
+    public static System.Action<BtShape, bool> OnDragState;
 
+    public System.Action<BtShape> OnUsed;
     public const float offsetDrag = 3f;
+
+    [SerializeField] Color color = Color.white;
 
     public BtShapeData data { get; private set; }
     public int rotation { get; private set; }
 
     public BtShapeInfo GetInfo() => new BtShapeInfo(data, rotation);
+
+    List<BtBlock> blocks;
     
     bool isDragging;
-    Color color;
+
+    void Clear()
+    {
+        if (blocks == null) return;
+
+        foreach (var item in blocks)
+        {
+            Destroy(item.gameObject);
+        }
+        blocks.Clear();
+    }
 
     public void Init(BtShapeData data, int rotation)
     {
-        this.color = BtGrid.current.settings.blockColors.Rand();
+        Clear();
+        blocks = new List<BtBlock>();
         this.data = data;
         this.rotation = rotation;
         foreach (var item in data.GetBlocks(rotation))
@@ -28,6 +44,7 @@ public class BtShape : MonoBehaviour
             instance.transform.localPosition = item.pos.ToFloatVector();
             instance.Init(item.data);
             instance.SetColor(color);
+            blocks.Add(instance);
         }
 
         SetDragState(false);
@@ -41,6 +58,7 @@ public class BtShape : MonoBehaviour
     void SetDragState(bool value)
     {
         isDragging = value;
+        OnDragState?.Invoke(this, value);
 
         if (value)
         {
@@ -54,10 +72,12 @@ public class BtShape : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (FancyInputCtrl.IsMouseOverUI()) return;
+
         SetDragState(true);
     }
 
-    Vector2 DragPosition()
+    public Vector2 DragPosition()
         => Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
 
     public void OnMouseUp()
@@ -91,7 +111,6 @@ public class BtShape : MonoBehaviour
             transform.localPosition = Vector3.zero;
             return false;
         }
-
     }
 
     public bool DropAt(Vector2 worldPos)

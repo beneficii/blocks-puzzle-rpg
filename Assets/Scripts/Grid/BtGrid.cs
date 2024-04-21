@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using FancyToolkit;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,7 +13,7 @@ public partial class BtGrid : MonoBehaviour
 {
     public static BtGrid current { get; private set; }
 
-    public static System.Action<List<BtBlock>, int> OnLinesCleared;
+    public static System.Action<BtLineClearInfo> OnLinesCleared;
 
     public const int width = 8;
     public const int height = 8;
@@ -103,6 +104,11 @@ public partial class BtGrid : MonoBehaviour
         LoadPreBoard(DataManager.current.preBoards.Rand());
     }
 
+    public void LoadRandomBoard(int level)
+    {
+        LoadPreBoard(DataManager.current.preBoards.Rand());
+    }
+
     public TempGridState MakeTempGrid()
     {
         return new TempGridState(this);
@@ -119,6 +125,13 @@ public partial class BtGrid : MonoBehaviour
     public Vector2Int GetGridPos(Vector2 worldPos)
     {
         var (x, y) = GetXY(worldPos);
+        return new Vector2Int(x, y);
+    }
+
+    public Vector2Int? CheckGridPos(Vector2 worldPos)
+    {
+        var (x, y) = GetXY(worldPos);
+        if (!InBounds(x, y)) return null;
         return new Vector2Int(x, y);
     }
 
@@ -162,6 +175,26 @@ public partial class BtGrid : MonoBehaviour
         instance.SetGridRender();
 
         return instance;
+    }
+
+    public List<Vector2> GetBlockPositions(Vector2Int origin, BtShapeInfo shape)
+    {
+        var result = new List<Vector2>();
+        var blocks = shape.GetBlocks()
+            .Select(x => x.pos)
+            .ToList();
+
+        foreach (var item in blocks)
+        {
+            var pos = item + origin;
+            if (!InBounds(pos.x, pos.y)) return null;
+
+            var other = GetItem(pos.x, pos.y);
+            if (other) return null;
+            result.Add(tiles[pos.x, pos.y].transform.position);
+        }
+
+        return result;
     }
 
     public bool CanFit(int x, int y, List<BtBlockInfo> blocks)
@@ -299,9 +332,19 @@ public partial class BtGrid : MonoBehaviour
 
         calculateGrid = false;
         int totalCleared = removeColumns.Count + removeRows.Count;
+
         if (totalCleared > 0)
         {
-            OnLinesCleared?.Invoke(blocksRemoved, totalCleared);
+            var blockSet = new HashSet<BtBlock>();
+            foreach (var item in blocksRemoved)
+            {
+                if (item.data.type != BtBlockType.None)
+                {
+                    blockSet.Add(item);
+                }
+            }
+
+            OnLinesCleared?.Invoke(new BtLineClearInfo(blockSet, removeRows.Count, removeColumns.Count));
         }
     }
 
@@ -362,4 +405,3 @@ public partial class BtGrid : MonoBehaviour
         ShapePanel.current.CheckSlots();
     }
 }
-

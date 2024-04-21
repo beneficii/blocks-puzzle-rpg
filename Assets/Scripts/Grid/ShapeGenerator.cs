@@ -12,18 +12,28 @@ public class ShapeGenerator : ScriptableObject
 
     [SerializeField] Vector2Int shapeCellSize = new Vector2Int(5, 5);
 
-    BtShapeData GetShape(int x, int y)
+
+    public BtBlockData GetBlock(Color32 color)
     {
-        var result = new List<Vector2Int>();
+        foreach (var item in colorsToBlocks)
+        {
+            if (item.color.Equals(color)) return item.data;
+        }
+
+        return null;
+    } 
+
+    BtShapeData GetShape(int x, int y, Color32[,] pixels)
+    {
+        var result = new List<BtBlockInfo>();
         for (int cellY = 0; cellY < shapeCellSize.y; cellY++)
         {
             for (int cellX = 0; cellX < shapeCellSize.x; cellX++)
             {
-                Color pixelColor = textureShapes.GetPixel(x+cellX, y+cellY);
-
-                if (pixelColor == Color.white)
+                var data = GetBlock(pixels[x + cellX, y + cellY]);
+                if (data)
                 {
-                    result.Add(new Vector2Int(cellX, cellY));
+                    result.Add(new BtBlockInfo(data, new Vector2Int(cellX, cellY)));
                 }
             }
         }
@@ -35,13 +45,14 @@ public class ShapeGenerator : ScriptableObject
     public List<BtShapeData> GenerateShapes()
     {
         var result = new List<BtShapeData>();
+        var pixels = textureShapes.Get2DColors32();
 
         // Iterate through the image by 5x5 cells
         for (int y = 0; y < textureShapes.height; y += shapeCellSize.y)
         {
             for (int x = 0; x < textureShapes.width; x += shapeCellSize.x)
             {
-                var data = GetShape(x,y);
+                var data = GetShape(x,y, pixels);
                 if (!data) continue;
                 result.Add(data);
             }
@@ -58,11 +69,10 @@ public class ShapeGenerator : ScriptableObject
         {
             for (int cellX = 0; cellX < BtGrid.width; cellX++)
             {
-                var pixelColor = pixels[x + cellX, y + cellY];
-                if (colorDict.TryGetValue(pixelColor, out var data))
+                var data = GetBlock(pixels[x + cellX, y + cellY]);
+                if (data)
                 {
-                    var block = new BtBlockInfo(data, new Vector2Int(cellX, cellY));
-                    blocks.Add(block);
+                    blocks.Add(new BtBlockInfo(data, new Vector2Int(cellX, cellY)));
                 }
             }
         }
@@ -98,8 +108,8 @@ public class ShapeGenerator : ScriptableObject
     [ContextMenu("AutoFill Colors")]
     void FillColorFromTexture()
     {
-        var allColors = textureBoards.GetPixels32();
-
+        var allColors = textureBoards.GetPixels32().Concat(textureShapes.GetPixels32());
+        
         foreach (var color in allColors)
         {
             if (!color.Equals(Color.black) && colorsToBlocks.FirstOrDefault(x=>x.color.Equals(color)) == null)

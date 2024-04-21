@@ -7,4 +7,6 @@ public class UnitData
     public Sprite sprite;
     public int damage;
     public int hp;
+
+    public int level;
 }

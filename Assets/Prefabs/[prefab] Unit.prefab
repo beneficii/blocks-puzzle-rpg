@@ -126,6 +126,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733002719797625787, guid: 046533d097d59c34f8c8698163256af6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.092
+      objectReference: {fileID: 0}
     - target: {fileID: 8438691760567685301, guid: 046533d097d59c34f8c8698163256af6, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

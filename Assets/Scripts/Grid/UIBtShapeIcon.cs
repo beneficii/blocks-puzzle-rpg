@@ -20,7 +20,7 @@ public class UIBtShapeIcon : MonoBehaviour
         blocks.Clear();
     }
 
-    public void Init(BtShapeData shape)
+    public void Init(BtShapeData shape, BtBlockInfo highlightedBlock = null)
     {
         Clear();
         blocks = new List<UIWithIcon>();
@@ -30,14 +30,11 @@ public class UIBtShapeIcon : MonoBehaviour
             block.GetComponent<RectTransform>().anchoredPosition = info.pos * blockSize;
             block.SetIcon(info.data.sprite);
             blocks.Add(block);
-        }
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Init(ShapePanel.current.GetShapeFromPool());
+            if (highlightedBlock != null && (highlightedBlock.pos == info.pos))
+            {
+                block.frame.enabled = true;
+            }
         }
     }
 }

@@ -97,7 +97,7 @@ public class ShapePanel : MonoBehaviour
         instance.OnUsed += HandleShapeUsed;
     }
 
-    void GenerateNew(bool initial)
+    public void GenerateNew(bool initial = true)
     {
         Clear();
 
@@ -238,28 +238,34 @@ public class ShapePanel : MonoBehaviour
         }
     }
 
+    IEnumerator AutoPlayTurn()
+    {
+        if (hints == null || hints.Count == 0) yield break;
+
+        int idx = 0;
+        foreach (var hint in hints)
+        {
+            var slot = slots[idx++];
+            var shape = slot.GetComponentInChildren<BtShape>();
+            if (!shape) yield break;
+
+            var dropped = shape.DropAt(hint);
+            if (!dropped)
+            {
+                Debug.LogError("Could not drop");
+                yield break;
+            }
+
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+
     IEnumerator AutoPlay()
     {
         while (true)
         {
-            if (hints == null || hints.Count == 0) yield break;
-
-            int idx = 0;
-            foreach (var hint in hints)
-            {
-                var slot = slots[idx++];
-                var shape = slot.GetComponentInChildren<BtShape>();
-                if (!shape) yield break;
-
-                var dropped = shape.DropAt(hint);
-                if (!dropped)
-                {
-                    Debug.LogError("Could not drop");
-                    yield break;
-                }
-
-                yield return new WaitForSeconds(0.05f);
-            }
+            yield return AutoPlayTurn();
             yield return new WaitForSeconds(0.1f);
 
         }
@@ -277,5 +283,10 @@ public class BtShapeInfo
     {
         this.data = data;
         this.rotation = rotation;
+    }
+
+    public List<BtBlockInfo> GetBlocks()
+    {
+        return data.GetBlocks(rotation);
     }
 }

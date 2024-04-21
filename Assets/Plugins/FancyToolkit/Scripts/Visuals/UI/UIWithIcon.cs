@@ -8,6 +8,7 @@ namespace FancyToolkit
     public class UIWithIcon : MonoBehaviour
     {
         public Image icon;
+        public Image frame;
 
         public void SetIcon(Sprite sprite)
         {

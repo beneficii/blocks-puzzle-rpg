@@ -5,8 +5,6 @@ using FancyToolkit;
 
 public class LineMatchListener : MonoBehaviour
 {
-    [SerializeField] float bulletDelaySpacing = 0.1f;
-
     CombatArena arena;
 
     struct MyAction
@@ -35,64 +33,26 @@ public class LineMatchListener : MonoBehaviour
         Unit.OnKilled += HandleUnitKilled;
     }
 
-    void CreateDamage(int value, BtBlockData data, Vector2 origin, Unit target, float delay)
-    {
-        DataManager.current.gameData.prefabBullet.MakeInstance(origin)
-            .SetTarget(target)
-            .SetDamage(value)
-            .SetSprite(data.sprite)
-            .SetLaunchDelay(delay);
-    }
-
-    void ExecuteAction(BtBlockData data, Vector2 origin, float delay)
-    {
-        switch (data.type)
-        {
-            case BtBlockType.Sword:
-                CreateDamage(5, data, origin, arena.enemy, delay);
-                break;
-            case BtBlockType.Shield:
-                CreateDamage(-2, data, origin, arena.player, delay);
-                break;
-            case BtBlockType.Fire:
-                CreateDamage(10, data, origin, arena.enemy, delay);
-                /*DataManager.current.gameData.prefabBullet.MakeInstance(origin)
-                    .SetTarget(arena.enemy)
-                    .SetAction((obj)=>
-                    {
-                        if (!obj.TryGetComponent<Unit>(out var unit)) return;
-                        unit.SpecialTestAction();
-
-                    })
-                    .SetSprite(data.sprite)
-                    .SetLaunchDelay(delay);
-                */
-                break;
-            default:
-                break;
-        }
-    }
-
     int upgradeOfferCtr = 0;
     void HandleUnitKilled(Unit unit)
     {
         if (unit == arena.enemy)
         {
-            arena.SpawnEnemy();
+            var enemy = arena.SpawnEnemy();
             upgradeOfferCtr++;
             var rarity = upgradeOfferCtr % 5 == 0 ? BtUpgradeRarity.Rare : BtUpgradeRarity.Common;
             BtUpgradeCtrl.Show(rarity, 3);
+            BtGrid.current.LoadRandomBoard(enemy.data.level);
+            ShapePanel.current.GenerateNew();
         }
     }
 
-    void HandleLinesCleared(List<BtBlock> blocks, int totalLines)
+    void HandleLinesCleared(BtLineClearInfo lineClearInfo)
     {
-        float delay = 0;
-        arena.enemy.RemoveHp(totalLines);
-        foreach (var block in blocks)
+        BtBlock block;
+        while ((block = lineClearInfo.PickNextBlock()) != null)
         {
-            ExecuteAction(block.data, block.transform.position, delay);
-            delay += bulletDelaySpacing;
+            block.data.HandleMatch(block, lineClearInfo);
         }
     }
 

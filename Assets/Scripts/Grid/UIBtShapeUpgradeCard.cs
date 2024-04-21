@@ -11,12 +11,13 @@ public class UIBtShapeUpgradeCard : MonoBehaviour, IUIUpgradeChoise
 
     BtShapeData data;
 
-    public void Init(BtShapeData data, BtBlockData block)
+    public void Init(BtShapeData data, BtBlockInfo block)
     {
         this.data = data;
-        if (txtDescription) txtDescription.text = block.GetDescription();
+        var blockData = block.data;
+        if (txtDescription) txtDescription.text = blockData.GetDescription();
 
-        shapeIcon.Init(data);
+        shapeIcon.Init(data, block);
     }
 
     public bool Select()

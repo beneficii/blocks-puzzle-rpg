@@ -51,7 +51,7 @@ public static class BtUpgradeCtrl
             var upgradedShape = new BtShapeData(oldBlocks, level);
             upgrades.Add(upgradedShape, shape);
 
-            cards[i].Init(upgradedShape, block);
+            cards[i].Init(upgradedShape, emptyBlock);
         }
     }
 

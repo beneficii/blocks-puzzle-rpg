@@ -28,7 +28,7 @@ namespace FancyToolkit
 
             }
 
-            prefabFloater.Create(msg, transform.position, transform)
+            prefabFloater.Create(msg, transform.position)
                 .SetColor(color);
         }
     }

@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   shapeGenerator: {fileID: 11400000, guid: db101c63780bb6747859e35330cd61ea, type: 2}
-  gridSize: {x: 8, y: 8}
   blocks:
-  - {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
-  - {fileID: 11400000, guid: e2b734186f258f84fb0b1d38d2c02bc3, type: 2}
+  - {fileID: 11400000, guid: f6fc5632387f2294c986e844df443c82, type: 2}
+  - {fileID: 11400000, guid: afb2f46c11948a94b9c4ec48ac9cb0f5, type: 2}
+  - {fileID: 11400000, guid: 2b84f90507c9eb8419bfe4cd529ef986, type: 2}
+  - {fileID: 11400000, guid: 57979b07744294e47a43cb27bb562fd6, type: 2}
   - {fileID: 11400000, guid: 147ee2d488658424b83a5dd10cb4498d, type: 2}
-  - {fileID: 11400000, guid: bcf314db68f011642af35f4d40f014b2, type: 2}
-  - {fileID: 11400000, guid: c24cd315523a0fc4e895ffc5af79fea2, type: 2}
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
   prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}

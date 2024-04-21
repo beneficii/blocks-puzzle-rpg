@@ -50,9 +50,4 @@ public class BtBlock : MonoBehaviour
 
         Destroy(gameObject);
     }
-
-    private void OnMouseDown()
-    {
-        if (Input.GetKey(KeyCode.T)) Collect();
-    }
 }

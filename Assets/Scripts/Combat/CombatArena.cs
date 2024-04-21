@@ -28,7 +28,7 @@ public class CombatArena : MonoBehaviour
     public List<Unit> summons;
 
     int level = 1;
-    public void SpawnEnemy()
+    public Unit SpawnEnemy()
     {
         var data = new UnitData
         {
@@ -41,9 +41,11 @@ public class CombatArena : MonoBehaviour
         var unit = Instantiate(prefabUnit, spotEnemy);
         unit.Init(data);
         enemy = unit;
+
+        return unit;
     }
 
-    public void SpawnPlayer()
+    public Unit SpawnPlayer()
     {
         var data = new UnitData
         {
@@ -56,6 +58,8 @@ public class CombatArena : MonoBehaviour
         unit.Init(data);
 
         player = unit;
+
+        return unit;
     }
 
     private void Start()
