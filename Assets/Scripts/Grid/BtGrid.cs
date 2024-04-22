@@ -21,7 +21,6 @@ public partial class BtGrid : MonoBehaviour
     public BtSettings settings;
 
     [SerializeField] Sprite spriteTile;
-    [SerializeField] HintTile prefabHintTile;
 
     [SerializeField] Color colorTile1;
     [SerializeField] Color colorTile2;
@@ -177,7 +176,7 @@ public partial class BtGrid : MonoBehaviour
         return instance;
     }
 
-    public List<Vector2> GetBlockPositions(Vector2Int origin, BtShapeInfo shape)
+    public List<Vector2> GetBlockPositions(Vector2Int origin, BtShapeInfo shape, bool strict)
     {
         var result = new List<Vector2>();
         var blocks = shape.GetBlocks()
@@ -189,8 +188,12 @@ public partial class BtGrid : MonoBehaviour
             var pos = item + origin;
             if (!InBounds(pos.x, pos.y)) return null;
 
-            var other = GetItem(pos.x, pos.y);
-            if (other) return null;
+            if (strict)
+            {
+                var other = GetItem(pos.x, pos.y);
+                if (other) return null;
+            }
+            
             result.Add(tiles[pos.x, pos.y].transform.position);
         }
 
@@ -378,26 +381,6 @@ public partial class BtGrid : MonoBehaviour
         }
     }
 #endif
-
-    public void ShowHint(List<Vector2Int> hints)
-    {
-        StartCoroutine(HintRoutine(hints));
-    }
-
-    IEnumerator HintRoutine(List<Vector2Int> hints)
-    {
-        int idx = 1;
-        foreach (var item in hints)
-        {
-            var tile = tiles[item.x, item.y];
-
-            prefabHintTile.MakeInstance(tile.transform.position)
-                .InitTimed(idx.ToString(), 2f);
-            idx++;
-
-            yield return new WaitForSeconds(0.3f);
-        }
-    }
 
     void CheckBoardState()
     {

@@ -925,7 +925,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
   m_Name: 
@@ -934,7 +934,7 @@ MonoBehaviour:
   m_AssetsPPU: 46
   m_RefResolutionX: 540
   m_RefResolutionY: 960
-  m_CropFrame: 2
+  m_CropFrame: 0
   m_GridSnapping: 0
   m_FilterMode: 0
   m_UpscaleRT: 0
@@ -1988,6 +1988,7 @@ GameObject:
   - component: {fileID: 1169814065}
   - component: {fileID: 1169814067}
   - component: {fileID: 1169814068}
+  - component: {fileID: 1169814069}
   m_Layer: 0
   m_Name: --- Managers
   m_TagString: Untagged
@@ -2041,13 +2042,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169814064}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62f30634780aa3345b3e731f8872117f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   color: {r: 1, g: 1, b: 1, a: 0.47058824}
+--- !u!114 &1169814069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169814064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a372bd607fa483847b94429c643a0408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabTile: {fileID: 6989714384839338002, guid: 19f5b4fe45ea3624dbdb14add9bb49fd, type: 3}
+  displayDelay: 0.3
+  fadeDelay: 0.7
 --- !u!1001 &1287621975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2645,7 +2661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: fd344802fca544b45a0519bc13fccb60, type: 2}
   spriteTile: {fileID: 21300000, guid: d345f6f476302864590623dab372f214, type: 3}
-  prefabHintTile: {fileID: 6989714384839338002, guid: 19f5b4fe45ea3624dbdb14add9bb49fd, type: 3}
   colorTile1: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   colorTile2: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
 --- !u!1 &2066514685

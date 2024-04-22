@@ -84,7 +84,7 @@ public class ShapeShadowCtrl : MonoBehaviour
 
         if (gridPos.HasValue)
         {
-            var list = BtGrid.current.GetBlockPositions(gridPos.Value, currentShape.GetInfo());
+            var list = BtGrid.current.GetBlockPositions(gridPos.Value, currentShape.GetInfo(), true);
             if (list != null)
             {
                 int idx = 0;
@@ -97,7 +97,6 @@ public class ShapeShadowCtrl : MonoBehaviour
             {
                 Clear();
             }
-
         }
         else
         {

@@ -7,7 +7,7 @@ public class BtShape : MonoBehaviour
 {
     public static System.Action<BtShape, bool> OnDragState;
 
-    public System.Action<BtShape> OnUsed;
+    public System.Action<BtShape, Vector2Int> OnDropped;
     public const float offsetDrag = 3f;
 
     [SerializeField] Color color = Color.white;
@@ -20,6 +20,7 @@ public class BtShape : MonoBehaviour
     List<BtBlock> blocks;
     
     bool isDragging;
+    Vector3 prevDragPosition;
 
     void Clear()
     {
@@ -55,6 +56,18 @@ public class BtShape : MonoBehaviour
         Init(info.data, info.rotation);
     }
 
+    Vector2 moveSpeed;
+
+    void CalculateMouseSpeed()
+    {
+        float height = Helpers.Camera.orthographicSize * 2.0f;
+        float width = height * Helpers.Camera.aspect;
+
+        float moveSpeedX = width / Screen.width;
+        float moveSpeedY = height / Screen.height;
+        moveSpeed = new Vector2(moveSpeedX, moveSpeedY);
+    }
+
     void SetDragState(bool value)
     {
         isDragging = value;
@@ -62,7 +75,10 @@ public class BtShape : MonoBehaviour
 
         if (value)
         {
+            CalculateMouseSpeed();
+            prevDragPosition = Input.mousePosition;
             transform.localScale = Vector3.one;
+            transform.position = DragPosition();
         }
         else
         {
@@ -88,9 +104,13 @@ public class BtShape : MonoBehaviour
         SetDragState(false);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (isDragging) transform.position = DragPosition();
+        if (!isDragging) return;
+        var delta = Input.mousePosition - prevDragPosition;
+        //transform.position += DragPosition();
+        transform.position += new Vector3(delta.x * moveSpeed.x, delta.y * moveSpeed.y);
+        prevDragPosition = Input.mousePosition;
     }
 
     public bool DropAt(Vector2Int pos)
@@ -102,7 +122,7 @@ public class BtShape : MonoBehaviour
             {
                 block.SetColor(color);
             }
-            OnUsed?.Invoke(this);
+            OnDropped?.Invoke(this, pos);
             Destroy(gameObject);
             return true;
         }

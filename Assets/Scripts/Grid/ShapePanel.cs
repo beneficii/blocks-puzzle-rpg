@@ -29,7 +29,7 @@ public class ShapePanel : MonoBehaviour
     List<BtShapeData> pool;
     int poolIdx = 0;
 
-    List<Vector2Int> hints;
+    Queue<BtHint> hints;
 
     bool shouldCheckSlots = false;
 
@@ -59,7 +59,7 @@ public class ShapePanel : MonoBehaviour
 
                 if (gridState.AddPiece(info))
                 {
-                    hints.Add(gridState.hint);
+                    hints.Enqueue(new BtHint(info, gridState.hint));
                     return info;
                 }
             }
@@ -70,7 +70,7 @@ public class ShapePanel : MonoBehaviour
         var wispShape = BtGrid.current.settings.GetWispShapeInfo();
         if (gridState.AddPiece(wispShape))
         {
-            hints.Add(gridState.hint);
+            hints.Enqueue(new BtHint(wispShape, gridState.hint));
             return wispShape;
         }
         
@@ -94,7 +94,7 @@ public class ShapePanel : MonoBehaviour
         var instance = Instantiate(DataManager.current.gameData.prefabShape, slot.position, slot.rotation, slot);
         instance.Init(info);
         shapes.Add(instance);
-        instance.OnUsed += HandleShapeUsed;
+        instance.OnDropped += HandleShapeDropped;
     }
 
     public void GenerateNew(bool initial = true)
@@ -102,7 +102,7 @@ public class ShapePanel : MonoBehaviour
         Clear();
 
         var tempGrid = BtGrid.current.MakeTempGrid();
-        hints = new List<Vector2Int>();
+        hints = new();
 
         foreach (var slot in slots)
         {
@@ -129,6 +129,7 @@ public class ShapePanel : MonoBehaviour
         GenerateNew(true);
     }
 
+#if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
@@ -136,9 +137,9 @@ public class ShapePanel : MonoBehaviour
             GenerateNew(true);
         }
 
-        if (hints != null && Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            BtGrid.current.ShowHint(hints);
+            HintCtrl.current.Show(hints);
         }
 
         int upgradeLevel = -1;
@@ -152,10 +153,11 @@ public class ShapePanel : MonoBehaviour
             BtUpgradeCtrl.Show((BtUpgradeRarity)upgradeLevel, 3);
         }
     }
+#endif
 
     public void BtnShowHint()
     {
-        BtGrid.current.ShowHint(hints);
+        HintCtrl.current.Show(hints);
     }
 
     public void BtnGenerateNewShapes()
@@ -170,7 +172,7 @@ public class ShapePanel : MonoBehaviour
 
     public void BtnAutoplay()
     {
-        StartCoroutine(AutoPlay());
+        StartCoroutine(AutoPlayTurn());
     }
 
     public void CheckDeadEnd()
@@ -201,10 +203,22 @@ public class ShapePanel : MonoBehaviour
         CheckDeadEnd();
     }
 
-    void HandleShapeUsed(BtShape shape)
+    void HandleShapeDropped(BtShape shape, Vector2Int pos)
     {
         shapes.Remove(shape);
         shouldCheckSlots = true;
+        
+        if (hints != null && hints.Count > 0)
+        {
+            if(hints.Peek().Matches(shape.GetInfo(), pos))
+            {
+                hints.Dequeue();
+            }
+            else
+            {
+                hints = null;
+            }
+        }
     }
 
     public List<BtShapeInfo> GetCurrentShapes()
@@ -215,7 +229,7 @@ public class ShapePanel : MonoBehaviour
             var shape = slot.GetComponentInChildren<BtShape>();
             if (shape)
             {
-                result.Add(new BtShapeInfo(shape.data, shape.rotation));
+                result.Add(shape.GetInfo());
             } else
             {
                 result.Add(null);
@@ -225,7 +239,12 @@ public class ShapePanel : MonoBehaviour
         return result;
     }
 
-    public void SetCurrentShapes(List<BtShapeInfo> infos)
+    public List<BtHint> GetCurrentHints()
+    {
+        return new List<BtHint>(hints);
+    }
+
+    public void SetCurrentShapes(List<BtShapeInfo> infos, List<BtHint> hints)
     {
         Clear();
         int idx = 0;
@@ -236,6 +255,7 @@ public class ShapePanel : MonoBehaviour
 
             SetSlotShape(slot, info);
         }
+        this.hints = new(hints);
     }
 
     IEnumerator AutoPlayTurn()
@@ -243,20 +263,21 @@ public class ShapePanel : MonoBehaviour
         if (hints == null || hints.Count == 0) yield break;
 
         int idx = 0;
-        foreach (var hint in hints)
+        var list = new List<BtHint>(hints);
+        foreach (var hint in list)
         {
             var slot = slots[idx++];
             var shape = slot.GetComponentInChildren<BtShape>();
             if (!shape) yield break;
 
-            var dropped = shape.DropAt(hint);
+            var dropped = shape.DropAt(hint.pos);
             if (!dropped)
             {
                 Debug.LogError("Could not drop");
                 yield break;
             }
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -267,7 +288,6 @@ public class ShapePanel : MonoBehaviour
         {
             yield return AutoPlayTurn();
             yield return new WaitForSeconds(0.1f);
-
         }
 
     }
