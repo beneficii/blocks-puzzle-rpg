@@ -8,6 +8,7 @@ public class BtShapeData
     List<BtBlockInfo> blocks;
     Vector2Int size;
     public int level { get; private set; }
+    public BtUpgradeRarity Rarity => (BtUpgradeRarity)level;
 
     public BtShapeData(List<BtBlockInfo> blocks, int level = 0)
     {
@@ -72,15 +73,12 @@ public class BtShapeData
 
     public BtBlockData SpecialBlock()
     {
-        foreach (var item in blocks)
-        {
-            if (item.data.type != BtBlockType.None)
-            {
-                return item.data;
-            }
-        }
+        return blocks.FirstOrDefault(x => x.data.type != BtBlockType.None)?.data;
+    }
 
-        return null;
+    public bool HasUniqueBlock()
+    {
+        return blocks.Any(x => x.data.Rarity > BtUpgradeRarity.Uncommon);
     }
 
     public bool HasEmptyBlocks()

@@ -65,7 +65,7 @@ public class BtShape : MonoBehaviour
 
         float moveSpeedX = width / Screen.width;
         float moveSpeedY = height / Screen.height;
-        moveSpeed = new Vector2(moveSpeedX, moveSpeedY);
+        moveSpeed = new Vector2(moveSpeedX, moveSpeedY) * 1.32f;
     }
 
     void SetDragState(bool value)
@@ -78,7 +78,7 @@ public class BtShape : MonoBehaviour
             CalculateMouseSpeed();
             prevDragPosition = Input.mousePosition;
             transform.localScale = Vector3.one;
-            transform.position = DragPosition();
+            transform.position = Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
         }
         else
         {
@@ -94,13 +94,16 @@ public class BtShape : MonoBehaviour
     }
 
     public Vector2 DragPosition()
-        => Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
+        //=> Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
+        => transform.position + Vector3.up * offsetDrag;
+
 
     public void OnMouseUp()
     {
         if (!isDragging) return;
 
-        DropAt(DragPosition());
+        //DropAt(DragPosition());
+        DropAt(transform.position);
         SetDragState(false);
     }
 

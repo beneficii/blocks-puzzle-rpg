@@ -8,15 +8,26 @@ public static class BtUpgradeCtrl
 {
     public static Dictionary<BtShapeData, BtShapeData> upgrades;
 
-    public static void Show(BtUpgradeRarity rarity, int count)
+    static List<BtShapeData> GetFreeShapes(BtUpgradeRarity rarity, int count)
     {
         int level = (int)rarity;
+        var querry = DataManager.current.shapes
+            .Where(x => x.HasEmptyBlocks());
 
+        if (rarity == BtUpgradeRarity.Rare)
+        {
+            querry = querry.Where(x => x.Rarity >= BtUpgradeRarity.Uncommon)
+                .Where(x => !x.HasUniqueBlock());
+        }
+
+        return querry.RandN(count);
+    }
+
+    public static void Show(BtUpgradeRarity rarity, int count)
+    {
         upgrades = new Dictionary<BtShapeData, BtShapeData>();
-        var shapes = DataManager.current.shapes
-            .Where(x => x.level == level)
-            .Where(x=>x.HasEmptyBlocks())
-            .RandN(count);
+
+        var shapes = GetFreeShapes(rarity, count);
 
         if (shapes.Count == 0)
         {
@@ -25,10 +36,10 @@ public static class BtUpgradeCtrl
         }
 
         var upgradeBlocks = DataManager.current.gameData.blocks
-            .Where(x => x.level == level)
-            .ToList();
+            .Where(x => x.Rarity == rarity)
+            .RandN(count);
 
-        if (upgradeBlocks.Count == 0)
+        if (upgradeBlocks.Count < shapes.Count)
         {
             Debug.Log("Out of blocks to upgrade!");
             return;
@@ -45,10 +56,9 @@ public static class BtUpgradeCtrl
                 .Rand();
 
             // upgrade random empty block
-            var block = shape.SpecialBlock() ?? upgradeBlocks.Rand();
-            emptyBlock.data = block; // ToDo: make non repeating
+            emptyBlock.data = upgradeBlocks[i];
 
-            var upgradedShape = new BtShapeData(oldBlocks, level);
+            var upgradedShape = new BtShapeData(oldBlocks, (int)rarity);
             upgrades.Add(upgradedShape, shape);
 
             cards[i].Init(upgradedShape, emptyBlock);

@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shapeGenerator: {fileID: 11400000, guid: db101c63780bb6747859e35330cd61ea, type: 2}
   blocks:
-  - {fileID: 11400000, guid: f6fc5632387f2294c986e844df443c82, type: 2}
-  - {fileID: 11400000, guid: afb2f46c11948a94b9c4ec48ac9cb0f5, type: 2}
-  - {fileID: 11400000, guid: 2b84f90507c9eb8419bfe4cd529ef986, type: 2}
-  - {fileID: 11400000, guid: 57979b07744294e47a43cb27bb562fd6, type: 2}
-  - {fileID: 11400000, guid: 147ee2d488658424b83a5dd10cb4498d, type: 2}
+  - {fileID: 11400000, guid: 7151a0dc021b6f3449cc4379c3dfa80e, type: 2}
+  - {fileID: 11400000, guid: b18b64dc803babc43aa00a3d6ead4055, type: 2}
+  - {fileID: 11400000, guid: 1db0604e1e0cbdd4ba1d15f7d8c8f51b, type: 2}
+  - {fileID: 11400000, guid: 441434cc9b4aa7b4c811f36cc4714b8f, type: 2}
+  - {fileID: 11400000, guid: 06295b5f09f58ba418438c7f84a60306, type: 2}
+  - {fileID: 11400000, guid: cd755f3028e81754b9d12fe235861a79, type: 2}
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
   prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}

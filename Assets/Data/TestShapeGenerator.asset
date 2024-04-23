@@ -18,7 +18,7 @@ MonoBehaviour:
   - color:
       serializedVersion: 2
       rgba: 4283888280
-    data: {fileID: 11400000, guid: 2b84f90507c9eb8419bfe4cd529ef986, type: 2}
+    data: {fileID: 11400000, guid: 1db0604e1e0cbdd4ba1d15f7d8c8f51b, type: 2}
   - color:
       serializedVersion: 2
       rgba: 4294967295
@@ -26,7 +26,7 @@ MonoBehaviour:
   - color:
       serializedVersion: 2
       rgba: 4283596797
-    data: {fileID: 11400000, guid: 147ee2d488658424b83a5dd10cb4498d, type: 2}
+    data: {fileID: 11400000, guid: cd755f3028e81754b9d12fe235861a79, type: 2}
   - color:
       serializedVersion: 2
       rgba: 4278190080

@@ -24,7 +24,7 @@ public class ShapePanel : MonoBehaviour
     public static System.Action<bool> OnShapesGenerated;
 
     [SerializeField] List<Transform> slots;
-    HashSet<BtShape> shapes = new();
+    List<BtShape> shapes = new();
 
     List<BtShapeData> pool;
     int poolIdx = 0;
@@ -111,7 +111,6 @@ public class ShapePanel : MonoBehaviour
         }
 
         OnShapesGenerated?.Invoke(initial);
-
         BtSave.Create();
     }
 
@@ -224,9 +223,10 @@ public class ShapePanel : MonoBehaviour
     public List<BtShapeInfo> GetCurrentShapes()
     {
         var result = new List<BtShapeInfo>();
-        foreach (var slot in slots)
+        //foreach (var slot in slots)
+        foreach (var shape in shapes)
         {
-            var shape = slot.GetComponentInChildren<BtShape>();
+            //var shape = slot.GetComponentInChildren<BtShape>();
             if (shape)
             {
                 result.Add(shape.GetInfo());

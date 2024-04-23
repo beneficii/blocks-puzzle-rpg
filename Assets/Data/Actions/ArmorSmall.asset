@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8b66688c5b0118439d53b0240498b20, type: 3}
-  m_Name: Shield
+  m_Script: {fileID: 11500000, guid: 7f7a6f893f1ba9c48a946ff010b78a34, type: 3}
+  m_Name: ArmorSmall
   m_EditorClassIdentifier: 
-  sprite: {fileID: -2093909415, guid: ca9946111e702294a94ef56862299ddf, type: 3}
-  level: 1
-  priority: 0
-  tags: 02000000
-  damage: 2
+  value: 2

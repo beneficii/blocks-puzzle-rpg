@@ -78,7 +78,7 @@ public class ShapeShadowCtrl : MonoBehaviour
         if (!currentShape) return;
 
         var grid = BtGrid.current;
-        var gridPos = grid.CheckGridPos(currentShape.DragPosition());
+        var gridPos = grid.CheckGridPos(currentShape.transform.position);
         if (gridPos == cachedGridPos) return;
         cachedGridPos = gridPos;
 

@@ -6,11 +6,15 @@ using FancyToolkit;
 public class Unit : MonoBehaviour, IDamagable
 {
     [SerializeField] ValueBar health;
+    [SerializeField] ValueCounter armor;
+    
     [SerializeField] SpriteRenderer render;
 
     public static System.Action<Unit> OnKilled;
 
     public UnitData data { get; private set; }
+
+    HashSet<Buffs> buffs = new();
 
     public void Init(UnitData data)
     {
@@ -18,6 +22,7 @@ public class Unit : MonoBehaviour, IDamagable
         render.sprite = data.sprite;
         health.Init(data.hp);
         health.OnZero += HandleOutOfHealth;
+        armor.Value = 0;
     }
 
     void HandleOutOfHealth()
@@ -31,9 +36,29 @@ public class Unit : MonoBehaviour, IDamagable
         render.flipX = value;
     }
 
-    public void RemoveHp(int value)
+    public void AddArmor(int value)
     {
-        health.Remove(value);
+        armor.Add(value);
+    }
+
+    public void RemoveHp(int damage)
+    {
+        int block = armor.Value;
+        if (block > 0)
+        {
+            block -= damage;
+            if (block >= 0)
+            {
+                armor.Remove(damage);
+                damage = 0;
+            }
+            else
+            {
+                armor.Remove(armor.Value);
+                damage = -block;
+            }
+        }
+        health.Remove(damage);
     }
 
     public void AddHp(int value)
@@ -81,4 +106,23 @@ public class Unit : MonoBehaviour, IDamagable
     {
         StartCoroutine(AnimateScale());
     }
+
+    public void RoundFinished()
+    {
+        if (buffs.Contains(Buffs.NoBlockRemove))
+        {
+            buffs.Remove(Buffs.NoBlockRemove);
+        }
+        else
+        {
+            armor.Value = 0;
+        }
+    }
+}
+
+public enum Buffs
+{
+    None,
+    NoBlockRemove,
+    Vulnerable
 }

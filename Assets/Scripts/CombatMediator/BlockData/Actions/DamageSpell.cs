@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CombatBlock
+namespace BlockAction
 {
-    [CreateAssetMenu(menuName = "Game/Blocks/DamageSpell")]
-    public class DamageSpell : Base
+    [CreateAssetMenu(menuName = "Game/BlockAction/DamageSpell")]
+    public class DamageSpell : BlockActionBase
     {
         [SerializeField] int damageMultiplier = 4;
 
@@ -17,7 +17,7 @@ namespace CombatBlock
             var captured = new List<BtBlock>();
             foreach (var item in info.blocks)
             {
-                if (item.data is not Base data) continue;
+                if (item.data is not CombatBlockData data) continue;
 
                 if (data.HasTag(BlockTag.Sword))
                 {
@@ -36,8 +36,8 @@ namespace CombatBlock
                 info.blocks.Remove(item);
             }
 
-            MakeBullet(parent.transform.position)
-                .SetTarget(Arena.enemy)
+            MakeBullet(parent)
+                .SetTarget(CombatArena.current.enemy)
                 .SetDamage(totalDamage)
                 .SetLaunchDelay(0.5f);
         }

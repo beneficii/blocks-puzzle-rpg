@@ -10,6 +10,8 @@ public class BtBlockData : ScriptableObject
     public int level;
     public int priority;
 
+    public BtUpgradeRarity Rarity => (BtUpgradeRarity)level;
+
     public virtual string GetDescription() => "";
 
     public virtual void HandleMatch(BtBlock parent, BtLineClearInfo info)

@@ -34,7 +34,7 @@ public class CombatArena : MonoBehaviour
         {
             sprite = DataManager.current.gameData.spriteTempEnemy,
             damage = level * 2,
-            hp = level * 10,
+            hp = level * 5,
         };
         level++;
 

@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3901769f037e6444dae71fa7959e8862, type: 3}
+  m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: 
-  sprite: {fileID: 718887290, guid: ca9946111e702294a94ef56862299ddf, type: 3}
-  level: 1
+  sprite: {fileID: -815367322, guid: ca9946111e702294a94ef56862299ddf, type: 3}
+  level: 0
   priority: 0
   tags: 01000000
-  damage: 2
+  actions:
+  - {fileID: 11400000, guid: 9b8cac64b040ac54082b5feaacf78f32, type: 2}

@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3901769f037e6444dae71fa7959e8862, type: 3}
-  m_Name: LongSword
+  m_Script: {fileID: 11500000, guid: c7994f2cfacbe8241b4a334fa5d65b4b, type: 3}
+  m_Name: DamageBig
   m_EditorClassIdentifier: 
-  sprite: {fileID: 2071062554, guid: ca9946111e702294a94ef56862299ddf, type: 3}
-  level: 2
-  priority: 0
-  tags: 01000000
   damage: 5
