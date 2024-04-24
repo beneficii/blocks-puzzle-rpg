@@ -22,6 +22,7 @@ public class ShapePanel : MonoBehaviour
     }
 
     public static System.Action<bool> OnShapesGenerated;
+    public static System.Action OnOutOfShapes;
 
     [SerializeField] List<Transform> slots;
     List<BtShape> shapes = new();
@@ -29,9 +30,9 @@ public class ShapePanel : MonoBehaviour
     List<BtShapeData> pool;
     int poolIdx = 0;
 
-    Queue<BtHint> hints;
+    bool shouldCheckSlots;
 
-    bool shouldCheckSlots = false;
+    Queue<BtHint> hints;
 
     public BtShapeData GetShapeFromPool()
     {
@@ -191,11 +192,11 @@ public class ShapePanel : MonoBehaviour
     public void CheckSlots()
     {
         if (!shouldCheckSlots) return;
-        shouldCheckSlots = false;
 
+        shouldCheckSlots = false;
         if (shapes.Count == 0)
         {
-            GenerateNew(false);
+            OnOutOfShapes?.Invoke();
             return;
         }
 
@@ -206,7 +207,6 @@ public class ShapePanel : MonoBehaviour
     {
         shapes.Remove(shape);
         shouldCheckSlots = true;
-        
         if (hints != null && hints.Count > 0)
         {
             if(hints.Peek().Matches(shape.GetInfo(), pos))

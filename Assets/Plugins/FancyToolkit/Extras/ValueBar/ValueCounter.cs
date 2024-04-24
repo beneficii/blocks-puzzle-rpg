@@ -28,8 +28,12 @@ namespace FancyToolkit
                 }
                 currentValue = value;
                 caption.text = value.ToString();
-                
             }
+        }
+
+        private void Start()
+        {
+            if (hiddenOnZero) gameObject.SetActive(currentValue != 0);
         }
 
         public void Remove(int amount)

@@ -22,14 +22,14 @@ public class LineMatchListener : MonoBehaviour
     private void OnEnable()
     {
         BtGrid.OnLinesCleared += HandleLinesCleared;
-        ShapePanel.OnShapesGenerated += HandleShapesGenerated;
+        ShapePanel.OnOutOfShapes += NewTurn;
         Unit.OnKilled += HandleUnitKilled;
     }
 
     private void OnDisable()
     {
         BtGrid.OnLinesCleared -= HandleLinesCleared;
-        ShapePanel.OnShapesGenerated -= HandleShapesGenerated;
+        ShapePanel.OnOutOfShapes -= NewTurn;
         Unit.OnKilled += HandleUnitKilled;
     }
 
@@ -38,13 +38,20 @@ public class LineMatchListener : MonoBehaviour
     {
         if (unit == arena.enemy)
         {
-            var enemy = arena.SpawnEnemy();
-            upgradeOfferCtr++;
-            var rarity = upgradeOfferCtr % 5 == 0 ? BtUpgradeRarity.Rare : BtUpgradeRarity.Common;
-            BtUpgradeCtrl.Show(rarity, 3);
-            BtGrid.current.LoadRandomBoard(enemy.data.level);
-            ShapePanel.current.GenerateNew();
+            StartCoroutine(CombatFinished());
         }
+    }
+
+    IEnumerator CombatFinished()
+    {
+        yield return new WaitForSeconds(2f);
+        upgradeOfferCtr++;
+        var rarity = upgradeOfferCtr % 5 == 0 ? BtUpgradeRarity.Rare : BtUpgradeRarity.Common;
+        BtUpgradeCtrl.Show(rarity, 3);
+
+        var enemy = arena.SpawnEnemy();
+        BtGrid.current.LoadRandomBoard(enemy.data.level);
+        ShapePanel.current.GenerateNew();
     }
 
     void HandleLinesCleared(BtLineClearInfo lineClearInfo)
@@ -56,12 +63,25 @@ public class LineMatchListener : MonoBehaviour
         }
     }
 
-    void HandleShapesGenerated(bool initial)
+    public void NewTurn()
     {
-        if (initial) return;
+        StartCoroutine(TurnRoutine());
+    }
 
-        
-        arena.player.RemoveHp(arena.enemy.data.damage);
+    IEnumerator TurnRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (arena.enemy)
+        {
+            arena.player.RemoveHp(arena.enemy.data.damage);
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (var unit in arena.GetUnits())
+        {
+            unit.RoundFinished();
+        }
+        yield return new WaitForSeconds(0.1f);
+        ShapePanel.current.GenerateNew(false);
     }
 
     private void Awake()

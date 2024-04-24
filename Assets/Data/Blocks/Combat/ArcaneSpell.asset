@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: -689808054, guid: 7b25feb9680300f4ab581125d7446b20, type: 3}
   level: 1
-  priority: 0
+  priority: 101
   tags: 04000000
   actions:
   - {fileID: 11400000, guid: f6fc5632387f2294c986e844df443c82, type: 2}

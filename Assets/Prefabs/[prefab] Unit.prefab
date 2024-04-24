@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66d09c4455decc4781ab0e78511fdd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberAnimator: {fileID: 0}
+  numberAnimator: {fileID: 855743367281692296}
   caption: {fileID: 8384572104406747446}
   hiddenOnZero: 1
 --- !u!1 &8567253717529509188

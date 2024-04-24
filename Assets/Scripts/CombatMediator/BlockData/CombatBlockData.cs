@@ -29,6 +29,15 @@ public class CombatBlockData : BtBlockData
         var result = string.Join(". ", lines) + (lines.Count > 1 ? "." : "");
         return result;
     }
+
+    public override void HandleMatch(BtBlock parent, BtLineClearInfo info)
+    {
+        info.blocks.Remove(parent);
+        foreach (var item in actions)
+        {
+            item.HandleMatch(parent, info);
+        }
+    }
 }
 
 

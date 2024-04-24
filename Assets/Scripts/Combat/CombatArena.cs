@@ -62,6 +62,12 @@ public class CombatArena : MonoBehaviour
         return unit;
     }
 
+    public IEnumerable<Unit> GetUnits()
+    {
+        if (player) yield return player;
+        if (enemy) yield return enemy;
+    }
+
     private void Start()
     {
         SpawnPlayer();
