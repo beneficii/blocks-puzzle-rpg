@@ -7,23 +7,70 @@ public class Unit : MonoBehaviour, IDamagable
 {
     [SerializeField] ValueBar health;
     [SerializeField] ValueCounter armor;
-    
+    [SerializeField] Animator animator;
+
     [SerializeField] SpriteRenderer render;
+
+    [SerializeField] UnitMoveIndicator moveIndicator;
 
     public static System.Action<Unit> OnKilled;
 
     public UnitData data { get; private set; }
 
-    HashSet<Buffs> buffs = new();
+    public BtUpgradeRarity reward;
 
-    public void Init(UnitData data)
+    public Team team { get; private set; }
+
+    //HashSet<Buffs> buffs = new();
+
+    UnitActionBase nextAction;
+    Unit target;
+
+    public int lifetime = 0;
+
+    public string GetDescription()
     {
+        if (nextAction) return nextAction.GetDescription(this);
+
+        return data.description;
+    }
+
+    int actionIdx = 0;
+
+    public void Init(UnitData data, Team team)
+    {
+        this.team = team;
         this.data = data;
-        render.sprite = data.sprite;
+        animator.runtimeAnimatorController = data.animations;
         health.Init(data.hp);
         health.OnZero += HandleOutOfHealth;
         armor.Value = 0;
+        this.reward = data.reward;
+        actionIdx = 0;
+        SetAction(null);
+        SetNextAction();
     }
+
+    public void SetTarget(Unit target)
+    {
+        this.target = target;
+    }
+
+    public void SetNextAction()
+    {
+        if (data.actionQueue.Count == 0) return;
+        var action = data.actionQueue[actionIdx];
+
+        SetAction(action);
+
+        actionIdx = (actionIdx + 1) % data.actionQueue.Count;
+    }
+
+    public void SetAction(UnitActionBase action)
+    {
+        moveIndicator.Init(this, action);
+        nextAction = action;
+    } 
 
     void HandleOutOfHealth()
     {
@@ -36,13 +83,30 @@ public class Unit : MonoBehaviour, IDamagable
         render.flipX = value;
     }
 
+    public int GetArmor()
+    {
+        return armor.Value;
+    }
+
     public void AddArmor(int value)
     {
-        armor.Add(value);
+        var bonusModifier = team == Team.Ally ? CombatModifier.Dexterity : CombatModifier.EnemyDexterity;
+        var bonus = ResCtrl<CombatModifier>.current.Get(bonusModifier);
+        value += bonus;
+
+        if (value <= 0) return;
+
+        armor.Add(value + bonus);
     }
 
     public void RemoveHp(int damage)
     {
+        var bonusModifier = team == Team.Enemy ? CombatModifier.Strength : CombatModifier.EnemyStrength;
+        var bonus = ResCtrl<CombatModifier>.current.Get(bonusModifier);
+        damage += bonus;
+
+        if (damage <= 0) return;
+
         int block = armor.Value;
         if (block > 0)
         {
@@ -58,6 +122,10 @@ public class Unit : MonoBehaviour, IDamagable
                 damage = -block;
             }
         }
+
+        if (damage == 0) return;
+
+        AnimGetHit();
         health.Remove(damage);
     }
 
@@ -66,49 +134,22 @@ public class Unit : MonoBehaviour, IDamagable
         health.Add(value);
     }
 
-    private IEnumerator AnimateScale()
+    public IEnumerator RoundActionPhase()
     {
-        float animationDuration = 0.25f;
-        float currentTime = 0f;
-        Vector3 originalScale = transform.localScale;
-        Vector3 targetScale = originalScale * 1.5f; // Scale up to 150% of original size
-
-        while (currentTime <= animationDuration)
-        {
-            float t = currentTime / animationDuration;
-            transform.localScale = Vector3.Lerp(originalScale, targetScale, t);
-            currentTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure we reached the exact target scale
-        transform.localScale = targetScale;
-
-        // Wait for a short moment
-        yield return new WaitForSeconds(0.1f); // Adjust this value for your needs
-
-        // Scale back to original size
-        currentTime = 0f;
-
-        while (currentTime <= animationDuration)
-        {
-            float t = currentTime / animationDuration;
-            transform.localScale = Vector3.Lerp(targetScale, originalScale, t);
-            currentTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Ensure we reached the exact original scale
-        transform.localScale = originalScale;
+        lifetime++;
+        if (!nextAction) yield break;
+        yield return nextAction.Execute(this, target);
+        SetNextAction();
     }
 
-    public void SpecialTestAction()
+    public void CombatFinished()
     {
-        StartCoroutine(AnimateScale());
+        armor.Value = 0;
     }
 
     public void RoundFinished()
     {
+        /*
         if (buffs.Contains(Buffs.NoBlockRemove))
         {
             buffs.Remove(Buffs.NoBlockRemove);
@@ -116,7 +157,17 @@ public class Unit : MonoBehaviour, IDamagable
         else
         {
             armor.Value = 0;
-        }
+        }*/
+    }
+
+    public void AnimAttack(int id)
+    {
+        animator.SetTrigger($"attack{id}");
+    }
+
+    public void AnimGetHit()
+    {
+        animator.SetTrigger($"hit");
     }
 }
 
@@ -125,4 +176,11 @@ public enum Buffs
     None,
     NoBlockRemove,
     Vulnerable
+}
+
+
+public enum Team
+{
+    Ally,
+    Enemy,
 }

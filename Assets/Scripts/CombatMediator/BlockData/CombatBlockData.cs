@@ -11,23 +11,45 @@ public class CombatBlockData : BtBlockData
 
     public List<BlockTag> tags;
     public List<BlockActionBase> actions;
+    public List<BlockPassive> passives;
 
     public bool HasTag(BlockTag tag) => tags.Contains(tag);
 
     public override string GetDescription()
     {
-        var lines = new List<string>();
+        var description = new System.Text.StringBuilder();
+        var sb = new System.Text.StringBuilder();
         foreach (var item in actions)
         {
             var descr = item.GetDescription();
             if (!string.IsNullOrEmpty(descr))
             {
-                lines.Add(descr);
+                sb.Append(descr + ".");
             }
         }
 
-        var result = string.Join(". ", lines) + (lines.Count > 1 ? "." : "");
-        return result;
+        if (sb.Length > 0)
+        {
+            description.Append("<b>Collect:</b> " + sb.ToString());
+        }
+
+        sb.Clear();
+
+        foreach (var item in passives)
+        {
+            var descr = item.GetDescription();
+            if (!string.IsNullOrEmpty(descr))
+            {
+                sb.Append(descr + ".");
+            }
+        }
+
+        if (sb.Length > 0)
+        {
+            description.Append("<b>Passive:</b> " + sb.ToString());
+        }
+
+        return description.ToString();
     }
 
     public override void HandleMatch(BtBlock parent, BtLineClearInfo info)
@@ -36,6 +58,14 @@ public class CombatBlockData : BtBlockData
         foreach (var item in actions)
         {
             item.HandleMatch(parent, info);
+        }
+    }
+
+    public void CalculatePassives(BtBlock parent)
+    {
+        foreach (var item in passives)
+        {
+            item.Calculate(parent);
         }
     }
 }
@@ -47,5 +77,6 @@ public enum BlockTag
     Sword,
     Shield,
     Staff,
-    Spell
+    Spell,
+    Curse,
 }

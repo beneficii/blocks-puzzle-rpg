@@ -13,6 +13,8 @@ namespace FancyToolkit
 
         public void Spawn(int value)
         {
+            if (value == 0) return;
+
             Color color;
             string msg;
 
@@ -25,7 +27,6 @@ namespace FancyToolkit
             {
                 color = clrNegative;
                 msg = value.ToString();
-
             }
 
             prefabFloater.Create(msg, transform.position)

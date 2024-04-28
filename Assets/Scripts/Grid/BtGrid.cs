@@ -1,9 +1,9 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using FancyToolkit;
-using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -14,6 +14,7 @@ public partial class BtGrid : MonoBehaviour
     public static BtGrid current { get; private set; }
 
     public static System.Action<BtLineClearInfo> OnLinesCleared;
+    public static System.Action OnBoardChanged;
 
     public const int width = 8;
     public const int height = 8;
@@ -83,6 +84,8 @@ public partial class BtGrid : MonoBehaviour
         }
         
         blocks = arr;
+
+        OnBoardChanged?.Invoke();
     }
 
     void Start()
@@ -100,12 +103,14 @@ public partial class BtGrid : MonoBehaviour
             }
         }
 
-        LoadPreBoard(DataManager.current.preBoards.Rand());
+        OnBoardChanged?.Invoke();
     }
 
-    public void LoadRandomBoard(int level)
+    public void LoadRandomBoard(int level, BtBlockData specialBlock)
     {
-        LoadPreBoard(DataManager.current.preBoards.Rand());
+        var board = DataManager.current.preBoards.Rand();
+        var ph = DataManager.current.placeHolderBlock;
+        LoadPreBoard(board.Replace(ph, specialBlock));
     }
 
     public TempGridState MakeTempGrid()
@@ -157,11 +162,12 @@ public partial class BtGrid : MonoBehaviour
         return GetItem(x, y);
     }
 
-    public BtBlock PlaceBlock(int x, int y, BtBlockData data)
+    public BtBlock PlaceBlock(int x, int y, BtBlockData data, int spriteIdx = 0)
     {
         var instance = Instantiate(DataManager.current.gameData.prefabBlock, tiles[x,y].transform);
         instance.transform.localPosition = Vector3.zero;
         instance.Init(data);
+        instance.SetBg(spriteIdx);
         blocks[x, y] = instance;
 
         columnBlockCount[x]++;
@@ -245,7 +251,7 @@ public partial class BtGrid : MonoBehaviour
         {
             var pos = item.pos + new Vector2Int(x, y);
 
-            var block = PlaceBlock(pos.x, pos.y, item.data);
+            var block = PlaceBlock(pos.x, pos.y, item.data, item.spriteIdx);
             result.Add(block);
         }
 
@@ -287,6 +293,36 @@ public partial class BtGrid : MonoBehaviour
         else
         {
             return null;
+        }
+    }
+
+    public IEnumerable<BtBlock> GetSpecialBlocks()
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                var block = blocks[x, y];
+                if (block && block.data.type != BtBlockType.None)
+                {
+                    yield return block;
+                }
+            }
+        }
+    }
+
+    public IEnumerable<BtBlock> GetEmptyBlocks()
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                var block = blocks[x, y];
+                if (block && block.data.type == BtBlockType.None)
+                {
+                    yield return block;
+                }
+            }
         }
     }
 
@@ -347,8 +383,10 @@ public partial class BtGrid : MonoBehaviour
                 }
             }
 
-            OnLinesCleared?.Invoke(new BtLineClearInfo(blockSet, removeRows.Count, removeColumns.Count));
+            OnLinesCleared?.Invoke(new BtLineClearInfo(blockSet, removeRows.Count, removeColumns.Count, GetEmptyBlocks().ToList()));
         }
+
+        OnBoardChanged?.Invoke();
     }
 
     private void Update()

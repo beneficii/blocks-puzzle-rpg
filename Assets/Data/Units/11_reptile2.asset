@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
+  m_Name: 11_reptile2
+  m_EditorClassIdentifier: 
+  title: Civil reptile
+  description: 
+  animations: {fileID: 22100000, guid: 32dc86e0667023447a3099f9eac2da16, type: 2}
+  damage: 6
+  defense: 0
+  hp: 32
+  reward: 1
+  specialBlockData: {fileID: 11400000, guid: 4162446f8b060f34a8912b1047198c93, type: 2}
+  boardLevel: 2
+  actionQueue:
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
+  - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
+  level: 1

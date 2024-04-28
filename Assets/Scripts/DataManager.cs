@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour
     public List<BtShapeData> shapes; //{ get; private set; }
     public List<BtBoardInfo> preBoards;
     public BtBlockData emptyBlock;
+    public BtBlockData placeHolderBlock;
 
     private void Awake()
     {

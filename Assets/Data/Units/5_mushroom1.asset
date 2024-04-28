@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
+  m_Name: 5_mushroom1
+  m_EditorClassIdentifier: 
+  title: Evil mushroom
+  description: 
+  animations: {fileID: 22100000, guid: 167aca33d808e004b8f9a1f2d621e579, type: 2}
+  damage: 1
+  defense: 0
+  hp: 14
+  reward: 1
+  specialBlockData: {fileID: 11400000, guid: 811a8d35add76ee47a5c220ac186163c, type: 2}
+  boardLevel: 0
+  actionQueue:
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
+  level: 1

@@ -5,12 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Blocks/Basic")]
 public class BtBlockData : ScriptableObject
 {
+    public string title;
     public Sprite sprite;
     public virtual BtBlockType type => BtBlockType.None;
-    public int level;
     public int priority;
 
-    public BtUpgradeRarity Rarity => (BtUpgradeRarity)level;
+    public BtUpgradeRarity rarity;
 
     public virtual string GetDescription() => "";
 

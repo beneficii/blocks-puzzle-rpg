@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FancyToolkit;
 
 namespace BlockAction
 {
@@ -14,6 +15,8 @@ namespace BlockAction
 
         public override void HandleMatch(BtBlock parent, BtLineClearInfo info)
         {
+            ResCtrl<MatchStat>.current.SetIfMore(MatchStat.MaxDamage, damage);
+
             MakeBullet(parent)
                 .SetTarget(CombatArena.current.enemy)
                 .SetDamage(Damage)

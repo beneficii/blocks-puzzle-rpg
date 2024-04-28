@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
+  m_Name: 9_chest_miniboss
+  m_EditorClassIdentifier: 
+  title: Treasure chest
+  description: 
+  animations: {fileID: 22100000, guid: ce5b23676daec0f42ae5534be4ae664d, type: 2}
+  damage: 1
+  defense: 0
+  hp: 100
+  reward: 3
+  specialBlockData: {fileID: 11400000, guid: b0fbd9b7fc8304e4d920580b45f37549, type: 2}
+  boardLevel: 2
+  actionQueue:
+  - {fileID: 11400000, guid: e55a3c590df5909469a528a1cabde707, type: 2}
+  - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
+  level: 1

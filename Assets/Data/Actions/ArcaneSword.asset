@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2522e36ceb8cb3c43ba696daaac6ba25, type: 3}
   m_Name: ArcaneSword
   m_EditorClassIdentifier: 
-  sprite: {fileID: -689808054, guid: 7b25feb9680300f4ab581125d7446b20, type: 3}
-  level: 3
-  priority: 101
-  tags: 04000000
-  damageMultiplier: 4
+  damageMultiplier: 6

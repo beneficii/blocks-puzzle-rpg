@@ -9,9 +9,11 @@ public class BtShapeData
     Vector2Int size;
     public int level { get; private set; }
     public BtUpgradeRarity Rarity => (BtUpgradeRarity)level;
+    public int spriteIdx;
 
     public BtShapeData(List<BtBlockInfo> blocks, int level = 0)
     {
+        spriteIdx = Random.Range(0, DataManager.current.gameData.blockSprites.Count);
         if (blocks.Count == 0) return;  // will be easier to find error
 
         var min = new Vector2Int(99, 99);
@@ -67,7 +69,7 @@ public class BtShapeData
 
         var half = size / 2;
         return blocks
-            .Select(b => new BtBlockInfo(b.data, b.pos - min - half))
+            .Select(b => new BtBlockInfo(b.data, b.pos - min - half, spriteIdx))
             .ToList();
     }
 
@@ -78,7 +80,7 @@ public class BtShapeData
 
     public bool HasUniqueBlock()
     {
-        return blocks.Any(x => x.data.Rarity > BtUpgradeRarity.Uncommon);
+        return blocks.Any(x => x.data.rarity > BtUpgradeRarity.Uncommon);
     }
 
     public bool HasEmptyBlocks()
@@ -92,11 +94,13 @@ public class BtBlockInfo
 {
     public BtBlockData data;
     public Vector2Int pos;
+    public int spriteIdx;
 
-    public BtBlockInfo(BtBlockData data, Vector2Int pos)
+    public BtBlockInfo(BtBlockData data, Vector2Int pos, int spriteIdx = 0)
     {
         this.data = data;
         this.pos = pos;
+        this.spriteIdx = spriteIdx;
     }
 
     public BtBlockInfo Rotate(int rotation, Vector2Int size)

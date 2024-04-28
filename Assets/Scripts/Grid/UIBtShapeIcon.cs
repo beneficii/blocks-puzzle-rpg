@@ -29,6 +29,7 @@ public class UIBtShapeIcon : MonoBehaviour
             var block = Instantiate(prefabBlock, transform);
             block.GetComponent<RectTransform>().anchoredPosition = info.pos * blockSize;
             block.SetIcon(info.data.sprite);
+            block.SetBg(DataManager.current.gameData.blockSprites[shape.spriteIdx]);
             blocks.Add(block);
 
             if (highlightedBlock != null && (highlightedBlock.pos == info.pos))

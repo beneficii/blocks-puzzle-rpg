@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  title: Player
+  description: 
+  animations: {fileID: 22100000, guid: e7caf11846075624b90373ab02e8b2af, type: 2}
+  damage: 2
+  hp: 60
+  reward: 1
+  actionQueue: []
+  level: 1

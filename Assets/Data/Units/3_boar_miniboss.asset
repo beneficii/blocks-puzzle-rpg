@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
+  m_Name: 3_boar_miniboss
+  m_EditorClassIdentifier: 
+  title: Evil boar
+  description: 
+  animations: {fileID: 22100000, guid: d147e33d186f2b24b809addf0c60afad, type: 2}
+  damage: 4
+  defense: 0
+  hp: 15
+  reward: 2
+  specialBlockData: {fileID: 11400000, guid: 0e007587ee578394592105c16a91498a, type: 2}
+  boardLevel: 2
+  actionQueue:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
+  level: 1

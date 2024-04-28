@@ -10,15 +10,24 @@ public class BtBlock : MonoBehaviour
 
     public BtBlockData data { get; private set; }
 
+    public int spriteIdx;
+
     public void Init(BtBlockData data)
     {
         this.data = data;
         iconRender.sprite = data.sprite;
     }
 
-    public void SetColor(Color color)
+    public void Init(BtBlockInfo info)
     {
-        bgRender.color = color;
+        Init(info.data);
+        SetBg(info.spriteIdx);
+    }
+
+    public void SetBg(int spriteIdx)
+    {
+        this.spriteIdx = spriteIdx;
+        bgRender.sprite = DataManager.current.gameData.blockSprites[spriteIdx];
     }
 
     public void SetGridRender()

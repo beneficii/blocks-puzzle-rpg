@@ -138,4 +138,26 @@ public class BtBoardInfo
 {
     public List<BtBlockInfo> blocks;
     public int level;
+
+    public BtBoardInfo Replace(BtBlockData from, BtBlockData to)
+    {
+        var newBlocks = new List<BtBlockInfo>();
+        foreach (var item in blocks)
+        {
+            if (item.data != from)
+            {
+                newBlocks.Add(item);
+            }
+            else
+            {
+                newBlocks.Add(new BtBlockInfo(to, item.pos));
+            }
+        }
+
+        return new BtBoardInfo
+        {
+            level = level,
+            blocks = newBlocks,
+        };
+    }
 }

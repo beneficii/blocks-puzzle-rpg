@@ -36,6 +36,7 @@ public class ShapePanel : MonoBehaviour
 
     public BtShapeData GetShapeFromPool()
     {
+        if (pool == null) GeneratePool();
         var shape = pool[poolIdx];
         if (++poolIdx >= pool.Count)
         {
@@ -121,12 +122,6 @@ public class ShapePanel : MonoBehaviour
             .OrderBy(x => System.Guid.NewGuid())
             .ToList();
         poolIdx = 0;
-    }
-
-    private void Start()
-    {
-        GeneratePool();
-        GenerateNew(true);
     }
 
 #if UNITY_EDITOR

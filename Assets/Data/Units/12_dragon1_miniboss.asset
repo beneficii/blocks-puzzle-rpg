@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
+  m_Name: 12_dragon1_miniboss
+  m_EditorClassIdentifier: 
+  title: Dragon
+  description: 
+  animations: {fileID: 22100000, guid: cb7c0898dfb10bd4d9b6085fc7f914c1, type: 2}
+  damage: 8
+  defense: 5
+  hp: 200
+  reward: 2
+  specialBlockData: {fileID: 11400000, guid: f0d8aa20bf956be4ca8bb4c815bbfda3, type: 2}
+  boardLevel: 2
+  actionQueue:
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
+  level: 1

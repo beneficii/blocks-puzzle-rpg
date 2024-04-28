@@ -20,6 +20,7 @@ public class CombatArena : MonoBehaviour
 
     [SerializeField] Transform spotPlayer;
     [SerializeField] Transform spotEnemy;
+    [SerializeField] UnitData dataPlayer;
     public Unit prefabUnit;
 
     public Unit player { get; private set; }
@@ -27,37 +28,33 @@ public class CombatArena : MonoBehaviour
 
     public List<Unit> summons;
 
-    int level = 1;
-    public Unit SpawnEnemy()
+    public Unit SpawnEnemy(UnitData data)
     {
-        var data = new UnitData
-        {
-            sprite = DataManager.current.gameData.spriteTempEnemy,
-            damage = level * 2,
-            hp = level * 5,
-        };
-        level++;
-
         var unit = Instantiate(prefabUnit, spotEnemy);
-        unit.Init(data);
+        unit.Init(data, Team.Enemy);
         enemy = unit;
+
+        if (player)
+        {
+            player.SetTarget(enemy);
+            enemy.SetTarget(player);
+        }
 
         return unit;
     }
 
     public Unit SpawnPlayer()
     {
-        var data = new UnitData
-        {
-            sprite = DataManager.current.gameData.spriteTempHero,
-            damage = 1,
-            hp = 100,
-        };
-
         var unit = Instantiate(prefabUnit, spotPlayer);
-        unit.Init(data);
+        unit.Init(dataPlayer, Team.Ally);
 
         player = unit;
+
+        if (enemy)
+        {
+            player.SetTarget(enemy);
+            enemy.SetTarget(player);
+        }
 
         return unit;
     }
@@ -71,6 +68,5 @@ public class CombatArena : MonoBehaviour
     private void Start()
     {
         SpawnPlayer();
-        SpawnEnemy();
     }
 }

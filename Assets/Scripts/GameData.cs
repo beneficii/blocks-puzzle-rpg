@@ -9,6 +9,7 @@ public class GameData : ScriptableObject
     public ShapeGenerator shapeGenerator;
 
     public List<BtBlockData> blocks;
+    public List<Sprite> blockSprites;
 
     public TileColors tileColorsGrid;
     public Sprite spriteBlock;

@@ -31,4 +31,20 @@ MonoBehaviour:
       serializedVersion: 2
       rgba: 4278190080
     data: {fileID: 0}
+  - color:
+      serializedVersion: 2
+      rgba: 4282662911
+    data: {fileID: 11400000, guid: a256700d671ee434e976a6d9897a7989, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4291297163
+    data: {fileID: 11400000, guid: b0fbd9b7fc8304e4d920580b45f37549, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4283231231
+    data: {fileID: 11400000, guid: ccb9e5c5e78300b439f243a243acab1c, type: 2}
+  - color:
+      serializedVersion: 2
+      rgba: 4282901759
+    data: {fileID: 0}
   shapeCellSize: {x: 5, y: 5}

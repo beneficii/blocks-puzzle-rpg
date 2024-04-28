@@ -36,13 +36,16 @@ public static class BtUpgradeCtrl
         }
 
         var upgradeBlocks = DataManager.current.gameData.blocks
-            .Where(x => x.Rarity == rarity)
+            .Where(x => x.rarity == rarity)
             .RandN(count);
 
         if (upgradeBlocks.Count < shapes.Count)
         {
-            Debug.Log("Out of blocks to upgrade!");
-            return;
+            if (upgradeBlocks.Count == 0)
+            {
+                Debug.Log("Out of blocks to upgrade!");
+                return;
+            }
         }
 
         var cards = UIUpgradeScreen.Instance.Open<UIBtShapeUpgradeCard>(shapes.Count);
@@ -56,7 +59,7 @@ public static class BtUpgradeCtrl
                 .Rand();
 
             // upgrade random empty block
-            emptyBlock.data = upgradeBlocks[i];
+            emptyBlock.data = upgradeBlocks[i%upgradeBlocks.Count];
 
             var upgradedShape = new BtShapeData(oldBlocks, (int)rarity);
             upgrades.Add(upgradedShape, shape);
@@ -87,4 +90,5 @@ public enum BtUpgradeRarity
     Common,
     Uncommon,
     Rare,
+    Legenday,
 }

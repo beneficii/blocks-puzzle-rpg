@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace FancyToolkit
 {
@@ -14,6 +15,8 @@ namespace FancyToolkit
 
         public NumberFloatingAnimator numberAnimator;
 
+        [SerializeField] TextMeshPro txtCaption;
+        [SerializeField] string captionPrefix;
         [SerializeField] SpriteRenderer fillFg;
         [SerializeField] SpriteRenderer fillBg;
 
@@ -65,6 +68,7 @@ namespace FancyToolkit
             SetFill(fillFg, currentValue, clrFill);
             SetFill(fillBg, 0, Color.white);
             oldValue = currentValue;
+            RefreshText();
         }
 
         public void Set(int value)
@@ -117,14 +121,16 @@ namespace FancyToolkit
             SetAnimated(currentValue - amount);
         }
 
+        void RefreshText()
+        {
+            if (!txtCaption) return;
+
+            txtCaption.text = $"{captionPrefix}{Value}";
+        }
+
         public void Add(int amount)
         {
             SetAnimated(currentValue + amount);
-        }
-
-        void Animate()
-        {
-
         }
 
         private void Update()

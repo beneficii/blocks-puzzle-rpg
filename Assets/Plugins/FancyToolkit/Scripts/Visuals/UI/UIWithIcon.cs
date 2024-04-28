@@ -7,6 +7,7 @@ namespace FancyToolkit
 {
     public class UIWithIcon : MonoBehaviour
     {
+        public Image bg;
         public Image icon;
         public Image frame;
 
@@ -14,6 +15,11 @@ namespace FancyToolkit
         {
             icon.sprite = sprite;
             icon.enabled = sprite != null;
+        }
+
+        public void SetBg(Sprite sprite)
+        {
+            bg.sprite = sprite;
         }
     }
 }

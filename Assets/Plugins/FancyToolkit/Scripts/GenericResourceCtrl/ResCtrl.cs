@@ -22,19 +22,22 @@ namespace FancyToolkit
 
         List<int> values;
 
-        void Clear()
+        public void Clear()
         {
-            values = new List<int>();
             foreach (var item in EnumUtil.GetValues<TRes>())
             {
-                values.Add(0);
+                Set(item, 0);
             }
         }
 
         private void Init()
         {
             _current = this;
-            Clear();
+            values = new List<int>();
+            foreach (var item in EnumUtil.GetValues<TRes>())
+            {
+                values.Add(0);
+            }
         }
 
         public int Idx(TRes type) => System.Convert.ToInt32(type);
@@ -50,6 +53,16 @@ namespace FancyToolkit
             values[Idx(type)] += amount;
             OnChanged?.Invoke(type, Get(type));
             OnDelta?.Invoke(type, amount);
+        }
+
+        public void SetIfMore(TRes type, int value)
+        {
+            int idx = Idx(type);
+            int oldValue = values[idx];
+            if (oldValue >= value) return;
+            values[idx] = value;
+            OnChanged?.Invoke(type, Get(type));
+            OnDelta?.Invoke(type, value - oldValue);
         }
 
         public void Add(List<Info> list)
@@ -110,7 +123,6 @@ namespace FancyToolkit
 
         public bool Set(List<Info> list)
         {
-            Clear();
             foreach (var item in list)
             {
                 Set(item.type, item.value);

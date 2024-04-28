@@ -10,8 +10,6 @@ public class BtShape : MonoBehaviour
     public System.Action<BtShape, Vector2Int> OnDropped;
     public const float offsetDrag = 3f;
 
-    [SerializeField] Color color = Color.white;
-
     public BtShapeData data { get; private set; }
     public int rotation { get; private set; }
 
@@ -43,8 +41,7 @@ public class BtShape : MonoBehaviour
         {
             var instance = Instantiate(DataManager.current.gameData.prefabBlock, transform);
             instance.transform.localPosition = item.pos.ToFloatVector();
-            instance.Init(item.data);
-            instance.SetColor(color);
+            instance.Init(item);
             blocks.Add(instance);
         }
 
@@ -123,7 +120,7 @@ public class BtShape : MonoBehaviour
         {
             foreach (var block in placed)
             {
-                block.SetColor(color);
+                block.SetBg(data.spriteIdx);
             }
             OnDropped?.Invoke(this, pos);
             Destroy(gameObject);

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: 
+  title: Shortsword
   sprite: {fileID: -815367322, guid: ca9946111e702294a94ef56862299ddf, type: 3}
-  level: 0
   priority: 0
+  rarity: 1
   tags: 01000000
   actions:
   - {fileID: 11400000, guid: 9b8cac64b040ac54082b5feaacf78f32, type: 2}

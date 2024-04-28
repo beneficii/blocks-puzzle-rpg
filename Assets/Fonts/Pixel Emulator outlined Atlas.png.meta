@@ -1,0 +1,2613 @@
+fileFormatVersion: 2
+guid: 7b3264ad5e00d0044be5640433683e2a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2309274060905226077
+    second: Pixel Emulator outlined Atlas_0
+  - first:
+      213: -792643803253363943
+    second: Pixel Emulator outlined Atlas_1
+  - first:
+      213: -2967761104099330620
+    second: Pixel Emulator outlined Atlas_2
+  - first:
+      213: 4969882939172751101
+    second: Pixel Emulator outlined Atlas_3
+  - first:
+      213: 196433253683250945
+    second: Pixel Emulator outlined Atlas_4
+  - first:
+      213: -392006832870285544
+    second: Pixel Emulator outlined Atlas_5
+  - first:
+      213: -4440758393322034935
+    second: Pixel Emulator outlined Atlas_6
+  - first:
+      213: -5502915233232615404
+    second: Pixel Emulator outlined Atlas_7
+  - first:
+      213: 7932254037492923826
+    second: Pixel Emulator outlined Atlas_8
+  - first:
+      213: -1632651490237767978
+    second: Pixel Emulator outlined Atlas_9
+  - first:
+      213: -196686011753298395
+    second: Pixel Emulator outlined Atlas_10
+  - first:
+      213: 7083899736879458012
+    second: Pixel Emulator outlined Atlas_11
+  - first:
+      213: 8488115001848708373
+    second: Pixel Emulator outlined Atlas_12
+  - first:
+      213: 5686748090249624484
+    second: Pixel Emulator outlined Atlas_13
+  - first:
+      213: -8942156403916139909
+    second: Pixel Emulator outlined Atlas_14
+  - first:
+      213: 468610420291185673
+    second: Pixel Emulator outlined Atlas_15
+  - first:
+      213: -8921418608741929656
+    second: Pixel Emulator outlined Atlas_16
+  - first:
+      213: -8985867138999825306
+    second: Pixel Emulator outlined Atlas_17
+  - first:
+      213: 3644828214594127322
+    second: Pixel Emulator outlined Atlas_18
+  - first:
+      213: -147630005851607622
+    second: Pixel Emulator outlined Atlas_19
+  - first:
+      213: 2966398030464495648
+    second: Pixel Emulator outlined Atlas_20
+  - first:
+      213: -6251287134304762889
+    second: Pixel Emulator outlined Atlas_21
+  - first:
+      213: -3825777771485235810
+    second: Pixel Emulator outlined Atlas_22
+  - first:
+      213: -6259282568015049260
+    second: Pixel Emulator outlined Atlas_23
+  - first:
+      213: 6129684218799784988
+    second: Pixel Emulator outlined Atlas_24
+  - first:
+      213: 727614848016676660
+    second: Pixel Emulator outlined Atlas_25
+  - first:
+      213: -3718035114314712425
+    second: Pixel Emulator outlined Atlas_26
+  - first:
+      213: -5431465186734920648
+    second: Pixel Emulator outlined Atlas_27
+  - first:
+      213: 3699335727842944279
+    second: Pixel Emulator outlined Atlas_28
+  - first:
+      213: 3295767604300808096
+    second: Pixel Emulator outlined Atlas_29
+  - first:
+      213: 8816266884288678915
+    second: Pixel Emulator outlined Atlas_30
+  - first:
+      213: -4127444601935327002
+    second: Pixel Emulator outlined Atlas_31
+  - first:
+      213: 7968786698764814481
+    second: Pixel Emulator outlined Atlas_32
+  - first:
+      213: 7367033861895591816
+    second: Pixel Emulator outlined Atlas_33
+  - first:
+      213: -2651752892195418447
+    second: Pixel Emulator outlined Atlas_34
+  - first:
+      213: -2452196652398949640
+    second: Pixel Emulator outlined Atlas_35
+  - first:
+      213: -2887049044489306555
+    second: Pixel Emulator outlined Atlas_36
+  - first:
+      213: 2821089811153177092
+    second: Pixel Emulator outlined Atlas_37
+  - first:
+      213: 7727085355083630017
+    second: Pixel Emulator outlined Atlas_38
+  - first:
+      213: 1726904578734065568
+    second: Pixel Emulator outlined Atlas_39
+  - first:
+      213: -720797492577275855
+    second: Pixel Emulator outlined Atlas_40
+  - first:
+      213: -3754043689805967211
+    second: Pixel Emulator outlined Atlas_41
+  - first:
+      213: 9158922719279842770
+    second: Pixel Emulator outlined Atlas_42
+  - first:
+      213: -909660129434355465
+    second: Pixel Emulator outlined Atlas_43
+  - first:
+      213: 7100327908717297370
+    second: Pixel Emulator outlined Atlas_44
+  - first:
+      213: 6676688996287755170
+    second: Pixel Emulator outlined Atlas_45
+  - first:
+      213: -9094455306735573393
+    second: Pixel Emulator outlined Atlas_46
+  - first:
+      213: -2518015032321745286
+    second: Pixel Emulator outlined Atlas_47
+  - first:
+      213: -6255864878733583417
+    second: Pixel Emulator outlined Atlas_48
+  - first:
+      213: 803311677458792227
+    second: Pixel Emulator outlined Atlas_49
+  - first:
+      213: 6300864046741066879
+    second: Pixel Emulator outlined Atlas_50
+  - first:
+      213: -1291248766361196313
+    second: Pixel Emulator outlined Atlas_51
+  - first:
+      213: 7577240962276264085
+    second: Pixel Emulator outlined Atlas_52
+  - first:
+      213: 6734335992352888787
+    second: Pixel Emulator outlined Atlas_53
+  - first:
+      213: -2781862962358077079
+    second: Pixel Emulator outlined Atlas_54
+  - first:
+      213: -4450529594684874248
+    second: Pixel Emulator outlined Atlas_55
+  - first:
+      213: -5096616523915976194
+    second: Pixel Emulator outlined Atlas_56
+  - first:
+      213: -4503204953252118855
+    second: Pixel Emulator outlined Atlas_57
+  - first:
+      213: -8116893817841122812
+    second: Pixel Emulator outlined Atlas_58
+  - first:
+      213: 1876736480465475391
+    second: Pixel Emulator outlined Atlas_59
+  - first:
+      213: 1464870340563552527
+    second: Pixel Emulator outlined Atlas_60
+  - first:
+      213: -7033692642654949730
+    second: Pixel Emulator outlined Atlas_61
+  - first:
+      213: 4221312905194307429
+    second: Pixel Emulator outlined Atlas_62
+  - first:
+      213: 4774828021886530408
+    second: Pixel Emulator outlined Atlas_63
+  - first:
+      213: 5162899832322419088
+    second: Pixel Emulator outlined Atlas_64
+  - first:
+      213: -9047333265932915827
+    second: Pixel Emulator outlined Atlas_65
+  - first:
+      213: -3448169637955446921
+    second: Pixel Emulator outlined Atlas_66
+  - first:
+      213: 5644425921251292349
+    second: Pixel Emulator outlined Atlas_67
+  - first:
+      213: 8184269875483862845
+    second: Pixel Emulator outlined Atlas_68
+  - first:
+      213: 4449523000463649616
+    second: Pixel Emulator outlined Atlas_69
+  - first:
+      213: 237273661174141307
+    second: Pixel Emulator outlined Atlas_70
+  - first:
+      213: 3370676391891168493
+    second: Pixel Emulator outlined Atlas_71
+  - first:
+      213: 8833949194775176104
+    second: Pixel Emulator outlined Atlas_72
+  - first:
+      213: 8132910064109668719
+    second: Pixel Emulator outlined Atlas_73
+  - first:
+      213: -7579904053751997421
+    second: Pixel Emulator outlined Atlas_74
+  - first:
+      213: 987325478959922384
+    second: Pixel Emulator outlined Atlas_75
+  - first:
+      213: 6925248037865520915
+    second: Pixel Emulator outlined Atlas_76
+  - first:
+      213: 7265167182449844853
+    second: Pixel Emulator outlined Atlas_77
+  - first:
+      213: -1092718351142025528
+    second: Pixel Emulator outlined Atlas_78
+  - first:
+      213: -6925279590063137879
+    second: Pixel Emulator outlined Atlas_79
+  - first:
+      213: 93460059366780474
+    second: Pixel Emulator outlined Atlas_80
+  - first:
+      213: 3622951193060645883
+    second: Pixel Emulator outlined Atlas_81
+  - first:
+      213: -3975953327344704474
+    second: Pixel Emulator outlined Atlas_82
+  - first:
+      213: 7566510576352468868
+    second: Pixel Emulator outlined Atlas_83
+  - first:
+      213: -2670418518790487429
+    second: Pixel Emulator outlined Atlas_84
+  - first:
+      213: -1181849648464098006
+    second: Pixel Emulator outlined Atlas_85
+  - first:
+      213: 6043877215655713516
+    second: Pixel Emulator outlined Atlas_86
+  - first:
+      213: -966564115634959586
+    second: Pixel Emulator outlined Atlas_87
+  - first:
+      213: 8391098441932712933
+    second: Pixel Emulator outlined Atlas_88
+  - first:
+      213: 8492795105345082450
+    second: Pixel Emulator outlined Atlas_89
+  - first:
+      213: -6383942565857821940
+    second: Pixel Emulator outlined Atlas_90
+  - first:
+      213: 5589176230726682218
+    second: Pixel Emulator outlined Atlas_91
+  - first:
+      213: 912145594422291427
+    second: Pixel Emulator outlined Atlas_92
+  - first:
+      213: 1843526077571453633
+    second: Pixel Emulator outlined Atlas_93
+  - first:
+      213: -4067710398840767318
+    second: Pixel Emulator outlined Atlas_94
+  - first:
+      213: 724577839414140114
+    second: Pixel Emulator outlined Atlas_95
+  - first:
+      213: -5914007418754484061
+    second: Pixel Emulator outlined Atlas_96
+  - first:
+      213: 2000970663326437493
+    second: Pixel Emulator outlined Atlas_97
+  - first:
+      213: -1701618470974615754
+    second: Pixel Emulator outlined Atlas_98
+  - first:
+      213: -8339494841310033509
+    second: Pixel Emulator outlined Atlas_99
+  - first:
+      213: 3191331883373742061
+    second: Pixel Emulator outlined Atlas_100
+  - first:
+      213: 3688023083758595806
+    second: Pixel Emulator outlined Atlas_101
+  - first:
+      213: 5558261272354100772
+    second: Pixel Emulator outlined Atlas_102
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 460
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a068b60a7fc3ffd0800000000000000
+      internalID: -2309274060905226077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_1
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 493
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b2ba919a6fff4f0800000000000000
+      internalID: -792643803253363943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 493
+        width: 29
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c530fbeff460d6d0800000000000000
+      internalID: -2967761104099330620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_3
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 493
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df68aac933298f440800000000000000
+      internalID: 4969882939172751101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_4
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 493
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1074dd3e00fd9b200800000000000000
+      internalID: 196433253683250945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_5
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 493
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f9d39ccdf4f8af0800000000000000
+      internalID: -392006832870285544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_6
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 493
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 909a4b8f4c14f52c0800000000000000
+      internalID: -4440758393322034935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_7
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 464
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 418851640c7b1a3b0800000000000000
+      internalID: -5502915233232615404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_8
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 464
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bd7cec2507051e60800000000000000
+      internalID: 7932254037492923826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_9
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 495
+        width: 29
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de9d5aae18a759e0800000000000000
+      internalID: -1632651490237767978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_10
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 485
+        width: 29
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52608294d1b354df0800000000000000
+      internalID: -196686011753298395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_11
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 406
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd6ee2157411f4260800000000000000
+      internalID: 7083899736879458012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_12
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 439
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d3bd94f97dbc570800000000000000
+      internalID: 8488115001848708373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_13
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 439
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4abb57622436bee40800000000000000
+      internalID: 5686748090249624484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_14
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 439
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b721892d02417e380800000000000000
+      internalID: -8942156403916139909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_15
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 410
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90ca087c1b6d08600800000000000000
+      internalID: 468610420291185673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_16
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 410
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84da0650b01c03480800000000000000
+      internalID: -8921418608741929656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_17
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 442
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c4f0d3279cb4380800000000000000
+      internalID: -8985867138999825306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_18
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 385
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5443633f7059230800000000000000
+      internalID: 3644828214594127322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_19
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 385
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abda607ba4383fdf0800000000000000
+      internalID: -147630005851607622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_20
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 385
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0203144ca43ca2920800000000000000
+      internalID: 2966398030464495648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_21
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 412
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f38bcad877fe39a0800000000000000
+      internalID: -6251287134304762889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_22
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 385
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e95790df26b18eac0800000000000000
+      internalID: -3825777771485235810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_23
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 401
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd0ba0eaaf8229a0800000000000000
+      internalID: -6259282568015049260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_24
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 401
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1401ee0253011550800000000000000
+      internalID: 6129684218799784988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_25
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 401
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 437755569d1091a00800000000000000
+      internalID: 727614848016676660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_26
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 399
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ab7d433c2e66cc0800000000000000
+      internalID: -3718035114314712425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_27
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 352
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83ca3c6903f8f94b0800000000000000
+      internalID: -5431465186734920648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_28
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 356
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7156dfa9e3ea65330800000000000000
+      internalID: 3699335727842944279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_29
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 356
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0aff694ac2becbd20800000000000000
+      internalID: 3295767604300808096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_30
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 385
+        width: 24
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30c011b450ca95a70800000000000000
+      internalID: 8816266884288678915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_31
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 374
+        width: 34
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e09a8fa00f58b6c0800000000000000
+      internalID: -4127444601935327002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_32
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 356
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1980cb63841d69e60800000000000000
+      internalID: 7968786698764814481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_33
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 309
+        width: 40
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8879f82e346fc3660800000000000000
+      internalID: 7367033861895591816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_34
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 331
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bec39c4bc4133bd0800000000000000
+      internalID: -2651752892195418447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_35
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 331
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8facb5e032c08fdd0800000000000000
+      internalID: -2452196652398949640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_36
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 331
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e7516b0342fe7d0800000000000000
+      internalID: -2887049044489306555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_37
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 302
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40a42498c36862720800000000000000
+      internalID: 2821089811153177092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_38
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 331
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c502eac03f1c3b60800000000000000
+      internalID: 7727085355083630017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_39
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 331
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a78078909237f710800000000000000
+      internalID: 1726904578734065568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_40
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 331
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13070fbdf763ff5f0800000000000000
+      internalID: -720797492577275855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_41
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 302
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59091d56725f6ebc0800000000000000
+      internalID: -3754043689805967211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_42
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 298
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d50ee7efa70b1f70800000000000000
+      internalID: 9158922719279842770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_43
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 277
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f8babe8eec3063f0800000000000000
+      internalID: -909660129434355465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_44
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 277
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adef2e32d9e698260800000000000000
+      internalID: 7100327908717297370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_45
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 277
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a3bd7b744d58ac50800000000000000
+      internalID: 6676688996287755170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_46
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 277
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f662c5045110ac180800000000000000
+      internalID: -9094455306735573393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_47
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 277
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7e5e5b4ba63e0dd0800000000000000
+      internalID: -2518015032321745286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_48
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 277
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cb1e3ca904be29a0800000000000000
+      internalID: -6255864878733583417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_49
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 277
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32fbadae6bfe52b00800000000000000
+      internalID: 803311677458792227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_50
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 244
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f741804977a217750800000000000000
+      internalID: 6300864046741066879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_51
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 223
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e8216c9610941ee0800000000000000
+      internalID: -1291248766361196313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_52
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 223
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 598040e5284c72960800000000000000
+      internalID: 7577240962276264085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_53
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 223
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d7525ea7ea257d50800000000000000
+      internalID: 6734335992352888787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_54
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 259
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 969b4daef56d469d0800000000000000
+      internalID: -2781862962358077079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_55
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 223
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f1e17ed9ea8c32c0800000000000000
+      internalID: -4450529594684874248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_56
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 223
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef12a97464e2549b0800000000000000
+      internalID: -5096616523915976194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_57
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 223
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9beb0aa34f66181c0800000000000000
+      internalID: -4503204953252118855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_58
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 223
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 402040ce3100b5f80800000000000000
+      internalID: -8116893817841122812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_59
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 248
+        width: 34
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f375927b2e18b0a10800000000000000
+      internalID: 1876736480465475391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_60
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 248
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f09cb4340d3445410800000000000000
+      internalID: 1464870340563552527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_61
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 190
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9ee54fbecd436e90800000000000000
+      internalID: -7033692642654949730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_62
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 227
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ff0e7c8bd159a30800000000000000
+      internalID: 4221312905194307429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_63
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 211
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863b02ca9c8934240800000000000000
+      internalID: 4774828021886530408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_64
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09960841b0e46a740800000000000000
+      internalID: 5162899832322419088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_65
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8b6e77545a617280800000000000000
+      internalID: -9047333265932915827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_66
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 777d064cbf3a520d0800000000000000
+      internalID: -3448169637955446921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_67
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db4b03d4877055e40800000000000000
+      internalID: 5644425921251292349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_68
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d376522f61e549170800000000000000
+      internalID: 8184269875483862845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_69
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05be0962891efbd30800000000000000
+      internalID: 4449523000463649616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_70
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7157d04327fa4300800000000000000
+      internalID: 237273661174141307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_71
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 169
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dece77fd15c07ce20800000000000000
+      internalID: 3370676391891168493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_72
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 190
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a32c660dfd789a70800000000000000
+      internalID: 8833949194775176104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_73
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 136
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f69c4710d96edd070800000000000000
+      internalID: 8132910064109668719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_74
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 169
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31c91945c65cec690800000000000000
+      internalID: -7579904053751997421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_75
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 82
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dc3913ca4fa3bd00800000000000000
+      internalID: 987325478959922384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_76
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31ff17e166c6b1060800000000000000
+      internalID: 6925248037865520915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_77
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 572afb75f0f03d460800000000000000
+      internalID: 7265167182449844853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_78
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c601a8f272e5d0f0800000000000000
+      internalID: -1092718351142025528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_79
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ab160097e674ef90800000000000000
+      internalID: -6925279590063137879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_80
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3e6e37cd690c4100800000000000000
+      internalID: 93460059366780474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_81
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb15f43aee474230800000000000000
+      internalID: 3622951193060645883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_82
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6242618a38392d8c0800000000000000
+      internalID: -3975953327344704474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_83
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 115
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f99b4b745a10960800000000000000
+      internalID: 7566510576352468868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_84
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 28
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b724ed17184c0fad0800000000000000
+      internalID: -2670418518790487429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_85
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2d8065a10a399fe0800000000000000
+      internalID: -1181849648464098006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_86
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cea5c394e4a20e350800000000000000
+      internalID: 6043877215655713516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_87
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1b40f2de031692f0800000000000000
+      internalID: -966564115634959586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_88
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ebabb2339b237470800000000000000
+      internalID: 8391098441932712933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_89
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 254154cc6287cd570800000000000000
+      internalID: 8492795105345082450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_90
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0b7c875f0ea767a0800000000000000
+      internalID: -6383942565857821940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_91
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66458b4b2eb09d40800000000000000
+      internalID: 5589176230726682218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_92
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eb6afad59798ac00800000000000000
+      internalID: 912145594422291427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_93
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 7
+        width: 45
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c2d0db3335859910800000000000000
+      internalID: 1843526077571453633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_94
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aacfee3a1f69c87c0800000000000000
+      internalID: -4067710398840767318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_95
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc566ab4b73e0a00800000000000000
+      internalID: 724577839414140114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_96
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a83d1e16993deda0800000000000000
+      internalID: -5914007418754484061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_97
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 570dc897730e4cb10800000000000000
+      internalID: 2000970663326437493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_98
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f80562403a268e0800000000000000
+      internalID: -1701618470974615754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_99
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b99438950a9244c80800000000000000
+      internalID: -8339494841310033509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_100
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de7ced48073e94c20800000000000000
+      internalID: 3191331883373742061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_101
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 7
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ede2fd6647d7e2330800000000000000
+      internalID: 3688023083758595806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel Emulator outlined Atlas_102
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 7
+        width: 7
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4261a73ad29e22d40800000000000000
+      internalID: 5558261272354100772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprites_0: 6128299156075563123
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

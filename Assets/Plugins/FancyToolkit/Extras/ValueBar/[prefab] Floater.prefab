@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  - {fileID: 109276226602686776, guid: 8889949f966b45a458a068cdef3bf179, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,15 +104,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 123
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8889949f966b45a458a068cdef3bf179, type: 2}
+  m_sharedMaterial: {fileID: 109276226602686776, guid: 8889949f966b45a458a068cdef3bf179, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284829153
-  m_fontColor: {r: 0.882353, g: 0.3019608, b: 0.39607847, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 8879972144641534643}
   txtSecondary: {fileID: 0}
-  lifetime: 0.9
-  distance: 0.4
+  lifetime: 1.1
+  distance: 0.7
   defaultCooldown: 0.15
   defaultColor: {r: 1, g: 1, b: 1, a: 1}

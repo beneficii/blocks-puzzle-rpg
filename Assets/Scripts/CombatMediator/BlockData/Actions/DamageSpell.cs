@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FancyToolkit;
 
 namespace BlockAction
 {
@@ -36,10 +37,11 @@ namespace BlockAction
                 info.blocks.Remove(item);
             }
 
+            ResCtrl<MatchStat>.current.SetIfMore(MatchStat.MaxDamage, totalDamage);
             MakeBullet(parent)
                 .SetTarget(CombatArena.current.enemy)
                 .SetDamage(totalDamage)
-                .SetLaunchDelay(0.5f);
+                .SetLaunchDelay(0.4f);
         }
     }
 }

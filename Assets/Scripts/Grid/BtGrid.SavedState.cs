@@ -3,22 +3,30 @@
     public class SavedState
     {
         BtBlockData[,] blocks;
+        int[,] bgs;
 
         public SavedState(BtGrid grid)
         {
             var width = BtGrid.width;
             var height = BtGrid.height;
             var arr = new BtBlockData[width, height];
+            var spr = new int[width, height];
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    arr[x, y] = grid.blocks[x, y]?.data;
+                    var block = grid.blocks[x, y];
+                    if (block)
+                    {
+                        arr[x, y] = block.data;
+                        spr[x, y] = block.spriteIdx;
+                    }
                 }
             }
 
             blocks = arr;
+            bgs = spr;
         }
 
         public void Load(BtGrid grid)
@@ -38,10 +46,11 @@
                     if (oldBlock) Destroy(oldBlock.gameObject);
 
                     var data = blocks[x, y];
+                    var spriteIdx = bgs[x, y];
 
                     if (data)
                     {
-                        arr[x, y] = grid.PlaceBlock(x, y, data);
+                        arr[x, y] = grid.PlaceBlock(x, y, data, spriteIdx);
                     }
                 }
             }
