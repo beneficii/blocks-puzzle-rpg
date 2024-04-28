@@ -24,7 +24,7 @@ public class CombatBlockData : BtBlockData
             var descr = item.GetDescription();
             if (!string.IsNullOrEmpty(descr))
             {
-                sb.Append(descr + ".");
+                sb.Append(descr + ". ");
             }
         }
 
@@ -40,7 +40,7 @@ public class CombatBlockData : BtBlockData
             var descr = item.GetDescription();
             if (!string.IsNullOrEmpty(descr))
             {
-                sb.Append(descr + ".");
+                sb.Append(descr + ". ");
             }
         }
 

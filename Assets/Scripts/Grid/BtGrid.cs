@@ -108,7 +108,9 @@ public partial class BtGrid : MonoBehaviour
 
     public void LoadRandomBoard(int level, BtBlockData specialBlock)
     {
-        var board = DataManager.current.preBoards.Rand();
+        var board = DataManager.current.preBoards
+            .Where(x => x.level == level)
+            .Rand();
         var ph = DataManager.current.placeHolderBlock;
         LoadPreBoard(board.Replace(ph, specialBlock));
     }

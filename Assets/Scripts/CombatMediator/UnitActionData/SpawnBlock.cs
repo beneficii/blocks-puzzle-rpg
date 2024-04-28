@@ -48,7 +48,7 @@ namespace EnemyAction
             yield return new WaitForSeconds(0.2f);
         }
 
-        public override string GetDescription(Unit parent) => $"Will spawn {count} '{GetData(parent).name}' on empty block";
+        public override string GetDescription(Unit parent) => $"Will spawn {count} '{GetData(parent).title}' on empty block";
         public override string GetShortDescription(Unit parent) => $"{count}";
     }
 }

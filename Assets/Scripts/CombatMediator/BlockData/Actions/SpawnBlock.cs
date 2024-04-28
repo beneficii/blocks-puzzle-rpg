@@ -11,7 +11,7 @@ namespace BlockAction
         [SerializeField] int count;
         [SerializeField] BtBlockData data;
 
-        public override string GetDescription() => $"Spawns {count} '{data.name}' on empty block";
+        public override string GetDescription() => $"Spawns {count} '{data.title}' on empty block";
 
         public void Spawn(Component comp)
         {

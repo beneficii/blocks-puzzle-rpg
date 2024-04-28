@@ -19,6 +19,4 @@ MonoBehaviour:
   tags: 
   actions:
   - {fileID: 11400000, guid: 1bea965d27b9ecb4f8a37f971beebbd2, type: 2}
-  passives:
-  - passive: 1
-    value: 1
+  passives: []

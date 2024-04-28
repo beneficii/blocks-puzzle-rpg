@@ -15,14 +15,11 @@ MonoBehaviour:
   title: Evil slime
   description: 
   animations: {fileID: 22100000, guid: 9ca1f2db67eecb74ba8d818c8c7c45f7, type: 2}
-  damage: 5
+  damage: 1
   defense: 0
   hp: 5
   reward: 1
   specialBlockData: {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
   boardLevel: 0
   actionQueue:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  level: 1
