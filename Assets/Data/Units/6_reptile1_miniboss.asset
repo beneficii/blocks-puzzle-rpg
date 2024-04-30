@@ -25,4 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
-  level: 1
+  tutorialDescription: Luckily, knowledge is power..
+  tutorialTips: []
+  fxAttack: {fileID: 6246186795892394741, guid: 582ed55126cea814eb045fa583724d56, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

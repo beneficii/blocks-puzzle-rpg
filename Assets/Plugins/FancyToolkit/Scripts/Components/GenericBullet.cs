@@ -19,13 +19,18 @@ namespace FancyToolkit
             }
         }
 
+        AnimCompanion fxPrefab;
+
         System.Action<Component> action;
         Component target;
         int damage;
 
         float launchAt = -1f;
 
+        Vector2 spleenPoint;
+        Vector2 spleenDirection = Vector2.zero;
 
+        bool HasSpleen => spleenDirection != Vector2.zero;
 
         public GenericBullet Init(Component target) => SetTarget(target);
 
@@ -38,6 +43,18 @@ namespace FancyToolkit
         public GenericBullet SetSprite(Sprite sprite)
         {
             render.sprite = sprite;
+            return this;
+        }
+
+        public GenericBullet SetFx(AnimCompanion prefab)
+        {
+            fxPrefab = prefab;
+            return this;
+        }
+
+        public GenericBullet AddSpleen(Vector2 direction)
+        {
+            spleenDirection = direction;
             return this;
         }
 
@@ -65,8 +82,7 @@ namespace FancyToolkit
             return this;
         }
 
-        /*
-        private void Update()
+        void TargetReached()
         {
             if (!target)
             {
@@ -74,8 +90,65 @@ namespace FancyToolkit
                 return;
             }
 
-            transform.up = transform.position - target.transform.position;
-        }*/
+            if (action != null)
+            {
+                action.Invoke(target);
+            }
+
+            if (target.TryGetComponent<IDamagable>(out var damagable))
+            {
+                if (damage > 0)
+                {
+                    damagable.RemoveHp(damage);
+                }
+                else if (damage < 0)
+                {
+                    damagable.AddHp(-damage);
+                }
+            }
+
+            Destroy(gameObject);
+        }
+
+        private void Start()
+        {
+            if (HasSpleen)
+            {
+                //var distance = Vector2.Distance(target.transform.position, transform.position);
+                spleenPoint = (Vector2)target.transform.position + spleenDirection * 7;
+            }
+        }
+
+        void Move()
+        {
+            var targetPos = target.transform.position;
+            float moveSpeed = Time.fixedDeltaTime * speed;
+
+            if (HasSpleen)
+            {
+                spleenPoint = Vector2.MoveTowards(spleenPoint, targetPos, moveSpeed);
+                targetPos = spleenPoint;
+            }
+
+            if (!transform.MoveTowards(targetPos, Time.fixedDeltaTime * speed)) return;
+
+            if (HasSpleen)
+            {
+                spleenDirection = Vector2.zero;
+                return;
+            }
+
+            if (fxPrefab)
+            {
+                Instantiate(fxPrefab, transform.position, Quaternion.identity)
+                    .SetTriggerAction(TargetReached);
+                gameObject.SetActive(false);    // hide bullet during animation
+            }
+            else
+            {
+                TargetReached();
+            }
+        }
 
         private void FixedUpdate()
         {
@@ -87,28 +160,7 @@ namespace FancyToolkit
 
             if (Time.time < launchAt) return;
 
-            if (transform.MoveTowards(target.transform.position, Time.fixedDeltaTime * speed))
-            {
-                if (action != null)
-                {
-                    action.Invoke(target);
-                }
-
-                if (target.TryGetComponent<IDamagable>(out var damagable))
-                {
-                    if (damage >= 0)
-                    {
-                        damagable.RemoveHp(damage);
-                    }
-                    else
-                    {
-                        damagable.AddHp(-damage);
-                    }
-                }
-
-                Destroy(gameObject);
-                return;
-            }
+            Move();
         }
     }
     

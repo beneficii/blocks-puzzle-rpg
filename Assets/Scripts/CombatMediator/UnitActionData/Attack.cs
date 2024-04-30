@@ -9,11 +9,25 @@ namespace EnemyAction
     {
         public override IEnumerator Execute(Unit parent, Unit target)
         {
-            if (!target) yield break;
-
             parent.AnimAttack(1);
-            yield return new WaitForSeconds(0.3f);
-            target.RemoveHp(parent.data.damage);
+            yield return new WaitForSeconds(0.1f);
+            if (!target || !parent) yield break;
+
+            var damage = parent.data.damage;
+            var fxAttack = parent.data.fxAttack;
+            if (fxAttack)
+            {
+                Instantiate(fxAttack, target.transform.position, Quaternion.identity)
+                    .SetTriggerAction(() =>
+                    {
+                        if (!target) return;
+                        target.RemoveHp(damage);
+                    });
+            }
+            else
+            {
+                target.RemoveHp(damage);
+            }
         }
 
         public override string GetDescription(Unit parent) => $"Will Deal {parent.data.damage} damage";

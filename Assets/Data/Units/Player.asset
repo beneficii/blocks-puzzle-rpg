@@ -16,7 +16,13 @@ MonoBehaviour:
   description: 
   animations: {fileID: 22100000, guid: e7caf11846075624b90373ab02e8b2af, type: 2}
   damage: 2
-  hp: 60
-  reward: 1
+  defense: 0
+  hp: 100
+  reward: 0
+  specialBlockData: {fileID: 0}
+  boardLevel: 0
   actionQueue: []
-  level: 1
+  tutorialDescription: 
+  tutorialTips: []
+  fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

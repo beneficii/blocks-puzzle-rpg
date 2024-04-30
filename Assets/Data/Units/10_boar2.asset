@@ -24,4 +24,9 @@ MonoBehaviour:
   actionQueue:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
-  level: 1
+  tutorialDescription: By the time the creatures were born without darkness in their
+    hearts, ..
+  tutorialTips:
+  - '.. the darkness of lesser creatures was already ruling this land.. '
+  fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

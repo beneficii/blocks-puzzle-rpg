@@ -17,10 +17,10 @@ namespace BlockAction
             var totalDamage = (info.columnsMatched + info.rowsMatched) * damage;
             ResCtrl<MatchStat>.current.SetIfMore(MatchStat.MaxDamage, totalDamage);
 
-            MakeBullet(parent)
-                .SetTarget(CombatArena.current.enemy)
-                .SetDamage(totalDamage)
-                .SetLaunchDelay(0.2f);
+            var bullet = MakeBullet(parent)
+                            .SetTarget(CombatArena.current.enemy)
+                            .SetDamage(totalDamage)
+                            .SetLaunchDelay(0.2f);
         }
     }
 }

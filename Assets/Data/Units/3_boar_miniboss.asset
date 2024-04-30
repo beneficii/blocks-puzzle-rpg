@@ -15,16 +15,20 @@ MonoBehaviour:
   title: Evil boar
   description: 
   animations: {fileID: 22100000, guid: d147e33d186f2b24b809addf0c60afad, type: 2}
-  damage: 4
+  damage: 3
   defense: 0
   hp: 15
   reward: 2
   specialBlockData: {fileID: 11400000, guid: 0e007587ee578394592105c16a91498a, type: 2}
   boardLevel: 2
   actionQueue:
-  - {fileID: 0}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
-  level: 1
+  tutorialDescription: A common ear should not hear the truth behind the origin of
+    the evil..
+  tutorialTips:
+  - 'tip: some pages seem to tell a story.'
+  fxAttack: {fileID: 4880398819266878637, guid: 3c29099d3585c654681ce3ec650265e8, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

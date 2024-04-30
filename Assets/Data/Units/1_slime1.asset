@@ -20,6 +20,12 @@ MonoBehaviour:
   hp: 5
   reward: 1
   specialBlockData: {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
-  boardLevel: 0
+  boardLevel: 7
   actionQueue:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  tutorialDescription: Drag shapes on the board to form full line. That will activate
+    boards magic.
+  tutorialTips:
+  - 'tip: ''Collect'' action is triggered when you clear a tile'
+  fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

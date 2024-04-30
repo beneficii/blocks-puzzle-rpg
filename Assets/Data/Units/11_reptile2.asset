@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 
   animations: {fileID: 22100000, guid: 32dc86e0667023447a3099f9eac2da16, type: 2}
   damage: 6
-  defense: 0
+  defense: 2
   hp: 32
   reward: 1
   specialBlockData: {fileID: 11400000, guid: 4162446f8b060f34a8912b1047198c93, type: 2}
@@ -27,4 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
   - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
-  level: 1
+  tutorialDescription: The only way was to go forward..
+  tutorialTips: []
+  fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

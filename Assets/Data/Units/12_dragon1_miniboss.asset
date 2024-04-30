@@ -15,14 +15,18 @@ MonoBehaviour:
   title: Dragon
   description: 
   animations: {fileID: 22100000, guid: cb7c0898dfb10bd4d9b6085fc7f914c1, type: 2}
-  damage: 8
+  damage: 7
   defense: 5
-  hp: 200
+  hp: 100
   reward: 2
-  specialBlockData: {fileID: 11400000, guid: f0d8aa20bf956be4ca8bb4c815bbfda3, type: 2}
-  boardLevel: 2
+  specialBlockData: {fileID: 11400000, guid: ccb9e5c5e78300b439f243a243acab1c, type: 2}
+  boardLevel: 0
   actionQueue:
-  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
-  level: 1
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  tutorialDescription: We created creatures of incredible strength to fight hordes
+    of the ones of our past..
+  tutorialTips: []
+  fxAttack: {fileID: 7077373230073004965, guid: 31b9cf69746e6b241bdfcc12f3550c64, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

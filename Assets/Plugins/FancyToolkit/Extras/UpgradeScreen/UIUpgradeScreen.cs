@@ -62,6 +62,7 @@ namespace FancyToolkit {
         void HandleItemSelected(UIUpgradeItem item)
         {
             var choise = item.GetComponent<IUIUpgradeChoise>();
+            Close();
 
             if (!choise.Select())
             {
@@ -69,7 +70,6 @@ namespace FancyToolkit {
                 return;
             }
 
-            Close();
         }
     }
 

@@ -15,10 +15,10 @@ namespace BlockAction
 
         public override void HandleMatch(BtBlock parent, BtLineClearInfo info)
         {
-            MakeBullet(parent)
-                .SetTarget(CombatArena.current.player)
-                .SetDamage(-Damage)
-                .SetLaunchDelay(0.2f);
+            var bullet = MakeBullet(parent)
+                            .SetTarget(CombatArena.current.player)
+                            .SetDamage(-Damage)
+                            .SetLaunchDelay(0.2f);
         }
     }
 }

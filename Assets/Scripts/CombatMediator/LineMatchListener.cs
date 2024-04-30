@@ -38,8 +38,9 @@ public class LineMatchListener : MonoBehaviour
 
     void HandleUnitKilled(Unit unit)
     {
-        if (unit == arena.enemy)
+        if (unit == arena.enemy || unit == arena.player)
         {
+            StopAllCoroutines();
             StartCoroutine(CombatFinished(unit.reward));
         }
     }
@@ -57,12 +58,21 @@ public class LineMatchListener : MonoBehaviour
     IEnumerator CombatFinished(BtUpgradeRarity reward)
     {
         yield return new WaitForSeconds(2f);
-        BtUpgradeCtrl.Show(reward, 3);
+        HelpPanel.current.Close();  // just in case
+
+        if (!arena.player)
+        {
+            MenuCtrl.Load(GameOverType.Defeat);
+            yield break;
+        }
+
+
+        BtUpgradeCtrl.current.Show(reward, 3);
 
         var next = MapCtrl.current.Next();
         if (next == null)
         {
-            Game.ToDo("All enemies defeated!");
+            MenuCtrl.Load(GameOverType.Victory);
             yield break;
         }
         SpawnEnemy(next.unitData);
@@ -174,13 +184,24 @@ public class LineMatchListener : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             arena.player.AnimAttack(1);
-            arena.enemy.RemoveHp(3);
+            arena.enemy.RemoveHp(50);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            StartCoroutine(arena.enemy.RoundActionPhase());
+            NewTurn();
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            arena.player.AddArmor(5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            arena.player.RemoveHp(5);
+        }
+
 #endif
     }
 }

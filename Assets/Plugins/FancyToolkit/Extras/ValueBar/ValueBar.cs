@@ -71,6 +71,12 @@ namespace FancyToolkit
             RefreshText();
         }
 
+        public void SetFillColor(Color color)
+        {
+            clrFill = color;
+            RefreshInstant();
+        }
+
         public void Set(int value)
         {
             currentValue = Mathf.Clamp(value, 0, maxValue);

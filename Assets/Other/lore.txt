@@ -1,0 +1,51 @@
+Page 1: Evil Slime
+== Drag shapes on the board to form full line. That will activate boards magic.
+- tip: 'Collect' action is triggered when you clear a tile
+
+Page 2: Evil Bat
+== Passive powers work only while their tile is on the board.
+-- tip: there are 2 bat tiles, they rendere you shorswords useless, so get rid of them first.
+
+Page 3: Evil Boar
+== A common ear should not hear the truth behind the origin of the evil..
+-- tip: some pages seem to tell a story.
+
+Page 4: Slime
+== Knowledge is key to a gentle soul..
+-- tip: colorful tiles are stronger and more rare. use them wiseley.
+
+Page 5: Evil Mushroom
+== Without knowledege there is only uncontrolled anger..
+
+Page 6: Evil Reptile
+== Luckily, knowledge is power..
+
+Page 7: Evil Ghost
+== In the beginning monsters we created weren't that powerfull..
+
+Page 8: Bat
+== But they were extremely evil..
+
+Page 9: Treasure Chest
+== In the name of knowledge we kept experimenting..
+-- tip: you will not get a reward if you don't defeat it in time
+-- tip: chest won't attack you
+
+Page 10: Boar
+== By the time the creatures were born without darkness in their hearts, ..
+-- .. the darkness of lesser creatures was already ruling this land.. 
+
+Page 11: Civil Reptile
+-- The only way was to go forward..
+
+Page 12: Dragon
+-- We created creatures of incredible strength to fight hordes of the ones of our past..
+
+Page 13: Nice Ghost
+-- None were enough we feared, until..
+
+Page 14: Curing Mushroom
+-- The one that could use our tools emerged.. a Mage.
+
+Page 15: Gentle Giant
+-- That's why we left them arcane board and this manual.. They must fix our errors..

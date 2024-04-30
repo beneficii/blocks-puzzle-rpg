@@ -41,10 +41,10 @@ MonoBehaviour:
     data: {fileID: 11400000, guid: b0fbd9b7fc8304e4d920580b45f37549, type: 2}
   - color:
       serializedVersion: 2
-      rgba: 4283231231
-    data: {fileID: 11400000, guid: ccb9e5c5e78300b439f243a243acab1c, type: 2}
+      rgba: 4291768039
+    data: {fileID: 11400000, guid: 6c09a14add723a54cb300c22965428ca, type: 2}
   - color:
       serializedVersion: 2
-      rgba: 4282901759
-    data: {fileID: 0}
+      rgba: 4281136636
+    data: {fileID: 11400000, guid: ccb9e5c5e78300b439f243a243acab1c, type: 2}
   shapeCellSize: {x: 5, y: 5}

@@ -18,5 +18,5 @@ MonoBehaviour:
   rarity: 0
   tags: 
   actions:
-  - {fileID: 11400000, guid: da472607689531941a2e7c5c0e3a1a0c, type: 2}
+  - {fileID: 11400000, guid: bec273d25364d9b46ba807fbfa52b8a7, type: 2}
   passives: []

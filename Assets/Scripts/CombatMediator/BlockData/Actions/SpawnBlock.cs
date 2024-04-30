@@ -11,6 +11,13 @@ namespace BlockAction
         [SerializeField] int count;
         [SerializeField] BtBlockData data;
 
+        public override string GetTooltip()
+        {
+            var descr = data.GetDescription();
+            if (string.IsNullOrEmpty(descr)) return "";
+            return $"{data.title}: {data.GetDescription()}";
+        }
+
         public override string GetDescription() => $"Spawns {count} '{data.title}' on empty block";
 
         public void Spawn(Component comp)

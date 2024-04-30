@@ -20,6 +20,6 @@ public class Game : MonoBehaviour
 
     public static void ToDo(string message)
     {
-        Debug.Log($"ToDo: {message}");
+        Debug.Log(message);
     }
 }

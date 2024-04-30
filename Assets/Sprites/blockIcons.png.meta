@@ -860,6 +860,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: blockIcons_32
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b7d3b8c7c926c4a82e93562ddd9d8f
+      internalID: 1993225470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blockIcons_33
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fbc4a30ed1347e478e1acb2336d5afa
+      internalID: -187121726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -897,6 +939,8 @@ TextureImporter:
       blockIcons_3: 2071062554
       blockIcons_30: 584695907
       blockIcons_31: 2036468497
+      blockIcons_32: 1993225470
+      blockIcons_33: -187121726
       blockIcons_4: 455230754
       blockIcons_5: 1828480727
       blockIcons_6: 957611948

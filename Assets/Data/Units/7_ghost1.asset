@@ -23,4 +23,7 @@ MonoBehaviour:
   boardLevel: 1
   actionQueue:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  level: 1
+  tutorialDescription: In the beginning monsters we created weren't that powerfull..
+  tutorialTips: []
+  fxAttack: {fileID: 339892110426421801, guid: 259f209d23486a24dae31ef183c12e96, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

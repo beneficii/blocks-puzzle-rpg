@@ -18,10 +18,14 @@ MonoBehaviour:
   damage: 1
   defense: 0
   hp: 100
-  reward: 3
+  reward: 2
   specialBlockData: {fileID: 11400000, guid: b0fbd9b7fc8304e4d920580b45f37549, type: 2}
   boardLevel: 2
   actionQueue:
   - {fileID: 11400000, guid: e55a3c590df5909469a528a1cabde707, type: 2}
-  - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
-  level: 1
+  tutorialDescription: In the name of knowledge we kept experimenting..
+  tutorialTips:
+  - 'tip: you will not get a good reward if you don''t defeat it in time'
+  - 'tip: chest won''t attack you'
+  fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

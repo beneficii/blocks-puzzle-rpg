@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2522e36ceb8cb3c43ba696daaac6ba25, type: 3}
   m_Name: ArcaneSword
   m_EditorClassIdentifier: 
-  damageMultiplier: 6
+  fxPrefab: {fileID: 739853986794958832, guid: 7b337a996306d974ab33531fc49b7d22, type: 3}
+  damageMultiplier: 5

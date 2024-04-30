@@ -4,11 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
 
-public static class BtUpgradeCtrl
+public class BtUpgradeCtrl : MonoBehaviour
 {
-    public static Dictionary<BtShapeData, BtShapeData> upgrades;
+    static BtUpgradeCtrl _current;
+    public static BtUpgradeCtrl current
+    {
+        get
+        {
+            if (!_current)
+            {
+                _current = FindFirstObjectByType<BtUpgradeCtrl>();
+            }
 
-    static List<BtShapeData> GetFreeShapes(BtUpgradeRarity rarity, int count)
+            return _current;
+        }
+    }
+
+    public Dictionary<BtShapeData, BtShapeData> upgrades;
+
+    Queue<QItem> queue = new();
+
+    List<BtShapeData> GetFreeShapes(BtUpgradeRarity rarity, int count)
     {
         int level = (int)rarity;
         var querry = DataManager.current.shapes
@@ -23,8 +39,25 @@ public static class BtUpgradeCtrl
         return querry.RandN(count);
     }
 
-    public static void Show(BtUpgradeRarity rarity, int count)
+    void Close()
     {
+        upgrades = null;
+
+        if (queue.Count > 0)
+        {
+            var next = queue.Dequeue();
+            Show(next.rarity, next.count);
+        }
+    }
+
+    public void Show(BtUpgradeRarity rarity, int count)
+    {
+        if (upgrades != null)
+        {
+            queue.Enqueue(new QItem(rarity, count));
+            return;
+        }
+
         upgrades = new Dictionary<BtShapeData, BtShapeData>();
 
         var shapes = GetFreeShapes(rarity, count);
@@ -32,6 +65,7 @@ public static class BtUpgradeCtrl
         if (shapes.Count == 0)
         {
             Debug.Log("Out of shapes to upgrade!");
+            Close();
             return;
         }
 
@@ -44,6 +78,7 @@ public static class BtUpgradeCtrl
             if (upgradeBlocks.Count == 0)
             {
                 Debug.Log("Out of blocks to upgrade!");
+                Close();
                 return;
             }
         }
@@ -68,11 +103,12 @@ public static class BtUpgradeCtrl
         }
     }
 
-    public static void Select(BtShapeData data)
+    public void Select(BtShapeData data)
     {
         if (upgrades == null || !upgrades.TryGetValue(data, out var old))
         {
             Debug.LogError("Upgrade was not initialized");
+            Close();
             return;
         }
 
@@ -80,6 +116,20 @@ public static class BtUpgradeCtrl
         var idxOld = shapes.IndexOf(old);
         shapes[idxOld] = data;
         ShapePanel.current.GeneratePool();
+
+        Close();
+    }
+
+    public class QItem
+    {
+        public BtUpgradeRarity rarity;
+        public int count;
+
+        public QItem(BtUpgradeRarity rarity, int count)
+        {
+            this.rarity = rarity;
+            this.count = count;
+        }
     }
 }
 

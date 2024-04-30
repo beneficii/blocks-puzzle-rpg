@@ -14,10 +14,10 @@ namespace BlockAction
         {
             int damage = ResCtrl<MatchStat>.current.Get(MatchStat.MaxDamage);
 
-            MakeBullet(parent)
-                .SetTarget(CombatArena.current.enemy)
-                .SetDamage(damage)
-                .SetLaunchDelay(0.5f);
+            var bullet = MakeBullet(parent)
+                            .SetTarget(CombatArena.current.enemy)
+                            .SetDamage(damage)
+                            .SetLaunchDelay(0.5f);
         }
     }
 }

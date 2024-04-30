@@ -25,4 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
-  level: 1
+  tutorialDescription: But they were extremely evil..
+  tutorialTips: []
+  fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

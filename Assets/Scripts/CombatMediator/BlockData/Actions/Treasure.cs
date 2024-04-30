@@ -12,9 +12,18 @@ namespace BlockAction
 
         public override string GetDescription() => $"Gives {rarity} shape upgrade";
 
+        void Offer(Component comp)
+        {
+            BtUpgradeCtrl.current.Show(rarity, 3);
+        }
+
         public override void HandleMatch(BtBlock parent, BtLineClearInfo info)
         {
-            BtUpgradeCtrl.Show(rarity, 3);
+            MakeBullet(parent)
+                .SetTarget(CombatArena.current.player)
+                .SetAction(Offer)
+                .SetLaunchDelay(0.4f);
+
         }
     }
 }

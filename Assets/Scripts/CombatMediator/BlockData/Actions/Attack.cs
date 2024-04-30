@@ -17,10 +17,10 @@ namespace BlockAction
         {
             ResCtrl<MatchStat>.current.SetIfMore(MatchStat.MaxDamage, damage);
 
-            MakeBullet(parent)
-                .SetTarget(CombatArena.current.enemy)
-                .SetDamage(Damage)
-                .SetLaunchDelay(0.2f);
+            var bullet = MakeBullet(parent)
+                            .SetTarget(CombatArena.current.enemy)
+                            .SetDamage(Damage)
+                            .SetLaunchDelay(0.2f);
         }
     }
 }

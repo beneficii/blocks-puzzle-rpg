@@ -35,6 +35,11 @@ public class Unit : MonoBehaviour, IDamagable
         return data.description;
     }
 
+    public string GetTooltip()
+    {
+        return nextAction?.GetTooltip(this);
+    }
+
     int actionIdx = 0;
 
     public void Init(UnitData data, Team team)
@@ -45,6 +50,7 @@ public class Unit : MonoBehaviour, IDamagable
         health.Init(data.hp);
         health.OnZero += HandleOutOfHealth;
         armor.Value = 0;
+        armor.OnChanged += HandleArmorChanged;
         this.reward = data.reward;
         actionIdx = 0;
         SetAction(null);
@@ -70,12 +76,28 @@ public class Unit : MonoBehaviour, IDamagable
     {
         moveIndicator.Init(this, action);
         nextAction = action;
-    } 
+    }
+
+    void Destroy()
+    {
+        if (!gameObject) return;
+
+        Destroy(gameObject);
+    }
 
     void HandleOutOfHealth()
     {
         OnKilled?.Invoke(this);
-        Destroy(gameObject);
+        var fxDeath = data.fxDeath;
+        if (fxDeath)
+        {
+            Instantiate(fxDeath, transform.position, Quaternion.identity)
+                .SetTriggerAction(Destroy);
+        }
+        else
+        {
+            Destroy();
+        }
     }
 
     public void SetFlip(bool value)
@@ -99,6 +121,12 @@ public class Unit : MonoBehaviour, IDamagable
         armor.Add(value + bonus);
     }
 
+    void HandleArmorChanged(int oldValue, int newValue)
+    {
+        bool newIsZero = newValue == 0;
+        if ((oldValue == 0) == newIsZero) return;
+    }
+
     public void RemoveHp(int damage)
     {
         var bonusModifier = team == Team.Enemy ? CombatModifier.Strength : CombatModifier.EnemyStrength;
@@ -107,11 +135,11 @@ public class Unit : MonoBehaviour, IDamagable
 
         if (damage <= 0) return;
 
-        int block = armor.Value;
-        if (block > 0)
+        int defense = armor.Value;
+        if (defense > 0)
         {
-            block -= damage;
-            if (block >= 0)
+            defense -= damage;
+            if (defense >= 0)
             {
                 armor.Remove(damage);
                 damage = 0;
@@ -119,7 +147,7 @@ public class Unit : MonoBehaviour, IDamagable
             else
             {
                 armor.Remove(armor.Value);
-                damage = -block;
+                damage = -defense;
             }
         }
 

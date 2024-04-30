@@ -12,6 +12,14 @@ namespace EnemyAction
         [SerializeField] int count;
         [SerializeField] BtBlockData data;
 
+        public override string GetTooltip(Unit parent)
+        {
+            var data = GetData(parent);
+            var descr = data.GetDescription();
+            if (string.IsNullOrEmpty(descr)) return "";
+            return $"{data.title}: {data.GetDescription()}";
+        }
+
         BtBlockData GetData(Unit parent)
         {
             var data = this.data;

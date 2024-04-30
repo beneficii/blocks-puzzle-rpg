@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72090a5c5afcbf24b8b56fc66ddd3835, type: 3}
   m_Name: ShieldBash
   m_EditorClassIdentifier: 
+  fxPrefab: {fileID: 7077373230073004965, guid: 31b9cf69746e6b241bdfcc12f3550c64, type: 3}

@@ -35,7 +35,8 @@ public class HintCtrl : MonoBehaviour
     IEnumerator HintRoutine(Queue<BtHint> hints)
     {
         int idx = 1;
-        foreach (var item in hints)
+        var arr = hints.ToArray();
+        foreach (var item in arr)
         {
             if (!Show(item.info, item.pos, idx++)) yield break;
             yield return new WaitForSeconds(displayDelay);

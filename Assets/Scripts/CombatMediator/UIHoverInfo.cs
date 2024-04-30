@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,19 +10,52 @@ public class UIHoverInfo : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI txtTitle;
     [SerializeField] TextMeshProUGUI txtDescription;
-    //[SerializeField] Image imgIcon;
+    [SerializeField] List<TooltipPanel> hints;
+
+    private void Start()
+    {
+        Hide();
+    }
+
+    void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
+    void Show(IHasInfo info)
+    {
+        txtTitle.text = info.GetTitle();
+        txtDescription.text = info.GetDescription();
+
+        var tooltips = info.GetTooltips()
+            .Take(hints.Count)
+            .ToList();
+
+        int idx = 0;
+        foreach (var item in hints)
+        {
+            if (idx < tooltips.Count)
+            {
+                item.Show(tooltips[idx]);
+            }
+            else
+            {
+                item.Hide();
+            }
+            idx++;
+        }
+    }
 
     void Show(BtBlock block)
     {
-        var data = block.data;
-        if (data.type == BtBlockType.None)
+        if (block.data is IHasInfo info)
         {
-            gameObject.SetActive(false);
-            return;
+            Show(info);
         }
-
-        txtTitle.text = data.title;
-        txtDescription.text = data.GetDescription();
+        else
+        {
+            Hide();
+        }
     }
 
     void Show(Unit unit)
@@ -30,13 +64,24 @@ public class UIHoverInfo : MonoBehaviour
 
         txtTitle.text = data.title;
         txtDescription.text = unit.GetDescription();
+
+        foreach (var item in hints) item.Hide();
+        var tip = unit.GetTooltip();
+
+        if (!string.IsNullOrEmpty(tip) && hints.Count > 0) hints[0].Show(tip);
     }
 
     public void Show(Collider2D collider)
     {
         if (!collider)
         {
-            gameObject.SetActive(false);
+            Hide();
+            return;
+        }
+
+        if (collider.TryGetComponent<IHasInfo>(out var info))
+        {
+            Show(info);
             return;
         }
 
@@ -52,7 +97,36 @@ public class UIHoverInfo : MonoBehaviour
             return;
         }
 
-        gameObject.SetActive(false);
+        Hide();
     }
 
+    [System.Serializable]
+    public class TooltipPanel
+    {
+        public GameObject parent;
+        public TextMeshProUGUI txtDescription;
+
+        public void Show(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                Hide();
+                return;
+            }
+            parent.SetActive(true);
+            txtDescription.text = text;
+        }
+
+        public void Hide()
+        {
+            parent.SetActive(false);
+        }
+    }
+}
+
+public interface IHasInfo
+{
+    public string GetTitle();
+    public string GetDescription();
+    public List<string> GetTooltips();
 }

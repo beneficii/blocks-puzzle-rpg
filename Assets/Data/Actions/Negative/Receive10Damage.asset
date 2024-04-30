@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20012248f9737b4aa399d02cfff1a2a, type: 3}
   m_Name: Receive10Damage
   m_EditorClassIdentifier: 
+  fxPrefab: {fileID: 6246186795892394741, guid: 582ed55126cea814eb045fa583724d56, type: 3}
   damage: 10

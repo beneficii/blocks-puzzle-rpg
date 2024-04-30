@@ -16,20 +16,22 @@ MonoBehaviour:
   description: 
   animations: {fileID: 22100000, guid: 31e9890919f6a8c4a89a25709536cc0b, type: 2}
   damage: 5
-  defense: 0
+  defense: 2
   hp: 50
   reward: 1
   specialBlockData: {fileID: 11400000, guid: b7c9e19c40cc0c84eb72acc6d8807b4a, type: 2}
   boardLevel: 0
   actionQueue:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
+  - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
+  - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
   - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
   - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
   - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  level: 1
+  tutorialDescription: None were enough we feared, until..
+  tutorialTips: []
+  fxAttack: {fileID: 339892110426421801, guid: 259f209d23486a24dae31ef183c12e96, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

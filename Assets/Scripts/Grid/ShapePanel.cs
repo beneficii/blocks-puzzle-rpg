@@ -145,10 +145,15 @@ public class ShapePanel : MonoBehaviour
 
         if (upgradeLevel >= 0)
         {
-            BtUpgradeCtrl.Show((BtUpgradeRarity)upgradeLevel, 3);
+            BtUpgradeCtrl.current.Show((BtUpgradeRarity)upgradeLevel, 3);
         }
     }
 #endif
+
+    public bool HasHints()
+    {
+        return hints != null && hints.Count > 0;
+    }
 
     public void BtnShowHint()
     {
@@ -181,7 +186,13 @@ public class ShapePanel : MonoBehaviour
             }
         }
 
-        Game.ToDo("Dead end! Offer rewind");
+        StartCoroutine(RoutineStuck());
+    }
+
+    IEnumerator RoutineStuck()
+    {
+        yield return new WaitForSeconds(3f);
+        HelpPanel.current.ShowStuck();
     }
 
     public void CheckSlots()

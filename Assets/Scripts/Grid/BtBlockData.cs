@@ -25,4 +25,5 @@ public enum BtBlockType
     None,
     Basic,
     Special,
+    Tutorial,
 }

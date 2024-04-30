@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
-  m_Name: DoubleSword
+  m_Name: CrackedSword
   m_EditorClassIdentifier: 
   title: Cracked sword
   sprite: {fileID: 455230754, guid: ca9946111e702294a94ef56862299ddf, type: 3}

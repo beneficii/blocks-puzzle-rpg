@@ -12,8 +12,7 @@ namespace EnemyAction
             if (!target) yield break;
 
             parent.AnimAttack(2);
-            yield return new WaitForSeconds(0.3f);
-            target.RemoveHp(parent.data.damage);
+            parent.AddArmor(parent.data.defense);
         }
 
         public override string GetDescription(Unit parent) => $"Will Gain {parent.data.defense} armor";

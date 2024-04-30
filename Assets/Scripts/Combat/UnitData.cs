@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FancyToolkit;
 
 [CreateAssetMenu(menuName = "Game/Unit/basic")]
 public class UnitData : ScriptableObject
@@ -16,4 +17,10 @@ public class UnitData : ScriptableObject
     public int boardLevel;
 
     public List<UnitActionBase> actionQueue;
+
+    public string tutorialDescription;
+    public List<string> tutorialTips;
+
+    public AnimCompanion fxAttack;
+    public AnimCompanion fxDeath;
 }

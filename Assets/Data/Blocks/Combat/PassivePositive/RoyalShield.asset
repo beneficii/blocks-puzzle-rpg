@@ -17,8 +17,7 @@ MonoBehaviour:
   priority: 0
   rarity: 2
   tags: 02000000
-  actions:
-  - {fileID: 11400000, guid: 03e72245854ff69409123beb3093c5fa, type: 2}
+  actions: []
   passives:
-  - passive: 7
+  - passive: 2
     value: 1

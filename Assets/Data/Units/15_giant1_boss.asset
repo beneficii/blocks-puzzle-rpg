@@ -15,9 +15,9 @@ MonoBehaviour:
   title: Gentle giant
   description: 
   animations: {fileID: 22100000, guid: 849373d3fcd8fab4291e19c2186c7405, type: 2}
-  damage: 10
+  damage: 8
   defense: 5
-  hp: 1000
+  hp: 200
   reward: 4
   specialBlockData: {fileID: 11400000, guid: d688a87d85da824459e5e53276cf2898, type: 2}
   boardLevel: 4
@@ -26,4 +26,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34c3abe9133b3064b86f772fb379c7da, type: 2}
   - {fileID: 11400000, guid: 8592c4505d65f1e45adca77560d1b1da, type: 2}
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  level: 7
+  tutorialDescription: That's why we left them arcane board and this manual.. They
+    must fix our errors..
+  tutorialTips: []
+  fxAttack: {fileID: 1698660411163199383, guid: 7877104e431da584ea1616789178be7f, type: 3}
+  fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

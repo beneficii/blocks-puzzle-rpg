@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoubleEdge
   m_EditorClassIdentifier: 
   title: Double Edged Axe
-  sprite: {fileID: 455230754, guid: ca9946111e702294a94ef56862299ddf, type: 3}
+  sprite: {fileID: -93933161, guid: ca9946111e702294a94ef56862299ddf, type: 3}
   priority: 10
   rarity: 1
   tags: 00000000

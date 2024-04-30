@@ -10,7 +10,9 @@ namespace BlockAction
     {
         [SerializeField] int damageMultiplier = 4;
 
-        public override string GetDescription() => $"Deal {damageMultiplier}x sword matched";
+        public override string GetTooltip() => "Used swords don't trigger their abilities";
+
+        public override string GetDescription() => $"Deal {damageMultiplier}x swords matched in damage";
 
         public override void HandleMatch(BtBlock parent, BtLineClearInfo info)
         {
@@ -26,6 +28,7 @@ namespace BlockAction
                     totalDamage += damageMultiplier;
 
                     MakeBullet(item.transform.position)
+                        .SetFx(null)
                         .SetSprite(item.data.sprite)
                         .SetTarget(parent)
                         .SetLaunchDelay(0.1f);

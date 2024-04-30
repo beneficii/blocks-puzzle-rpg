@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa5ef98206aca0409edbb8945769452, type: 3}
   m_Name: TreasureRare
   m_EditorClassIdentifier: 
-  rarity: 3
+  fxPrefab: {fileID: 7814747647404792145, guid: 7175a25005f1fb44b8614927c24a085d, type: 3}
+  rarity: 0

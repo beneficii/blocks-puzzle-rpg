@@ -11,6 +11,7 @@ public class BlockPassive
     [SerializeField] int value;
 
     public string GetDescription() => GetPassiveDescription(passive, value);
+    public string GetTooltip() => GetModifierTooltip(passive);
 
     public void Calculate(BtBlock parent)
     {
@@ -36,33 +37,33 @@ public class BlockPassive
             CombatModifier.Dexterity => "Dexterity",
             CombatModifier.EnemyStrength => "Enemy Strength",
             CombatModifier.EnemyDexterity => "Enemy Dexterity",
-            CombatModifier.Poison => "Poisoned",
-            CombatModifier.EnemyPoison => "Burn",
-            CombatModifier.PassiveArmor => "Toughness",
-            CombatModifier.EnemyPassiveArmor => "Enemy Toughness",
+            CombatModifier.Poison => "Burn",
+            CombatModifier.EnemyPoison => "Enemy Burn",
+            CombatModifier.PassiveArmor => "Ward",
+            CombatModifier.EnemyPassiveArmor => "Enemy Ward",
             _ => "Error",
         };
     }
 
-    public static string GetModifierDescription(CombatModifier modifier)
+    public static string GetModifierTooltip(CombatModifier modifier)
     {
         return modifier switch
         {
-            CombatModifier.Strength => "bonus to each damage instance",
-            CombatModifier.Dexterity => "bonus to each armor instance",
-            CombatModifier.EnemyStrength => "bonus to each damage instance",
-            CombatModifier.EnemyDexterity => "bonus to each armor instance",
-            CombatModifier.Poison => "Receive damage each turn",
-            CombatModifier.EnemyPoison => "Enemy Receives damage each turn",
-            CombatModifier.PassiveArmor => "Receive armor every turn",
-            CombatModifier.EnemyPassiveArmor => "Enemy receives armor every turn",
+            CombatModifier.Strength => "Strength: Increases damage by X per hit",
+            CombatModifier.Dexterity => "Dexterity: Increases Armor gained by X",
+            CombatModifier.EnemyStrength => "Strength: Increases damage by X per hit",
+            CombatModifier.EnemyDexterity => "Dexterity: Increases Armor gained by X",
+            CombatModifier.Poison => "Burn: Receive damage each turn",
+            CombatModifier.EnemyPoison => "Burn: Receive damage each turn",
+            CombatModifier.PassiveArmor => "Ward: Receive armor every turn",
+            CombatModifier.EnemyPassiveArmor => "Ward: Receive armor every turn",
             _ => "Error",
         };
     }
 
     public static string GetPassiveDescription(CombatModifier modifier, int value)
     {
-        return $"{value.SignedStr()} {GetModifierName(modifier)} ({GetModifierDescription(modifier)})";
+        return $"{value.SignedStr()} {GetModifierName(modifier)}";
     }
 }
 

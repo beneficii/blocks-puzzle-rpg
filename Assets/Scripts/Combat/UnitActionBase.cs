@@ -7,6 +7,7 @@ public abstract class UnitActionBase : ScriptableObject
 {
     public Sprite sprite;
     public abstract string GetDescription(Unit parent);
+    public virtual string GetTooltip(Unit parent) => "";
     public abstract string GetShortDescription(Unit parent);
 
     public abstract IEnumerator Execute(Unit parent, Unit target);
