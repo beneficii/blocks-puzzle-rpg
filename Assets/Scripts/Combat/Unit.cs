@@ -88,6 +88,7 @@ public class Unit : MonoBehaviour, IDamagable
     void HandleOutOfHealth()
     {
         OnKilled?.Invoke(this);
+        data.soundDeath?.PlayNow();
         var fxDeath = data.fxDeath;
         if (fxDeath)
         {
@@ -191,6 +192,15 @@ public class Unit : MonoBehaviour, IDamagable
     public void AnimAttack(int id)
     {
         animator.SetTrigger($"attack{id}");
+
+        if (id == 1)
+        {
+            data.soundAttack?.PlayNow();
+        }
+        if (id == 2)
+        {
+            data.soundAbility?.PlayNow();
+        }
     }
 
     public void AnimGetHit()

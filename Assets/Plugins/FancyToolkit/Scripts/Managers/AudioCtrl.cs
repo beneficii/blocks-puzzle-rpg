@@ -42,6 +42,16 @@ namespace FancyToolkit
             effects.PlayOneShot(clip, volumeScale);
         }
 
+        public void PlayRandomPitch(AudioClip clip, float range)
+        {
+            if (!clip) return;
+
+            var newSource = gameObject.AddComponent<AudioSource>();
+            newSource.pitch = 1f + Random.Range(-range, range);
+            newSource.PlayOneShot(clip);
+            Destroy(newSource, clip.length + 0.1f);
+        }
+
         public void GameOver()
         {
             music.Stop();
@@ -72,6 +82,11 @@ namespace FancyToolkit
         public static void PlayNow(this AudioClip clip, float volume = 1f)
         {
             AudioCtrl.current?.Play(clip);
+        }
+
+        public static void PlayWithRandomPitch(this AudioClip clip, float range = 0.2f)
+        {
+            AudioCtrl.current?.PlayRandomPitch(clip, range);
         }
     }
 }

@@ -13,6 +13,8 @@ namespace FancyToolkit {
         [SerializeField] Transform parentForItems;
         [SerializeField] UIUpgradeItem prefab;
 
+        [SerializeField] AudioClip soundSelect;
+
         List<UIUpgradeItem> instantiatedItems = new();
 
         private void Awake()
@@ -70,6 +72,7 @@ namespace FancyToolkit {
                 return;
             }
 
+            soundSelect?.PlayNow();
         }
     }
 

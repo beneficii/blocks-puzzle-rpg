@@ -158,6 +158,7 @@ public class ShapePanel : MonoBehaviour
     public void BtnShowHint()
     {
         HintCtrl.current.Show(hints);
+        CombatArena.current.player.RemoveHp(2);
     }
 
     public void BtnGenerateNewShapes()

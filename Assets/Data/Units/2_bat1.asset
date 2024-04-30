@@ -17,7 +17,7 @@ MonoBehaviour:
   animations: {fileID: 22100000, guid: a5e4c4b6a56825648abf20fcad009bbe, type: 2}
   damage: 2
   defense: 0
-  hp: 8
+  hp: 6
   reward: 1
   specialBlockData: {fileID: 11400000, guid: f2d0304133cd781479b9390c3e7b4a55, type: 2}
   boardLevel: 0
@@ -31,3 +31,6 @@ MonoBehaviour:
     of them first.'
   fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
   fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}
+  soundAttack: {fileID: 8300000, guid: 4f17470d7ee84504abd29cb7d3e59f94, type: 3}
+  soundAbility: {fileID: 8300000, guid: 0535ebc6b925e7141a362e2b31a22b63, type: 3}
+  soundDeath: {fileID: 8300000, guid: 3f4105aacff8dab4898c07edd5a95b08, type: 3}

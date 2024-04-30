@@ -11,7 +11,6 @@ public class UIBtShapeUpgradeCard : MonoBehaviour, IUIUpgradeChoise
     [SerializeField] TextMeshProUGUI txtTooltip;
     [SerializeField] UIBtShapeIcon shapeIcon;
 
-
     GameObject TooltipParent => txtTooltip.gameObject; //txtTooltip.transform.parent.gameObject;
     BtShapeData data;
 

@@ -121,22 +121,23 @@ namespace FancyToolkit
 
         void Move()
         {
-            var targetPos = target.transform.position;
+            var targetPos = (Vector2)target.transform.position;
             float moveSpeed = Time.fixedDeltaTime * speed;
 
             if (HasSpleen)
             {
                 spleenPoint = Vector2.MoveTowards(spleenPoint, targetPos, moveSpeed);
-                targetPos = spleenPoint;
-            }
+                if (spleenPoint == targetPos) spleenDirection = Vector2.zero;
 
-            if (!transform.MoveTowards(targetPos, Time.fixedDeltaTime * speed)) return;
-
-            if (HasSpleen)
-            {
-                spleenDirection = Vector2.zero;
+                if (transform.MoveTowards(spleenPoint, moveSpeed * 0.4f))
+                {
+                    spleenDirection = Vector2.zero;
+                }
                 return;
             }
+
+
+            if (!transform.MoveTowards(targetPos, moveSpeed)) return;
 
             if (fxPrefab)
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using FancyToolkit;
 
 public class HelpPanel : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class HelpPanel : MonoBehaviour
     [SerializeField] GameObject btnRegen;
     [SerializeField] GameObject btnClose;
     [SerializeField] TextMeshProUGUI txtTile;
+    [SerializeField] AudioClip soundNoSpots;
 
 
     public void ShowUser()
@@ -45,6 +47,7 @@ public class HelpPanel : MonoBehaviour
 
     public void ShowStuck()
     {
+        soundNoSpots?.PlayNow();
         panel.SetActive(true);
         txtTile.text = "No spots for your shapes";
         btnHint.SetActive(false);
@@ -62,7 +65,6 @@ public class HelpPanel : MonoBehaviour
     {
         Close();
         ShapePanel.current.BtnShowHint();
-        CombatArena.current.player.RemoveHp(2);
     }
 
     public void BtnGenerateNewShapes()

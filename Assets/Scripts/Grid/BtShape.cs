@@ -13,10 +13,13 @@ public class BtShape : MonoBehaviour
     public BtShapeData data { get; private set; }
     public int rotation { get; private set; }
 
+    [SerializeField] AudioClip soundPickup;
+    [SerializeField] AudioClip soundPlace;
+
     public BtShapeInfo GetInfo() => new BtShapeInfo(data, rotation);
 
     List<BtBlock> blocks;
-    
+
     bool isDragging;
     Vector3 prevDragPosition;
 
@@ -76,6 +79,7 @@ public class BtShape : MonoBehaviour
             prevDragPosition = Input.mousePosition;
             transform.localScale = Vector3.one;
             transform.position = Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
+            soundPickup?.PlayNow();
         }
         else
         {
@@ -123,6 +127,7 @@ public class BtShape : MonoBehaviour
                 block.SetBg(data.spriteIdx);
             }
             OnDropped?.Invoke(this, pos);
+            soundPlace?.PlayWithRandomPitch(0.2f);
             Destroy(gameObject);
             return true;
         }

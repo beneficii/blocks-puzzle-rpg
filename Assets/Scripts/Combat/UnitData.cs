@@ -23,4 +23,8 @@ public class UnitData : ScriptableObject
 
     public AnimCompanion fxAttack;
     public AnimCompanion fxDeath;
+
+    public AudioClip soundAttack;
+    public AudioClip soundAbility;
+    public AudioClip soundDeath;
 }

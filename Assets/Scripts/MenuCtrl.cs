@@ -27,14 +27,16 @@ public class MenuCtrl : MonoBehaviour
     {
         canvas.SetActive(false);
         arenaAnimator.SetTrigger("play");
-        StartCoroutine(RoutineStartLevel());
+        StartCoroutine(LoadScene());
+        //StartCoroutine(RoutineStartLevel());
     }
 
+    /*
     IEnumerator RoutineStartLevel()
     {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("SampleScene");
-    }
+        //yield return new WaitForSeconds(1f);
+        //SceneManager.LoadScene("SampleScene");
+    }*/
 
     public static void Load(string title, string description)
     {
@@ -69,7 +71,35 @@ public class MenuCtrl : MonoBehaviour
         };
     }
 
-    
+
+
+    IEnumerator LoadScene()
+    {
+        yield return null;
+
+        //Begin to load the Scene you specify
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("SampleScene");
+        //Don't let the Scene activate until you allow it to
+        asyncOperation.allowSceneActivation = false;
+        //When the load is still in progress, output the Text and progress bar
+        yield return new WaitForSeconds(1f);
+
+        while (!asyncOperation.isDone)
+        {
+            // Check if the load has finished
+            if (asyncOperation.progress >= 0.9f)
+            {
+                asyncOperation.allowSceneActivation = true;
+                
+
+            }
+
+            yield return null;
+        }
+
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
+        SceneManager.UnloadSceneAsync("MainMenu");
+    }
 }
 
 

@@ -26,3 +26,6 @@ MonoBehaviour:
   tutorialTips: []
   fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
   fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}
+  soundAttack: {fileID: 0}
+  soundAbility: {fileID: 0}
+  soundDeath: {fileID: 8300000, guid: c85859e444bde47419e535c6201632aa, type: 3}

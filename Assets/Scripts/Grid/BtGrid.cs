@@ -26,6 +26,9 @@ public partial class BtGrid : MonoBehaviour
     [SerializeField] Color colorTile1;
     [SerializeField] Color colorTile2;
 
+    [SerializeField] AudioClip soundMatchOne;
+    [SerializeField] AudioClip soundMatchMultiple;
+
     BtBlock[,] blocks;
     SpriteRenderer[,] tiles;
 
@@ -386,6 +389,15 @@ public partial class BtGrid : MonoBehaviour
             }
 
             OnLinesCleared?.Invoke(new BtLineClearInfo(blockSet, removeRows.Count, removeColumns.Count, GetEmptyBlocks().ToList()));
+
+            if (totalCleared < 3)
+            {
+                soundMatchOne?.PlayWithRandomPitch(0.2f);
+            }
+            else
+            {
+                soundMatchMultiple?.PlayWithRandomPitch(0.1f);
+            }
         }
 
         OnBoardChanged?.Invoke();

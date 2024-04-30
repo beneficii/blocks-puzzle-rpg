@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fbbca97c4c706438d39540f151a9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundPickup: {fileID: 8300000, guid: ae5a104647ab9cf44b4440275670f809, type: 3}
+  soundPlace: {fileID: 8300000, guid: cae818cea0388a24b8cd2a55589e26a9, type: 3}
 --- !u!50 &4552046349283516018
 Rigidbody2D:
   serializedVersion: 4
