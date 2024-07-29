@@ -1,0 +1,2373 @@
+fileFormatVersion: 2
+guid: c94f46e8b7f938f49ab5726b232bc2d4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7097141678585274363
+    second: ColoredFont Atlas_0
+  - first:
+      213: 6141603436080941239
+    second: ColoredFont Atlas_1
+  - first:
+      213: 8098906641398919523
+    second: ColoredFont Atlas_2
+  - first:
+      213: -6399151014217703968
+    second: ColoredFont Atlas_3
+  - first:
+      213: -5302619579906699376
+    second: ColoredFont Atlas_4
+  - first:
+      213: -1435098164691417141
+    second: ColoredFont Atlas_5
+  - first:
+      213: 5250137359206689996
+    second: ColoredFont Atlas_6
+  - first:
+      213: -7972750561629294405
+    second: ColoredFont Atlas_7
+  - first:
+      213: 3521787197085212583
+    second: ColoredFont Atlas_8
+  - first:
+      213: -990291116407734465
+    second: ColoredFont Atlas_9
+  - first:
+      213: 7213489363682262768
+    second: ColoredFont Atlas_10
+  - first:
+      213: 2249491147201771828
+    second: ColoredFont Atlas_11
+  - first:
+      213: 7149485060720240491
+    second: ColoredFont Atlas_12
+  - first:
+      213: 7215218230423729101
+    second: ColoredFont Atlas_13
+  - first:
+      213: 2387786421652237263
+    second: ColoredFont Atlas_14
+  - first:
+      213: -6159213509935575478
+    second: ColoredFont Atlas_15
+  - first:
+      213: 8927770877335408462
+    second: ColoredFont Atlas_16
+  - first:
+      213: 4774604679574501520
+    second: ColoredFont Atlas_17
+  - first:
+      213: -4565749886666285692
+    second: ColoredFont Atlas_18
+  - first:
+      213: 5683152000048897719
+    second: ColoredFont Atlas_19
+  - first:
+      213: -1645602824772228542
+    second: ColoredFont Atlas_20
+  - first:
+      213: -705116337440633096
+    second: ColoredFont Atlas_21
+  - first:
+      213: -4091983777814897731
+    second: ColoredFont Atlas_22
+  - first:
+      213: 6910509028029387168
+    second: ColoredFont Atlas_23
+  - first:
+      213: 7509540614600760070
+    second: ColoredFont Atlas_24
+  - first:
+      213: 7537982838183963800
+    second: ColoredFont Atlas_25
+  - first:
+      213: -8950760244138837210
+    second: ColoredFont Atlas_26
+  - first:
+      213: -940771058651280369
+    second: ColoredFont Atlas_27
+  - first:
+      213: 3945656005704933422
+    second: ColoredFont Atlas_28
+  - first:
+      213: -8117007160781817058
+    second: ColoredFont Atlas_29
+  - first:
+      213: -4583451374250006211
+    second: ColoredFont Atlas_30
+  - first:
+      213: 8042767340859454263
+    second: ColoredFont Atlas_31
+  - first:
+      213: 2317820948360847737
+    second: ColoredFont Atlas_32
+  - first:
+      213: 3229619840796135640
+    second: ColoredFont Atlas_33
+  - first:
+      213: -65844468229057018
+    second: ColoredFont Atlas_34
+  - first:
+      213: 4509907162503850345
+    second: ColoredFont Atlas_35
+  - first:
+      213: 5697512559700489417
+    second: ColoredFont Atlas_36
+  - first:
+      213: -8615622582503509668
+    second: ColoredFont Atlas_37
+  - first:
+      213: 9605676966462699
+    second: ColoredFont Atlas_38
+  - first:
+      213: 5669627905383647792
+    second: ColoredFont Atlas_39
+  - first:
+      213: 6199873548824705234
+    second: ColoredFont Atlas_40
+  - first:
+      213: 5464234866534232211
+    second: ColoredFont Atlas_41
+  - first:
+      213: 3086553328194565992
+    second: ColoredFont Atlas_42
+  - first:
+      213: 9093777261538205785
+    second: ColoredFont Atlas_43
+  - first:
+      213: 8785668766953938809
+    second: ColoredFont Atlas_44
+  - first:
+      213: 4904668431363410731
+    second: ColoredFont Atlas_45
+  - first:
+      213: 210689878052009110
+    second: ColoredFont Atlas_46
+  - first:
+      213: 7081204901558188153
+    second: ColoredFont Atlas_47
+  - first:
+      213: 328761095581008408
+    second: ColoredFont Atlas_48
+  - first:
+      213: -993479772754913609
+    second: ColoredFont Atlas_49
+  - first:
+      213: -1829200279734782881
+    second: ColoredFont Atlas_50
+  - first:
+      213: 5290745344514370679
+    second: ColoredFont Atlas_51
+  - first:
+      213: 2817602252685088481
+    second: ColoredFont Atlas_52
+  - first:
+      213: -1779514798217065517
+    second: ColoredFont Atlas_53
+  - first:
+      213: 1387209318428686521
+    second: ColoredFont Atlas_54
+  - first:
+      213: 6371141550278322783
+    second: ColoredFont Atlas_55
+  - first:
+      213: -587383767274559636
+    second: ColoredFont Atlas_56
+  - first:
+      213: -5760474497436148390
+    second: ColoredFont Atlas_57
+  - first:
+      213: 6397437637811035472
+    second: ColoredFont Atlas_58
+  - first:
+      213: -3975270332662995463
+    second: ColoredFont Atlas_59
+  - first:
+      213: 4655727132645122800
+    second: ColoredFont Atlas_60
+  - first:
+      213: -6521665769959691196
+    second: ColoredFont Atlas_61
+  - first:
+      213: 9033572071014146523
+    second: ColoredFont Atlas_62
+  - first:
+      213: -7494672207339689199
+    second: ColoredFont Atlas_63
+  - first:
+      213: -1000281000245194262
+    second: ColoredFont Atlas_64
+  - first:
+      213: -4417975403668540300
+    second: ColoredFont Atlas_65
+  - first:
+      213: -7211318985350319315
+    second: ColoredFont Atlas_66
+  - first:
+      213: 5397830443936412485
+    second: ColoredFont Atlas_67
+  - first:
+      213: 1918097138725404952
+    second: ColoredFont Atlas_68
+  - first:
+      213: -5669554610639864062
+    second: ColoredFont Atlas_69
+  - first:
+      213: 4703545409851939558
+    second: ColoredFont Atlas_70
+  - first:
+      213: -3313765015859474362
+    second: ColoredFont Atlas_71
+  - first:
+      213: -3650216781635830162
+    second: ColoredFont Atlas_72
+  - first:
+      213: 3507492068645846806
+    second: ColoredFont Atlas_73
+  - first:
+      213: 6239990497463477696
+    second: ColoredFont Atlas_74
+  - first:
+      213: 9104928633337867745
+    second: ColoredFont Atlas_75
+  - first:
+      213: -6787603705551077797
+    second: ColoredFont Atlas_76
+  - first:
+      213: 2588979427546917969
+    second: ColoredFont Atlas_77
+  - first:
+      213: 4775705640223845309
+    second: ColoredFont Atlas_78
+  - first:
+      213: 3847786467146426297
+    second: ColoredFont Atlas_79
+  - first:
+      213: -7297766376939710046
+    second: ColoredFont Atlas_80
+  - first:
+      213: 5315070460395499568
+    second: ColoredFont Atlas_81
+  - first:
+      213: -4860597916972606900
+    second: ColoredFont Atlas_82
+  - first:
+      213: -621990570857795390
+    second: ColoredFont Atlas_83
+  - first:
+      213: 1544674515554690255
+    second: ColoredFont Atlas_84
+  - first:
+      213: 8875005913051683444
+    second: ColoredFont Atlas_85
+  - first:
+      213: 1726825094345610386
+    second: ColoredFont Atlas_86
+  - first:
+      213: 2895207058563438611
+    second: ColoredFont Atlas_87
+  - first:
+      213: 105291499265147265
+    second: ColoredFont Atlas_88
+  - first:
+      213: -2728501612527874488
+    second: ColoredFont Atlas_89
+  - first:
+      213: 8982409960511121148
+    second: ColoredFont Atlas_90
+  - first:
+      213: -6227915071700457704
+    second: ColoredFont Atlas_91
+  - first:
+      213: -3177601521049657010
+    second: ColoredFont Atlas_92
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ColoredFont Atlas_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 468
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5002e4fde33e18d90800000000000000
+      internalID: -7097141678585274363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 467
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b84ce619cb5b3550800000000000000
+      internalID: 6141603436080941239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_2
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 467
+        width: 25
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36172a53ea8156070800000000000000
+      internalID: 8098906641398919523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_3
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 467
+        width: 25
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed19758e06a137a0800000000000000
+      internalID: -6399151014217703968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_4
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 467
+        width: 20
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f41a8269f4966b0800000000000000
+      internalID: -5302619579906699376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_5
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 465
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc7c0cb92d1851ce0800000000000000
+      internalID: -1435098164691417141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_6
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 486
+        width: 35
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccca58d9c1c3cd840800000000000000
+      internalID: 5250137359206689996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_7
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 460
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb03a4b0b991b5190800000000000000
+      internalID: -7972750561629294405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_8
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 450
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7af58c8ebc6efd030800000000000000
+      internalID: 3521787197085212583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_9
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 417
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3fba46f977c142f0800000000000000
+      internalID: -990291116407734465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_10
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 416
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fef6598b567b1460800000000000000
+      internalID: 7213489363682262768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_11
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 416
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 439f852b74cc73f10800000000000000
+      internalID: 2249491147201771828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_12
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 416
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b67213b78c2183360800000000000000
+      internalID: 7149485060720240491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_13
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 416
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc33451b0ca912460800000000000000
+      internalID: 7215218230423729101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_14
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 414
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcb2516791f132120800000000000000
+      internalID: 2387786421652237263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_15
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 414
+        width: 30
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4ec08412f3168aa0800000000000000
+      internalID: -6159213509935575478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_16
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 398
+        width: 35
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f87a3cf40d5eb70800000000000000
+      internalID: 8927770877335408462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_17
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 366
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 098b4fcb8adc24240800000000000000
+      internalID: 4774604679574501520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_18
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 365
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48dd9ff1ba233a0c0800000000000000
+      internalID: -4565749886666285692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_19
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 365
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7be177722ac9ede40800000000000000
+      internalID: 5683152000048897719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_20
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 365
+        width: 25
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24a621c13f4a929e0800000000000000
+      internalID: -1645602824772228542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_21
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 365
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fec68d4d6ce636f0800000000000000
+      internalID: -705116337440633096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_22
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 365
+        width: 28
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbb9ea03f6a5637c0800000000000000
+      internalID: -4091983777814897731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_23
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 361
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a152d8f85f07ef50800000000000000
+      internalID: 6910509028029387168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_24
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 364
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60b95a7d66f373860800000000000000
+      internalID: 7509540614600760070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_25
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 315
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89c22f0147b4c9860800000000000000
+      internalID: 7537982838183963800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_26
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 314
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62b7a6a2bf288c380800000000000000
+      internalID: -8950760244138837210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_27
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 313
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c4f12e4b5b1f2f0800000000000000
+      internalID: -940771058651280369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_28
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 313
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e20ede17b39c1c630800000000000000
+      internalID: 3945656005704933422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_29
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 313
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1b3c463ef89a5f80800000000000000
+      internalID: -8117007160781817058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_30
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 313
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d396d80624f4460c0800000000000000
+      internalID: -4583451374250006211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_31
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 313
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7337a0bb846ad9f60800000000000000
+      internalID: 8042767340859454263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_32
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 310
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 971e1084fdd8a2020800000000000000
+      internalID: 2317820948360847737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_33
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 313
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d0153a422ae1dc20800000000000000
+      internalID: 3229619840796135640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_34
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 313
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60658c41ec2161ff0800000000000000
+      internalID: -65844468229057018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_35
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 314
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96928077ba8669e30800000000000000
+      internalID: 4509907162503850345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_36
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 264
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c436408c71a11f40800000000000000
+      internalID: 5697512559700489417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_37
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 263
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c517b03a8e82f6880800000000000000
+      internalID: -8615622582503509668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_38
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 262
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be4c963ff40222000800000000000000
+      internalID: 9605676966462699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_39
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 262
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03ac80d7a809eae40800000000000000
+      internalID: 5669627905383647792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_40
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 262
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d87902f4206a0650800000000000000
+      internalID: 6199873548824705234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_41
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 262
+        width: 28
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390b31d09acd4db40800000000000000
+      internalID: 5464234866534232211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_42
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 259
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 867365316e3a5da20800000000000000
+      internalID: 3086553328194565992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_43
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 262
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 950628c0d36933e70800000000000000
+      internalID: 9093777261538205785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_44
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 262
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97f9880f137fce970800000000000000
+      internalID: 8785668766953938809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_45
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 263
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2b0d78c3f1e01440800000000000000
+      internalID: 4904668431363410731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_46
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 212
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6947f0be3558ce200800000000000000
+      internalID: 210689878052009110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_47
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 212
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9787123175e754260800000000000000
+      internalID: 7081204901558188153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_48
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 211
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 812031e797eff8400800000000000000
+      internalID: 328761095581008408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_49
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 211
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b6586d09637632f0800000000000000
+      internalID: -993479772754913609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_50
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 211
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f54fc5f79006d96e0800000000000000
+      internalID: -1829200279734782881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_51
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 211
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ca4d8fbd08c6940800000000000000
+      internalID: 5290745344514370679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_52
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 208
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e692ad02522a1720800000000000000
+      internalID: 2817602252685088481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_53
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 211
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db88b328b4ed47e0800000000000000
+      internalID: -1779514798217065517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_54
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 211
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b8bd0e768b504310800000000000000
+      internalID: 1387209318428686521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_55
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 212
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5a2216fb77da6850800000000000000
+      internalID: 6371141550278322783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_56
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c67e4c4639139d7f0800000000000000
+      internalID: -587383767274559636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_57
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5d1f9207feae00b0800000000000000
+      internalID: -5760474497436148390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_58
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05dd072f2a348c850800000000000000
+      internalID: 6397437637811035472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_59
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f5297fb1b005d8c0800000000000000
+      internalID: -3975270332662995463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_60
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f2e578f8277c9040800000000000000
+      internalID: 4655727132645122800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_61
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44c6ab519836e75a0800000000000000
+      internalID: -6521665769959691196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_62
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 157
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd120b9cfe1bd5d70800000000000000
+      internalID: 9033572071014146523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_63
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11b668df5539df790800000000000000
+      internalID: -7494672207339689199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_64
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 160
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae110d0eab94e12f0800000000000000
+      internalID: -1000281000245194262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_65
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 161
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4747ced17c230b2c0800000000000000
+      internalID: -4417975403668540300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_66
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d23f92c079f3ceb90800000000000000
+      internalID: -7211318985350319315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_67
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5437e989032f8ea40800000000000000
+      internalID: 5397830443936412485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_68
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811cb666f237e9a10800000000000000
+      internalID: 1918097138725404952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_69
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ff126ce12b151b0800000000000000
+      internalID: -5669554610639864062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_70
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ead42b31a9564140800000000000000
+      internalID: 4703545409851939558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_71
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 640549076442302d0800000000000000
+      internalID: -3313765015859474362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_72
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 106
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6e3d614d23d75dc0800000000000000
+      internalID: -3650216781635830162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_73
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61fb224f37d1da030800000000000000
+      internalID: 3507492068645846806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_74
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 109
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c5af1beb46e89650800000000000000
+      internalID: 6239990497463477696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_75
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 109
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ede26f1a543b5e70800000000000000
+      internalID: 9104928633337867745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_76
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 58
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5eb08e54669dc1a0800000000000000
+      internalID: -6787603705551077797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_77
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 58
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15c6ab58217ede320800000000000000
+      internalID: 2588979427546917969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_78
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 58
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbb2f5d1af6b64240800000000000000
+      internalID: 4775705640223845309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_79
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 58
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b761d9c765166530800000000000000
+      internalID: 3847786467146426297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_80
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 58
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a918b8352029ba90800000000000000
+      internalID: -7297766376939710046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_81
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 58
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 030bb0c5c6ce2c940800000000000000
+      internalID: 5315070460395499568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_82
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 49
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4a18d272ffab8cb0800000000000000
+      internalID: -4860597916972606900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_83
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 58
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c0f06a0fde3e57f0800000000000000
+      internalID: -621990570857795390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_84
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 58
+        width: 40
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc46c31b949cf6510800000000000000
+      internalID: 1544674515554690255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_85
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 7
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47adfea2bda5a2b70800000000000000
+      internalID: 8875005913051683444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_86
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 7
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29453b1364ae6f710800000000000000
+      internalID: 1726825094345610386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_87
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 7
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31890e4fa77dd2820800000000000000
+      internalID: 2895207058563438611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_88
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 7
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181419b8f02167100800000000000000
+      internalID: 105291499265147265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_89
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 7
+        width: 48
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84e02385d3a622ad0800000000000000
+      internalID: -2728501612527874488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_90
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 7
+        width: 45
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf6223ba44ee7ac70800000000000000
+      internalID: 8982409960511121148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_91
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 7
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8172efb3d300299a0800000000000000
+      internalID: -6227915071700457704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ColoredFont Atlas_92
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 7
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4128149044e6e3d0800000000000000
+      internalID: -3177601521049657010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprites_0: 6128299156075563123
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

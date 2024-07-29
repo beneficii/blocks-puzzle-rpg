@@ -1,0 +1,2373 @@
+fileFormatVersion: 2
+guid: aa9883838b813bc438d9c061f9df1d10
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5088521245733941965
+    second: Mystery Font Atlas_0
+  - first:
+      213: 847997238075754178
+    second: Mystery Font Atlas_1
+  - first:
+      213: -4514465395500046405
+    second: Mystery Font Atlas_2
+  - first:
+      213: 6519297135844763939
+    second: Mystery Font Atlas_3
+  - first:
+      213: -5486350871490864150
+    second: Mystery Font Atlas_4
+  - first:
+      213: 3892631739985215016
+    second: Mystery Font Atlas_5
+  - first:
+      213: -2299161140362428967
+    second: Mystery Font Atlas_6
+  - first:
+      213: 7702735511985544664
+    second: Mystery Font Atlas_7
+  - first:
+      213: -2735378155634249833
+    second: Mystery Font Atlas_8
+  - first:
+      213: 8103758887147187387
+    second: Mystery Font Atlas_9
+  - first:
+      213: 1604790590763511298
+    second: Mystery Font Atlas_10
+  - first:
+      213: 4362518908182434947
+    second: Mystery Font Atlas_11
+  - first:
+      213: -794929328847982730
+    second: Mystery Font Atlas_12
+  - first:
+      213: 6963007816045838557
+    second: Mystery Font Atlas_13
+  - first:
+      213: -3744523411264349692
+    second: Mystery Font Atlas_14
+  - first:
+      213: -4228716414592185809
+    second: Mystery Font Atlas_15
+  - first:
+      213: 8424154504927229873
+    second: Mystery Font Atlas_16
+  - first:
+      213: -1082799144986014178
+    second: Mystery Font Atlas_17
+  - first:
+      213: -1459941190253611624
+    second: Mystery Font Atlas_18
+  - first:
+      213: -5159546270237493372
+    second: Mystery Font Atlas_19
+  - first:
+      213: 5762094399281119463
+    second: Mystery Font Atlas_20
+  - first:
+      213: -2611307787395557612
+    second: Mystery Font Atlas_21
+  - first:
+      213: -1134551250750053841
+    second: Mystery Font Atlas_22
+  - first:
+      213: 5969220163105500301
+    second: Mystery Font Atlas_23
+  - first:
+      213: -3747824065875718465
+    second: Mystery Font Atlas_24
+  - first:
+      213: -3646570303341199309
+    second: Mystery Font Atlas_25
+  - first:
+      213: -9124948430215883825
+    second: Mystery Font Atlas_26
+  - first:
+      213: -2384685727244607752
+    second: Mystery Font Atlas_27
+  - first:
+      213: -4306556221430996040
+    second: Mystery Font Atlas_28
+  - first:
+      213: 2562914836859452000
+    second: Mystery Font Atlas_29
+  - first:
+      213: 3785160077504048830
+    second: Mystery Font Atlas_30
+  - first:
+      213: -1594060928947854027
+    second: Mystery Font Atlas_31
+  - first:
+      213: -1490479126993247928
+    second: Mystery Font Atlas_32
+  - first:
+      213: 195196669438624769
+    second: Mystery Font Atlas_33
+  - first:
+      213: 5607544343089425166
+    second: Mystery Font Atlas_34
+  - first:
+      213: -3288423447585837484
+    second: Mystery Font Atlas_35
+  - first:
+      213: -3665380121569452262
+    second: Mystery Font Atlas_36
+  - first:
+      213: 1005010948357831275
+    second: Mystery Font Atlas_37
+  - first:
+      213: -4396924593953151491
+    second: Mystery Font Atlas_38
+  - first:
+      213: 875025561890583297
+    second: Mystery Font Atlas_39
+  - first:
+      213: -370183523437143760
+    second: Mystery Font Atlas_40
+  - first:
+      213: 5777092407950842753
+    second: Mystery Font Atlas_41
+  - first:
+      213: 7364660397246471524
+    second: Mystery Font Atlas_42
+  - first:
+      213: -1014308560650171292
+    second: Mystery Font Atlas_43
+  - first:
+      213: 8145817532909197990
+    second: Mystery Font Atlas_44
+  - first:
+      213: -8533419213457896996
+    second: Mystery Font Atlas_45
+  - first:
+      213: 6425843036226339227
+    second: Mystery Font Atlas_46
+  - first:
+      213: -1556068791052286275
+    second: Mystery Font Atlas_47
+  - first:
+      213: -5539554988123177846
+    second: Mystery Font Atlas_48
+  - first:
+      213: -6158651682902111313
+    second: Mystery Font Atlas_49
+  - first:
+      213: 2911721224744983954
+    second: Mystery Font Atlas_50
+  - first:
+      213: 5803969767513288804
+    second: Mystery Font Atlas_51
+  - first:
+      213: 678071870408866871
+    second: Mystery Font Atlas_52
+  - first:
+      213: 5630079978959551964
+    second: Mystery Font Atlas_53
+  - first:
+      213: -8479788509258111421
+    second: Mystery Font Atlas_54
+  - first:
+      213: -2922017118741362712
+    second: Mystery Font Atlas_55
+  - first:
+      213: 5223659145027489141
+    second: Mystery Font Atlas_56
+  - first:
+      213: -5147908076144514514
+    second: Mystery Font Atlas_57
+  - first:
+      213: 1690785290067331152
+    second: Mystery Font Atlas_58
+  - first:
+      213: 6105843672158879460
+    second: Mystery Font Atlas_59
+  - first:
+      213: 1732754853061407876
+    second: Mystery Font Atlas_60
+  - first:
+      213: 2874495108551314492
+    second: Mystery Font Atlas_61
+  - first:
+      213: -6436091653170399127
+    second: Mystery Font Atlas_62
+  - first:
+      213: 7874530715664119891
+    second: Mystery Font Atlas_63
+  - first:
+      213: 6565812272595353339
+    second: Mystery Font Atlas_64
+  - first:
+      213: -8285820462937989510
+    second: Mystery Font Atlas_65
+  - first:
+      213: 2912745888208071295
+    second: Mystery Font Atlas_66
+  - first:
+      213: 1156750046159871585
+    second: Mystery Font Atlas_67
+  - first:
+      213: -2290786543017554313
+    second: Mystery Font Atlas_68
+  - first:
+      213: -4802923710764093828
+    second: Mystery Font Atlas_69
+  - first:
+      213: 472462710250408856
+    second: Mystery Font Atlas_70
+  - first:
+      213: 3532119641226558639
+    second: Mystery Font Atlas_71
+  - first:
+      213: 739214628148379605
+    second: Mystery Font Atlas_72
+  - first:
+      213: -6165659715935576313
+    second: Mystery Font Atlas_73
+  - first:
+      213: 3266648023907616351
+    second: Mystery Font Atlas_74
+  - first:
+      213: -4332168146251819171
+    second: Mystery Font Atlas_75
+  - first:
+      213: -4157785063636525947
+    second: Mystery Font Atlas_76
+  - first:
+      213: -7705860729798762684
+    second: Mystery Font Atlas_77
+  - first:
+      213: 9050836279102767513
+    second: Mystery Font Atlas_78
+  - first:
+      213: 5533682695809912012
+    second: Mystery Font Atlas_79
+  - first:
+      213: -2579440645509799240
+    second: Mystery Font Atlas_80
+  - first:
+      213: -4137346162640908930
+    second: Mystery Font Atlas_81
+  - first:
+      213: -5465838440978341655
+    second: Mystery Font Atlas_82
+  - first:
+      213: 3594236626810775314
+    second: Mystery Font Atlas_83
+  - first:
+      213: 1772367742388725548
+    second: Mystery Font Atlas_84
+  - first:
+      213: -4722544474945338016
+    second: Mystery Font Atlas_85
+  - first:
+      213: 9113791968093068280
+    second: Mystery Font Atlas_86
+  - first:
+      213: -6934640515851350227
+    second: Mystery Font Atlas_87
+  - first:
+      213: 478260741411102559
+    second: Mystery Font Atlas_88
+  - first:
+      213: -8866131308714108406
+    second: Mystery Font Atlas_89
+  - first:
+      213: 6625589305140839051
+    second: Mystery Font Atlas_90
+  - first:
+      213: 8223353362403055714
+    second: Mystery Font Atlas_91
+  - first:
+      213: 8261507910490600477
+    second: Mystery Font Atlas_92
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mystery Font Atlas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 964
+        width: 100
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc2fff3ec1f0e9640800000000000000
+      internalID: 5088521245733941965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 857
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c68402cef0b4cb00800000000000000
+      internalID: 847997238075754178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 964
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb72d6634a56951c0800000000000000
+      internalID: -4514465395500046405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_3
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 963
+        width: 100
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 329af3f4432397a50800000000000000
+      internalID: 6519297135844763939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_4
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 904
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aebd1a743f09cd3b0800000000000000
+      internalID: -5486350871490864150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_5
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 949
+        width: 100
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82eba3781f7650630800000000000000
+      internalID: 3892631739985215016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_6
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 949
+        width: 55
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ddb053df1db710e0800000000000000
+      internalID: -2299161140362428967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_7
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 904
+        width: 62
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dd5fa6232d95ea60800000000000000
+      internalID: 7702735511985544664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_8
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 950
+        width: 85
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79fae036f0cf90ad0800000000000000
+      internalID: -2735378155634249833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_9
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 943
+        width: 55
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbca2d5b5c5567070800000000000000
+      internalID: 8103758887147187387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e295d2a8c554610800000000000000
+      internalID: 1604790590763511298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_11
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 856
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384932855d7ca8c30800000000000000
+      internalID: 4362518908182434947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_12
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 749
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67fe974bcf7d7f4f0800000000000000
+      internalID: -794929328847982730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_13
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 856
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd04ea397b291a060800000000000000
+      internalID: 6963007816045838557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_14
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 749
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40a547afbc7c80cc0800000000000000
+      internalID: -3744523411264349692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_15
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 749
+        width: 107
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a8e5c53d49055c0800000000000000
+      internalID: -4228716414592185809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_16
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 856
+        width: 107
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b7b13f93eb98e470800000000000000
+      internalID: 8424154504927229873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_17
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 749
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e03002aef19f0f0800000000000000
+      internalID: -1082799144986014178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_18
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 842
+        width: 107
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 895f8f9f83f3dbbe0800000000000000
+      internalID: -1459941190253611624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_19
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 797
+        width: 62
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4877d40f00c9568b0800000000000000
+      internalID: -5159546270237493372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_20
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 843
+        width: 55
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e04b67c35217ff40800000000000000
+      internalID: 5762094399281119463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_21
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 843
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41793151765c2cbd0800000000000000
+      internalID: -2611307787395557612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 643
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f22619706a34140f0800000000000000
+      internalID: -1134551250750053841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_23
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 642
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8ca000bc1ee6d250800000000000000
+      internalID: 5969220163105500301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_24
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 642
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbe41d07edd0dfbc0800000000000000
+      internalID: -3747824065875718465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_25
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 642
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3300cd421a7c46dc0800000000000000
+      internalID: -3646570303341199309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_26
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 642
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc3593fafbbad5180800000000000000
+      internalID: -9124948430215883825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_27
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 735
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fe14a637f4e7eed0800000000000000
+      internalID: -2384685727244607752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_28
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 735
+        width: 70
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b36b580fe90c34c0800000000000000
+      internalID: -4306556221430996040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_29
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 736
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06af598177d419320800000000000000
+      internalID: 2562914836859452000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_30
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 749
+        width: 55
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe6e9d2907978430800000000000000
+      internalID: 3785160077504048830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_31
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 642
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535ebb3e702c0e9e0800000000000000
+      internalID: -1594060928947854027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_32
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 749
+        width: 55
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 841ee628121c05be0800000000000000
+      internalID: -1490479126993247928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_33
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 642
+        width: 70
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1048a3f265a75b200800000000000000
+      internalID: 195196669438624769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 536
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0ba818bedff1dd40800000000000000
+      internalID: 5607544343089425166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_35
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 535
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45ea4971c4c2d52d0800000000000000
+      internalID: -3288423447585837484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_36
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 535
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f131f0334f12dc0800000000000000
+      internalID: -3665380121569452262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_37
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 535
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6a3f3cf12482fd00800000000000000
+      internalID: 1005010948357831275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_38
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 535
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df56e31b06cfaf2c0800000000000000
+      internalID: -4396924593953151491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_39
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 635
+        width: 78
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 103ffd9cc17b42c00800000000000000
+      internalID: 875025561890583297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_40
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 535
+        width: 78
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03993d7fb08dcdaf0800000000000000
+      internalID: -370183523437143760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_41
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 628
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b148acfea5c2050800000000000000
+      internalID: 5777092407950842753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_42
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 629
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d53459c97843660800000000000000
+      internalID: 7364660397246471524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_43
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 535
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46c0fc5fcb37ce1f0800000000000000
+      internalID: -1014308560650171292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_44
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 535
+        width: 78
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa933643e1cb0170800000000000000
+      internalID: 8145817532909197990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 428
+        width: 78
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd94956ff64339980800000000000000
+      internalID: -8533419213457896996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_46
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 428
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9140b4223e2d2950800000000000000
+      internalID: 6425843036226339227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_47
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 428
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db6c14fcdabb76ae0800000000000000
+      internalID: -1556068791052286275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_48
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 428
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8cbc2f861c8f13b0800000000000000
+      internalID: -5539554988123177846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_49
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 428
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fab0241ace2188aa0800000000000000
+      internalID: -6158651682902111313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_50
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 428
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29dd3e5e603886820800000000000000
+      internalID: 2911721224744983954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_51
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 521
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4607cb7b0c7db8050800000000000000
+      internalID: 5803969767513288804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_52
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 522
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73cb7e706cef86900800000000000000
+      internalID: 678071870408866871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_53
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 415
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd3ce259ef022e40800000000000000
+      internalID: 5630079978959551964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_54
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 428
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3462b37574db15a80800000000000000
+      internalID: -8479788509258111421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_55
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 428
+        width: 70
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e78fc979e8e277d0800000000000000
+      internalID: -2922017118741362712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57d8517f05a2e7840800000000000000
+      internalID: 5223659145027489141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_57
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 321
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2aaa0921e4fe88b0800000000000000
+      internalID: -5147908076144514514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_58
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 321
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0584bed5340e67710800000000000000
+      internalID: 1690785290067331152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_59
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 321
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eeb81d38705cb450800000000000000
+      internalID: 6105843672158879460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_60
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 321
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4843f8bbb5bfb0810800000000000000
+      internalID: 1732754853061407876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_61
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 321
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c8ccd421244e720800000000000000
+      internalID: 2874495108551314492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_62
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 414
+        width: 85
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 968fbe6cdb86ea6a0800000000000000
+      internalID: -6436091653170399127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_63
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 307
+        width: 85
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 358ff0007f3f74d60800000000000000
+      internalID: 7874530715664119891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_64
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 308
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfe32f989737e1b50800000000000000
+      internalID: 6565812272595353339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_65
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 321
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7e1be9603ad20d80800000000000000
+      internalID: -8285820462937989510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_66
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 321
+        width: 70
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a2f93f3f62c6820800000000000000
+      internalID: 2912745888208071295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_67
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 214
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e964bc90a9d0010800000000000000
+      internalID: 1156750046159871585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_68
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 214
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e8137b6cd7530e0800000000000000
+      internalID: -2290786543017554313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_69
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 214
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7eea900556985db0800000000000000
+      internalID: -4802923710764093828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_70
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 214
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89b081ee4568e8600800000000000000
+      internalID: 472462710250408856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_71
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 214
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fac3d77891c940130800000000000000
+      internalID: 3532119641226558639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_72
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 214
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5df7e8ba9c7324a00800000000000000
+      internalID: 739214628148379605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_73
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 215
+        width: 92
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70f59b9c72d2f6aa0800000000000000
+      internalID: -6165659715935576313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_74
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 107
+        width: 70
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f56ce3ff117755d20800000000000000
+      internalID: 3266648023907616351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_75
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 201
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d57d567160c01e3c0800000000000000
+      internalID: -4332168146251819171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_76
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 214
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c158573849c46c0800000000000000
+      internalID: -4157785063636525947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_77
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 214
+        width: 62
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44f56bf5e784f0590800000000000000
+      internalID: -7705860729798762684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 107
+        width: 115
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 991832874a70b9d70800000000000000
+      internalID: 9050836279102767513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_79
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 152
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cccc977d7179bcc40800000000000000
+      internalID: 5533682695809912012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_80
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 107
+        width: 115
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b22f2d366cf33cd0800000000000000
+      internalID: -2579440645509799240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_81
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 152
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7d86fee5913596c0800000000000000
+      internalID: -4137346162640908930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_82
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 107
+        width: 115
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e0afcda5e07524b0800000000000000
+      internalID: -5465838440978341655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_83
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 152
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21721c34b2b41e130800000000000000
+      internalID: 3594236626810775314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_84
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 107
+        width: 115
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27e0704217b89810800000000000000
+      internalID: 1772367742388725548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_85
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 152
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06546e632d6267eb0800000000000000
+      internalID: -4722544474945338016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_86
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 107
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fbdefe0281ba7e70800000000000000
+      internalID: 9113791968093068280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_87
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 107
+        width: 108
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2f06af213533cf90800000000000000
+      internalID: -6934640515851350227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_88
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 138
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5fd2d14c9f13a600800000000000000
+      internalID: 478260741411102559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_89
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 78
+        width: 122
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0a502cac8c25f480800000000000000
+      internalID: -8866131308714108406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_90
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 107
+        width: 122
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b820c808e52d2fb50800000000000000
+      internalID: 6625589305140839051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_91
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 0
+        width: 123
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2685c8c50583f1270800000000000000
+      internalID: 8223353362403055714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mystery Font Atlas_92
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 0
+        width: 130
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d143fd95ca5c6a270800000000000000
+      internalID: 8261507910490600477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprites_0: 6128299156075563123
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

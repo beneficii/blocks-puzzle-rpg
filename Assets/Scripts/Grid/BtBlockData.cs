@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Blocks/Basic")]
 public class BtBlockData : ScriptableObject
 {
+    public int id;
     public string title;
     public Sprite sprite;
     public virtual BtBlockType type => BtBlockType.None;

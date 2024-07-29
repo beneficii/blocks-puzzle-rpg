@@ -28,7 +28,12 @@ public class MapCtrl : MonoBehaviour
 
     List<MapPoint> points;
 
-    int mapIdx = 0;
+    int level = 0;
+    public int Level
+    {
+        get => level;
+        set { level = value; }
+    }
 
     private void Awake()
     {
@@ -50,11 +55,11 @@ public class MapCtrl : MonoBehaviour
         {
             MapPoint point = points[i];
             var img = point.GetComponent<Image>();
-            if (i < mapIdx)
+            if (i < level)
             {
                 img.color = colorPointPassed;
             }
-            else if (i == mapIdx)
+            else if (i == level)
             {
                 img.color = colorPointCurrent;
             }
@@ -67,15 +72,17 @@ public class MapCtrl : MonoBehaviour
 
     public MapPoint Next()
     {
-        if (mapIdx < points.Count)
+        if (level < points.Count)
         {
-            var point = points[mapIdx];
+            var point = points[level];
             RefreshPoints();
-            mapIdx++;
+            level++;
 
             return point;
         }
 
         return null;
     }
+
+    
 }

@@ -33,7 +33,9 @@ public class HelpPanel : MonoBehaviour
         btnClose.SetActive(true);
         panel.SetActive(true);
         btnRegen.SetActive(false);
-        if (ShapePanel.current.HasHints())
+        txtTile.text = "How can I help you?";
+
+        /*if (ShapePanel.current.HasHints())
         {
             txtTile.text = "How can I help you?";
             btnHint.SetActive(true);
@@ -42,7 +44,7 @@ public class HelpPanel : MonoBehaviour
         {
             txtTile.text = "Hints aviable at the start of the turn";
             btnHint.SetActive(false);
-        }
+        }*/
     }
 
     public void ShowStuck()
@@ -50,7 +52,7 @@ public class HelpPanel : MonoBehaviour
         soundNoSpots?.PlayNow();
         panel.SetActive(true);
         txtTile.text = "No spots for your shapes";
-        btnHint.SetActive(false);
+        //btnHint.SetActive(false);
         btnRegen.SetActive(true);
         btnClose.SetActive(false);
     }

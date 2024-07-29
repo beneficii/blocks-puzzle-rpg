@@ -1,0 +1,17 @@
+{
+    "name": "Project.GridBoard",
+    "rootNamespace": "GridBoard",
+    "references": [
+        "Project.FancyToolkit",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

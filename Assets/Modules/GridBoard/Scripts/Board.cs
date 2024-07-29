@@ -1,0 +1,624 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using FancyToolkit;
+using System.Linq;
+
+namespace GridBoard
+{
+    public class Board : MonoBehaviour
+    {
+        public int width = 8;
+        public int height = 8;
+
+        public event System.Action OnChanged;
+        public event System.Action OnChangedLate;
+        public event System.Action OnCleared;
+
+        public event System.Action<Tile> OnTilePlaced;
+        public event System.Action<Tile> OnTileRemoved;
+
+        public Tile prefabTile;
+        [SerializeField] List<Sprite> tileBgSprites;
+        [SerializeField] bool addSpriteTiles;
+
+        [SerializeField] Color colorTile1 = Color.white;
+        [SerializeField] Color colorTile2 = Color.white;
+        [SerializeField] Color colorTileHighlight = Color.white;
+
+        [SerializeField] AudioClip soundPlace;
+
+        [SerializeField] bool shouldHighlightTiles;
+        [SerializeField] bool drawGizmos;
+
+        List<PredefinedLayout> layouts;
+
+        Tile[,] tiles;
+        SpriteRenderer[,] bgTiles;
+
+        [SerializeField] public Tile mouseTile { get; private set; }
+        [SerializeField] public Vector2Int? mousePos { get; private set; }
+        public UnityEvent<Tile> OnMouseTileChanged;
+        public UnityEvent<Vector2Int?> OnMousePosChanged;
+
+        bool calculateGrid = false;
+
+        List<Vector2Int> adjDeltas = new()
+        {
+            new (-1, 0),
+            new (0, +1),
+            new (+1, 0),
+            new (0, -1),
+        };
+
+        Color GetBgColor(int x, int y)
+            => (x % 2 != y % 2) ? colorTile1 : colorTile2;
+
+
+        public bool IsOcupied(int x, int y) => (bool)tiles[x, y];
+
+        SpriteRenderer CreateBgTile(int x, int y)
+        {
+            var obj = new GameObject($"Tile[{x},{y}]");
+            var render = obj.AddComponent<SpriteRenderer>();
+            render.sprite = addSpriteTiles ? tileBgSprites.Rand() : null;
+
+            obj.transform.parent = transform;
+            obj.transform.localPosition = new Vector2(x + 0.5f, y + 0.5f);
+            render.color = GetBgColor(x, y);
+
+            return render;
+        }
+
+        public void Init()
+        {
+            if (bgTiles != null) return;
+
+            bgTiles = new SpriteRenderer[width, height];
+            tiles = new Tile[width, height];
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    bgTiles[x, y] = CreateBgTile(x, y);
+                }
+            }
+
+            foreach (var item in GetComponents<IModule>())
+            {
+                item.InitBoard(this);
+            }
+            Changed();
+        }
+
+        void Awake()
+        {
+            Init();
+        }
+
+        public bool CanPlace(int x, int y)
+        {
+            if (!InBounds(x, y)) return false;
+            if (tiles[x, y]) return false;
+
+            return true;
+        }
+
+        public bool CanPlace(Vector2 worldPos)
+        {
+            var (x, y) = GetXY(worldPos);
+            return CanPlace(x, y);
+        }
+
+        bool PlaceTileInstant(int x, int y, Tile instance)
+        {
+            if (!CanPlace(x, y)) return false;
+
+            RemoveTile(instance, false);
+
+            instance.transform.parent = bgTiles[x, y].transform;
+            instance.transform.localPosition = Vector3.zero;
+            tiles[x, y] = instance;
+            instance.position = new(x, y);
+            instance.board = this;
+
+            calculateGrid = true;
+            instance.SetRenderLayer(Tile.RenderLayer.Board);
+            OnTilePlaced?.Invoke(instance);
+
+            return true;
+        }
+
+        Tile PlaceTileInstant(int x, int y, TileData data)
+        {
+            if (!CanPlace(x, y)) return null;
+
+            var instance = Instantiate(prefabTile, bgTiles[x, y].transform);
+            instance.Init(data, new(x, y));
+
+            if (!PlaceTileInstant(x, y, instance))
+            {
+                Destroy(instance);
+                return null;
+            }
+
+            return instance;
+        }
+
+        Tile PlaceTileInstant(Tile.Info info)
+            => PlaceTileInstant(info.pos.x, info.pos.y, info.data);
+
+        public Tile PlaceTile(int x, int y, TileData data)
+        {
+            var instance = PlaceTileInstant(x, y, data);
+            if (!instance) return null;
+            
+            soundPlace?.PlayNow();
+            instance.AnimateSpawn();
+
+            return instance;
+        }
+
+        public Tile PlaceTile(Tile.Info info)
+            => PlaceTile(info.pos.x, info.pos.y, info.data);
+
+        public bool PlaceTile(Vector2Int pos, Tile instance)
+            => PlaceTileInstant(pos.x, pos.y, instance);
+
+        public Tile PlaceTile(Vector2 worldPos, TileData data)
+        {
+            var (x, y) = GetXY(worldPos);
+
+            return PlaceTile(x, y, data);
+        }
+
+        public Tile PlaceTile(Vector2Int pos, TileData data)
+            => PlaceTile(pos.x, pos.y, data);
+
+        public Tile PlaceTileAtMouse(TileData data)
+        {
+            if (mouseTile != null) return null;
+            if (!mousePos.HasValue) return null;
+            var pos = mousePos.Value;
+
+            return PlaceTile(pos.x, pos.y, data);
+        }
+
+        void Clear()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var oldBlock = tiles[x, y];
+                    if (oldBlock) Destroy(oldBlock.gameObject);
+                }
+            }
+
+            tiles = new Tile[width, height];
+            OnCleared?.Invoke();
+        }
+
+        public void LoadLayout(PredefinedLayout layout)
+        {
+            Clear();
+            foreach (var info in layout.tiles)
+            {
+                var pos = info.pos;
+                tiles[pos.x, pos.y] = PlaceTileInstant(info);
+            }
+            calculateGrid = true;
+            Changed();
+        }
+
+        public void LoadRandomLayout(int level, TileData specialTile = null)
+        {
+            var randomLayout = layouts
+                        .Where(x => x.level == level)
+                        .Rand();
+
+            if (specialTile != null)
+            {
+                randomLayout = randomLayout.Replace(TileCtrl.current.placeholderTile, specialTile);
+            }
+
+            LoadLayout(randomLayout);
+        }
+
+        void Changed()
+        {
+            OnChanged?.Invoke();
+            OnChangedLate?.Invoke();
+        }
+
+        (int, int) GetXY(Vector2 pos)
+        {
+            int x = Mathf.FloorToInt(pos.x - transform.position.x);
+            int y = Mathf.FloorToInt(pos.y - transform.position.y);
+
+            return (x, y);
+        }
+
+        public Vector2Int GetGridPos(Vector2 worldPos)
+        {
+            var (x, y) = GetXY(worldPos);
+            return new Vector2Int(x, y);
+        }
+
+        public Vector2Int? CheckGridPos(Vector2 worldPos)
+        {
+            var (x, y) = GetXY(worldPos);
+            if (!InBounds(x, y)) return null;
+            return new Vector2Int(x, y);
+        }
+
+        bool InBounds(int x, int y)
+        {
+            if (x < 0 || x >= width || y < 0 || y >= height) return false;
+
+            return true;
+        }
+
+        public Tile GetItem(int x, int y)
+        {
+            if (!InBounds(x, y)) return null;
+
+            var cell = tiles[x, y];
+
+            return cell;
+        }
+
+        public Tile GetItem(Vector2Int pos)
+            => GetItem(pos.x, pos.y);
+
+        public Tile GetItem(Vector2 pos)
+        {
+            var (x, y) = GetXY(pos);
+
+            return GetItem(x, y);
+        }
+
+
+        public List<Vector2> GetTilePositions(Vector2Int origin, List<Tile.Info> deltaInfos, bool strict)
+        {
+            var result = new List<Vector2>();
+
+            foreach (var info in deltaInfos)
+            {
+                var pos = info.pos + origin;
+                if (!InBounds(pos.x, pos.y)) return null;
+
+                if (strict)
+                {
+                    var other = GetItem(pos.x, pos.y);
+                    if (other) return null;
+                }
+
+                result.Add(bgTiles[pos.x, pos.y].transform.position);
+            }
+
+            return result;
+        }
+
+        public bool CanFit(int x, int y, List<Tile.Info> deltaInfos)
+        {
+            var origin = new Vector2Int(x, y);
+            foreach (var item in deltaInfos)
+            {
+                var pos = item.pos + origin;
+                if (!InBounds(pos.x, pos.y)) return false;
+
+                var other = GetItem(pos.x, pos.y);
+                if (other) return false;
+            }
+
+            return true;
+        }
+
+        public List<Tile> PlaceTiles(int x, int y, List<Tile.Info> infoDeltas)
+        {
+            if (!CanFit(x, y, infoDeltas)) return null;
+
+            var result = new List<Tile>();
+            foreach (var item in infoDeltas)
+            {
+                var pos = item.pos + new Vector2Int(x, y);
+
+                var block = PlaceTile(pos.x, pos.y, item.data);
+                result.Add(block);
+            }
+
+            return result;
+        }
+
+        public List<Tile> PlaceTiles(Vector2 worldPos, List<Tile.Info> infoDeltas)
+        {
+            var (x, y) = GetXY(worldPos);
+
+            return PlaceTiles(x, y, infoDeltas);
+        }
+
+        public IEnumerable<Tile> GetAdjacentItems(int x, int y)
+        {
+            foreach (var delta in adjDeltas)
+            {
+                var dx = x + delta.x;
+                var dy = y + delta.y;
+
+                var item = GetItem(dx, dy);
+
+                if (item) yield return item;
+            }
+        }
+
+        public static void RemoveTile(Tile tile, bool destroy = true)
+        {
+            if (destroy) Destroy(tile.gameObject);
+
+            var oldBoard = tile.board;
+            if (!oldBoard) return;
+            var pos = tile.position;
+            if (oldBoard.GetItem(pos) == tile)
+            {
+                tile.board.OnTileRemoved?.Invoke(tile);
+                oldBoard.tiles[pos.x, pos.y] = null;
+            }
+        }
+
+        public Tile CollectAt(int x, int y)
+        {
+            var tile = tiles[x, y];
+            if (!tile) return null;
+
+            if (tile.Collect())
+            {
+                tiles[x, y] = null;
+                OnTileRemoved?.Invoke(tile);
+                return tile;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Tile CollectAt(Vector2Int pos)
+            => CollectAt(pos.x, pos.y);
+
+        public Tile CollectAtMouse()
+        {
+            if (mousePos == null) return null;
+            var pos = mousePos.Value;
+            return CollectAt(pos.x, pos.y);
+        }
+
+        void CheckTileUnderMouse()
+        {
+            var gridPos = CheckGridPos(Helpers.MouseToWorldPosition());
+            Tile tile = null;
+            if (gridPos.HasValue)
+            {
+                tile = GetItem(gridPos.Value);
+            }
+
+            bool hadChanges = false;
+
+            if (gridPos != mousePos)
+            {
+                if (shouldHighlightTiles)
+                {
+                    if (mousePos.HasValue)
+                    {
+                        var pos = mousePos.Value;
+                        bgTiles[pos.x, pos.y].color = GetBgColor(pos.x, pos.y);
+                    }
+
+                    if (gridPos.HasValue)
+                    {
+                        var pos = gridPos.Value;
+                        bgTiles[pos.x, pos.y].color = colorTileHighlight;
+                    }
+                }
+
+                mousePos = gridPos;
+                hadChanges = true;
+                OnMousePosChanged?.Invoke(mousePos);
+
+            }
+
+            if (tile != mouseTile)
+            {
+                mouseTile = tile;
+                hadChanges = true;
+                OnMouseTileChanged?.Invoke(tile);
+            }
+
+            if (hadChanges)
+            {
+                // nothing so far
+            }
+        }
+
+        public bool IsFreeSpot(Vector2Int pos)
+        {
+            if (!InBounds(pos.x, pos.y)) return false;
+
+            return GetItem(pos) == null;
+        }
+
+        public IEnumerable<Vector2Int> GetFreeSpots()
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (!tiles[x, y]) yield return new(x, y);
+                }
+            }
+        }
+
+        public List<Vector2Int> GetEmptyTilesAround(Vector2Int origin)
+        {
+            var tilesAround = new List<Vector2Int>();
+
+            Vector2Int[] directions = new Vector2Int[]
+            {
+                new Vector2Int(0, 1),    // North
+                new Vector2Int(0, -1),   // South
+                new Vector2Int(1, 0),    // East
+                new Vector2Int(-1, 0),   // West
+                new Vector2Int(1, 1),    // Northeast
+                new Vector2Int(-1, 1),   // Northwest
+                new Vector2Int(1, -1),   // Southeast
+                new Vector2Int(-1, -1)   // Southwest
+            };
+
+            foreach (var direction in directions)
+            {
+                var pos = origin + direction;
+                if (CanPlace(pos)) tilesAround.Add(pos);
+            }
+
+            return tilesAround;
+        }
+
+        public IEnumerable<Tile> GetEmptyTiles()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var tile = tiles[x, y];
+                    if (tile && tile.data.isEmpty)
+                    {
+                        yield return tile;
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<Tile> GetNonEmptyTiles()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var tile = tiles[x, y];
+                    if (tile && !tile.data.isEmpty)
+                    {
+                        yield return tile;
+                    }
+                }
+            }
+        }
+
+        private void Update()
+        {
+            CheckTileUnderMouse();
+
+            if (calculateGrid)
+            {
+                calculateGrid = false;
+                Changed();
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!drawGizmos) return;
+
+            Gizmos.color = Color.blue;
+            var size = new Vector2(width, height);
+            Gizmos.DrawWireCube((Vector2)transform.position + size / 2f, size);
+        }
+
+        public IEnumerable<Tile> IterateTiles()
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (tiles[x, y]) yield return tiles[x, y];
+                }
+            }
+        }
+
+        public Tile PlaceAtRandom(string id, int level)
+        {
+            var data = TileCtrl.current.GetTile(id);
+            if (data == null)
+            {
+                Debug.Log($"No Data by id {id}");
+                return null;
+            }
+
+            var freeSpots = GetFreeSpots().ToList();
+            if (freeSpots.Count == 0) return null;
+            var spot = freeSpots.Rand();
+            var tile = PlaceTile(spot, data);
+            if (tile) tile.Level = level;
+            return tile;
+        }
+
+
+        public Tile PlaceAround(string id, Vector2Int position, int level = 0)
+        {
+            var data = TileCtrl.current.GetTile(id);
+            if (data == null)
+            {
+                Debug.Log($"No Data by id {id}");
+                return null;
+            }
+
+            Vector2Int spot;
+            if (IsFreeSpot(position))
+            {
+                // tile was removed
+                spot = position;
+            }
+            else
+            {
+                var spots = GetEmptyTilesAround(position);
+                if (spots.Count == 0) return null;
+                spot = spots.Rand();
+            }
+
+            var instance = PlaceTile(spot, data);
+
+            if (!instance) return null;
+
+            instance.AnimateSpawn();
+            instance.Level = level;
+            return instance;
+        }
+
+        public interface IModule
+        {
+            void InitBoard(Board board);
+        }
+    }
+
+    public class PredefinedLayout
+    {
+        public int level;
+        public List<Tile.Info> tiles;
+
+        public PredefinedLayout Replace(TileData from, TileData to)
+        {
+            return new()
+            {
+                level = level,
+                tiles = tiles.Select(
+                        x => x.data == from
+                        ? new Tile.Info(to, x.pos)
+                        : x
+                    ).ToList(),
+            };
+        }
+    }
+}

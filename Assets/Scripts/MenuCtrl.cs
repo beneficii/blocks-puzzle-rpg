@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -8,6 +9,7 @@ public class MenuCtrl : MonoBehaviour
 {
     static string cachedTitle = "Arcane Board";
     static string cachedDescription = "In a dark land ravaged by monsters, a hopeful young mage discovers an ancient magic board. To harness its power, you must align its special tiles to fill a full line. Embarking on a journey, the mage seeks to restore light to the land.";
+    static int cachedSpriteTitle = 0;
 
 
     [SerializeField] Animator arenaAnimator;
@@ -15,42 +17,44 @@ public class MenuCtrl : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI txtTitle;
     [SerializeField] TextMeshProUGUI txtDescription;
+    [SerializeField] Image imgTitle;
+    [SerializeField] List<Sprite> spritesTitle;
 
 
     private void Start()
     {
         txtTitle.text = cachedTitle;
         txtDescription.text = cachedDescription;
+        imgTitle.sprite = cachedSpriteTitle < spritesTitle.Count ? spritesTitle[cachedSpriteTitle] : spritesTitle[0];
     }
 
     public void BtnPlay()
     {
-        canvas.SetActive(false);
-        arenaAnimator.SetTrigger("play");
-        StartCoroutine(LoadScene());
-        //StartCoroutine(RoutineStartLevel());
+        GameSave.Clear();
+        BtnContinue();
     }
 
-    /*
-    IEnumerator RoutineStartLevel()
+    public void BtnContinue()
     {
-        //yield return new WaitForSeconds(1f);
-        //SceneManager.LoadScene("SampleScene");
-    }*/
+        canvas.SetActive(false);
+        arenaAnimator.SetTrigger("Play");
+        StartCoroutine(LoadScene());
+    }
 
-    public static void Load(string title, string description)
+    public static void Load(string title, string description, int spriteIdx)
     {
         cachedTitle = title;
         cachedDescription = description;
+        cachedSpriteTitle = spriteIdx;
 
         SceneManager.LoadScene("MainMenu");
     }
 
     public static void Load(GameOverType type)
     {
-        Load(GetTitle(type), GetDescription(type));
+        Load(GetTitle(type), GetDescription(type), GetTitleSpriteIdx(type));
     }
-
+    
     public static string GetTitle(GameOverType type)
     {
         return type switch
@@ -58,6 +62,16 @@ public class MenuCtrl : MonoBehaviour
             GameOverType.Victory => "Victory!",
             GameOverType.Defeat => "Defeat!",
             _ => "Arcane Board",
+        };
+    }
+
+    public static int GetTitleSpriteIdx(GameOverType type)
+    {
+        return type switch
+        {
+            GameOverType.Victory => 1,
+            GameOverType.Defeat => 2,
+            _ => 0,
         };
     }
 
@@ -70,7 +84,6 @@ public class MenuCtrl : MonoBehaviour
             _ => "In a dark land ravaged by monsters, a hopeful young mage discovers an ancient magic board. To harness its power, you must align its special tiles to fill a full line. Embarking on a journey, the mage seeks to restore light to the land.",
         };
     }
-
 
 
     IEnumerator LoadScene()

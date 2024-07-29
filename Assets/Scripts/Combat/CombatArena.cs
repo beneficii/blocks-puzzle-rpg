@@ -23,6 +23,8 @@ public class CombatArena : MonoBehaviour
     [SerializeField] UnitData dataPlayer;
     public Unit prefabUnit;
 
+    public int startingPlayerHealth { get; set; }
+
     public Unit player { get; private set; }
     public Unit enemy { get; private set; }
 
@@ -47,6 +49,10 @@ public class CombatArena : MonoBehaviour
     {
         var unit = Instantiate(prefabUnit, spotPlayer);
         unit.Init(dataPlayer, Team.Ally);
+        if (startingPlayerHealth > 0)
+        {
+            unit.SetHp(startingPlayerHealth);
+        }
 
         player = unit;
 

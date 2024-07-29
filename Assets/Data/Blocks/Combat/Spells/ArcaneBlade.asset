@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
   m_Name: ArcaneBlade
   m_EditorClassIdentifier: 
+  id: 36
   title: Arcane Blade
   sprite: {fileID: -689808054, guid: 7b25feb9680300f4ab581125d7446b20, type: 3}
   priority: 101
@@ -19,3 +20,4 @@ MonoBehaviour:
   tags: 04000000
   actions:
   - {fileID: 11400000, guid: f6fc5632387f2294c986e844df443c82, type: 2}
+  passives: []

@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
   tutorialDescription: Passive powers work only while their tile is on the board.
   tutorialTips:
-  - 'tip: there are 2 bat tiles, they rendere your shortswords useless, so get rid
+  - 'tip: there are 2 bat tiles, they render your shortswords useless, so get rid
     of them first.'
   fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}
   fxDeath: {fileID: 8065337835765342196, guid: 9d04c6ae1279df248b7fbd6b0add71dd, type: 3}

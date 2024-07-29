@@ -7,6 +7,7 @@ public class BtBlock : MonoBehaviour
 {
     [SerializeField] SpriteRenderer bgRender;
     [SerializeField] SpriteRenderer iconRender;
+    [SerializeField] SpriteRenderer shadowRender;
 
     public BtBlockData data { get; private set; }
 
@@ -35,6 +36,7 @@ public class BtBlock : MonoBehaviour
         int offset = 4;
         bgRender.sortingOrder -= offset;
         iconRender.sortingOrder -= offset;
+        shadowRender.gameObject.SetActive(false);
     }
 
     public bool Collect()

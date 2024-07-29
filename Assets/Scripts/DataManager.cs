@@ -17,22 +17,30 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
+        /*
         if (current != null)
         {
             Destroy(gameObject);
             return;
-        }
+        }*/
 
         current = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
+        if (GameSave.HasSave())
+        {
+            GameSave.Load();
+        }
+        else
+        {
+            shapes = gameData.shapeGenerator.GenerateShapes();
+        }
 
-        shapes = gameData.shapeGenerator.GenerateShapes();
         preBoards = gameData.shapeGenerator.GenerateBoards();
     }
 
 
     private void OnApplicationQuit()
     {
-        //PlayerPrefs.Save();
+        PlayerPrefs.Save();
     }
 }

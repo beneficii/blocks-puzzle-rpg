@@ -66,17 +66,20 @@ public class LineMatchListener : MonoBehaviour
             yield break;
         }
 
-
         BtUpgradeCtrl.current.Show(reward, 3);
 
         var next = MapCtrl.current.Next();
         if (next == null)
         {
             MenuCtrl.Load(GameOverType.Victory);
+            GameSave.Clear();
             yield break;
         }
         SpawnEnemy(next.unitData);
         arena.player.CombatFinished();
+
+        yield return new WaitWhile(() => BtUpgradeCtrl.current.IsOpen);
+        GameSave.Save();
     }
 
 
@@ -180,7 +183,7 @@ public class LineMatchListener : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Z))
         {
             arena.player.AnimAttack(1);
@@ -202,7 +205,12 @@ public class LineMatchListener : MonoBehaviour
             arena.player.RemoveHp(5);
         }
 
-#endif
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            arena.player.AddHp(5);
+        }
+
+//#endif
     }
 }
 

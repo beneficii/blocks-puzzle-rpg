@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
   m_Name: CopyDamage
   m_EditorClassIdentifier: 
+  id: 21
   title: Afterslash
   sprite: {fileID: 1659113651, guid: 7b25feb9680300f4ab581125d7446b20, type: 3}
   priority: -1

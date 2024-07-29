@@ -8,10 +8,18 @@ using FancyToolkit;
 public class UIHoverInfoCtrl : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
-    [SerializeField] UIHoverInfo infoTop;
-    [SerializeField] UIHoverInfo infoBottom;
+    [SerializeField] UIHoverInfo infoPanel;
+
+    UIHoverInfo infoTop => infoPanel;
+    UIHoverInfo infoBottom => infoPanel;
 
     Collider2D currentColider;
+
+
+    private void Start()
+    {
+        ShowCollider(null);
+    }
 
     void ShowCollider(Collider2D collider)
     {

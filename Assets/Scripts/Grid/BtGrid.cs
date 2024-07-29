@@ -22,6 +22,7 @@ public partial class BtGrid : MonoBehaviour
     public BtSettings settings;
 
     [SerializeField] Sprite spriteTile;
+    [SerializeField] bool addSpriteTiles;
 
     [SerializeField] Color colorTile1;
     [SerializeField] Color colorTile2;
@@ -55,7 +56,7 @@ public partial class BtGrid : MonoBehaviour
     {
         var obj = new GameObject($"Tile[{x},{y}]");
         var render = obj.AddComponent<SpriteRenderer>();
-        render.sprite = spriteTile;
+        render.sprite = addSpriteTiles ? spriteTile : null;
 
         obj.transform.parent = transform;
         obj.transform.localPosition = new Vector2(x + 0.5f, y + 0.5f);

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using FancyToolkit;
 
 [DefaultExecutionOrder(+1)]
@@ -23,6 +24,8 @@ public class ShapePanel : MonoBehaviour
 
     public static System.Action<bool> OnShapesGenerated;
     public static System.Action OnOutOfShapes;
+    public UnityEvent<bool> OnHintsAviable;
+
 
     [SerializeField] List<Transform> slots;
     List<BtShape> shapes = new();
@@ -105,6 +108,7 @@ public class ShapePanel : MonoBehaviour
 
         var tempGrid = BtGrid.current.MakeTempGrid();
         hints = new();
+        OnHintsAviable?.Invoke(true);
 
         foreach (var slot in slots)
         {
@@ -222,6 +226,7 @@ public class ShapePanel : MonoBehaviour
             }
             else
             {
+                OnHintsAviable?.Invoke(false);
                 hints = null;
             }
         }

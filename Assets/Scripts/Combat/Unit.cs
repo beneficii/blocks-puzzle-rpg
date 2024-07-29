@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
+using TMPro;
 
 public class Unit : MonoBehaviour, IDamagable
 {
-    [SerializeField] ValueBar health;
-    [SerializeField] ValueCounter armor;
+    public ValueBar health;
     [SerializeField] Animator animator;
 
     [SerializeField] SpriteRenderer render;
 
     [SerializeField] UnitMoveIndicator moveIndicator;
+
+    [SerializeField] IntReferenceDisplay templateDisplayHealth;
+    [SerializeField] IntReferenceDisplay templateDisplayArmor;
+    [SerializeField] TextIntRef txtIntDisplay;
+
 
     public static System.Action<Unit> OnKilled;
 
@@ -21,7 +26,8 @@ public class Unit : MonoBehaviour, IDamagable
 
     public Team team { get; private set; }
 
-    //HashSet<Buffs> buffs = new();
+    IntReference refHealth;
+    IntReference refArmor;
 
     UnitActionBase nextAction;
     Unit target;
@@ -47,14 +53,22 @@ public class Unit : MonoBehaviour, IDamagable
         this.team = team;
         this.data = data;
         animator.runtimeAnimatorController = data.animations;
-        health.Init(data.hp);
-        health.OnZero += HandleOutOfHealth;
-        armor.Value = 0;
-        armor.OnChanged += HandleArmorChanged;
         this.reward = data.reward;
         actionIdx = 0;
         SetAction(null);
         SetNextAction();
+
+        refHealth = new IntReference(data.hp, data.hp);
+        refArmor = new IntReference(0);
+        health.Init(refHealth);
+
+        refHealth.OnChanged += HandleHealthChange;
+
+        txtIntDisplay.Init(new()
+        {
+            new IntReferenceDisplay(refHealth, templateDisplayHealth),
+            new IntReferenceDisplay(refArmor, templateDisplayArmor),
+        });
     }
 
     public void SetTarget(Unit target)
@@ -101,6 +115,15 @@ public class Unit : MonoBehaviour, IDamagable
         }
     }
 
+    void HandleHealthChange(int value, int delta)
+    {
+        if (value == 0)
+        {
+            HandleOutOfHealth();
+            return;
+        }
+    }
+
     public void SetFlip(bool value)
     {
         render.flipX = value;
@@ -108,7 +131,7 @@ public class Unit : MonoBehaviour, IDamagable
 
     public int GetArmor()
     {
-        return armor.Value;
+        return refArmor.Value;
     }
 
     public void AddArmor(int value)
@@ -119,13 +142,7 @@ public class Unit : MonoBehaviour, IDamagable
 
         if (value <= 0) return;
 
-        armor.Add(value + bonus);
-    }
-
-    void HandleArmorChanged(int oldValue, int newValue)
-    {
-        bool newIsZero = newValue == 0;
-        if ((oldValue == 0) == newIsZero) return;
+        refArmor.Add(value + bonus);
     }
 
     public void RemoveHp(int damage)
@@ -136,31 +153,27 @@ public class Unit : MonoBehaviour, IDamagable
 
         if (damage <= 0) return;
 
-        int defense = armor.Value;
-        if (defense > 0)
-        {
-            defense -= damage;
-            if (defense >= 0)
-            {
-                armor.Remove(damage);
-                damage = 0;
-            }
-            else
-            {
-                armor.Remove(armor.Value);
-                damage = -defense;
-            }
-        }
+        int defense = refArmor.Value;
+        refArmor.Value -= damage;
+        damage -= defense;
 
-        if (damage == 0) return;
+        if (damage <= 0) return;
 
         AnimGetHit();
         health.Remove(damage);
+        refHealth.Remove(damage);
+    }
+
+    public void SetHp(int value)
+    {
+        health.Set(value);
+        refHealth.Value = value;
     }
 
     public void AddHp(int value)
     {
         health.Add(value);
+        refHealth.Add(value);
     }
 
     public IEnumerator RoundActionPhase()
@@ -173,7 +186,7 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void CombatFinished()
     {
-        armor.Value = 0;
+        refArmor.Value = 0;
     }
 
     public void RoundFinished()
@@ -207,6 +220,9 @@ public class Unit : MonoBehaviour, IDamagable
     {
         animator.SetTrigger($"hit");
     }
+
+
+    // caption stuff
 }
 
 public enum Buffs

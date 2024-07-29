@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
   m_Name: RoundShield
   m_EditorClassIdentifier: 
+  id: 44
   title: Round Shield
   sprite: {fileID: -2093909415, guid: ca9946111e702294a94ef56862299ddf, type: 3}
   priority: 0
@@ -20,3 +21,4 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: 316d2f65118c7d04cb1812fc3db94a55, type: 2}
   - {fileID: 11400000, guid: 9b8cac64b040ac54082b5feaacf78f32, type: 2}
+  passives: []

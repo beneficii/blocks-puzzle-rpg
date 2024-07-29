@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using FancyToolkit;
+using GridBoard;
+
 
 public class UIHoverInfo : MonoBehaviour
 {
@@ -12,12 +14,7 @@ public class UIHoverInfo : MonoBehaviour
     [SerializeField] TextMeshProUGUI txtDescription;
     [SerializeField] List<TooltipPanel> hints;
 
-    private void Start()
-    {
-        Hide();
-    }
-
-    void Hide()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }
@@ -46,16 +43,10 @@ public class UIHoverInfo : MonoBehaviour
         }
     }
 
-    void Show(BtBlock block)
+    void Show(Tile info)
     {
-        if (block.data is IHasInfo info)
-        {
-            Show(info);
-        }
-        else
-        {
-            Hide();
-        }
+        txtTitle.text = info.data.title;
+        txtDescription.text = info.GetDescription();
     }
 
     void Show(Unit unit)
@@ -85,15 +76,15 @@ public class UIHoverInfo : MonoBehaviour
             return;
         }
 
-        if (collider.TryGetComponent<BtBlock>(out var block))
-        {
-            Show(block);
-            return;
-        }
-
         if (collider.TryGetComponent<Unit>(out var unit))
         {
             Show(unit);
+            return;
+        }
+
+        if (collider.TryGetComponent<Tile>(out var tile))
+        {
+            Show(tile);
             return;
         }
 
@@ -122,11 +113,4 @@ public class UIHoverInfo : MonoBehaviour
             parent.SetActive(false);
         }
     }
-}
-
-public interface IHasInfo
-{
-    public string GetTitle();
-    public string GetDescription();
-    public List<string> GetTooltips();
 }

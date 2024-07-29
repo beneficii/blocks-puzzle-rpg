@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
   m_Name: LongSword
   m_EditorClassIdentifier: 
+  id: 38
   title: Longsword
   sprite: {fileID: 2071062554, guid: ca9946111e702294a94ef56862299ddf, type: 3}
   priority: 0
@@ -19,3 +20,4 @@ MonoBehaviour:
   tags: 01000000
   actions:
   - {fileID: 11400000, guid: 5f85ba655e1b54e488db03f51b29b87c, type: 2}
+  passives: []

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37eec93ca38cee84fa9bfb629f7d8f23, type: 3}
   m_Name: HeavyHammer
   m_EditorClassIdentifier: 
+  id: 49
   title: Peasants hammer
   sprite: {fileID: 1828480727, guid: ca9946111e702294a94ef56862299ddf, type: 3}
   priority: 0

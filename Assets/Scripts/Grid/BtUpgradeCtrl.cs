@@ -20,6 +20,8 @@ public class BtUpgradeCtrl : MonoBehaviour
         }
     }
 
+    public bool IsOpen { get; private set; }
+
     public Dictionary<BtShapeData, BtShapeData> upgrades;
 
     Queue<QItem> queue = new();
@@ -42,6 +44,7 @@ public class BtUpgradeCtrl : MonoBehaviour
     void Close()
     {
         upgrades = null;
+        IsOpen = false;
 
         if (queue.Count > 0)
         {
@@ -57,6 +60,8 @@ public class BtUpgradeCtrl : MonoBehaviour
             queue.Enqueue(new QItem(rarity, count));
             return;
         }
+
+        IsOpen = true;
 
         upgrades = new Dictionary<BtShapeData, BtShapeData>();
 

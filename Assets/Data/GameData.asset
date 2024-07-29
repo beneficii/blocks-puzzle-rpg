@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   shapeGenerator: {fileID: 11400000, guid: db101c63780bb6747859e35330cd61ea, type: 2}
+  emptyBlock: {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
   blocks:
   - {fileID: 11400000, guid: b18b64dc803babc43aa00a3d6ead4055, type: 2}
   - {fileID: 11400000, guid: cf659f8d154715d48a5e2c63c921ab45, type: 2}
@@ -29,11 +30,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7151a0dc021b6f3449cc4379c3dfa80e, type: 2}
   - {fileID: 11400000, guid: 644beabbf4947844da3ff503b793bf82, type: 2}
   - {fileID: 11400000, guid: f7a41e66150afb24795ea697b8e41593, type: 2}
+  - {fileID: 11400000, guid: 1db0604e1e0cbdd4ba1d15f7d8c8f51b, type: 2}
+  - {fileID: 11400000, guid: cd755f3028e81754b9d12fe235861a79, type: 2}
   blockSprites:
   - {fileID: 1908480696, guid: 6ccade53a28071b4ea4c8a94ee8017a3, type: 3}
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
   prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}
   prefabBullet: {fileID: 7667046944190593093, guid: 1876af816686cf94d80eae434ee347c4, type: 3}
-  spriteTempHero: {fileID: -728255665444098679, guid: b59a3015d7aeabd4e87fc27eabae5231, type: 3}
-  spriteTempEnemy: {fileID: 3800871404644214177, guid: ea96cef721f0ab8419dfdc04d30756a0, type: 3}
