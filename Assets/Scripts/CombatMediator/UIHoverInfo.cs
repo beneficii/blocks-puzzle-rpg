@@ -21,6 +21,12 @@ public class UIHoverInfo : MonoBehaviour
 
     void Show(IHasInfo info)
     {
+        if (!info.ShouldShowInfo())
+        {
+            Hide();
+            return;
+        }
+
         txtTitle.text = info.GetTitle();
         txtDescription.text = info.GetDescription();
 

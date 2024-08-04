@@ -54,6 +54,9 @@ namespace GridBoard
 
         public TileData GetTile(string id) => tileDict.Get(id);
 
+        public TClass GetTile<TClass>(string id) where TClass : TileData, new ()
+            => tileDict.Get(id) as TClass;
+
         void InitBaseTiles()
         {
             tileDict = new();

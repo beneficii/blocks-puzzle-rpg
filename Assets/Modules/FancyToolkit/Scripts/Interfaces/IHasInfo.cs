@@ -8,6 +8,7 @@ namespace FancyToolkit
 {
     public interface IHasInfo
     {
+        public bool ShouldShowInfo();
         public string GetTitle();
         public string GetDescription();
         public List<string> GetTooltips();

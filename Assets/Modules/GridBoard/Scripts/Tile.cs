@@ -72,6 +72,8 @@ namespace GridBoard
         public virtual string GetDescription()
             => data.description;
 
+        public Sprite GetIcon() => data.visuals?.sprite;
+
         public virtual void Init(TileData data, Vector2Int pos = default, Board board = null, int level = -1)
         {
             this.data = data;
@@ -173,7 +175,7 @@ namespace GridBoard
         public void SetRenderLayer(RenderLayer layer)
         {
             int order = baseRenderLayerOrder + (int)layer * 10;
-            GetComponent<UnityEngine.Rendering.SortingGroup>().sortingOrder = order;
+            GetComponentInChildren<UnityEngine.Rendering.SortingGroup>().sortingOrder = order;
 
             shadowRender.enabled = layer == RenderLayer.Inventory;
             hlRender.enabled = layer == RenderLayer.Hover;
@@ -306,6 +308,8 @@ namespace GridBoard
 
         public string GetTitle() => data?.title ?? string.Empty;
         public List<string> GetTooltips() => new();
+
+        public bool ShouldShowInfo() => !data.isEmpty;
 
         public enum RenderLayer
         {

@@ -27,4 +27,9 @@ public class TutorialBlockData : BtBlockData, IHasInfo
     }
 
     public string GetTitle() => title;
+
+    public bool ShouldShowInfo()
+    {
+        throw new System.NotImplementedException();
+    }
 }

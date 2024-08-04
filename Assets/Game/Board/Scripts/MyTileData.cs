@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GridBoard;
+using FancyToolkit;
 
-public class MyTileData : GridBoard.TileData
+public class MyTileData : TileData
 {
-
+    public FactoryBuilder<ClearAction.Base> clearAction;
 }

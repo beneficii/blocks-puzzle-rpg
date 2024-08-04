@@ -8,17 +8,6 @@ public class LineMatchListener : MonoBehaviour
 {
     CombatArena arena;
 
-    struct MyAction
-    {
-        public BtBlockData data;
-        public Vector2 origin;
-
-        public MyAction(BtBlockData data, Vector2 origin)
-        {
-            this.data = data;
-            this.origin = origin;
-        }
-    }
 
     private void OnEnable()
     {
