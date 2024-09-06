@@ -11,8 +11,6 @@ using UnityEditor;
 [CreateAssetMenu(menuName = "Game/GameData")]
 public class GameData : ScriptableObject
 {
-    public ShapeGenerator shapeGenerator;
-
     public BtBlockData emptyBlock;
     public List<BtBlockData> blocks;
     public List<Sprite> blockSprites;

@@ -9,6 +9,12 @@ namespace GridBoard
 {
     public class Tile : MonoBehaviour, IHasInfo
     {
+        public const float scale = 40 / 35f;
+        public const float rScale = 35 / 40f;
+        public static Vector2 IndexToPos(int x, int y) => new Vector2(x + 0.5f, y + 0.5f) * rScale;
+        public static Vector2 IndexToPos(Vector2Int idx) => IndexToPos(idx.x, idx.y);
+        public static Vector2Int PosToIndex(Vector2 pos) => (pos * scale).ToIntVector2();
+
         public static event System.Action<Tile> OnClickDone;
 
         [SerializeField] int baseRenderLayerOrder = 100;
@@ -49,6 +55,9 @@ namespace GridBoard
         }
 
         public bool IsInProgress => progressBar && progressBar.IsActive;
+
+
+
 
         public TileData data { get; private set; }
         public Vector2Int position { get; set; }
@@ -330,6 +339,22 @@ namespace GridBoard
                 this.pos = pos;
             }
 
+            public Info(StringScanner scanner)
+            {
+                if (scanner.TryGet(out string id))
+                {
+                    data = TileCtrl.current.GetTile(id);
+                }
+
+                if (data == null)
+                {
+                    Debug.LogError("Info(str): Data not found!");
+                }
+
+                pos.x = scanner.NextInt();
+                pos.y = scanner.NextInt();
+            }
+
             public Info Rotate(int rotation, Vector2Int size)
             {
                 return rotation switch
@@ -340,6 +365,10 @@ namespace GridBoard
                     _ => new(data, pos),
                 };
             }
+
+            public override string ToString()
+                => $"{data.id} {pos.x} {pos.y}";
+
         }
     }
 }

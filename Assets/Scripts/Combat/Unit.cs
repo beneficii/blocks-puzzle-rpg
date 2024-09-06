@@ -67,7 +67,7 @@ public class Unit : MonoBehaviour, IDamagable
         txtIntDisplay.Init(new()
         {
             new IntReferenceDisplay(refHealth, templateDisplayHealth),
-            new IntReferenceDisplay(refArmor, templateDisplayArmor),
+            //new IntReferenceDisplay(refArmor, templateDisplayArmor),
         });
     }
 

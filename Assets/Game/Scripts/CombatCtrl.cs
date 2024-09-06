@@ -14,6 +14,8 @@ public class CombatCtrl : MonoBehaviour
 
     CombatArena arena;
 
+    public bool EndTurnInProgress { get; private set; } = false;
+
     private void Awake()
     {
         TileCtrl.current.AddData<MyTileData>(tableTiles);
@@ -118,6 +120,9 @@ public class CombatCtrl : MonoBehaviour
 
     public void NewTurn(float delay)
     {
+        if (EndTurnInProgress) return; // ToDo: maybe soome warning
+
+        EndTurnInProgress = true;
         if (!arena.enemy) return;   // Let's wait end of combat
 
         StartCoroutine(TurnRoutine(delay));
@@ -143,6 +148,7 @@ public class CombatCtrl : MonoBehaviour
         }
         yield return new WaitForSeconds(0.1f);
         shapePanel.GenerateNew(false);
+        EndTurnInProgress = false;
     }
     /*
     void HandleBoardChanged()
@@ -200,4 +206,13 @@ public class CombatCtrl : MonoBehaviour
 
         #endif
     }
+}
+
+
+
+public enum MatchStat
+{
+    None,
+    MaxDamage,
+    MaxArmor
 }

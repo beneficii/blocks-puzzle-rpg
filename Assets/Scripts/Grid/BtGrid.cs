@@ -65,33 +65,6 @@ public partial class BtGrid : MonoBehaviour
         return render;
     }
 
-    public void LoadPreBoard(BtBoardInfo preBoard)
-    {
-        var arr = new BtBlock[width, height];
-
-        columnBlockCount = new int[width];
-        rowBlockCount = new int[height];
-
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                var oldBlock = blocks[x, y];
-                if (oldBlock) Destroy(oldBlock.gameObject);
-            }
-        }
-
-        foreach (var info in preBoard.blocks)
-        {
-            var pos = info.pos;
-            arr[pos.x, pos.y] = PlaceBlock(pos.x, pos.y, info.data);
-        }
-        
-        blocks = arr;
-
-        OnBoardChanged?.Invoke();
-    }
-
     void Start()
     {
         columnBlockCount = new int[width];
@@ -108,15 +81,6 @@ public partial class BtGrid : MonoBehaviour
         }
 
         OnBoardChanged?.Invoke();
-    }
-
-    public void LoadRandomBoard(int level, BtBlockData specialBlock)
-    {
-        var board = DataManager.current.preBoards
-            .Where(x => x.level == level)
-            .Rand();
-        var ph = DataManager.current.placeHolderBlock;
-        LoadPreBoard(board.Replace(ph, specialBlock));
     }
 
     public TempGridState MakeTempGrid()

@@ -31,7 +31,7 @@ namespace EnemyAction
         {
             if (!target) yield break;
 
-            var emptyBlocks = BtGrid.current.GetEmptyBlocks()
+            var emptyBlocks = FindAnyObjectByType<GridBoard.Board>().GetEmptyTiles()
                 .ToList()
                 .RandN(count);
 

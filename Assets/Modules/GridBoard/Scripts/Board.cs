@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using FancyToolkit;
 using System.Linq;
+using TMPro;
 
 namespace GridBoard
 {
@@ -65,7 +66,7 @@ namespace GridBoard
             render.sprite = addSpriteTiles ? tileBgSprites.Rand() : null;
 
             obj.transform.parent = transform;
-            obj.transform.localPosition = new Vector2(x + 0.5f, y + 0.5f);
+            obj.transform.localPosition = Tile.IndexToPos(x, y);
             render.color = GetBgColor(x, y);
 
             return render;
@@ -232,10 +233,11 @@ namespace GridBoard
             OnChangedLate?.Invoke();
         }
 
+        TextMeshPro txtDebug;
         (int, int) GetXY(Vector2 pos)
         {
-            int x = Mathf.FloorToInt(pos.x - transform.position.x);
-            int y = Mathf.FloorToInt(pos.y - transform.position.y);
+            int x = Mathf.RoundToInt((pos.x - transform.position.x) * Tile.scale);
+            int y = Mathf.RoundToInt((pos.y - transform.position.y) * Tile.scale);
 
             return (x, y);
         }
@@ -513,6 +515,21 @@ namespace GridBoard
             }
         }
 
+        public IEnumerable<Tile.Info> GetTileInfos()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var tile = tiles[x, y];
+                    if (tile && !tile.data.isEmpty)
+                    {
+                        yield return new(tile.data, new(x,y));
+                    }
+                }
+            }
+        }
+
         private void Update()
         {
             CheckTileUnderMouse();
@@ -533,8 +550,16 @@ namespace GridBoard
             if (!drawGizmos) return;
 
             Gizmos.color = Color.blue;
-            var size = new Vector2(width, height);
+            var size = new Vector2(width, height) * Tile.rScale;
             Gizmos.DrawWireCube((Vector2)transform.position + size / 2f, size);
+
+            if (bgTiles != null)
+            {
+                foreach (var tile in bgTiles)
+                {
+                    Gizmos.DrawWireCube((Vector2)tile.transform.position, new Vector2(Tile.rScale, Tile.rScale));
+                }
+            }
         }
 
         public IEnumerable<Tile> IterateTiles()
@@ -620,5 +645,88 @@ namespace GridBoard
                     ).ToList(),
             };
         }
+
+        public PredefinedLayout()
+        {
+
+        }
+
+        public PredefinedLayout(Board board)
+        {
+            level = 0;
+            tiles = board.GetTileInfos()
+                .ToList();
+        }
+
+        public PredefinedLayout(StringScanner scanner)
+        {
+            tiles = new();
+            while (!scanner.Empty)
+            {
+                tiles.Add(new(scanner));
+            }
+        }
+
+        public override string ToString()
+            => string.Join(" ", tiles.Select(x => x.ToString()));
     }
+    /*
+    public class SavedState
+    {
+        BtBlockData[,] blocks;
+        int[,] bgs;
+
+        public SavedState(BtGrid grid)
+        {
+            var width = BtGrid.width;
+            var height = BtGrid.height;
+            var arr = new BtBlockData[width, height];
+            var spr = new int[width, height];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var block = grid.blocks[x, y];
+                    if (block)
+                    {
+                        arr[x, y] = block.data;
+                        spr[x, y] = block.spriteIdx;
+                    }
+                }
+            }
+
+            blocks = arr;
+            bgs = spr;
+        }
+
+        public void Load(BtGrid grid)
+        {
+            var width = BtGrid.width;
+            var height = BtGrid.height;
+            var arr = new BtBlock[width, height];
+
+            grid.columnBlockCount = new int[width];
+            grid.rowBlockCount = new int[height];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var oldBlock = grid.blocks[x, y];
+                    if (oldBlock) Destroy(oldBlock.gameObject);
+
+                    var data = blocks[x, y];
+                    var spriteIdx = bgs[x, y];
+
+                    if (data)
+                    {
+                        arr[x, y] = grid.PlaceBlock(x, y, data, spriteIdx);
+                    }
+                }
+            }
+
+            grid.blocks = arr;
+        }
+    }*/
 }

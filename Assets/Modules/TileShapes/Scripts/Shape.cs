@@ -52,7 +52,7 @@ namespace TileShapes
             {
                 var instance = Instantiate(board.prefabTile, transform);
                 instance.SetRenderLayer(Tile.RenderLayer.Inventory);
-                instance.transform.localPosition = item.pos.ToFloatVector();
+                instance.transform.localPosition = Tile.IndexToPos(item.pos);
                 instance.Init(item);
                 blocks.Add(instance);
             }
@@ -92,7 +92,7 @@ namespace TileShapes
             }
             else
             {
-                transform.localScale = Vector3.one * 0.75f;
+                transform.localScale = Vector3.one;// * 0.75f;
             }
         }
 

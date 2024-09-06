@@ -11,7 +11,7 @@ public class DataManager : MonoBehaviour
     public GameData gameData;
 
     public List<BtShapeData> shapes; //{ get; private set; }
-    public List<BtBoardInfo> preBoards;
+    //public List<BtBoardInfo> preBoards;
     public BtBlockData emptyBlock;
     public BtBlockData placeHolderBlock;
 
@@ -32,10 +32,10 @@ public class DataManager : MonoBehaviour
         }
         else
         {
-            shapes = gameData.shapeGenerator.GenerateShapes();
+            //shapes = gameData.shapeGenerator.GenerateShapes();
         }
 
-        preBoards = gameData.shapeGenerator.GenerateBoards();
+        //preBoards = gameData.shapeGenerator.GenerateBoards();
     }
 
 
