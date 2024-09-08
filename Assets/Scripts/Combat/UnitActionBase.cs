@@ -5,7 +5,7 @@ using FancyToolkit;
 
 public abstract class UnitActionBase : ScriptableObject
 {
-    public Sprite sprite;
+    public GameObject prefabVisual;
     public abstract string GetDescription(Unit parent);
     public virtual string GetTooltip(Unit parent) => "";
     public abstract string GetShortDescription(Unit parent);

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffdbedc86d2cf4428e06dcb7bc75d6f, type: 3}
   m_Name: Expire
   m_EditorClassIdentifier: 
-  sprite: {fileID: 1679825127283579670, guid: d999ecacbe6f72146863a13f6a6ef0fb, type: 3}
+  prefabVisual: {fileID: 7635541627469772610, guid: 939cb63a288a5714ab21f1d720d1adb4, type: 3}
   turns: 12

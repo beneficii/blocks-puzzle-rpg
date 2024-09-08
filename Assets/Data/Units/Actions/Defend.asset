@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52fea29e7fb8cfe4bb4376afeec25bef, type: 3}
   m_Name: Defend
   m_EditorClassIdentifier: 
-  sprite: {fileID: -855298285791758126, guid: 723ffc563cc2ec3438603f848365b5d5, type: 3}
+  prefabVisual: {fileID: 6164708524871884114, guid: 2462ea8980e3e994d9b716b764afe043, type: 3}

@@ -5,8 +5,10 @@ using TMPro;
 
 public class UnitMoveIndicator : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer icon;
+    [SerializeField] Transform actionParent;
     [SerializeField] TextMeshPro txtShortDescription;
+
+    GameObject currentActionVisual;
 
     public void Init(Unit parent, UnitActionBase action)
     {
@@ -19,7 +21,13 @@ public class UnitMoveIndicator : MonoBehaviour
         {
             gameObject.SetActive(true);
         }
-        icon.sprite = action.sprite;
+
+        if (currentActionVisual)
+        {
+            Destroy(currentActionVisual);
+        }
+
+        currentActionVisual = Instantiate(action.prefabVisual, actionParent);
         txtShortDescription.text = action.GetShortDescription(parent);
     }
 }

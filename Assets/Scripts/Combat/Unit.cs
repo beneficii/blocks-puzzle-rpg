@@ -15,7 +15,10 @@ public class Unit : MonoBehaviour, IDamagable
 
     [SerializeField] IntReferenceDisplay templateDisplayHealth;
     [SerializeField] IntReferenceDisplay templateDisplayArmor;
-    [SerializeField] TextIntRef txtIntDisplay;
+    [SerializeField] TextIntRef txtHealth;
+    [SerializeField] TextIntRef txtArmor;
+    [SerializeField] IconIntRef iconArmor;
+    
 
 
     public static System.Action<Unit> OnKilled;
@@ -64,11 +67,18 @@ public class Unit : MonoBehaviour, IDamagable
 
         refHealth.OnChanged += HandleHealthChange;
 
-        txtIntDisplay.Init(new()
+        txtHealth.Init(new()
         {
             new IntReferenceDisplay(refHealth, templateDisplayHealth),
             //new IntReferenceDisplay(refArmor, templateDisplayArmor),
         });
+
+        txtArmor.Init(new()
+        {
+            new IntReferenceDisplay(refArmor, templateDisplayArmor),
+        });
+
+        iconArmor.Init(refArmor);
     }
 
     public void SetTarget(Unit target)

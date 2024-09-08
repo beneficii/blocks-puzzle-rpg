@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed41b2cdd9c7aa6489e968a9a8cea9c5, type: 3}
   m_Name: BigAttack
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 2576f39cee687ff4d93c588406c2c8dd, type: 3}
+  prefabVisual: {fileID: 1846415317115722999, guid: 8ce0a3a581c5eaa4784992a47fbdd15e, type: 3}
   damage: 10
   isBig: 1
