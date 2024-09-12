@@ -4,10 +4,13 @@ using UnityEngine;
 using GridBoard;
 using TileShapes;
 using FancyToolkit;
+using System.Linq;
 
 public class CombatCtrl : MonoBehaviour
 {
     [SerializeField] TextAsset tableTiles;
+    [SerializeField] TextAsset tableStartingTiles;
+    [SerializeField] CombatRewardsPanel combatRewardsPanel;
 
     Board board;
     TileShapes.ShapePanel shapePanel;
@@ -15,6 +18,10 @@ public class CombatCtrl : MonoBehaviour
     CombatArena arena;
 
     public bool EndTurnInProgress { get; private set; } = false;
+
+    PoolQueue<TileData> tileQueue;
+
+    public int tilesPerTurn = 5;
 
     private void Awake()
     {
@@ -27,6 +34,12 @@ public class CombatCtrl : MonoBehaviour
         shapePanel = FindAnyObjectByType<TileShapes.ShapePanel>();
 
         arena = CombatArena.current;
+        var startingTiles = FancyCSV.FromText<TileEntry>(tableStartingTiles.text)
+            .SelectMany(x => Enumerable.Repeat(x.id, x.amount))
+            .Select(id => TileCtrl.current.GetTile(id));
+
+        tileQueue = new(startingTiles);
+        combatRewardsPanel.OnClosed += RewardsClosed;
     }
 
     private void OnEnable()
@@ -35,6 +48,8 @@ public class CombatCtrl : MonoBehaviour
         //BtGrid.OnBoardChanged += HandleBoardChanged;
         shapePanel.OnOutOfShapes += NewTurn;
         Unit.OnKilled += HandleUnitKilled;
+        UISelectTileCard.OnSelectTile += HandleTileAddToSet;
+        UISelectTileCard.OnBuyTile += HandleTileAddToSet;
     }
 
     private void OnDisable()
@@ -43,6 +58,13 @@ public class CombatCtrl : MonoBehaviour
         //BtGrid.OnBoardChanged -= HandleBoardChanged;
         shapePanel.OnOutOfShapes -= NewTurn;
         Unit.OnKilled -= HandleUnitKilled;
+        UISelectTileCard.OnSelectTile -= HandleTileAddToSet;
+        UISelectTileCard.OnBuyTile -= HandleTileAddToSet;
+    }
+
+    void HandleTileAddToSet(UISelectTileCard card)
+    {
+        tileQueue.Add(card.data);
     }
 
     void HandleUnitKilled(Unit unit)
@@ -63,8 +85,7 @@ public class CombatCtrl : MonoBehaviour
 
         //board.LoadRandomLayout(data.boardLevel, data.specialBlockData); // ToDo
 
-        shapePanel.GenerateNew();
-
+        shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
 
         return enemy;
     }
@@ -73,7 +94,8 @@ public class CombatCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         HelpPanel.current.Close();  // just in case
-
+        
+        /*
         if (!arena.player)
         {
             MenuCtrl.Load(GameOverType.Defeat);
@@ -92,10 +114,14 @@ public class CombatCtrl : MonoBehaviour
         SpawnEnemy(next.unitData);
         arena.player.CombatFinished();
 
-        yield return new WaitWhile(() => BtUpgradeCtrl.current.IsOpen);
-        GameSave.Save();
+        yield return new WaitWhile(() => BtUpgradeCtrl.current.IsOpen);*/
     }
 
+
+    void RewardsClosed()
+    {
+
+    }
 
     void HandleLinesCleared(LineClearData lineClearInfo)
     {
@@ -147,7 +173,8 @@ public class CombatCtrl : MonoBehaviour
             unit.RoundFinished();
         }
         yield return new WaitForSeconds(0.1f);
-        shapePanel.GenerateNew(false);
+
+        shapePanel.GenerateNew(false, tileQueue, tilesPerTurn);
         EndTurnInProgress = false;
     }
     /*
@@ -174,6 +201,7 @@ public class CombatCtrl : MonoBehaviour
         var next = MapCtrl.current.Next();
         SpawnEnemy(next.unitData);
     }
+
 
     private void Update()
     {
@@ -204,11 +232,20 @@ public class CombatCtrl : MonoBehaviour
             arena.player.AddHp(5);
         }
 
-        #endif
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            combatRewardsPanel.Show(new List<string>{ "gold 1", "gold 20", "tile", "tile" });
+        }
+
+#endif
+    }
+
+    public class TileEntry
+    {
+        public string id;
+        public int amount;
     }
 }
-
-
 
 public enum MatchStat
 {

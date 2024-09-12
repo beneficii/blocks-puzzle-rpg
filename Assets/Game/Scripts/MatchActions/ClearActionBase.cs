@@ -59,4 +59,45 @@ namespace ClearAction
             }
         }
     }
+
+    public class Defense : Base
+    {
+        int value;
+        public override string GetDescription(MyTile parent)
+            => $"Gain {value} defense";
+
+        public Defense(int value)
+        {
+            this.value = value;
+        }
+
+        void Action(Component comp)
+        {
+            if (!comp || comp is not Unit unit) return;
+
+            unit.AddArmor(value);
+        }
+
+        public override void Run(MyTile parent, LineClearData match)
+        {
+            var bullet = MakeBullet(parent)
+                            .SetTarget(CombatArena.current.player)
+                            .SetAction(Action)
+                            .SetLaunchDelay(0.2f);
+        }
+
+        public class Builder : FactoryBuilder<Base>
+        {
+            int value;
+            public override Base Build()
+            {
+                return new Defense(value);
+            }
+
+            public override void Init(StringScanner scanner)
+            {
+                value = scanner.NextInt();
+            }
+        }
+    }
 }

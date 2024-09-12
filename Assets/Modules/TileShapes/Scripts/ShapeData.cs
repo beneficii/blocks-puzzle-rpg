@@ -44,8 +44,13 @@ namespace TileShapes
         public ShapeData(List<Vector2Int> deltas, int level)
             : this(deltas.Select(d => new Tile.Info(TileCtrl.current.emptyTile, d)).ToList(), level) { }
 
+        public ShapeData(ShapeData other)
+            : this(other.tiles.Select(x => new Tile.Info(x.data, x.pos)).ToList(), other.level) { }
+
         public static implicit operator bool(ShapeData item)
             => item.tiles != null && item.tiles.Count > 0;
+
+        public List<Tile.Info> GetTilesRaw() => tiles;
 
         public List<Tile.Info> GetTiles(int rotation = 0)
         {

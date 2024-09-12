@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using GridBoard;
 using System.Linq;
+using UnityEditor.Graphs;
+using FancyToolkit;
 
 namespace TileShapes
 {
@@ -43,7 +45,7 @@ namespace TileShapes
                 GeneratePool();
             }
 
-            return shape;
+            return new(shape);
         }
 
         void Init()
@@ -109,18 +111,36 @@ namespace TileShapes
             instance.OnDropped += HandleShapeDropped;
         }
 
-        public void GenerateNew(bool initial = true)
+        void PopulateShapesWithTiles(Queue<Shape.Info> shapes, PoolQueue<TileData> tileQueue, int tilesToPopulate)
+        {
+            if (tileQueue == null || tilesToPopulate == 0) return;
+
+            var tileslots = shapes.SelectMany(x => x.data.GetTilesRaw()).RandN(tilesToPopulate);
+            foreach (var item in tileslots)
+            {
+                item.data = tileQueue.Get();
+            }
+        }
+
+        public void GenerateNew(bool initial = true, PoolQueue<TileData> tileQueue = null, int tilesToPopulate = 0)
         {
             Clear();
 
             var tempGrid = new SimulatedBoard(board);
             hints = new();
             OnHintsAviable?.Invoke(true);
+            var nextShapes = new Queue<Shape.Info>();
 
             foreach (var slot in slots)
             {
-                var info = GetNextShape(tempGrid);
-                SetSlotShape(slot, info);
+                nextShapes.Enqueue(GetNextShape(tempGrid));
+            }
+
+            PopulateShapesWithTiles(nextShapes, tileQueue, tilesToPopulate);
+
+            foreach (var slot in slots)
+            {
+                SetSlotShape(slot, nextShapes.Dequeue());
             }
 
             OnShapesGenerated?.Invoke(initial);

@@ -53,6 +53,8 @@ namespace GridBoard
         }
 
         public TileData GetTile(string id) => tileDict.Get(id);
+        public List<TileData> GetAllTiles() => tileDict.Values.ToList();
+        public List<TileData> GetAllTiles(Rarity rarity) => tileDict.Values.Where(x=>x.rarity == rarity).ToList();
 
         public TClass GetTile<TClass>(string id) where TClass : TileData, new ()
             => tileDict.Get(id) as TClass;

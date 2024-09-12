@@ -14,6 +14,9 @@ namespace GridBoard
         public string description;
         public bool isEmpty;
         public int startingLevel;
+        public int cost;
+        public List<string> tags;
+
 
         // generic variables, use by extending classes
         public int priority;
@@ -26,6 +29,10 @@ namespace GridBoard
 
         public string colorCode;
 
+        public virtual string GetDescription(Tile tile = null)
+        {
+            return description;
+        }
     }
 
     public abstract class TileAction

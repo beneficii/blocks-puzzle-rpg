@@ -26,14 +26,14 @@ public class DataManager : MonoBehaviour
 
         current = this;
         //DontDestroyOnLoad(gameObject);
-        if (GameSave.HasSave())
+        /*if (GameSave.HasSave())
         {
             GameSave.Load();
         }
         else
         {
             //shapes = gameData.shapeGenerator.GenerateShapes();
-        }
+        }*/
 
         //preBoards = gameData.shapeGenerator.GenerateBoards();
     }

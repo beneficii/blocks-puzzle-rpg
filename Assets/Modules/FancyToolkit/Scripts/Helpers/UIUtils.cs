@@ -10,7 +10,7 @@ namespace FancyToolkit
         public static T CreateFromTemplate<T>(T template) where T : Component
         {
             var instance = GameObject.Instantiate(template, template.transform.parent);
-
+            instance.gameObject.SetActive(true);
             return instance;
         }
 

@@ -79,7 +79,7 @@ namespace GridBoard
         }
 
         public virtual string GetDescription()
-            => data.description;
+            => data.GetDescription(this);
 
         public Sprite GetIcon() => data.visuals?.sprite;
 

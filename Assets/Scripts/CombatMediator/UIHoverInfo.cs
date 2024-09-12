@@ -10,9 +10,13 @@ using GridBoard;
 
 public class UIHoverInfo : MonoBehaviour
 {
+    [SerializeField] Image imgIcon;
     [SerializeField] TextMeshProUGUI txtTitle;
     [SerializeField] TextMeshProUGUI txtDescription;
+    [SerializeField] TextMeshProUGUI txtTags;
+    [SerializeField] TextMeshProUGUI txtCost;
     [SerializeField] List<TooltipPanel> hints;
+
 
     public void Hide()
     {
@@ -49,10 +53,21 @@ public class UIHoverInfo : MonoBehaviour
         }
     }
 
+    public void HideCost() { txtCost.text = ""; }
+
+    public void Init(TileData data)
+    {
+        if (imgIcon) imgIcon.sprite = data.visuals?.sprite;
+        if (txtTitle) txtTitle.text = data.title;
+        if (txtCost) txtCost.text = $"Cost: {data.cost}";
+        if (txtTags) txtTags.text = string.Join(", ", data.tags);
+        if (txtDescription) txtDescription.text = data.GetDescription();
+    }
+
     void Show(Tile info)
     {
-        txtTitle.text = info.data.title;
-        txtDescription.text = info.GetDescription();
+        Init(info.data);
+        if (txtDescription) txtDescription.text = info.GetDescription();
     }
 
     void Show(Unit unit)
