@@ -10,7 +10,6 @@ public class CombatCtrl : MonoBehaviour
 {
     [SerializeField] TextAsset tableTiles;
     [SerializeField] TextAsset tableStartingTiles;
-    [SerializeField] CombatRewardsPanel combatRewardsPanel;
 
     Board board;
     TileShapes.ShapePanel shapePanel;
@@ -39,7 +38,6 @@ public class CombatCtrl : MonoBehaviour
             .Select(id => TileCtrl.current.GetTile(id));
 
         tileQueue = new(startingTiles);
-        combatRewardsPanel.OnClosed += RewardsClosed;
     }
 
     private void OnEnable()
@@ -117,12 +115,6 @@ public class CombatCtrl : MonoBehaviour
         yield return new WaitWhile(() => BtUpgradeCtrl.current.IsOpen);*/
     }
 
-
-    void RewardsClosed()
-    {
-
-    }
-
     void HandleLinesCleared(LineClearData lineClearInfo)
     {
         if (lineClearInfo.tiles.Count > 10)
@@ -142,7 +134,7 @@ public class CombatCtrl : MonoBehaviour
         }
     }
 
-    public void NewTurn() => NewTurn(0.6f);
+    public void NewTurn() => NewTurn(0.1f);
 
     public void NewTurn(float delay)
     {
@@ -234,7 +226,7 @@ public class CombatCtrl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            combatRewardsPanel.Show(new List<string>{ "gold 1", "gold 20", "tile", "tile" });
+            CombatRewardsPanel.current.Show(new List<string>{ "gold 1", "gold 20", "tile", "tile" });
         }
 
 #endif

@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
 
-public class SelectTileScreen : MonoBehaviour
+public class SelectTileScreen : UIHudBase
 {
-    public static event System.Action OnClosed;
-
     public static SelectTileScreen _current;
     public static SelectTileScreen current
     {
@@ -24,6 +22,7 @@ public class SelectTileScreen : MonoBehaviour
 
     public void Show(SelectTileType type, List<TileData> list)
     {
+        Opened();
         Clear();
         //gameObject.SetActive(true);
         foreach (var data in list)
@@ -48,7 +47,7 @@ public class SelectTileScreen : MonoBehaviour
     {
         foreach (var item in cards)
         {
-            if (item) Destroy(item);
+            if (item) Destroy(item.gameObject);
         }
         cards.Clear();
     }
@@ -56,8 +55,7 @@ public class SelectTileScreen : MonoBehaviour
     public void Close()
     {
         Clear();
-        //gameObject.SetActive(false);
-        OnClosed?.Invoke();
+        Closed();
     }
 
     void HandleTileSelected(UISelectTileCard card)

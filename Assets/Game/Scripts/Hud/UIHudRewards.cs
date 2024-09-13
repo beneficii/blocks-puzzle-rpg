@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
 
-public class CombatRewardsPanel : MonoBehaviour
+public class CombatRewardsPanel : UIHudBase
 {
-    public event System.Action OnClosed;
+    public static CombatRewardsPanel _current;
+    public static CombatRewardsPanel current
+    {
+        get
+        {
+            if (!_current) _current = FindFirstObjectByType<CombatRewardsPanel>();
+            return _current;
+        }
+    }
+
+    public static event System.Action OnClosed;
+    public static event System.Action OnOpen;
 
     [SerializeField] UICombatReward templateItem;
-    [SerializeField] GameObject content;
 
     List<UICombatReward> instantiatedItems = new();
 
@@ -25,8 +35,8 @@ public class CombatRewardsPanel : MonoBehaviour
 
     public void Show(List<string> rewards)
     {
+        Opened();
         Clear();
-        gameObject.SetActive(true);
         foreach (var item in rewards)
         {
             var instance = UIUtils.CreateFromTemplate(templateItem);
@@ -38,13 +48,11 @@ public class CombatRewardsPanel : MonoBehaviour
     private void OnEnable()
     {
         UICombatReward.OnClicked += HandleRewardClicked;
-        SelectTileScreen.OnClosed += HandleTileChoiseDone;
     }
 
     private void OnDisable()
     {
         UICombatReward.OnClicked -= HandleRewardClicked;
-        SelectTileScreen.OnClosed -= HandleTileChoiseDone;
     }
 
     void HandleRewardClicked(UICombatReward item)
@@ -55,15 +63,10 @@ public class CombatRewardsPanel : MonoBehaviour
         }
     }
 
-    void HandleTileChoiseDone()
-    {
-        content.SetActive(true);
-    }
-
     public void Close()
     {
-        gameObject.SetActive(false);
         OnClosed?.Invoke();
+        Closed();
     }
 
     public void Skip()
