@@ -226,7 +226,12 @@ public class CombatCtrl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            CombatRewardsPanel.current.Show(new List<string>{ "gold 1", "gold 20", "tile", "tile" });
+            UIHudRewards.current.Show(new List<string>{ "gold 1", "gold 20", "tile", "tile" });
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UIHudDialog.current.Show("test");
         }
 
 #endif

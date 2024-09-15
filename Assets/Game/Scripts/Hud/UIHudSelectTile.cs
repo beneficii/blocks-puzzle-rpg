@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
 
-public class SelectTileScreen : UIHudBase
+public class UIHudSelectTile : UIHudBase
 {
-    public static SelectTileScreen _current;
-    public static SelectTileScreen current
+    public static UIHudSelectTile _current;
+    public static UIHudSelectTile current
     {
         get
         {
-            if (!_current) _current = FindFirstObjectByType<SelectTileScreen>();
+            if (!_current) _current = FindFirstObjectByType<UIHudSelectTile>();
             return _current;
         }
     }
 
     [SerializeField] UISelectTileCard templateCard;
+    [SerializeField] GameObject bg;
 
     List<UISelectTileCard> cards = new();
 
@@ -24,13 +25,13 @@ public class SelectTileScreen : UIHudBase
     {
         Opened();
         Clear();
-        //gameObject.SetActive(true);
         foreach (var data in list)
         {
             var instance = UIUtils.CreateFromTemplate(templateCard);
             instance.Init(type, data);
             cards.Add(instance);
         }
+        bg.SetActive(type == SelectTileType.Choise);
     }
 
     private void OnEnable()

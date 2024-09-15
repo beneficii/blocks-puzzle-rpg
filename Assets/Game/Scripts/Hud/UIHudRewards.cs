@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
 
-public class CombatRewardsPanel : UIHudBase
+public class UIHudRewards : UIHudBase
 {
-    public static CombatRewardsPanel _current;
-    public static CombatRewardsPanel current
+    public static UIHudRewards _current;
+    public static UIHudRewards current
     {
         get
         {
-            if (!_current) _current = FindFirstObjectByType<CombatRewardsPanel>();
+            if (!_current) _current = FindFirstObjectByType<UIHudRewards>();
             return _current;
         }
     }
-
-    public static event System.Action OnClosed;
-    public static event System.Action OnOpen;
 
     [SerializeField] UICombatReward templateItem;
 
@@ -65,7 +62,6 @@ public class CombatRewardsPanel : UIHudBase
 
     public void Close()
     {
-        OnClosed?.Invoke();
         Closed();
     }
 

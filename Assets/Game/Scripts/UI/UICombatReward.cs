@@ -64,7 +64,7 @@ public class UICombatReward : MonoBehaviour
                 break;
             case RewardType.Tile:
                 var tiles = TileCtrl.current.GetAllTiles();
-                SelectTileScreen.current.Show(SelectTileType.Choise, tiles.RandN(3));
+                UIHudSelectTile.current.Show(SelectTileType.Choise, tiles.RandN(3));
                 break;
             default:
                 Debug.LogError($"Unknown reward type");

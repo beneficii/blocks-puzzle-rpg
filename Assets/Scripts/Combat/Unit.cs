@@ -18,7 +18,9 @@ public class Unit : MonoBehaviour, IDamagable
     [SerializeField] TextIntRef txtHealth;
     [SerializeField] TextIntRef txtArmor;
     [SerializeField] IconIntRef iconArmor;
-    
+
+    [SerializeField] TextMeshPro txtDialog;
+    [SerializeField] GameObject contentDialog;
 
 
     public static System.Action<Unit> OnKilled;
@@ -79,6 +81,19 @@ public class Unit : MonoBehaviour, IDamagable
         });
 
         iconArmor.Init(refArmor);
+        SetDialog(null);
+    }
+
+    public void SetDialog(string text = null)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            contentDialog.SetActive(false);
+            return;
+        }
+
+        contentDialog.SetActive(true);
+        txtDialog.text = text;
     }
 
     public void SetTarget(Unit target)

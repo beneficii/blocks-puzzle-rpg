@@ -16,10 +16,13 @@ public class HUDCtrl : MonoBehaviour
 
     Stack<UIHudBase> stack = new();
 
-
     public void HandleHudOpened(UIHudBase hud)
     {
-        if (stack.TryPeek(out var top)) top.SetContentVisible(false);
+        if (stack.TryPeek(out var top))
+        {
+            if (top == hud) return;
+            top.SetContentVisible(false);
+        }
         hud.SetContentVisible(true);
         stack.Push(hud);
     }

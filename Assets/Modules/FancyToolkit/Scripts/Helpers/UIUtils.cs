@@ -52,4 +52,28 @@ namespace FancyToolkit
 
         public static Vector2 GetWorldPosition(RectTransform ui) => ui.TransformPoint(Vector3.zero);
     }
+
+    [System.Serializable]
+    public class UITemplateItem <T> where T : Component
+    {
+        public T template;
+        public List<T> items { get; private set; } = new();
+
+        public T Create()
+        {
+            var instance = UIUtils.CreateFromTemplate(template);
+            items.Add(instance);
+            return instance;
+        }
+
+        public void Clear()
+        {
+            foreach(var item in items)
+            {
+                if (item) GameObject.Destroy(item.gameObject);
+            }
+
+            items.Clear();
+        }
+    }
 }
