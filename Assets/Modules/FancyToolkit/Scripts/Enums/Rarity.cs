@@ -6,6 +6,7 @@ namespace FancyToolkit
 {
     public enum Rarity
     {
+        None,
         Basic,
         Common,
         Uncommon,

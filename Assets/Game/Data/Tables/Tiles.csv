@@ -1,7 +1,7 @@
-id|idVisuals|title|colorCode|description|clearAction||
-sword|sword|Sword|d7b594||Damage 3||
-shield|shield|Shield|a8ca58||Defense 2||
-special1|special1|Prayer|577277|Doubles your defense|||
-special2|special2|Final Blow|394a50|Deal 5 damage for each cleared sword|||
-special3|special3|Sunshine|202e37|Reduces damage of the traps by 3 this clear|||
-special4|special4|Moonlight|151d28|Enemies will receive damage from their traps|||
+id|idVisuals|title|colorCode|description|clearAction|rarity|
+sword|sword|Sword|d7b594||Damage 3|Common|
+shield|shield|Shield|a8ca58||Defense 2|Common|
+special1|special1|Prayer|577277|Doubles your defense||Common|
+special2|special2|Final Blow|394a50|Deal 5 damage for each cleared sword||Common|
+special3|special3|Sunshine|202e37|Reduces damage of the traps by 3 this clear||Common|
+special4|special4|Moonlight|151d28|Enemies will receive damage from their traps||Common|

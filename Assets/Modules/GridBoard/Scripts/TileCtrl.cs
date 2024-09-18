@@ -53,7 +53,7 @@ namespace GridBoard
         }
 
         public TileData GetTile(string id) => tileDict.Get(id);
-        public List<TileData> GetAllTiles() => tileDict.Values.ToList();
+        public List<TileData> GetAllTiles() => tileDict.Values.Where(x=>x.rarity != Rarity.None).ToList();
         public List<TileData> GetAllTiles(Rarity rarity) => tileDict.Values.Where(x=>x.rarity == rarity).ToList();
 
         public TClass GetTile<TClass>(string id) where TClass : TileData, new ()
@@ -68,12 +68,14 @@ namespace GridBoard
                 id = "empty",
                 isEmpty = true,
                 colorCode = "FFFFFF",
+                rarity = Rarity.None,
             };
             placeholderTile = new TileData
             {
                 id = "placeholder",
                 isEmpty = true,
                 colorCode = "C65197",
+                rarity = Rarity.None,
             };
             AddTile(emptyTile);
             AddTile(placeholderTile);

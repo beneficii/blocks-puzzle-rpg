@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
-  spriteBorder: {x: 100, y: 75, z: 100, w: 75}
+  spriteBorder: {x: 62, y: 62, z: 62, w: 62}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1

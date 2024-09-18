@@ -1,0 +1,15 @@
+id|text|actions
+test|Hello there, I see you found the board|
+|Who are you?|Dialog test1
+|Can you offer some guidance?|AddGold 10; Dialog test2
+|Prepare to fight!|Dialog test3
+test1|So you just said hi|
+|yeah, I guess|
+|give more gold|AddGold 100
+test2|you have received gold|
+|thank you|
+|more?|Dialog test22
+test22|No!|
+||
+test3|ToDo: maybe fight sequence|
+|ok|

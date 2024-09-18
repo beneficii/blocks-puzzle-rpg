@@ -54,17 +54,19 @@ namespace FancyToolkit
     }
 
     [System.Serializable]
-    public class UITemplateItem <T> where T : Component
+    public class UITemplateItem
     {
-        public T template;
-        public List<T> items { get; private set; } = new();
+        public Component template;
+        public List<Component> items { get; private set; } = new();
 
-        public T Create()
+        public Component Create()
         {
             var instance = UIUtils.CreateFromTemplate(template);
             items.Add(instance);
             return instance;
         }
+
+        public T Create<T>() where T: Component => Create() as T;
 
         public void Clear()
         {

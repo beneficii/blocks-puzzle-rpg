@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -24,7 +23,7 @@ public class UIHudDialog : UIHudBase
     }
 
     [SerializeField] TextAsset tableDialogs;
-    [SerializeField] UITemplateItem<UIDIalogOption> templateOption;
+    [SerializeField] UITemplateItem templateOption;
 
     Dictionary<string, List<DialogData>> dict;
     string nextDialogID;
@@ -35,7 +34,7 @@ public class UIHudDialog : UIHudBase
         List<DialogData> sublist = new();
         foreach (var item in FancyCSV.FromText<DialogData>(tableDialogs.text))
         {
-            if(string.IsNullOrWhiteSpace(item.id))
+            if(!string.IsNullOrWhiteSpace(item.id))
             {
                 sublist = new List<DialogData>();
                 dict.Add(item.id, sublist);
@@ -46,8 +45,9 @@ public class UIHudDialog : UIHudBase
 
     public void Show(string id)
     {
+        nextDialogID = null;
         Clear();
-        if (dict.TryGetValue(id, out var list))
+        if (!dict.TryGetValue(id, out var list))
         {
             Debug.LogError($"Unknown dialog id: {id}");
             return;
@@ -59,7 +59,7 @@ public class UIHudDialog : UIHudBase
 
         if (list.Count == 1)
         {
-            templateOption.Create()
+            templateOption.Create<UIDIalogOption>()
                 .Init(DialogData.OptContinue);
             return;
         }
@@ -67,12 +67,11 @@ public class UIHudDialog : UIHudBase
         for (int i = 1; i < list.Count; i++)
         {
             var data = list[i];
-            templateOption.Create()
+            templateOption.Create<UIDIalogOption>()
                 .Init(data);
         }
 
         Opened();
-        nextDialogID = null;
     }
 
     public void SetNext(string id = null)
@@ -93,38 +92,10 @@ public class UIHudDialog : UIHudBase
             return;
         }
 
+        if (CombatArena.current.enemy) CombatArena.current.enemy.SetDialog(null);
+
         Clear();
         Closed();
-    }
-
-}
-
-
-public class UIDIalogOption : MonoBehaviour
-{
-    [SerializeField] TextMeshProUGUI txtMessage;
-
-    DialogData data;
-
-    public void Init(DialogData data)
-    {
-        this.data = data;
-        txtMessage.text = data.text;
-        // ToDo: maybe give action hint
-    }
-
-    public void Select()
-    {
-        //ToDo: execute action
-        foreach (var item in data.actions)
-        {
-            var action = Factory<DialogAction>.Create(item);
-            if (action == null) continue;
-
-            action.Execute();
-        }
-
-        UIHudDialog.current.Close();
     }
 
 }
@@ -143,5 +114,5 @@ public class DialogData
         this.text = text;
     }
 
-    public static DialogData OptContinue = new DialogData("Continue");
+    public static DialogData OptContinue = new ("Continue");
 }

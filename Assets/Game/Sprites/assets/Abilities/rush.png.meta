@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 27e5c69ce44a0614d97dfbde1b8829fd
+guid: f7f46a9485f2a7f4cb12ce41d8f57ea6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1080007531340435107
-    second: answer_bubble_0
+      213: -1529244088098755918
+    second: rush_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
-  spriteBorder: {x: 20, y: 20, z: 20, w: 20}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,22 +126,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: answer_bubble_0
+      name: rush_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 366
-        height: 62
+        x: 10
+        y: 14
+        width: 42
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d51f4b35fda0301f0800000000000000
-      internalID: -1080007531340435107
+      spriteID: 2bae10aaa9807cae0800000000000000
+      internalID: -1529244088098755918
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []

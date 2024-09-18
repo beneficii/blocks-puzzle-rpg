@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using GridBoard;
 using System.Linq;
-using UnityEditor.Graphs;
 using FancyToolkit;
 
 namespace TileShapes
@@ -16,10 +15,12 @@ namespace TileShapes
         public System.Action OnDeadEnd;
         public UnityEvent<bool> OnHintsAviable;
 
+        [SerializeField] PlacementGrid testGrid;
 
         [SerializeField] Shape prefabShape;
         [SerializeField] List<Transform> slots;
         [SerializeField] Board board;
+        [SerializeField] Transform anchor;
         
         List<Shape> shapes = new();
 
@@ -34,6 +35,11 @@ namespace TileShapes
         {
             var tiles = new List<Tile.Info>() { new (TileCtrl.current.emptyTile, Vector2Int.zero) };
             return new Shape.Info(new(tiles));
+        }
+
+        Vector2 AnchoredPosition(Vector2Int pos)
+        {
+            return (Vector2)anchor.transform.position + new Vector2(pos.x * Tile.rScale, pos.y * Tile.rScale);
         }
 
         public ShapeData GetShapeFromPool()
@@ -122,6 +128,12 @@ namespace TileShapes
             }
         }
 
+        public IEnumerator RefreshAgain()
+        {
+            yield return null;
+            GenerateNew(false);
+        }
+
         public void GenerateNew(bool initial = true, PoolQueue<TileData> tileQueue = null, int tilesToPopulate = 0)
         {
             Clear();
@@ -138,6 +150,24 @@ namespace TileShapes
 
             PopulateShapesWithTiles(nextShapes, tileQueue, tilesToPopulate);
 
+            var solution = testGrid.Solve(nextShapes.ToList());
+            //if (solution != null) { Debug.Log($"Solve: {string.Join(", ", solution)}"); }
+            //else print("Solution failed");
+
+            //if (solution != null) StartCoroutine(RefreshAgain());
+
+            if (solution != null)
+            {
+                for (int i = 0; i < solution.Count; i++)
+                {
+                    slots[i].transform.position = AnchoredPosition(solution[i]);
+                }
+            }
+            else
+            {
+                Debug.LogError("Could not find solution. ToDo: handle this");
+            }
+            
             foreach (var slot in slots)
             {
                 SetSlotShape(slot, nextShapes.Dequeue());
@@ -166,17 +196,6 @@ namespace TileShapes
             if (Input.GetKeyDown(KeyCode.H))
             {
                 HintCtrl.current.Show(hints);
-            }
-
-            int upgradeLevel = -1;
-            if (Input.GetKeyDown(KeyCode.Alpha0)) upgradeLevel = 0;
-            if (Input.GetKeyDown(KeyCode.Alpha1)) upgradeLevel = 1;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) upgradeLevel = 2;
-            if (Input.GetKeyDown(KeyCode.Alpha3)) upgradeLevel = 3;
-
-            if (upgradeLevel >= 0)
-            {
-                //BtUpgradeCtrl.current.Show((BtUpgradeRarity)upgradeLevel, 3);
             }
         }
 #endif
