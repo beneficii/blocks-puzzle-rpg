@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
   m_Name: 1_slime1
   m_EditorClassIdentifier: 
+  id: 
+  idVisuals: 
+  visuals: {fileID: 0}
   title: Evil slime
   description: 
   animations: {fileID: 22100000, guid: 9ca1f2db67eecb74ba8d818c8c7c45f7, type: 2}

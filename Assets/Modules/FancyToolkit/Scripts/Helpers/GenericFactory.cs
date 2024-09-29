@@ -189,4 +189,51 @@ namespace FancyToolkit
         public virtual void Init(StringScanner scanner) { }
         public abstract TClass Build();
     }
+
+    public abstract class FactoryBuilder<TClass, TValue> : FactoryBuilder<TClass>
+    {
+        protected TValue value;
+        public override void Init(StringScanner scanner) { scanner.TryGetGeneric(out value); }
+    }
+
+    public abstract class FactoryBuilder<TClass, TValue1, TValue2> : FactoryBuilder<TClass>
+    {
+        protected TValue1 value1;
+        protected TValue2 value2;
+        public override void Init(StringScanner scanner)
+        {
+            scanner.TryGetGeneric(out value1);
+            scanner.TryGetGeneric(out value2);
+        }
+    }
+
+    public abstract class FactoryBuilder<TClass, TValue1, TValue2, TValue3> : FactoryBuilder<TClass>
+    {
+        protected TValue1 value1;
+        protected TValue2 value2;
+        protected TValue3 value3;
+
+        public override void Init(StringScanner scanner)
+        {
+            scanner.TryGetGeneric(out value1);
+            scanner.TryGetGeneric(out value2);
+            scanner.TryGetGeneric(out value3);
+        }
+    }
+
+    public abstract class FactoryBuilder<TClass, TValue1, TValue2, TValue3, TValue4> : FactoryBuilder<TClass>
+    {
+        protected TValue1 value1;
+        protected TValue2 value2;
+        protected TValue3 value3;
+        protected TValue4 value4;
+
+        public override void Init(StringScanner scanner)
+        {
+            scanner.TryGetGeneric(out value1);
+            scanner.TryGetGeneric(out value2);
+            scanner.TryGetGeneric(out value3);
+            scanner.TryGetGeneric(out value4);
+        }
+    }
 }

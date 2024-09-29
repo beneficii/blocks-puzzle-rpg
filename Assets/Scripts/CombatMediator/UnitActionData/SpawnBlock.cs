@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
+using GridBoard;
 
 namespace EnemyAction
 {
@@ -10,7 +11,7 @@ namespace EnemyAction
     public class SpawnBlock : UnitActionBase
     {
         [SerializeField] int count;
-        [SerializeField] BtBlockData data;
+        [SerializeField] string blockId;
 
         public override string GetTooltip(Unit parent)
         {
@@ -20,18 +21,21 @@ namespace EnemyAction
             return $"{data.title}: {data.GetDescription()}";
         }
 
-        BtBlockData GetData(Unit parent)
+        string GetId(Unit parent)
         {
-            var data = this.data;
-            if (!data) data = parent.data.specialBlockData;
-            return data;
+            var blockId = this.blockId;
+            if (string.IsNullOrWhiteSpace(blockId)) blockId = parent.data.specialBlockId;
+            return blockId;
         }
+
+        TileData GetData(Unit parent)
+            => TileCtrl.current.GetTile(GetId(parent));
 
         public override IEnumerator Execute(Unit parent, Unit target)
         {
             if (!target) yield break;
 
-            var emptyBlocks = FindAnyObjectByType<GridBoard.Board>().GetEmptyTiles()
+            var emptyBlocks = FindAnyObjectByType<Board>().GetEmptyTiles()
                 .ToList()
                 .RandN(count);
 
@@ -39,14 +43,15 @@ namespace EnemyAction
             parent.AnimAttack(2);
             var data = GetData(parent);
 
+            yield return new WaitForSeconds(0.1f);
             foreach (var item in emptyBlocks)
             {
                 MakeBullet(parent)
                     .SetTarget(item)
-                    .SetSprite(data.sprite)
+                    .SetSprite(data.visuals.sprite)
                     .SetAction((comp) =>
                     {
-                        if (!comp.TryGetComponent<BtBlock>(out var block)) return;
+                        if (!comp.TryGetComponent<Tile>(out var block)) return;
                         block.Init(data);
                     })
                     .SetLaunchDelay(0.1f);
@@ -57,6 +62,6 @@ namespace EnemyAction
         }
 
         public override string GetDescription(Unit parent) => $"Will spawn {count} '{GetData(parent).title}' on empty block";
-        public override string GetShortDescription(Unit parent) => $"{count}";
+        public override string GetShortDescription(Unit parent) => $"";
     }
 }

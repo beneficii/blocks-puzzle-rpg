@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
   m_Name: 2_bat1
   m_EditorClassIdentifier: 
+  id: 
+  idVisuals: 
+  visuals: {fileID: 0}
   title: Evil bat
   description: 
   animations: {fileID: 22100000, guid: a5e4c4b6a56825648abf20fcad009bbe, type: 2}
@@ -20,11 +23,12 @@ MonoBehaviour:
   hp: 6
   reward: 1
   specialBlockData: {fileID: 11400000, guid: f2d0304133cd781479b9390c3e7b4a55, type: 2}
+  specialBlockId: batCurse
   boardLevel: 0
   actionQueue:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
+  - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
+  - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
   tutorialDescription: Passive powers work only while their tile is on the board.
   tutorialTips:
   - 'tip: there are 2 bat tiles, they render your shortswords useless, so get rid

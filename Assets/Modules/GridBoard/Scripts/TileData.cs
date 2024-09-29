@@ -16,6 +16,7 @@ namespace GridBoard
         public int startingLevel;
         public int cost;
         public List<string> tags;
+        public Tile.Type type;
 
 
         // generic variables, use by extending classes

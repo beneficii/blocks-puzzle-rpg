@@ -65,6 +65,36 @@ namespace FancyToolkit
             return result;
         }
 
+        public bool TryGetGeneric<TValue>(out TValue val)
+        {
+            val = default;
+
+            switch (val)
+            {
+                case int _ when TryGet(out int intValue):
+                    val = (TValue)(object)intValue;
+                    return true;
+
+                case float _ when TryGet(out float floatValue):
+                    val = (TValue)(object)floatValue;
+                    return true;
+
+                case double _ when TryGet(out double doubleValue):
+                    val = (TValue)(object)doubleValue;
+                    return true;
+
+                case bool _ when TryGet(out bool boolValue):
+                    val = (TValue)(object)boolValue;
+                    return true;
+
+                case string _ when TryGet(out string stringValue):
+                    val = (TValue)(object)stringValue;
+                    return true;
+            }
+
+            return false;
+        }
+
         public bool TryGet<TEnum>(out TEnum val, TEnum defaultValue = default) where TEnum : struct
         {
             val = defaultValue;

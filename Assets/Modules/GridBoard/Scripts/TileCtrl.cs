@@ -36,6 +36,14 @@ namespace GridBoard
 #if UNITY_EDITOR
             var newObject = ScriptableObject.CreateInstance<TileVisuals>();
 
+            var sprite = Resources.Load<Sprite>($"TileIcons/{name}");
+            newObject.sprite = sprite;
+
+            if (sprite == null)
+            {
+                Debug.LogWarning($"Sprite with name {name} not found in Resources/TileIcons/.");
+            }
+
             // Ensure the directory exists
             string path = Path.Combine("Assets/Resources", visualsFolder);
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);

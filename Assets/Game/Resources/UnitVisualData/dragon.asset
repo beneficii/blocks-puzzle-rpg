@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687a75c617848143b40e7c71f43cf6f, type: 3}
+  m_Name: dragon
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 155557942, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 1987947265, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -373820473, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 514116853, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 971257514, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1697431101, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1133132121, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1040343654, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1301415675, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -699423220, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 880119778, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1239172412, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1171704630, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1137769641, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 2107401057, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -426839429, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -145611071, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 1098256633, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 352211673, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -813190769, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -17651753, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -1432683232, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: -910050805, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 1171496915, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  - {fileID: 902271539, guid: 5c88cb62e77d9994399a9090d0e35a47, type: 3}
+  frIddle: 0
+  frAttack1: 0
+  frAttack2: 0
+  frHit: 0
+  hpPos: {x: 0, y: 0}
+  actionPos: {x: 0, y: 0}

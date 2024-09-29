@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e242ffcf8a002064a810e546642ca84a, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  shapeGenerator: {fileID: 11400000, guid: db101c63780bb6747859e35330cd61ea, type: 2}
   emptyBlock: {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
   blocks:
   - {fileID: 11400000, guid: b18b64dc803babc43aa00a3d6ead4055, type: 2}
@@ -34,6 +33,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd755f3028e81754b9d12fe235861a79, type: 2}
   blockSprites:
   - {fileID: 1908480696, guid: 6ccade53a28071b4ea4c8a94ee8017a3, type: 3}
+  vFxs:
+  - {fileID: 5952893279834582914, guid: 8298828e1751a344987117f1517b9096, type: 3}
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
   prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}

@@ -33,7 +33,8 @@ namespace GridBoard
         [SerializeField] bool shouldHighlightTiles;
         [SerializeField] bool drawGizmos;
 
-        List<PredefinedLayout> layouts;
+        [SerializeField] DatabaseBoardPresets dbBoardPresets;
+        List<PredefinedLayout> predefinedBoards;
 
         Tile[,] tiles;
         SpriteRenderer[,] bgTiles;
@@ -75,6 +76,8 @@ namespace GridBoard
         public void Init()
         {
             if (bgTiles != null) return;
+
+            predefinedBoards = dbBoardPresets.GenerateBoards();
 
             bgTiles = new SpriteRenderer[width, height];
             tiles = new Tile[width, height];
@@ -136,7 +139,7 @@ namespace GridBoard
             if (!CanPlace(x, y)) return null;
 
             var instance = Instantiate(prefabTile, bgTiles[x, y].transform);
-            instance.Init(data, new(x, y));
+            instance.Init(data);
 
             if (!PlaceTileInstant(x, y, instance))
             {
@@ -213,9 +216,20 @@ namespace GridBoard
             Changed();
         }
 
+        public void LoadRandomLayout(TileData specialTile = null)
+        {
+            var randomLayout = predefinedBoards.Rand();
+            if (specialTile != null)
+            {
+                randomLayout = randomLayout.Replace(TileCtrl.current.placeholderTile, specialTile);
+            }
+
+            LoadLayout(randomLayout);
+        }
+
         public void LoadRandomLayout(int level, TileData specialTile = null)
         {
-            var randomLayout = layouts
+            var randomLayout = predefinedBoards
                         .Where(x => x.level == level)
                         .Rand();
 

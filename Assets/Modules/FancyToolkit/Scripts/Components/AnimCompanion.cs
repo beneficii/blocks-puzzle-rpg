@@ -7,6 +7,7 @@ namespace FancyToolkit
 {
     public class AnimCompanion : MonoBehaviour
     {
+        public string id;
         [SerializeField] float lifetime = 2f;
         System.Action onTrigger;
 

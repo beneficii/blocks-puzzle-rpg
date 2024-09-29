@@ -12,6 +12,12 @@ public class MyTile : Tile
     {
         if (myData == null) return "";
 
+        var descr = data.GetDescription();
+        if (!string.IsNullOrWhiteSpace(descr))
+        {
+            return descr;
+        }
+
         var lines = new List<string>();
 
         if (!string.IsNullOrWhiteSpace(data.description))

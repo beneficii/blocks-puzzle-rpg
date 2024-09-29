@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using FancyToolkit;
 
 [DefaultExecutionOrder(-11)]
 public class DataManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class DataManager : MonoBehaviour
     //public List<BtBoardInfo> preBoards;
     public BtBlockData emptyBlock;
     public BtBlockData placeHolderBlock;
+    public Dictionary<string, AnimCompanion> vfxDict;
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class DataManager : MonoBehaviour
         }*/
 
         //preBoards = gameData.shapeGenerator.GenerateBoards();
+        vfxDict = gameData.vFxs.ToDictionary(x => x.id);
     }
 
 

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
   m_Name: 6_reptile1_miniboss
   m_EditorClassIdentifier: 
+  id: 
+  idVisuals: 
+  visuals: {fileID: 0}
   title: Evil reptile
   description: 
   animations: {fileID: 22100000, guid: 6b8707f967723cf4e8f4b1deb5bb363e, type: 2}
@@ -20,6 +23,7 @@ MonoBehaviour:
   hp: 20
   reward: 2
   specialBlockData: {fileID: 11400000, guid: 24a6dd47f93af6c4d8d5238428ae0457, type: 2}
+  specialBlockId: batCurse
   boardLevel: 2
   actionQueue:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}

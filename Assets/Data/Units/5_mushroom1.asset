@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a551671035ba0443bffd1c2d8e802a5, type: 3}
   m_Name: 5_mushroom1
   m_EditorClassIdentifier: 
+  id: 
+  idVisuals: 
+  visuals: {fileID: 0}
   title: Evil mushroom
   description: 
   animations: {fileID: 22100000, guid: 167aca33d808e004b8f9a1f2d621e579, type: 2}
@@ -20,11 +23,12 @@ MonoBehaviour:
   hp: 10
   reward: 1
   specialBlockData: {fileID: 11400000, guid: 811a8d35add76ee47a5c220ac186163c, type: 2}
+  specialBlockId: mushroomCurse
   boardLevel: 0
   actionQueue:
   - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  - {fileID: 11400000, guid: d68e46abc4d05c249a73e7895913a05a, type: 2}
-  - {fileID: 11400000, guid: 4b8ab5fd3d82a904e85d6e85d07a4412, type: 2}
+  - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
+  - {fileID: 11400000, guid: d40ec210b870dca4e9cada691faf13ce, type: 2}
   tutorialDescription: Without knowledege there is only uncontrolled anger..
   tutorialTips: []
   fxAttack: {fileID: 2957573975158924296, guid: 4aee8c2df640c9340ae8ae9636807216, type: 3}

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687a75c617848143b40e7c71f43cf6f, type: 3}
+  m_Name: bowman
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: -1233478597, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 330497195, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1280905871, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -2000634360, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 69179409, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -367643086, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -1607877895, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 424864650, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -1686027562, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 787346495, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 247531033, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1284721918, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -2048445363, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 760001829, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1419462912, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1746010019, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 2115346499, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1923851220, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1333595326, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 969766997, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 61769805, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -311678942, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 999220281, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1418326845, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -695580438, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -895323692, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -1432181398, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 2087978545, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -1859693021, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -1414085608, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -672865552, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -2021648643, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1935676505, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 618843819, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1663199222, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -884721965, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1593556086, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 737618635, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -462392577, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 681196499, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 432301606, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 665101354, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -744945476, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 241125293, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 970208739, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 1245313054, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: 2037160781, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  - {fileID: -387907118, guid: e2a781d770e1f5342b5a0c7a7c131699, type: 3}
+  frIddle: 0
+  frAttack1: 0
+  frAttack2: 0
+  frHit: 0
+  hpPos: {x: 0, y: 0}
+  actionPos: {x: 0, y: 0}

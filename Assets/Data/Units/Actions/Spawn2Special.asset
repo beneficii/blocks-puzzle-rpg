@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Spawn2Special
   m_EditorClassIdentifier: 
   prefabVisual: {fileID: 6626167046712530626, guid: 6d06b8f8a8fb40b4fbfc5a76b083f21f, type: 3}
-  count: 1
-  data: {fileID: 0}
+  count: 2
+  blockId: 

@@ -5,6 +5,7 @@ using GridBoard;
 using TileShapes;
 using FancyToolkit;
 using System.Linq;
+using ClearAction;
 
 public class CombatCtrl : MonoBehaviour
 {
@@ -77,6 +78,22 @@ public class CombatCtrl : MonoBehaviour
     public Unit SpawnEnemy(UnitData data)
     {
         var enemy = arena.SpawnEnemy(data);
+        //var data = enemy.data;
+
+        //BtGrid.current.LoadRandomBoard(data.boardLevel, data.specialBlockData);
+
+        //board.LoadRandomLayout(data.boardLevel, data.specialBlockData); // ToDo
+
+        board.LoadRandomLayout();
+        shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
+
+        return enemy;
+    }
+
+    public Unit SpawnEnemy(string id)
+    {
+        var enemy = arena.SpawnEnemy(id);
+        //var data = enemy.data;
 
         //BtGrid.current.LoadRandomBoard(data.boardLevel, data.specialBlockData);
         //ShapePanel.current.GenerateNew();
@@ -146,9 +163,37 @@ public class CombatCtrl : MonoBehaviour
         StartCoroutine(TurnRoutine(delay));
     }
 
+    GenericBullet MakeBullet(Tile parent, AnimCompanion fxPrefab = null)
+    {
+        var rand = Random.Range(0, 2) == 0;
+        var bullet = DataManager.current.gameData.prefabBullet.MakeInstance(parent.transform.position)
+            .AddSpleen(rand ? Vector2.left : Vector2.right)
+            .SetSprite(parent.GetIcon());
+
+
+        if (fxPrefab) bullet.SetFx(fxPrefab);
+
+        return bullet;
+    }
+
     IEnumerator TurnRoutine(float delay)
     {
         yield return new WaitForSeconds(delay);
+
+        //Temp stuff --
+
+        foreach (var item in board.GetNonEmptyTiles())
+        {
+            if (item.data.id == "mushroomCurse")
+            {
+                MakeBullet(item)
+                    .SetTarget(CombatArena.current.player)
+                    .SetDamage(1)
+                    .SetLaunchDelay(0.05f);
+            }
+        }
+
+        //-- Temp stuff
 
         //RunEndOfTurnPassives();
         if (!arena.player || !arena.enemy) yield break;
@@ -192,6 +237,7 @@ public class CombatCtrl : MonoBehaviour
         yield return null;
         var next = MapCtrl.current.Next();
         SpawnEnemy(next.unitData);
+        //SpawnEnemy("slime");
     }
 
 
@@ -232,6 +278,11 @@ public class CombatCtrl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             UIHudDialog.current.Show("test");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UIHudSelectTile.current.Show(SelectTileType.Shop, TileCtrl.current.GetAllTiles().RandN(5));
         }
 
 #endif

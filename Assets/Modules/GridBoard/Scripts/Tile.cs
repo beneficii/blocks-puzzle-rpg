@@ -57,8 +57,6 @@ namespace GridBoard
         public bool IsInProgress => progressBar && progressBar.IsActive;
 
 
-
-
         public TileData data { get; private set; }
         public Vector2Int position { get; set; }
         public Board board { get; set; }
@@ -83,11 +81,10 @@ namespace GridBoard
 
         public Sprite GetIcon() => data.visuals?.sprite;
 
-        public virtual void Init(TileData data, Vector2Int pos = default, Board board = null, int level = -1)
+        public virtual void Init(TileData data, Board board = null, int level = -1)
         {
             this.data = data;
             iconRender.sprite = data.visuals?.sprite;
-            this.position = pos;
             this.board = board;
             if (level >= 0)
             {
@@ -118,7 +115,10 @@ namespace GridBoard
         }
 
         public virtual void Init(Info info, Board board = null, int level = 0)
-            => Init(info.data, info.pos, board, level);
+        {
+            Init(info.data, board, level);
+            position = info.pos;
+        }
 
         IEnumerator DebugBlink(Color color)
         {
@@ -326,6 +326,17 @@ namespace GridBoard
             Board,
             Inventory,
             Hover,
+        }
+
+        public enum Type
+        {
+            None,
+            Weapon,
+            Armor,
+            Spell,
+            Blessing,
+            Trap,
+            Curse,
         }
 
         public class Info

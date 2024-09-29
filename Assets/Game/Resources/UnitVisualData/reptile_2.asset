@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687a75c617848143b40e7c71f43cf6f, type: 3}
+  m_Name: reptile_2
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: -874624792, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -1826708988, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -1135577189, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: 1508076582, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -1434871221, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -1688594657, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: 1251228497, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: 857522600, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -1525803668, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -1119798082, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -42805465, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -1874046924, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: -425469218, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: 1068936501, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  - {fileID: 967110034, guid: fa0af26659aacf24db73da72bb807171, type: 3}
+  frIddle: 0
+  frAttack1: 0
+  frAttack2: 0
+  frHit: 0
+  hpPos: {x: 0, y: 0}
+  actionPos: {x: 0, y: 0}

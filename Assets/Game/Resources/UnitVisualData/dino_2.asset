@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687a75c617848143b40e7c71f43cf6f, type: 3}
+  m_Name: dino_2
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 1583862761, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -559134397, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -1754060222, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -566453757, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -402265092, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -2140152182, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -593839145, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 1261177218, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -610095255, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 1481177904, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -2127388249, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -1535733042, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -543740719, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: -49652941, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 1172042701, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 2129405503, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 818729092, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 173673488, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 1042257272, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  - {fileID: 1168907712, guid: fdf5609a13a8a5542b95b46483475b40, type: 3}
+  frIddle: 0
+  frAttack1: 0
+  frAttack2: 0
+  frHit: 0
+  hpPos: {x: 0, y: 0}
+  actionPos: {x: 0, y: 0}

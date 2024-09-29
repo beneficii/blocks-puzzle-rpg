@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
+using Assets.Scripts.Combat;
 
 [CreateAssetMenu(menuName = "Game/Unit/basic")]
 public class UnitData : ScriptableObject
 {
+    public string id;
+    public string idVisuals;
+    public UnitVisual visuals;
     public string title;
     public string description;
     public AnimatorOverrideController animations;
@@ -14,6 +18,7 @@ public class UnitData : ScriptableObject
     public int hp;
     public BtUpgradeRarity reward = BtUpgradeRarity.Common;
     public BtBlockData specialBlockData;
+    public string specialBlockId;
     public int boardLevel;
 
     public List<UnitActionBase> actionQueue;

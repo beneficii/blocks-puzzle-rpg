@@ -72,6 +72,7 @@ namespace GridBoard
                 }
             }
 
+
             foreach (var x in removeColumns)
             {
                 for (int y = 0; y < height; y++)
@@ -122,7 +123,6 @@ namespace GridBoard
             var pos = tile.position;
             rows[pos.y]++;
             columns[pos.x]++;
-
             Assert.IsTrue(rows[pos.y] <= height);
             Assert.IsTrue(columns[pos.x] <= width);
         }

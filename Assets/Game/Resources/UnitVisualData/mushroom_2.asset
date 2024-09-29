@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687a75c617848143b40e7c71f43cf6f, type: 3}
+  m_Name: mushroom_2
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: -1337360409, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 1560387134, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 473763643, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 30019393, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -937477712, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -226689052, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -1563528742, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 63554358, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 511232450, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 153125067, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 1584732151, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -1625610759, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -1743911303, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 2055037241, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -635486069, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -380406237, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 423445360, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -2103801176, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 833916287, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -525276183, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 406231173, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 190468455, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -819196047, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 105225992, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 988773214, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 632796665, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 621044126, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 1094325972, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -1038870781, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 2121831892, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 816692512, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 1726838132, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 445685, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: -463840947, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  - {fileID: 1308907667, guid: 24cd073ee0c01364e950e68984028ff6, type: 3}
+  frIddle: 0
+  frAttack1: 0
+  frAttack2: 0
+  frHit: 0
+  hpPos: {x: 0, y: 0}
+  actionPos: {x: 0, y: 0}

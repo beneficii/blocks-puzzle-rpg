@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687a75c617848143b40e7c71f43cf6f, type: 3}
+  m_Name: bowman_b
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: -1523922457, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -814842372, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1780648811, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1909690714, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1554853107, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -824437002, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 861244410, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -2128393944, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1061102430, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1247497025, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1334918174, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -618086244, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1817766761, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1095284402, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1108967008, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1339804081, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 2053639112, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1918835410, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1472403158, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1675172960, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -610487580, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -860713336, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 311657015, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1952366059, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 686922938, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 283814469, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1226960625, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1794257518, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1548394564, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1673135773, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 203084011, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -983641903, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 848217698, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1500899235, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1471366874, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1626830237, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1798900056, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1613036817, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 279227020, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 638038934, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1377752529, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -979800191, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 1932059151, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: 981943116, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -922967430, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1575297500, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1828404968, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  - {fileID: -1702481961, guid: 6fbfa5f9f7e1a8f4297ff718f515e3c8, type: 3}
+  frIddle: 0
+  frAttack1: 0
+  frAttack2: 0
+  frHit: 0
+  hpPos: {x: 0, y: 0}
+  actionPos: {x: 0, y: 0}

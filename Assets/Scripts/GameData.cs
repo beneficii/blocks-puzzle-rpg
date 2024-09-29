@@ -14,6 +14,7 @@ public class GameData : ScriptableObject
     public BtBlockData emptyBlock;
     public List<BtBlockData> blocks;
     public List<Sprite> blockSprites;
+    public List<AnimCompanion> vFxs;
 
     public TileColors tileColorsGrid;
     public Sprite spriteBlock;

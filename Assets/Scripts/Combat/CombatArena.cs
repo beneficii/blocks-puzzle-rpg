@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class CombatArena : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class CombatArena : MonoBehaviour
 
     public Unit SpawnEnemy(UnitData data)
     {
+        Assert.IsNotNull(data);
+        //var unit = Instantiate(data.visuals.obj, spotEnemy);
         var unit = Instantiate(prefabUnit, spotEnemy);
         unit.Init(data, Team.Enemy);
         enemy = unit;
@@ -45,10 +48,15 @@ public class CombatArena : MonoBehaviour
         return unit;
     }
 
+    public Unit SpawnEnemy(string id)
+        => SpawnEnemy(UnitCtrl.current.GetUnit(id));
+
     public Unit SpawnPlayer()
     {
+        var data = dataPlayer;//UnitCtrl.current.GetUnit("player");
         var unit = Instantiate(prefabUnit, spotPlayer);
-        unit.Init(dataPlayer, Team.Ally);
+        //var unit = Instantiate(data.visuals.obj, spotPlayer);
+        unit.Init(data, Team.Ally);
         if (startingPlayerHealth > 0)
         {
             unit.SetHp(startingPlayerHealth);

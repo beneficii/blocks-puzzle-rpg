@@ -1,7 +1,24 @@
-id|idVisuals|title|colorCode|description|clearAction|rarity|
-sword|sword|Sword|d7b594||Damage 3|Common|
-shield|shield|Shield|a8ca58||Defense 2|Common|
-special1|special1|Prayer|577277|Doubles your defense||Common|
-special2|special2|Final Blow|394a50|Deal 5 damage for each cleared sword||Common|
-special3|special3|Sunshine|202e37|Reduces damage of the traps by 3 this clear||Common|
-special4|special4|Moonlight|151d28|Enemies will receive damage from their traps||Common|
+id|idVisuals|title|colorCode|description|clearAction|rarity|type|priority
+sword|basic_sword|Sword|a4dddb||Damage 4|Common|weapon|0
+shield|basic_shield|Shield|e8c170||Defense 3|Common|armor|0
+disarmShield|trap_dis_shield|Sturdy Shield||Add 2 defense and disarm one trap||Common|armor|0
+finalStrike|final_blow|Final Strike|df84a5||DamageMultiSpell 7|Common|spell|10
+moonlight|moonlight|Moonlight||Your shields give 1 extra defense||Common|blessing|0
+axe|axe|Axe|||Damage 7|Common|weapon|0
+doubleAxe|axe2|Double Edged Axe||Deal 10 damage and 3 damage to self||Common|weapon|0
+Ring|ring|Golden Ring||Add 2 defense||Common|armor|0
+fireBook|fire_book|Book of Fire|cf573c||SpawnTile 2 fireball|Common|spell|0
+batCurse|bat_curse|Bat curse||Reduces your tile damage by 1||None|curse|0
+trap|basic_trap|Explosive Trap||Deal 10 damage to you||None|trap|0
+mushroomCurse|mushroom|Cursed Mushroom||Deals 1 damage to you every turn||None|curse|0
+fireball|fire|Fireball|||Damage 2|Rare|weapon|0
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
+||||||||
