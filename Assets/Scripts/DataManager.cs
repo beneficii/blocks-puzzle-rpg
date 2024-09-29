@@ -16,6 +16,7 @@ public class DataManager : MonoBehaviour
     public BtBlockData emptyBlock;
     public BtBlockData placeHolderBlock;
     public Dictionary<string, AnimCompanion> vfxDict;
+    public Dictionary<string, GameObject> unitActionDict;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class DataManager : MonoBehaviour
 
         //preBoards = gameData.shapeGenerator.GenerateBoards();
         vfxDict = gameData.vFxs.ToDictionary(x => x.id);
+        unitActionDict = gameData.actionVisuals.ToDictionary(x => x.name);
     }
 
 

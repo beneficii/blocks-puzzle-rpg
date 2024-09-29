@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FancyToolkit;
+using JetBrains.Annotations;
+using UnityEngine.Rendering;
 
 public class UnitVisualData : ScriptableObject
 {
@@ -13,4 +16,11 @@ public class UnitVisualData : ScriptableObject
 
     public Vector2 hpPos;
     public Vector2 actionPos;
+
+    public AnimCompanion fxAttack;
+    public AnimCompanion fxDeath;
+
+    public AudioClip soundAttack;
+    public AudioClip soundAbility;
+    public AudioClip soundDeath;
 }

@@ -33,3 +33,14 @@ public class UnitData : ScriptableObject
     public AudioClip soundAbility;
     public AudioClip soundDeath;
 }
+
+[System.Serializable]
+public class UnitData2
+{
+    public string id;
+    public string name;
+    public string description;
+    public int hp;
+    public string specialTile;
+    public List<UnitAction.Base> actions;
+}

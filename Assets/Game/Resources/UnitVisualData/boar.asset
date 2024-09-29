@@ -49,9 +49,9 @@ MonoBehaviour:
   - {fileID: -1985130213, guid: d574f0ef8464ffd498906669d3f9e661, type: 3}
   - {fileID: -1842397825, guid: d574f0ef8464ffd498906669d3f9e661, type: 3}
   - {fileID: 1940437844, guid: d574f0ef8464ffd498906669d3f9e661, type: 3}
-  frIddle: 0
-  frAttack1: 0
-  frAttack2: 0
-  frHit: 0
-  hpPos: {x: 0, y: 0}
-  actionPos: {x: 0, y: 0}
+  frIddle: 8
+  frAttack1: 12
+  frAttack2: 12
+  frHit: 3
+  hpPos: {x: 0.45, y: -0.4690001}
+  actionPos: {x: 1.61, y: 2.524}

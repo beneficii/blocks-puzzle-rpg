@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using FancyToolkit;
+﻿using FancyToolkit;
+using System.Collections;
 using TMPro;
+using UnityEditor;
+using UnityEngine;
 
 public class Unit : MonoBehaviour, IDamagable
 {
     public ValueBar health;
-    [SerializeField] Animator animator;
-
     [SerializeField] SpriteRenderer render;
 
     [SerializeField] UnitMoveIndicator moveIndicator;
@@ -22,10 +20,15 @@ public class Unit : MonoBehaviour, IDamagable
     [SerializeField] TextMeshPro txtDialog;
     [SerializeField] GameObject contentDialog;
 
+    [SerializeField] Transform parentHp;
+
 
     public static System.Action<Unit> OnKilled;
 
+    UnitAnimator animator;
+
     public UnitData data { get; private set; }
+    public UnitVisualData visuals;
 
     public BtUpgradeRarity reward;
 
@@ -57,11 +60,11 @@ public class Unit : MonoBehaviour, IDamagable
     {
         this.team = team;
         this.data = data;
-        animator.runtimeAnimatorController = data.animations;
         this.reward = data.reward;
         actionIdx = 0;
         SetAction(null);
         SetNextAction();
+        // ToDo: set visual data
 
         refHealth = new IntReference(data.hp, data.hp);
         refArmor = new IntReference(0);
@@ -82,6 +85,9 @@ public class Unit : MonoBehaviour, IDamagable
 
         iconArmor.Init(refArmor);
         SetDialog(null);
+        LoadVisualData();
+        animator = GetComponent<UnitAnimator>();
+        animator.Init(visuals);
     }
 
     public void SetDialog(string text = null)
@@ -229,7 +235,8 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void AnimAttack(int id)
     {
-        animator.SetTrigger($"attack{id}");
+        //animator.SetTrigger($"attack{id}");
+        animator.Play(id == 1 ? AnimType.Attack1 : AnimType.Attack2);
 
         if (id == 1)
         {
@@ -243,11 +250,50 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void AnimGetHit()
     {
-        animator.SetTrigger($"hit");
+        animator.Play(AnimType.Hit);
+        //animator.SetTrigger($"hit");
     }
 
+#if UNITY_EDITOR
+    [EasyButtons.Button]
+    void LoadVisualData()
+    {
+        if (!visuals)
+        {
+            Debug.LogError("Visuals not set!");
+            return;
+        }
 
-    // caption stuff
+        render.sprite = visuals.frames[0];
+        if (visuals.hpPos != default) parentHp.localPosition = visuals.hpPos;
+        if (visuals.actionPos != default) moveIndicator.transform.localPosition = visuals.actionPos;
+    }
+
+    [EasyButtons.Button]
+    void SaveVisualData()
+    {
+        if (!visuals)
+        {
+            Debug.LogError("Visuals not set!");
+            return;
+        }
+
+        visuals.hpPos = parentHp.localPosition;
+        visuals.actionPos = moveIndicator.transform.localPosition;
+        EditorUtility.SetDirty(visuals);
+
+    }
+#endif
+
+    [System.Serializable]
+    public enum AnimType
+    {
+        None,
+        Iddle,
+        Attack1,
+        Attack2,
+        Hit,
+    }
 }
 
 public enum Buffs
