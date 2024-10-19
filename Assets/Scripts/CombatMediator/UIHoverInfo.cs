@@ -74,7 +74,7 @@ public class UIHoverInfo : MonoBehaviour
     {
         var data = unit.data;
 
-        txtTitle.text = data.title;
+        txtTitle.text = data.name;
         txtDescription.text = unit.GetDescription();
 
         foreach (var item in hints) item.Hide();

@@ -10,7 +10,7 @@ public class UnitMoveIndicator : MonoBehaviour
 
     GameObject currentActionVisual;
 
-    public void Init(Unit parent, UnitActionBase action)
+    public void Init(Unit parent, UnitAction.Base action)
     {
         if (action == null)
         {
@@ -27,7 +27,7 @@ public class UnitMoveIndicator : MonoBehaviour
             Destroy(currentActionVisual);
         }
 
-        currentActionVisual = Instantiate(action.prefabVisual, actionParent);
+        currentActionVisual = Instantiate(action.GetIndicatorPrefab(), actionParent);
         txtShortDescription.text = action.GetShortDescription(parent);
     }
 }

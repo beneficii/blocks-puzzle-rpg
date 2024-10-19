@@ -65,5 +65,11 @@ MonoBehaviour:
   frAttack1: 0
   frAttack2: 0
   frHit: 0
+  flipX: 0
   hpPos: {x: 0, y: 0}
   actionPos: {x: 0, y: 0}
+  fxAttack: {fileID: 0}
+  fxDeath: {fileID: 0}
+  soundAttack: {fileID: 0}
+  soundAbility: {fileID: 0}
+  soundDeath: {fileID: 0}

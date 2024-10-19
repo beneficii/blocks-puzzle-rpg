@@ -14,7 +14,7 @@ namespace EnemyAction
             if (parent.lifetime < turns) yield break;
 
             yield return null;
-            parent.reward = BtUpgradeRarity.Common;
+            //parent.reward = BtUpgradeRarity.Common;
             parent.RemoveHp(9999);
 
         }

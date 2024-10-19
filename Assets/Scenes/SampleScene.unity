@@ -418,6 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tableTiles: {fileID: 4900000, guid: 74fb23fd077da464c97197158a3d257d, type: 3}
   tableStartingTiles: {fileID: 4900000, guid: e21e077e224f2ea409bbc4d43af5146a, type: 3}
+  tableUnits: {fileID: 4900000, guid: 0d87e4e20afdc224f9beec775e290359, type: 3}
   tilesPerTurn: 3
 --- !u!114 &56307058
 MonoBehaviour:
@@ -8856,7 +8857,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotPlayer: {fileID: 210677605}
   spotEnemy: {fileID: 6587977460883344717}
-  dataPlayer: {fileID: 11400000, guid: f8afbbdb7def55d40981b7af94da16aa, type: 2}
   prefabUnit: {fileID: 8135095054826031397, guid: 1927174764c74764b813b70acbb5b3ba, type: 3}
   summons: []
 --- !u!1 &1741377445
@@ -10573,7 +10573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 7, y: 7}
-  debugTwoStep: 0
 --- !u!1 &2012474190
 GameObject:
   m_ObjectHideFlags: 0

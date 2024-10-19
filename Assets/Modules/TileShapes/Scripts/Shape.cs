@@ -4,6 +4,7 @@ using UnityEngine;
 using GridBoard;
 using FancyToolkit;
 using System.Linq;
+using log4net.Util;
 
 namespace TileShapes
 {
@@ -26,6 +27,8 @@ namespace TileShapes
         List<Tile> blocks;
 
         Board board;
+
+        bool shouldDestroy;
 
         bool isDragging;
         Vector3 prevDragPosition;
@@ -107,14 +110,19 @@ namespace TileShapes
             //=> Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
             => transform.position + Vector3.up * offsetDrag;
 
-
         public void OnMouseUp()
         {
             if (!isDragging) return;
 
-            //DropAt(DragPosition());
-            DropAt(transform.position);
             SetDragState(false);
+            StartCoroutine(MouseDrop(transform.position));
+        }
+
+        IEnumerator MouseDrop(Vector2 position)
+        {
+            //DropAt(DragPosition());
+            yield return DropAt(position);
+            if (shouldDestroy) Destroy(gameObject);
         }
 
         private void LateUpdate()
@@ -126,34 +134,36 @@ namespace TileShapes
             prevDragPosition = Input.mousePosition;
         }
 
-        public bool DropAt(Vector2Int pos)
+        public IEnumerator DropAt(Vector2Int pos)
         {
-            var placed = board.PlaceTiles(pos.x, pos.y, data.GetTiles(rotation));
-            if (placed != null)
+            var result = board.PlaceTiles(pos.x, pos.y, data.GetTiles(rotation));
+            if (result != null)
             {
-                /*
-                foreach (var block in placed)
-                {
-                    block.SetBg(data.spriteIdx);
-                }*/
+                //foreach (var block in placed) block.SetBg(data.spriteIdx);
                 OnDropped?.Invoke(this, pos);
                 soundPlace?.PlayWithRandomPitch(0.2f);
-                Destroy(gameObject);
-                return true;
+                transform.localScale = Vector3.zero;
+                shouldDestroy = true;
+                foreach (var tile in result)
+                {
+                    yield return tile.OnPlaced();
+                }
+                foreach (var tile in result)
+                {
+                    tile.isPlaced = true;
+                }
             }
             else
             {
                 transform.localPosition = Vector3.zero;
-                return false;
             }
         }
 
-        public bool DropAt(Vector2 worldPos)
+        public IEnumerator DropAt(Vector2 worldPos)
         {
             var gridPos = board.GetGridPos(worldPos);
-            return DropAt(gridPos);
+            yield return DropAt(gridPos);
         }
-
 
         public class Info
         {

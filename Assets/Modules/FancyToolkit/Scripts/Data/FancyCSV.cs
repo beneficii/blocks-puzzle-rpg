@@ -9,6 +9,7 @@ using Nortal.Utilities.Csv;
 using System.Globalization;
 using FixedMath;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace FancyToolkit
 {
@@ -135,7 +136,7 @@ namespace FancyToolkit
                     // If it's the last field name, set the value
                     if (i == fieldNames.Length - 1)
                     {
-                        var convertedValue = ConvertValue(field.FieldType, value);
+                        var convertedValue = ConvertValue(field.FieldType, value, fieldName);
                         field.SetValue(obj, convertedValue);
                     }
                     else
@@ -193,7 +194,7 @@ namespace FancyToolkit
                 return list;
             }
 
-            public static object ConvertValue(Type fType, string value)
+            public static object ConvertValue(Type fType, string value, string dbg = "<none>")
             {
                 if (value == null) value = "";
 

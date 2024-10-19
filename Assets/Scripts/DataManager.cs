@@ -16,7 +16,9 @@ public class DataManager : MonoBehaviour
     public BtBlockData emptyBlock;
     public BtBlockData placeHolderBlock;
     public Dictionary<string, AnimCompanion> vfxDict;
-    public Dictionary<string, GameObject> unitActionDict;
+    public Dictionary<string, FxData> fxDict;
+
+    public Dictionary<string, GameObject> unitActionPrefabs;
 
     private void Awake()
     {
@@ -39,8 +41,31 @@ public class DataManager : MonoBehaviour
         }*/
 
         //preBoards = gameData.shapeGenerator.GenerateBoards();
-        vfxDict = gameData.vFxs.ToDictionary(x => x.id);
-        unitActionDict = gameData.actionVisuals.ToDictionary(x => x.name);
+        unitActionPrefabs = Resources.LoadAll<GameObject>("ActionVisuals").ToDictionary(x => x.name);
+        fxDict = Resources.LoadAll<FxData>("FxData").ToDictionary(x => x.name);
+    }
+
+    public FxAnimator CreateFX(string id, Vector2 position, System.Action action = null)
+    {
+        if (!fxDict.TryGetValue(id, out var data))
+        {
+            Debug.LogError($"No Fx with id `{id}` found!");
+        }
+
+        return CreateFX(data, position, action);
+    }
+
+    public FxAnimator CreateFX(FxData data, Vector2 position, System.Action action = null)
+    {
+        if (!data)
+        {
+            action?.Invoke();
+            return null;
+        }
+        var instance = Instantiate(gameData.fxPrefab, position, Quaternion.identity);
+        instance.Init(data, action);
+
+        return instance;
     }
 
 

@@ -24,33 +24,12 @@ public class UnitCtrl
         }
     }
 
-    public Dictionary<string, UnitData> unitDict { get; private set; }
+    public Dictionary<string, UnitData2> unitDict { get; private set; }
 
-    private UnitVisual CreateScriptableObject(string name)
-    {
-#if UNITY_EDITOR
-        var newObject = ScriptableObject.CreateInstance<UnitVisual>();
+    public UnitData2 GetUnit(string id) => unitDict.Get(id);
+    public List<UnitData2> GetAllUnits() => unitDict.Values.ToList();
 
-        // Ensure the directory exists
-        string path = Path.Combine("Assets/Resources", visualsFolder);
-        if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-
-        // Save the new ScriptableObject to the Resources folder
-        string assetPath = Path.Combine(path, name + ".asset");
-        UnityEditor.AssetDatabase.CreateAsset(newObject, assetPath);
-        UnityEditor.AssetDatabase.SaveAssets();
-
-        Debug.Log("Created new ScriptableObject: " + name);
-        return newObject;
-#else
-        return null;
-#endif
-    }
-
-    public UnitData GetUnit(string id) => unitDict.Get(id);
-    public List<UnitData> GetAllUnits() => unitDict.Values.ToList();
-
-    public TClass GetUnit<TClass>(string id) where TClass : UnitData, new()
+    public TClass GetUnit<TClass>(string id) where TClass : UnitData2, new()
         => unitDict.Get(id) as TClass;
 
 
@@ -59,21 +38,21 @@ public class UnitCtrl
         unitDict = new();
     }
 
-    public void AddData<TClass>(TextAsset csv) where TClass : UnitData, new()
+    public void AddData<TClass>(TextAsset csv) where TClass : UnitData2, new()
     {
-        var visuals = Resources.LoadAll<UnitVisual>(visualsFolder)
+        var visuals = Resources.LoadAll<UnitVisualData>(visualsFolder)
             .ToDictionary(x => x.name);
 
         var list = FancyCSV.FromText<TClass>(csv.text);
         foreach (var item in list)
         {
-            var visualId = item.idVisuals;
+            var visualId = item.id;
 
             if (string.IsNullOrWhiteSpace(visualId)) continue;
 
-            if (!visuals.TryGetValue(visualId, out UnitVisual visual))
+            if (!visuals.TryGetValue(visualId, out UnitVisualData visual))
             {
-                visual = CreateScriptableObject(visualId);
+                Debug.LogError($"No visual data for unit '{visualId}'");
             }
 
             item.visuals = visual;

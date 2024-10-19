@@ -14,7 +14,7 @@ public class TutorialBlockData : BtBlockData, IHasInfo
 
         if (!enemy) return new List<string>();
 
-        return enemy.data.tutorialTips;
+        return new List<string> {"ToDo: replace"}; //enemy.data.tutorialTips;
     }
 
     public override string GetDescription()
@@ -23,7 +23,7 @@ public class TutorialBlockData : BtBlockData, IHasInfo
 
         if (!enemy) return "";
 
-        return enemy.data.tutorialDescription;
+        return "ToDo: replace";//enemy.data.tutorialDescription;
     }
 
     public string GetTitle() => title;

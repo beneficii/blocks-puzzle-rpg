@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe5efd8a2dde647a856aaeb20dc4a6, type: 3}
+  m_Name: bless3
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 58236021, guid: d25366607f243db48bc13b9846eb0b19, type: 3}
+  - {fileID: 1720607322, guid: d25366607f243db48bc13b9846eb0b19, type: 3}
+  - {fileID: 1215331223, guid: d25366607f243db48bc13b9846eb0b19, type: 3}
+  - {fileID: 1131895109, guid: d25366607f243db48bc13b9846eb0b19, type: 3}
+  - {fileID: 898762813, guid: d25366607f243db48bc13b9846eb0b19, type: 3}
+  - {fileID: 756837058, guid: d25366607f243db48bc13b9846eb0b19, type: 3}
+  actionFrame: -1

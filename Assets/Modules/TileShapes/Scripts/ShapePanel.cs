@@ -317,6 +317,7 @@ namespace TileShapes
         {
             if (hints == null || hints.Count == 0) yield break;
 
+            /*
             int idx = 0;
             var list = new List<Hint>(hints);
             foreach (var hint in list)
@@ -333,7 +334,7 @@ namespace TileShapes
                 }
 
                 yield return new WaitForSeconds(0.2f);
-            }
+            }*/
         }
 
 

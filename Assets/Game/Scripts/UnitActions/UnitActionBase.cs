@@ -3,39 +3,98 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridBoard;
 using FancyToolkit;
-using static UnityEngine.Rendering.DebugUI;
 using System.Linq;
-using static UnityEditor.Progress;
 using GridBoard.TileActions;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace UnitAction
 {
     public abstract class Base
     {
-        public virtual string ActionVisual() => "Attack";
-        public virtual string GetDescription(Unit parent) => "";
-        public abstract void Run(Unit parent);
+        public GameObject GetIndicatorPrefab()
+            => DataManager.current.unitActionPrefabs.Get(ActionVisualId);
+
+        public virtual string GetShortDescription(Unit parent) => "";
+        public virtual string GetLongDescription(Unit parent) => "";
+        public virtual string GetTooltip(Unit parent) => "";
+
+        public virtual string ActionVisualId => "Attack";
+        public abstract IEnumerator Run(Unit parent, Unit target);
     }
 
-    public class Damage : Base
+    public class Attack : Base
     {
-        int damage;
-        public override string GetDescription(Unit parent)
-            => $"Deal {damage} damage";
+        int value;
+        public override string GetShortDescription(Unit parent)
+            => $"{value}";
+        public override string GetLongDescription(Unit parent)
+            => $"Will deal {value} damage";
 
-        public Damage(int damage)
+        public Attack(int damage)
         {
-            this.damage = damage;
+            this.value = damage;
         }
 
-        public override void Run(Unit parent)
+        public override IEnumerator Run(Unit parent, Unit target)
         {
+            parent.AnimAttack(1);
+            yield return new WaitForSeconds(0.1f);
+            if (!target || !parent) yield break;
 
+
+            DataManager.current.CreateFX(parent.data.visuals.fxAttack, target.transform.position, ()=>
+            {
+                if (!target) return;
+                target.RemoveHp(value);
+            });
         }
 
         public class Builder : FactoryBuilder<Base, int>
         {
-            public override Base Build() => new Damage(value);
+            public override Base Build() => new Attack(value);
+        }
+    }
+
+    public class Armor : Base
+    {
+        int value;
+        public override string GetShortDescription(Unit parent)
+            => $"{value}";
+        public override string GetLongDescription(Unit parent)
+            => $"Will gain {value} armor";
+
+        public override string ActionVisualId => "Armor";
+
+        public Armor(int damage)
+        {
+            this.value = damage;
+        }
+
+        public override IEnumerator Run(Unit parent, Unit target)
+        {
+            parent.AnimAttack(2);
+            yield return new WaitForSeconds(0.1f);
+            if (!parent) yield break;
+
+            AnimCompanion fx = null; //ToDo //parent.data.visuals.fxAttack;
+            if (fx)
+            {
+                Object.Instantiate(fx, parent.transform.position, Quaternion.identity)
+                    .SetTriggerAction(() =>
+                    {
+                        if (!parent) return;
+                        parent.AddArmor(value);
+                    });
+            }
+            else
+            {
+                parent.AddArmor(value);
+            }
+        }
+
+        public class Builder : FactoryBuilder<Base, int>
+        {
+            public override Base Build() => new Armor(value);
         }
     }
 }

@@ -21,7 +21,6 @@ public class CombatArena : MonoBehaviour
 
     [SerializeField] Transform spotPlayer;
     [SerializeField] Transform spotEnemy;
-    [SerializeField] UnitData dataPlayer;
     public Unit prefabUnit;
 
     public int startingPlayerHealth { get; set; }
@@ -31,10 +30,9 @@ public class CombatArena : MonoBehaviour
 
     public List<Unit> summons;
 
-    public Unit SpawnEnemy(UnitData data)
+    public Unit SpawnEnemy(UnitData2 data)
     {
         Assert.IsNotNull(data);
-        //var unit = Instantiate(data.visuals.obj, spotEnemy);
         var unit = Instantiate(prefabUnit, spotEnemy);
         unit.Init(data, Team.Enemy);
         enemy = unit;
@@ -53,10 +51,8 @@ public class CombatArena : MonoBehaviour
 
     public Unit SpawnPlayer()
     {
-        var data = dataPlayer;//UnitCtrl.current.GetUnit("player");
         var unit = Instantiate(prefabUnit, spotPlayer);
-        //var unit = Instantiate(data.visuals.obj, spotPlayer);
-        unit.Init(data, Team.Ally);
+        unit.Init(UnitCtrl.current.GetUnit("mage"), Team.Ally);
         if (startingPlayerHealth > 0)
         {
             unit.SetHp(startingPlayerHealth);

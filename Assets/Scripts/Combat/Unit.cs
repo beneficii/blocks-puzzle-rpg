@@ -1,13 +1,18 @@
 ﻿using FancyToolkit;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour, IDamagable
 {
     public ValueBar health;
     [SerializeField] SpriteRenderer render;
+    [SerializeField] SpriteRenderer shadow;
 
     [SerializeField] UnitMoveIndicator moveIndicator;
 
@@ -22,31 +27,27 @@ public class Unit : MonoBehaviour, IDamagable
 
     [SerializeField] Transform parentHp;
 
-
     public static System.Action<Unit> OnKilled;
 
     UnitAnimator animator;
 
-    public UnitData data { get; private set; }
+    public UnitData2 data { get; private set; }
     public UnitVisualData visuals;
 
-    public BtUpgradeRarity reward;
-
-    public Team team { get; private set; }
+    public Team team { get; private set; } = Team.Enemy;
 
     IntReference refHealth;
     IntReference refArmor;
 
-    UnitActionBase nextAction;
+    UnitAction.Base nextAction;
     Unit target;
 
+    public List<int> modifiers;
     public int lifetime = 0;
 
     public string GetDescription()
     {
-        if (nextAction) return nextAction.GetDescription(this);
-
-        return data.description;
+        return nextAction?.GetLongDescription(this)??data.description;
     }
 
     public string GetTooltip()
@@ -56,15 +57,15 @@ public class Unit : MonoBehaviour, IDamagable
 
     int actionIdx = 0;
 
-    public void Init(UnitData data, Team team)
+    public void Init(UnitData2 data, Team team)
     {
+        Assert.IsNotNull(data);
         this.team = team;
         this.data = data;
-        this.reward = data.reward;
+        visuals = data.visuals;
         actionIdx = 0;
         SetAction(null);
         SetNextAction();
-        // ToDo: set visual data
 
         refHealth = new IntReference(data.hp, data.hp);
         refArmor = new IntReference(0);
@@ -88,6 +89,9 @@ public class Unit : MonoBehaviour, IDamagable
         LoadVisualData();
         animator = GetComponent<UnitAnimator>();
         animator.Init(visuals);
+        modifiers = Enumerable
+            .Repeat(0, EnumUtil.GetLength<Modifier>())
+            .ToList();
     }
 
     public void SetDialog(string text = null)
@@ -107,17 +111,28 @@ public class Unit : MonoBehaviour, IDamagable
         this.target = target;
     }
 
-    public void SetNextAction()
+    public int GetModifier(Modifier type)
     {
-        if (data.actionQueue.Count == 0) return;
-        var action = data.actionQueue[actionIdx];
-
-        SetAction(action);
-
-        actionIdx = (actionIdx + 1) % data.actionQueue.Count;
+        return modifiers[(int)type];
     }
 
-    public void SetAction(UnitActionBase action)
+    public bool GetModifier(Modifier type, out int value)
+    {
+        value = modifiers[(int)type];
+        return value != 0;
+    }
+
+    public void SetNextAction()
+    {
+        if (data.actions.Count == 0) return;
+        var action = data.actions[actionIdx];
+
+        SetAction(action.Build());
+
+        actionIdx = (actionIdx + 1) % data.actions.Count;
+    }
+
+    public void SetAction(UnitAction.Base action)
     {
         moveIndicator.Init(this, action);
         nextAction = action;
@@ -133,17 +148,8 @@ public class Unit : MonoBehaviour, IDamagable
     void HandleOutOfHealth()
     {
         OnKilled?.Invoke(this);
-        data.soundDeath?.PlayNow();
-        var fxDeath = data.fxDeath;
-        if (fxDeath)
-        {
-            Instantiate(fxDeath, transform.position, Quaternion.identity)
-                .SetTriggerAction(Destroy);
-        }
-        else
-        {
-            Destroy();
-        }
+        data.visuals.soundDeath?.PlayNow();
+        DataManager.current.CreateFX(data.visuals.fxDeath, transform.position, Destroy);
     }
 
     void HandleHealthChange(int value, int delta)
@@ -158,6 +164,7 @@ public class Unit : MonoBehaviour, IDamagable
     public void SetFlip(bool value)
     {
         render.flipX = value;
+        shadow.flipX = value;
     }
 
     public int GetArmor()
@@ -210,8 +217,8 @@ public class Unit : MonoBehaviour, IDamagable
     public IEnumerator RoundActionPhase()
     {
         lifetime++;
-        if (!nextAction) yield break;
-        yield return nextAction.Execute(this, target);
+        if (nextAction == null) yield break;
+        yield return nextAction.Run(this, target);
         SetNextAction();
     }
 
@@ -240,11 +247,11 @@ public class Unit : MonoBehaviour, IDamagable
 
         if (id == 1)
         {
-            data.soundAttack?.PlayNow();
+            data.visuals.soundAttack?.PlayNow();
         }
         if (id == 2)
         {
-            data.soundAbility?.PlayNow();
+            data.visuals.soundAbility?.PlayNow();
         }
     }
 
@@ -265,8 +272,14 @@ public class Unit : MonoBehaviour, IDamagable
         }
 
         render.sprite = visuals.frames[0];
+        SetFlip((team == Team.Ally) != visuals.flipX);
         if (visuals.hpPos != default) parentHp.localPosition = visuals.hpPos;
         if (visuals.actionPos != default) moveIndicator.transform.localPosition = visuals.actionPos;
+        /*if (visuals.shadow != default)
+        {
+            shadow.localPosition = new(visuals.shadow.x, 0, 0);
+            shadow.localScale = new(visuals.shadow.y, visuals.shadow.y/10, 1);
+        }*/
     }
 
     [EasyButtons.Button]
@@ -280,6 +293,11 @@ public class Unit : MonoBehaviour, IDamagable
 
         visuals.hpPos = parentHp.localPosition;
         visuals.actionPos = moveIndicator.transform.localPosition;
+        visuals.flipX = render.flipX;
+        /*visuals.shadow = new(
+            shadow.localPosition.x,
+            shadow.localScale.x
+        );*/
         EditorUtility.SetDirty(visuals);
 
     }
@@ -294,6 +312,14 @@ public class Unit : MonoBehaviour, IDamagable
         Attack2,
         Hit,
     }
+
+    public enum Modifier
+    {
+        None,
+        SwordAttack,
+        AttackPerTurn,
+        RingHeals,
+    }
 }
 
 public enum Buffs
@@ -306,6 +332,6 @@ public enum Buffs
 
 public enum Team
 {
-    Ally,
     Enemy,
+    Ally,
 }

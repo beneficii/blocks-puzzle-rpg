@@ -49,6 +49,8 @@ namespace GridBoard
             }
         }
 
+        public bool isPlaced;
+
         public int GetPower()
         {
             return 1 << Level;
@@ -81,11 +83,10 @@ namespace GridBoard
 
         public Sprite GetIcon() => data.visuals?.sprite;
 
-        public virtual void Init(TileData data, Board board = null, int level = -1)
+        public virtual void Init(TileData data, int level = -1)
         {
             this.data = data;
             iconRender.sprite = data.visuals?.sprite;
-            this.board = board;
             if (level >= 0)
             {
                 Level = level;
@@ -114,9 +115,14 @@ namespace GridBoard
             if (progressBar) progressBar.OnFinished += HandleProgressFinished;
         }
 
-        public virtual void Init(Info info, Board board = null, int level = 0)
+        public virtual void InitBoard(Board board)
         {
-            Init(info.data, board, level);
+            this.board = board;
+        }
+
+        public virtual void Init(Info info, int level = 0)
+        {
+            Init(info.data, level);
             position = info.pos;
         }
 
@@ -259,6 +265,11 @@ namespace GridBoard
             StartCoroutine(ClickRoutine());
         }
 
+        public virtual void OnRemoved()
+        {
+
+        }
+
         IEnumerator UpgradeRoutine()
         {
             float speed = 1f;
@@ -273,6 +284,11 @@ namespace GridBoard
             }
 
             transform.localScale = Vector3.one;
+        }
+
+        public virtual IEnumerator OnPlaced()
+        {
+            yield return null;
         }
 
         public void AnimateUpgrade()
@@ -308,6 +324,11 @@ namespace GridBoard
         {
             progressCallback = callback;
             if (progressBar) progressBar.StartProgress(duration);
+        }
+
+        public bool HasTag(string tag)
+        {
+            return data.tags.Contains(tag);
         }
 
         private void FixedUpdate()

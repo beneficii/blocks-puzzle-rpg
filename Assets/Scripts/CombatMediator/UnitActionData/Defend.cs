@@ -10,13 +10,17 @@ namespace EnemyAction
     {
         public override IEnumerator Execute(Unit parent, Unit target)
         {
-            if (!target) yield break;
-
-            parent.AnimAttack(2);
-            parent.AddArmor(parent.data.defense);
+            throw new System.NotImplementedException();
         }
 
-        public override string GetDescription(Unit parent) => $"Will Gain {parent.data.defense} armor";
-        public override string GetShortDescription(Unit parent) => $"{parent.data.defense}";
+        public override string GetDescription(Unit parent)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override string GetShortDescription(Unit parent)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

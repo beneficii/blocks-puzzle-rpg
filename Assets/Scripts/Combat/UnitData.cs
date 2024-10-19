@@ -38,9 +38,10 @@ public class UnitData : ScriptableObject
 public class UnitData2
 {
     public string id;
+    public UnitVisualData visuals;
     public string name;
     public string description;
     public int hp;
     public string specialTile;
-    public List<UnitAction.Base> actions;
+    public List<FactoryBuilder<UnitAction.Base>> actions = new();
 }

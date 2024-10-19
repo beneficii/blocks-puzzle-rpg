@@ -14,11 +14,13 @@ public class UnitVisualData : ScriptableObject
     public int frAttack2;
     public int frHit;
 
+    public bool flipX = true;
+
     public Vector2 hpPos;
     public Vector2 actionPos;
 
-    public AnimCompanion fxAttack;
-    public AnimCompanion fxDeath;
+    public FxData fxAttack;
+    public FxData fxDeath;
 
     public AudioClip soundAttack;
     public AudioClip soundAbility;

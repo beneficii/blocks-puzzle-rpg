@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fe5efd8a2dde647a856aaeb20dc4a6, type: 3}
+  m_Name: fire2
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 126512581, guid: d7f7f5358619b6947be955222f03e246, type: 3}
+  - {fileID: 1823866968, guid: d7f7f5358619b6947be955222f03e246, type: 3}
+  - {fileID: 924273524, guid: d7f7f5358619b6947be955222f03e246, type: 3}
+  - {fileID: 1107329111, guid: d7f7f5358619b6947be955222f03e246, type: 3}
+  actionFrame: -1

@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class UnitAnimator : MonoBehaviour
 {
     const float frameDelay = .1f;
 
-    [SerializeField] SpriteRenderer render;
+    [SerializeField] List<SpriteRenderer> renders;
     UnitVisualData data;
 
     System.Action action;
@@ -49,7 +50,7 @@ public class UnitAnimator : MonoBehaviour
                 return;
         }
 
-        nextFrame = 0f;
+        nextFrame = Time.time;
         Update();
     }
 
@@ -57,9 +58,12 @@ public class UnitAnimator : MonoBehaviour
     private void Update()
     {
         if (currentAnim == Unit.AnimType.None || nextFrame > Time.time) return;
-        nextFrame = Time.time + frameDelay;
+        nextFrame = nextFrame + frameDelay;
 
-        render.sprite = data.frames[frameOffset + frameIdx];
+        foreach (var render in renders)
+        {
+            render.sprite = data.frames[frameOffset + frameIdx];
+        }
 
         frameIdx++;
         if (frameIdx >= frameCount)

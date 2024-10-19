@@ -125,7 +125,7 @@ namespace GridBoard
             instance.transform.localPosition = Vector3.zero;
             tiles[x, y] = instance;
             instance.position = new(x, y);
-            instance.board = this;
+            instance.InitBoard(this);
 
             calculateGrid = true;
             instance.SetRenderLayer(Tile.RenderLayer.Board);
@@ -377,6 +377,7 @@ namespace GridBoard
             var pos = tile.position;
             if (oldBoard.GetItem(pos) == tile)
             {
+                tile.OnRemoved();
                 tile.board.OnTileRemoved?.Invoke(tile);
                 oldBoard.tiles[pos.x, pos.y] = null;
             }
@@ -389,8 +390,9 @@ namespace GridBoard
 
             if (tile.Collect())
             {
-                tiles[x, y] = null;
+                tile.OnRemoved();
                 OnTileRemoved?.Invoke(tile);
+                tiles[x, y] = null;
                 return tile;
             }
             else
@@ -528,6 +530,9 @@ namespace GridBoard
                 }
             }
         }
+
+        public IEnumerable<TTile> GetNonEmptyTiles<TTile>() where TTile : Tile
+            => GetNonEmptyTiles().Cast<TTile>();
 
         public IEnumerable<Tile.Info> GetTileInfos()
         {

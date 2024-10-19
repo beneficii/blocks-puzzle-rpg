@@ -5,17 +5,29 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEditor.U2D.Sprites;
 using System.Linq;
+using Mono.Cecil;
 
 public class UnitVisualDataGenerator
 {
+    const string rootFolder = "Assets/Game/Sprites/Units";
+    const string dataAssetFolder = "Assets/Game/Resources/UnitVisualData";
+
+    [MenuItem("Tools/Print Visual Data")]
+    public static void PrintVisualData()
+    {
+        var sb = new System.Text.StringBuilder();
+        foreach (var item in Resources.LoadAll<UnitVisualData>("UnitVisualData"))
+        {
+            sb.AppendLine($"{item.name}\t{item.name}\t\t{100}\t\tAttack 4; Armor 2");
+        } 
+
+        Debug.Log(sb);
+    }
+
 
     [MenuItem("Tools/Generate Unit Visual Data")]
     public static void GenerateUnitVisualData()
     {
-        string rootFolder = "Assets/Game/Sprites/Units";
-
-        string dataAssetFolder = "Assets/Game/Resources/UnitVisualData";
-
         // Iterate over subfolders
         string[] subfolders = Directory.GetDirectories(rootFolder);
 
@@ -50,7 +62,7 @@ public class UnitVisualDataGenerator
                 int spriteWidth = int.Parse(widthStr);
                 int spriteHeight = int.Parse(heightStr);
 
-                SpriteSheetSlicer.SliceSpriteSheet(new(spriteWidth, spriteHeight), pngFile);
+                SpriteSheetSlicer.SliceSpriteSheetByPixels(new(spriteWidth, spriteHeight), pngFile);
 
                 // Get the asset path
                 string assetPath = pngFile.Replace(Application.dataPath, "").Replace("\\", "/");

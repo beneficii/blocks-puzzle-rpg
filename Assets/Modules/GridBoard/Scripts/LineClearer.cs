@@ -148,6 +148,9 @@ namespace GridBoard
         public int rowsMatched;
         public int columnsMatched;
 
+        // values
+        public int valTotalDamage;
+
         public LineClearData(HashSet<Tile> blocks, int rowsMatched, int columnsMatched, List<Tile> emptyTiles)
         {
             this.tiles = blocks;

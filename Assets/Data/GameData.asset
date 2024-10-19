@@ -39,3 +39,4 @@ MonoBehaviour:
   prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
   prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}
   prefabBullet: {fileID: 7667046944190593093, guid: 1876af816686cf94d80eae434ee347c4, type: 3}
+  fxPrefab: {fileID: 9081837997925683738, guid: 1bfffaae75667834baef60651d95285a, type: 3}

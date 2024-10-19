@@ -5,12 +5,12 @@ using GridBoard;
 using TileShapes;
 using FancyToolkit;
 using System.Linq;
-using ClearAction;
 
 public class CombatCtrl : MonoBehaviour
 {
     [SerializeField] TextAsset tableTiles;
     [SerializeField] TextAsset tableStartingTiles;
+    [SerializeField] TextAsset tableUnits;
 
     Board board;
     TileShapes.ShapePanel shapePanel;
@@ -26,6 +26,7 @@ public class CombatCtrl : MonoBehaviour
     private void Awake()
     {
         TileCtrl.current.AddData<MyTileData>(tableTiles);
+        UnitCtrl.current.AddData<UnitData2>(tableUnits);
         
         board = FindAnyObjectByType<Board>();
         board.Init();
@@ -71,11 +72,11 @@ public class CombatCtrl : MonoBehaviour
         if (unit == arena.enemy || unit == arena.player)
         {
             StopAllCoroutines();
-            StartCoroutine(CombatFinished(unit.reward));
+            StartCoroutine(CombatFinished());
         }
     }
 
-    public Unit SpawnEnemy(UnitData data)
+    public Unit SpawnEnemy(UnitData2 data)
     {
         var enemy = arena.SpawnEnemy(data);
         //var data = enemy.data;
@@ -105,11 +106,13 @@ public class CombatCtrl : MonoBehaviour
         return enemy;
     }
 
-    IEnumerator CombatFinished(BtUpgradeRarity reward)
+    IEnumerator CombatFinished()
     {
         yield return new WaitForSeconds(2f);
         HelpPanel.current.Close();  // just in case
-        
+
+        UIHudRewards.current.Show(new List<string> { "gold 1", "gold 20", "tile", "tile" });
+
         /*
         if (!arena.player)
         {
@@ -147,7 +150,7 @@ public class CombatCtrl : MonoBehaviour
         MyTile tile;
         while ((tile = lineClearInfo.PickNextTile() as MyTile) != null)
         {
-            tile.myData.clearAction?.Build().Run(tile, lineClearInfo);
+            tile.OnCleared(lineClearInfo);
         }
     }
 
@@ -163,39 +166,16 @@ public class CombatCtrl : MonoBehaviour
         StartCoroutine(TurnRoutine(delay));
     }
 
-    GenericBullet MakeBullet(Tile parent, AnimCompanion fxPrefab = null)
-    {
-        var rand = Random.Range(0, 2) == 0;
-        var bullet = DataManager.current.gameData.prefabBullet.MakeInstance(parent.transform.position)
-            .AddSpleen(rand ? Vector2.left : Vector2.right)
-            .SetSprite(parent.GetIcon());
-
-
-        if (fxPrefab) bullet.SetFx(fxPrefab);
-
-        return bullet;
-    }
-
     IEnumerator TurnRoutine(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        //Temp stuff --
-
-        foreach (var item in board.GetNonEmptyTiles())
+        //RunEndOfTurnPassives();
+        foreach (var item in board.GetNonEmptyTiles<MyTile>())
         {
-            if (item.data.id == "mushroomCurse")
-            {
-                MakeBullet(item)
-                    .SetTarget(CombatArena.current.player)
-                    .SetDamage(1)
-                    .SetLaunchDelay(0.05f);
-            }
+            yield return item.EndOfTurn();
         }
 
-        //-- Temp stuff
-
-        //RunEndOfTurnPassives();
         if (!arena.player || !arena.enemy) yield break;
         yield return new WaitForSeconds(delay / 2f);
 
@@ -236,7 +216,7 @@ public class CombatCtrl : MonoBehaviour
     {
         yield return null;
         var next = MapCtrl.current.Next();
-        SpawnEnemy(next.unitData);
+        SpawnEnemy("boar");
         //SpawnEnemy("slime");
     }
 

@@ -28,7 +28,6 @@ namespace BlockAction
                     totalDamage += damageMultiplier;
 
                     MakeBullet(item.transform.position)
-                        .SetFx(null)
                         .SetSprite(item.data.sprite)
                         .SetTarget(parent)
                         .SetLaunchDelay(0.1f);

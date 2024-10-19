@@ -27,9 +27,6 @@ public abstract class BlockActionBase : ScriptableObject
             .SetSprite(parent.data.sprite);
 
 
-        if (fxPrefab) bullet.SetFx(fxPrefab);
-
         return bullet;
-            
     }
 }
