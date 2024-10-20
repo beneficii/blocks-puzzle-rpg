@@ -9,8 +9,6 @@ namespace GridBoard
 {
     public class LineClearer : MonoBehaviour, Board.IModule
     {
-        public static event System.Action<LineClearData> OnCleared;
-
         [SerializeField] AudioClip soundMatchOne;
         [SerializeField] AudioClip soundMatchMultiple;
 
@@ -21,6 +19,7 @@ namespace GridBoard
 
         Board board;
 
+        static HashSet<ILineClearHandler> lineClearHandlers = new();
 
         public void InitBoard(Board board)
         {
@@ -47,6 +46,16 @@ namespace GridBoard
             board.OnTilePlaced -= HandleTilePlaced;
             board.OnTileRemoved -= HandleTileRemoved;
             board.OnChanged -= HandleBoardChanged;
+        }
+
+        public static void AddHandler(ILineClearHandler handler)
+        {
+            lineClearHandlers.Add(handler);
+        }
+
+        public static void RemoveHandler(ILineClearHandler handler)
+        {
+            lineClearHandlers.Remove(handler);
         }
 
         void HandleBoardChanged()
@@ -77,7 +86,7 @@ namespace GridBoard
             {
                 for (int y = 0; y < height; y++)
                 {
-                    var tile = board.CollectAt(x, y);
+                    var tile = board.PopOutAt(x, y);
                     if (tile) tilesRemoved.Add(tile);
                 }
             }
@@ -86,7 +95,7 @@ namespace GridBoard
             {
                 for (int x = 0; x < width; x++)
                 {
-                    var tile = board.CollectAt(x, y);
+                    var tile = board.PopOutAt(x, y);
                     if (tile) tilesRemoved.Add(tile);
                 }
             }
@@ -95,17 +104,7 @@ namespace GridBoard
 
             if (totalCleared > 0)
             {
-                var tileSet = new HashSet<Tile>();
-                foreach (var item in tilesRemoved)
-                {
-                    if (!item.data.isEmpty)
-                    {
-                        tileSet.Add(item);
-                    }
-                }
-
-                OnCleared?.Invoke(new (tileSet, removeRows.Count, removeColumns.Count, board.GetEmptyTiles().ToList()));
-
+                // ToDo: maybe move sound to tiles themselves
                 if (totalCleared < 3)
                 {
                     soundMatchOne?.PlayWithRandomPitch(0.2f);
@@ -114,6 +113,36 @@ namespace GridBoard
                 {
                     soundMatchMultiple?.PlayWithRandomPitch(0.1f);
                 }
+
+                StartCoroutine(ClearRoutine(tilesRemoved, removeRows.Count, removeColumns.Count));
+            }
+        }
+
+        IEnumerator ClearRoutine(List<Tile> tilesRemoved, int rowsCount, int columnsCount)
+        {
+            var tileSet = new HashSet<Tile>();
+            foreach (var item in tilesRemoved)
+            {
+                if (!item.data.isEmpty)
+                {
+                    tileSet.Add(item);
+                }
+            }
+
+            var clearData = new LineClearData(tileSet, rowsCount, columnsCount);
+
+            foreach (var handler in lineClearHandlers)
+            {
+                yield return handler.HandleLinesCleared(clearData);
+            }
+
+            yield return new WaitForSeconds(.2f);
+            tileSet = new HashSet<Tile>(tilesRemoved);
+            foreach (var item in tileSet)
+            {
+                yield return item.FadeOut(10f);
+                item.OnRemoved();
+                Destroy(item.gameObject);
             }
         }
         
@@ -138,12 +167,15 @@ namespace GridBoard
         }
     }
 
+    public interface ILineClearHandler
+    {
+        public IEnumerator HandleLinesCleared(LineClearData clearData);
+    }
 
     public class LineClearData
     {
         public HashSet<Tile> tiles;
         Queue<Tile> queue;
-        public Queue<Tile> emptyTiles;    // empty blocks left on board (for spawning)
 
         public int rowsMatched;
         public int columnsMatched;
@@ -151,13 +183,12 @@ namespace GridBoard
         // values
         public int valTotalDamage;
 
-        public LineClearData(HashSet<Tile> blocks, int rowsMatched, int columnsMatched, List<Tile> emptyTiles)
+        public LineClearData(HashSet<Tile> blocks, int rowsMatched, int columnsMatched)
         {
             this.tiles = blocks;
             queue = new Queue<Tile>(blocks.OrderByDescending(x => x.data.priority));
             this.rowsMatched = rowsMatched;
             this.columnsMatched = columnsMatched;
-            this.emptyTiles = new Queue<Tile>(emptyTiles.Shuffled());
         }
 
         public Tile PickNextTile()

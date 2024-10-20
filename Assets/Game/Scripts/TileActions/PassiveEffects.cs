@@ -3,9 +3,7 @@ using System.Collections;
 using UnityEngine;
 using GridBoard;
 
-namespace PassiveEffect
+namespace TileActions
 {
-    public abstract class Base : TileActions.Base
-    {
-    }
+
 }

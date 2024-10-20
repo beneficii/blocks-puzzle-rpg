@@ -1,18 +1,11 @@
-﻿using ClearAction;
-using FancyToolkit;
+﻿using FancyToolkit;
 using GridBoard;
 using System.Collections;
 using UnityEngine;
 
-namespace SimpleAction
+namespace TileActions
 {
-    public abstract class Base : TileActions.Base
-    {
-        public abstract IEnumerator Run();
-    }
-
-
-    public class Damage : Base
+    public class Damage : TileActionBase
     {
         public override string GetDescription(MyTile parent)
             => $"Deal {Power} damage";
@@ -31,13 +24,13 @@ namespace SimpleAction
             yield return new WaitForSeconds(.2f);
         }
 
-        public class Builder : FactoryBuilder<Base>
+        public class Builder : FactoryBuilder<TileActionBase>
         {
-            public override Base Build() => new Damage();
+            public override TileActionBase Build() => new Damage();
         }
     }
 
-    public class DamagePlayer : Base
+    public class DamagePlayer : TileActionBase
     {
         public override string GetDescription(MyTile parent)
             => $"Deal {Power} damage to the player";
@@ -56,12 +49,56 @@ namespace SimpleAction
             yield return new WaitForSeconds(.2f);
         }
 
-        public class Builder : FactoryBuilder<Base>
+        public class Builder : FactoryBuilder<TileActionBase>
         {
-            public override Base Build()
+            public override TileActionBase Build()
             {
                 return new DamagePlayer();
             }
+        }
+    }
+
+    
+    public class BuffPowerAround : TileActionBase
+    {
+        int value;
+        TileStatType type;
+        public override string GetDescription(MyTile parent)
+            => $"Add {value} {type} to surrounding tiles";
+
+        public BuffPowerAround(int value, TileStatType type)
+        {
+            this.value = value;
+            this.type = type;
+        }
+
+        public override IEnumerator Run()
+        {
+            foreach (var item in parent.board.GetTilesAround(parent.position.x, parent.position.y))
+            {
+                if (item is not MyTile tile 
+                    || tile.myData == null
+                    || tile.myData.powerType != type) continue;
+
+                tile.Power += value;
+                yield return new WaitForSeconds(.1f);
+
+            }
+
+            yield return new WaitForSeconds(.2f);
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase, int>
+        {
+            TileStatType type;
+
+            public override void Init(StringScanner scanner)
+            {
+                base.Init(scanner);
+                type = scanner.NextEnum<TileStatType>();
+            }
+
+            public override TileActionBase Build() => new BuffPowerAround(value, type);
         }
     }
 }

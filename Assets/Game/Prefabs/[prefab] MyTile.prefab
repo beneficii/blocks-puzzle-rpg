@@ -410,9 +410,13 @@ MonoBehaviour:
   attentionIndicator: {fileID: 0}
   progressBar: {fileID: 0}
   bgSprites: []
+  bgSprite2: {fileID: 21300000, guid: 9b72fa73400c6db4fb73dc9220409c0a, type: 3}
   debug: 0
   objLabels: []
   txtLevelCaption: {fileID: 0}
+  isPlaced: 0
+  isTaken: 0
+  isRemoved: 0
   txtPower: {fileID: 8751292083395359731}
 --- !u!1 &5962848257403878483
 GameObject:

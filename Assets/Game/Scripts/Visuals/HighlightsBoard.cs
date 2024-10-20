@@ -5,9 +5,8 @@ using UnityEngine;
 using GridBoard;
 using FancyToolkit;
 using System;
-using static UnityEditor.Progress;
 
-public class HighlightsBoard : MonoBehaviour
+public class HighlightsBoard : MonoBehaviour, ILineClearHandler
 {
     [SerializeField] List<TileTypeColor> typeColors;
     [SerializeField] List<SpriteRenderer> sideOrnaments;
@@ -16,36 +15,17 @@ public class HighlightsBoard : MonoBehaviour
 
     private void OnEnable()
     {
-        LineClearer.OnCleared += HandleLinesCleared;
+        LineClearer.AddHandler(this);
     }
     
     private void OnDisable()
     {
-        LineClearer.OnCleared -= HandleLinesCleared;
+        LineClearer.RemoveHandler(this);
     }
 
     void Init()
     {
         typeDict = typeColors.ToDictionary(x=>x.type);
-    }
-
-    private void HandleLinesCleared(LineClearData clearData)
-    {
-        if (typeDict == null) Init();
-
-        if (clearData.tiles.Count == 0) return;
-
-        var counter = new int[EnumUtil.GetLength<Tile.Type>()];
-        foreach (var item in clearData.tiles)
-        {
-            counter[(int)item.data.type]++;
-        }
-        var (_, maxIndex) = counter.Select((n, i) => (n, i)).Max();
-        if (typeDict.TryGetValue((Tile.Type)maxIndex, out var data))
-        {
-            StartCoroutine(Glow(data));
-        }
-
     }
 
     IEnumerator Glow(TileTypeColor data, float halfDuration = 0.8f)
@@ -85,6 +65,24 @@ public class HighlightsBoard : MonoBehaviour
 
         if (data.render) data.render.SetAlpha(0f);
         foreach (var item in sideOrnaments) item.SetAlpha(0);
+    }
+
+    IEnumerator ILineClearHandler.HandleLinesCleared(LineClearData clearData)
+    {
+        if (typeDict == null) Init();
+
+        if (clearData.tiles.Count == 0) yield break;
+
+        var counter = new int[EnumUtil.GetLength<Tile.Type>()];
+        foreach (var item in clearData.tiles)
+        {
+            counter[(int)item.data.type]++;
+        }
+        var (_, maxIndex) = counter.Select((n, i) => (n, i)).Max();
+        if (typeDict.TryGetValue((Tile.Type)maxIndex, out var data))
+        {
+            StartCoroutine(Glow(data));
+        }
     }
 
     [System.Serializable]

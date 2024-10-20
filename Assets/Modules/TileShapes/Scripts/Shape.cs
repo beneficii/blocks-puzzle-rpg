@@ -139,6 +139,9 @@ namespace TileShapes
             var result = board.PlaceTiles(pos.x, pos.y, data.GetTiles(rotation));
             if (result != null)
             {
+                // prevent calculating until OnPlace Actions execute
+                board.SetShouldCalculate(false);
+                board.GenerateEmptyTileQueue();
                 //foreach (var block in placed) block.SetBg(data.spriteIdx);
                 OnDropped?.Invoke(this, pos);
                 soundPlace?.PlayWithRandomPitch(0.2f);
@@ -152,6 +155,7 @@ namespace TileShapes
                 {
                     tile.isPlaced = true;
                 }
+                board.SetShouldCalculate(true);
             }
             else
             {

@@ -5,12 +5,14 @@ using GridBoard;
 using TileShapes;
 using FancyToolkit;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
-public class CombatCtrl : MonoBehaviour
+public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
     [SerializeField] TextAsset tableTiles;
     [SerializeField] TextAsset tableStartingTiles;
     [SerializeField] TextAsset tableUnits;
+    [SerializeField] TextAsset tableStages;
 
     Board board;
     TileShapes.ShapePanel shapePanel;
@@ -23,8 +25,15 @@ public class CombatCtrl : MonoBehaviour
 
     public int tilesPerTurn = 5;
 
+    public static void LoadScene(string id)
+    {
+        StageCtrl.current.SetStage(id);
+        SceneManager.LoadScene("Combat");
+    }
+
     private void Awake()
     {
+        StageCtrl.current.AddData(tableStages);
         TileCtrl.current.AddData<MyTileData>(tableTiles);
         UnitCtrl.current.AddData<UnitData2>(tableUnits);
         
@@ -44,7 +53,7 @@ public class CombatCtrl : MonoBehaviour
 
     private void OnEnable()
     {
-        LineClearer.OnCleared += HandleLinesCleared;
+        LineClearer.AddHandler(this);
         //BtGrid.OnBoardChanged += HandleBoardChanged;
         shapePanel.OnOutOfShapes += NewTurn;
         Unit.OnKilled += HandleUnitKilled;
@@ -54,7 +63,7 @@ public class CombatCtrl : MonoBehaviour
 
     private void OnDisable()
     {
-        LineClearer.OnCleared -= HandleLinesCleared;
+        LineClearer.RemoveHandler(this);
         //BtGrid.OnBoardChanged -= HandleBoardChanged;
         shapePanel.OnOutOfShapes -= NewTurn;
         Unit.OnKilled -= HandleUnitKilled;
@@ -111,7 +120,7 @@ public class CombatCtrl : MonoBehaviour
         yield return new WaitForSeconds(2f);
         HelpPanel.current.Close();  // just in case
 
-        UIHudRewards.current.Show(new List<string> { "gold 1", "gold 20", "tile", "tile" });
+        UIHudRewards.current.Show(StageCtrl.current.Data.rewards);
 
         /*
         if (!arena.player)
@@ -133,25 +142,6 @@ public class CombatCtrl : MonoBehaviour
         arena.player.CombatFinished();
 
         yield return new WaitWhile(() => BtUpgradeCtrl.current.IsOpen);*/
-    }
-
-    void HandleLinesCleared(LineClearData lineClearInfo)
-    {
-        if (lineClearInfo.tiles.Count > 10)
-        {
-            arena.player.AnimAttack(2);
-        }
-        else if (lineClearInfo.tiles.Count > 0)
-        {
-            arena.player.AnimAttack(1);
-        }
-
-        ResCtrl<MatchStat>.current.Clear();
-        MyTile tile;
-        while ((tile = lineClearInfo.PickNextTile() as MyTile) != null)
-        {
-            tile.OnCleared(lineClearInfo);
-        }
     }
 
     public void NewTurn() => NewTurn(0.1f);
@@ -215,9 +205,9 @@ public class CombatCtrl : MonoBehaviour
     IEnumerator Start()
     {
         yield return null;
-        var next = MapCtrl.current.Next();
-        SpawnEnemy("boar");
-        //SpawnEnemy("slime");
+        var stageData = StageCtrl.current.Data;
+        board.LoadRandomLayout(stageData.specialTile);
+        SpawnEnemy(stageData.units[0]);
     }
 
 
@@ -266,6 +256,24 @@ public class CombatCtrl : MonoBehaviour
         }
 
 #endif
+    }
+
+    IEnumerator ILineClearHandler.HandleLinesCleared(LineClearData clearData)
+    {
+        if (clearData.tiles.Count > 10)
+        {
+            arena.player.AnimAttack(2);
+        }
+        else if (clearData.tiles.Count > 0)
+        {
+            arena.player.AnimAttack(1);
+        }
+
+        MyTile tile;
+        while ((tile = clearData.PickNextTile() as MyTile) != null)
+        {
+            yield return tile.OnCleared(clearData);
+        }
     }
 
     public class TileEntry

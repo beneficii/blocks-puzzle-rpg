@@ -8,37 +8,18 @@ using System.Linq;
 using static UnityEditor.Progress;
 using GridBoard.TileActions;
 
-namespace ClearAction
+namespace TileActions
 {
-    public abstract class Base : TileActions.Base
+    public abstract class ClearActionBase : TileActionBase
     {
-        public abstract void Run(LineClearData match);
-    }
-
-    public class Damage : Base
-    {
-        public override string GetDescription(MyTile parent)
-            => $"Deal {Power} damage";
-
-        public Damage()
+        public override IEnumerator Run()
         {
-        }
-
-        public override void Run(LineClearData match)
-        {
-            var bullet = MakeBullet(parent)
-                            .SetTarget(CombatArena.current.enemy)
-                            .SetDamage(Power)
-                            .SetLaunchDelay(0.2f);
-        }
-
-        public class Builder : FactoryBuilder<Base>
-        {
-            public override Base Build() => new Damage();
+            yield break;
         }
     }
 
-    public class Defense : Base
+
+    public class Defense : TileActionBase
     {
         public override string GetDescription(MyTile parent)
             => $"Gain {Power} defense";
@@ -54,54 +35,22 @@ namespace ClearAction
             unit.AddArmor(Power);
         }
 
-        public override void Run(LineClearData match)
+        public override IEnumerator Run()
         {
             var bullet = MakeBullet(parent)
                             .SetTarget(CombatArena.current.player)
                             .SetAction(Action)
                             .SetLaunchDelay(0.2f);
+            yield return new WaitForSeconds(.2f);
         }
 
-        public class Builder : FactoryBuilder<Base>
+        public class Builder : FactoryBuilder<TileActionBase>
         {
-            public override Base Build() => new Defense();
+            public override TileActionBase Build() => new Defense();
         }
     }
 
-    public class Heal : Base
-    {
-        int value;
-        public override string GetDescription(MyTile parent)
-            => $"Heal {value} hp";
-
-        public Heal(int value)
-        {
-            this.value = value;
-        }
-
-        void Action(Component comp)
-        {
-            if (!comp || comp is not Unit unit) return;
-
-            DataManager.current.CreateFX("heal1", unit.transform.position);
-            unit.AddHp(value);
-        }
-
-        public override void Run(LineClearData match)
-        {
-            var bullet = MakeBullet(parent)
-                            .SetTarget(CombatArena.current.player)
-                            .SetAction(Action)
-                            .SetLaunchDelay(0.2f);
-        }
-
-        public class Builder : FactoryBuilder<Base, int>
-        {
-            public override Base Build() => new Heal(value);
-        }
-    }
-
-    public class DamageMultiSpell : Base
+    public class DamageMultiSpell : ClearActionBase
     {
         int damageMultiplier;
 
@@ -113,7 +62,7 @@ namespace ClearAction
             this.damageMultiplier = damageMultiplier;
         }
 
-        public override void Run(LineClearData match)
+        public override IEnumerator Run(LineClearData match)
         {
             var captured = match.tiles
                 .Where(x => x.data.type == Tile.Type.Weapon)
@@ -122,28 +71,30 @@ namespace ClearAction
             foreach (var tile in captured) {
                 match.tiles.Remove(tile);
 
+                yield return tile.FadeOut(8f);
                 MakeBullet(tile)//, DataManager.current.vfxDict.Get("poof"))
                     .AddSpleen(Vector2.zero)
                     .SetSpeed(15)
                     .SetSprite(tile.data.visuals.sprite)
-                    .SetTarget(parent)
-                    .SetLaunchDelay(0.1f);
+                    .SetTarget(parent);
+                yield return new WaitForSeconds(.05f);
             }
+            yield return new WaitForSeconds(.1f);
 
+            yield return parent.FadeOut(10f);
             MakeBullet(parent)
                 .SetTarget(CombatArena.current.enemy)
-                .SetDamage(captured.Count * damageMultiplier)
-                .SetLaunchDelay(.6f);
+                .SetDamage(captured.Count * damageMultiplier);
         }
 
-        public class Builder : FactoryBuilder<Base, int>
+        public class Builder : FactoryBuilder<TileActionBase, int>
         {
-            public override Base Build() => new DamageMultiSpell(value);
+            public override TileActionBase Build() => new DamageMultiSpell(value);
         }
     }
 
 
-    public class SpawnTile : Base
+    public class SpawnTile : TileActionBase
     {
         int count;
         string tileId;
@@ -169,30 +120,34 @@ namespace ClearAction
             tile.InitBoard(parent.board);
         }
 
-        public override void Run(LineClearData match)
+        public override IEnumerator Run()
         {
             var data = GetData();
             if (data == null)
             {
                 Debug.LogError($"Data with id `{tileId}` not found!");
-                return;
+                yield break;
             }
 
             for (int i = 0; i < count; i++)
             {
-                if (!match.emptyTiles.TryDequeue(out var target)) return;
+                var target = parent.board.TakeEmptyTile();
+                if (!target) Debug.Log("no empty tiles");
+                if (!target) yield break;
 
                 MakeBullet(parent)
                     .SetTarget(target)
                     .SetSprite(data.visuals.sprite)
-                    .SetAction(Spawn)
-                    .SetLaunchDelay(0.2f);
+                    .SetAction(Spawn);
+
+                yield return new WaitForSeconds(.05f);
             }
+            yield return new WaitForSeconds(.1f);
         }
 
-        public class Builder : FactoryBuilder<Base, int, string>
+        public class Builder : FactoryBuilder<TileActionBase, int, string>
         {
-            public override Base Build() => new SpawnTile(value1, "fireball");
+            public override TileActionBase Build() => new SpawnTile(value1, "fireball");
         }
     }
 }

@@ -11,10 +11,10 @@ public class MyTile : Tile
 
     [SerializeField] TextMeshPro txtPower;
 
-    ClearAction.Base clearAction;
-    SimpleAction.Base endOfTurnAction;
-    SimpleAction.Base enterAction;
-    PassiveEffect.Base passiveEffect;
+    TileActionBase clearAction;
+    TileActionBase endOfTurnAction;
+    TileActionBase enterAction;
+    TileActionBase passiveEffect;
 
     int power;
     public int Power
@@ -46,7 +46,7 @@ public class MyTile : Tile
             lines.Add(data.description);
         }
 
-        var pairs = new List<System.Tuple<TileActions.Base, string>>
+        var pairs = new List<System.Tuple<TileActionBase, string>>
         {
             new(enterAction, "Enter"),
             new(clearAction, "Clear"),
@@ -80,8 +80,8 @@ public class MyTile : Tile
         clearAction = myData.clearAction?.Build();
         endOfTurnAction = myData.endTurnAction?.Build();
         enterAction = myData.enterAction?.Build();
-
         passiveEffect = myData.passive?.Build();
+        
         clearAction?.Init(this);
         endOfTurnAction?.Init(this);
         enterAction?.Init(this);
@@ -143,9 +143,12 @@ public class MyTile : Tile
         }
     }
 
-    public void OnCleared(LineClearData clearInfo)
+    public IEnumerator OnCleared(LineClearData clearInfo)
     {
-        clearAction?.Run(clearInfo);
+        if (clearAction != null)
+        {
+            yield return clearAction.Run(clearInfo);
+        }
     }
 
     public IEnumerator EndOfTurn()

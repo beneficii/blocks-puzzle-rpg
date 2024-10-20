@@ -4,6 +4,7 @@ using UnityEngine;
 using FancyToolkit;
 using TMPro;
 using System.Linq;
+using UnityEditor;
 
 namespace GridBoard
 {
@@ -27,6 +28,7 @@ namespace GridBoard
         [SerializeField] protected ProgressBar progressBar;
 
         [SerializeField] List<Sprite> bgSprites;
+        [SerializeField] Sprite bgSprite2;
 
         [SerializeField] protected bool debug;
 
@@ -50,6 +52,9 @@ namespace GridBoard
         }
 
         public bool isPlaced;
+        public bool isTaken;
+        public bool isRemoved;
+        public bool isFadedOut;
 
         public int GetPower()
         {
@@ -203,9 +208,32 @@ namespace GridBoard
 
         IEnumerator CollectRoutine()
         {
-            float fadeSpeed = 4f;
-            float alpha = 1f;
+            yield return FadeOut(4f);
 
+            Destroy(gameObject);
+        }
+
+        public virtual bool Collect()
+        {
+            isRemoved = true;
+            StartCoroutine(CollectRoutine());
+            return true;
+        }
+
+        public void PopOut()
+        {
+            isRemoved = true;
+            //ToDo: some cool animation or smth
+            //transform.localScale = Vector3.one * 1.1f;
+            bgRender.sprite = bgSprite2;
+        }
+
+        public IEnumerator FadeOut(float fadeSpeed)
+        {
+            if (isFadedOut) yield break;
+
+            isFadedOut = true;
+            float alpha = 1f;
             while (alpha > 0)
             {
                 alpha -= Time.deltaTime * fadeSpeed;
@@ -215,13 +243,7 @@ namespace GridBoard
                 yield return null;
             }
 
-            Destroy(gameObject);
-        }
-
-        public virtual bool Collect()
-        {
-            StartCoroutine(CollectRoutine());
-            return true;
+            transform.localScale = Vector3.zero;
         }
 
         IEnumerator SpawnRoutine()
@@ -288,7 +310,7 @@ namespace GridBoard
 
         public virtual IEnumerator OnPlaced()
         {
-            yield return null;
+            yield break;
         }
 
         public void AnimateUpgrade()

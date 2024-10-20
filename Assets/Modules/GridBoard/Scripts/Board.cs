@@ -46,12 +46,31 @@ namespace GridBoard
 
         bool calculateGrid = false;
 
+        Queue<Tile> emptyTileQueue = new();
+
+        public void SetShouldCalculate(bool value)
+        {
+            calculateGrid = value;
+        }
+
         List<Vector2Int> adjDeltas = new()
         {
             new (-1, 0),
             new (0, +1),
             new (+1, 0),
             new (0, -1),
+        };
+
+        List<Vector2Int> aroundDeltas = new()
+        {
+            new (-1, 0),  // Left
+            new (-1, +1), // Top-left
+            new (0, +1),  // Up
+            new (+1, +1), // Top-right
+            new (+1, 0),  // Right
+            new (+1, -1), // Bottom-right
+            new (0, -1),  // Down
+            new (-1, -1), // Bottom-left
         };
 
         Color GetBgColor(int x, int y)
@@ -227,6 +246,12 @@ namespace GridBoard
             LoadLayout(randomLayout);
         }
 
+        public void LoadRandomLayout(string specialTileId)
+        {
+            var tile = TileCtrl.current.GetTile(specialTileId);
+            LoadRandomLayout(tile);
+        }
+
         public void LoadRandomLayout(int level, TileData specialTile = null)
         {
             var randomLayout = predefinedBoards
@@ -355,9 +380,22 @@ namespace GridBoard
             return PlaceTiles(x, y, infoDeltas);
         }
 
-        public IEnumerable<Tile> GetAdjacentItems(int x, int y)
+        public IEnumerable<Tile> GetAdjacentTiles(int x, int y)
         {
             foreach (var delta in adjDeltas)
+            {
+                var dx = x + delta.x;
+                var dy = y + delta.y;
+
+                var item = GetItem(dx, dy);
+
+                if (item) yield return item;
+            }
+        }
+
+        public IEnumerable<Tile> GetTilesAround(int x, int y)
+        {
+            foreach (var delta in aroundDeltas)
             {
                 var dx = x + delta.x;
                 var dy = y + delta.y;
@@ -399,6 +437,18 @@ namespace GridBoard
             {
                 return null;
             }
+        }
+
+        public Tile PopOutAt(int x, int y)
+        {
+            var tile = tiles[x, y];
+            if (!tile) return null;
+
+            OnTileRemoved?.Invoke(tile);
+            tiles[x, y] = null;
+            tile.PopOut();
+
+            return tile;
         }
 
         public Tile CollectAt(Vector2Int pos)
@@ -514,6 +564,37 @@ namespace GridBoard
                     }
                 }
             }
+        }
+
+        public void GenerateEmptyTileQueue()
+        {
+            var list = new List<Tile>();
+            foreach (var item in GetEmptyTiles())
+            {
+                if (!item.isTaken) list.Add(item);
+            }
+            list.Shuffle();
+
+            emptyTileQueue = new Queue<Tile>(list);
+        }
+
+        public Tile TakeEmptyTile()
+        {
+            Tile tile = null;
+            while (emptyTileQueue.Count > 0 && !tile)
+            {
+                tile = emptyTileQueue.Dequeue();
+            }
+
+            if (!tile)
+            {
+                GenerateEmptyTileQueue();
+                if (emptyTileQueue.Count == 0) return null;
+                tile = emptyTileQueue.Dequeue();
+            }
+
+            tile.isTaken = true;
+            return tile;
         }
 
         public IEnumerable<Tile> GetNonEmptyTiles()
