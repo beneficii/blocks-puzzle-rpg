@@ -16,6 +16,8 @@ public class MyTile : Tile
     TileActionBase enterAction;
     TileActionBase passiveEffect;
 
+    bool isOnBoard;
+
     int power;
     public int Power
     {
@@ -26,6 +28,14 @@ public class MyTile : Tile
             power = value;
             RefreshNumber();
         }
+    }
+
+    IEnumerable<TileActionBase> AllActions()
+    {
+        if (clearAction != null) yield return clearAction;
+        if (endOfTurnAction != null) yield return endOfTurnAction;
+        if (enterAction != null) yield return enterAction;
+        if (passiveEffect != null) yield return passiveEffect;
     }
 
 
@@ -69,25 +79,6 @@ public class MyTile : Tile
         return string.Join(". ", lines);
     }
 
-    public override void InitBoard(Board board)
-    {
-        base.InitBoard(board);
-
-        var myData = this.myData;
-        if (myData == null) return;
-
-
-        clearAction = myData.clearAction?.Build();
-        endOfTurnAction = myData.endTurnAction?.Build();
-        enterAction = myData.enterAction?.Build();
-        passiveEffect = myData.passive?.Build();
-        
-        clearAction?.Init(this);
-        endOfTurnAction?.Init(this);
-        enterAction?.Init(this);
-        passiveEffect?.Init(this);
-    }
-
     void RefreshNumber(bool skipAnimation = false)
     {
         if (myData.powerType == TileStatType.None)
@@ -122,10 +113,25 @@ public class MyTile : Tile
         this.power = myData.power;
 
         RefreshNumber(true);
+
+        clearAction = myData.clearAction?.Build();
+        endOfTurnAction = myData.endTurnAction?.Build();
+        enterAction = myData.enterAction?.Build();
+        passiveEffect = myData.passive?.Build();
+        foreach (var item in AllActions())
+        {
+            item.Init(this);
+        }
     }
 
     public override IEnumerator OnPlaced()
     {
+        isOnBoard = true;
+        foreach (var item in AllActions())
+        {
+            item.Add();
+        }
+
         if (enterAction != null)
         {
             yield return enterAction.Run();
@@ -135,11 +141,12 @@ public class MyTile : Tile
     public override void OnRemoved()
     {
         base.OnRemoved();
-        if (board != null)
+        if (isOnBoard)
         {
-            clearAction?.Remove();
-            endOfTurnAction?.Remove();
-            passiveEffect?.Remove();
+            foreach (var item in AllActions())
+            {
+                item.Remove();
+            }
         }
     }
 

@@ -51,10 +51,7 @@ namespace TileActions
 
         public class Builder : FactoryBuilder<TileActionBase>
         {
-            public override TileActionBase Build()
-            {
-                return new DamagePlayer();
-            }
+            public override TileActionBase Build() => new DamagePlayer();
         }
     }
 
@@ -88,17 +85,9 @@ namespace TileActions
             yield return new WaitForSeconds(.2f);
         }
 
-        public class Builder : FactoryBuilder<TileActionBase, int>
+        public class Builder : FactoryBuilder<TileActionBase, int, TileStatType>
         {
-            TileStatType type;
-
-            public override void Init(StringScanner scanner)
-            {
-                base.Init(scanner);
-                type = scanner.NextEnum<TileStatType>();
-            }
-
-            public override TileActionBase Build() => new BuffPowerAround(value, type);
+            public override TileActionBase Build() => new BuffPowerAround(value1, value2);
         }
     }
 }

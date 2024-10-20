@@ -53,8 +53,8 @@ namespace GridBoard
 
         public bool isPlaced;
         public bool isTaken;
-        public bool isRemoved;
         public bool isFadedOut;
+        public bool isActionLocked;
 
         public int GetPower()
         {
@@ -215,17 +215,17 @@ namespace GridBoard
 
         public virtual bool Collect()
         {
-            isRemoved = true;
             StartCoroutine(CollectRoutine());
             return true;
         }
 
         public void PopOut()
         {
-            isRemoved = true;
             //ToDo: some cool animation or smth
             //transform.localScale = Vector3.one * 1.1f;
             bgRender.sprite = bgSprite2;
+            //bgRender.SetAlpha(0.8f);
+            isTaken = true;
         }
 
         public IEnumerator FadeOut(float fadeSpeed)

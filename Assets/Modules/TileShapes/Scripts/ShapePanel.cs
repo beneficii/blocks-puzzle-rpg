@@ -21,7 +21,7 @@ namespace TileShapes
         [SerializeField] List<Transform> slots;
         [SerializeField] Board board;
         [SerializeField] Transform anchor;
-        
+
         List<Shape> shapes = new();
 
         List<ShapeData> pool;
@@ -30,6 +30,8 @@ namespace TileShapes
         bool shouldCheckSlots;
 
         Queue<Hint> hints;
+
+        public bool IsLocked { get; set; }
 
         Shape.Info GetWispShape()
         {
@@ -112,7 +114,7 @@ namespace TileShapes
         void SetSlotShape(Transform slot, Shape.Info info)
         {
             var instance = Instantiate(prefabShape, slot.position, slot.rotation, slot);
-            instance.Init(info, board);
+            instance.Init(info, board, this);
             shapes.Add(instance);
             instance.OnDropped += HandleShapeDropped;
         }

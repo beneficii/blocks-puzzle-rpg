@@ -85,21 +85,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
     }
 
-    public Unit SpawnEnemy(UnitData2 data)
-    {
-        var enemy = arena.SpawnEnemy(data);
-        //var data = enemy.data;
-
-        //BtGrid.current.LoadRandomBoard(data.boardLevel, data.specialBlockData);
-
-        //board.LoadRandomLayout(data.boardLevel, data.specialBlockData); // ToDo
-
-        board.LoadRandomLayout();
-        shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
-
-        return enemy;
-    }
-
     public Unit SpawnEnemy(string id)
     {
         var enemy = arena.SpawnEnemy(id);
@@ -158,9 +143,11 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     IEnumerator TurnRoutine(float delay)
     {
+        shapePanel.IsLocked = true;
         yield return new WaitForSeconds(delay);
 
         //RunEndOfTurnPassives();
+        board.UnlockAllTileActions();
         foreach (var item in board.GetNonEmptyTiles<MyTile>())
         {
             yield return item.EndOfTurn();
@@ -183,24 +170,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         shapePanel.GenerateNew(false, tileQueue, tilesPerTurn);
         EndTurnInProgress = false;
+        shapePanel.IsLocked = false;
     }
-    /*
-    void HandleBoardChanged()
-    {
-        CalculateModifiers();
-    }
-
-    void CalculateModifiers()
-    {
-        ResCtrl<CombatModifier>.current.Clear();
-
-        foreach (var block in BtGrid.current.GetSpecialBlocks())
-        {
-            if (block.data is not CombatBlockData data) continue;
-
-            data.CalculatePassives(block);
-        }
-    }*/
 
     IEnumerator Start()
     {
@@ -213,7 +184,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     private void Update()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Z))
         {
             arena.player.AnimAttack(1);
@@ -260,6 +231,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     IEnumerator ILineClearHandler.HandleLinesCleared(LineClearData clearData)
     {
+        shapePanel.IsLocked = true;
         if (clearData.tiles.Count > 10)
         {
             arena.player.AnimAttack(2);
@@ -269,11 +241,13 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             arena.player.AnimAttack(1);
         }
 
+        board.UnlockAllTileActions();
         MyTile tile;
         while ((tile = clearData.PickNextTile() as MyTile) != null)
         {
             yield return tile.OnCleared(clearData);
         }
+        shapePanel.IsLocked = false;
     }
 
     public class TileEntry

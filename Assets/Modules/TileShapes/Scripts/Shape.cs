@@ -27,6 +27,7 @@ namespace TileShapes
         List<Tile> blocks;
 
         Board board;
+        ShapePanel parent;
 
         bool shouldDestroy;
 
@@ -44,9 +45,10 @@ namespace TileShapes
             blocks.Clear();
         }
 
-        public void Init(ShapeData data, int rotation, Board board)
+        public void Init(ShapeData data, int rotation, Board board, ShapePanel parent)
         {
             this.board = board;
+            this.parent = parent;
             Clear();
             blocks = new List<Tile>();
             this.data = data;
@@ -63,9 +65,9 @@ namespace TileShapes
             SetDragState(false);
         }
 
-        public void Init(Info info, Board board)
+        public void Init(Info info, Board board, ShapePanel parent)
         {
-            Init(info.data, info.rotation, board);
+            Init(info.data, info.rotation, board, parent);
         }
 
         Vector2 moveSpeed;
@@ -101,6 +103,7 @@ namespace TileShapes
 
         public void OnMouseDown()
         {
+            if (parent.IsLocked) return;
             if (FancyInputCtrl.IsMouseOverUI()) return;
 
             SetDragState(true);
@@ -147,6 +150,8 @@ namespace TileShapes
                 soundPlace?.PlayWithRandomPitch(0.2f);
                 transform.localScale = Vector3.zero;
                 shouldDestroy = true;
+
+                board.UnlockAllTileActions();
                 foreach (var tile in result)
                 {
                     yield return tile.OnPlaced();

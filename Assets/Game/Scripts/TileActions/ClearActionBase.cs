@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridBoard;
 using FancyToolkit;
-using static UnityEngine.Rendering.DebugUI;
 using System.Linq;
-using static UnityEditor.Progress;
-using GridBoard.TileActions;
+using System;
+using UnityEngine.Assertions;
 
 namespace TileActions
 {
@@ -94,6 +93,50 @@ namespace TileActions
     }
 
 
+    public class ForCleared : ClearActionBase
+    {
+        int amount;
+        string tag;
+        TileActionBase nestedAction;
+
+        public override string GetDescription(MyTile parent)
+           => $"{nestedAction.GetDescription(parent)} for each {amount} {tag} cleared";
+
+        public ForCleared(int amount, string tag, TileActionBase nestedAction)
+        {
+            this.amount = amount;
+            this.tag = tag;
+            this.nestedAction = nestedAction;
+        }
+
+        public override void Init(MyTile tile)
+        {
+            base.Init(tile);
+            nestedAction.Init(tile);
+        }
+
+        public override IEnumerator Run(LineClearData match)
+        {
+            int totalCount = match.list.Count(x => x.HasTag(tag)) / amount;
+
+            if (totalCount == 0) yield break;
+
+            for (int i = 0; i < totalCount; i++)
+            {
+                yield return nestedAction.Run();
+                yield return new WaitForSeconds(.1f);
+            }
+
+            yield return parent.FadeOut(10f);
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase, int, string, FactoryBuilder<TileActionBase>>
+        {
+            public override TileActionBase Build() => new ForCleared(value1, value2, value3.Build());
+        }
+    }
+
+
     public class SpawnTile : TileActionBase
     {
         int count;
@@ -107,7 +150,7 @@ namespace TileActions
             this.tileId = tileId;
         }
 
-        public override string GetDescription(MyTile parent) => $"Spawns {count} '{GetData().title}' on empty tiles";
+        public override string GetDescription(MyTile parent) => $"Spawn {count} '{GetData().title}'";
 
         void Spawn(Component component)
         {
@@ -147,7 +190,7 @@ namespace TileActions
 
         public class Builder : FactoryBuilder<TileActionBase, int, string>
         {
-            public override TileActionBase Build() => new SpawnTile(value1, "fireball");
+            public override TileActionBase Build() => new SpawnTile(value1, value2);
         }
     }
 }

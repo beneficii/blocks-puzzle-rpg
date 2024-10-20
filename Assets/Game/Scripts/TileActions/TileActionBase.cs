@@ -35,6 +35,11 @@ public abstract class TileActionBase
         this.parent = tile;
     }
 
+    public virtual void Add()
+    {
+
+    }
+
     public virtual void Remove()
     {
 

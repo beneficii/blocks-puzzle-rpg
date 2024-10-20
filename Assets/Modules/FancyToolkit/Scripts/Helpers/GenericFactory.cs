@@ -141,18 +141,23 @@ namespace FancyToolkit
 
             if (string.IsNullOrWhiteSpace(line)) return null;
 
-            var scanner = new StringScanner(line);
+            return CreateBuilder(new StringScanner(line));
+        }
+
+        public static FactoryBuilder<TClass> CreateBuilder(StringScanner scanner)
+        {
+            if (builderDict == null) Init();
 
             var id = scanner.NextString();
-            if (builderDict.TryGetValue(id, out var builderFactory))
+            if (!builderDict.TryGetValue(id, out var builderFactory))
             {
-                var instance = builderFactory();
-                instance.Init(scanner);
-                return instance;
+                Debug.LogError($"Could not find builder for `{id}`");
+                return null;
             }
 
-            Debug.LogError($"Could not find builder for `{line}`");
-            return null;
+            var instance = builderFactory();
+            instance.Init(scanner);
+            return instance;
         }
 
         public static TClass Create(string line, TClass defaultObject = null)

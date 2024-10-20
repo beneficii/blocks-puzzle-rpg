@@ -174,18 +174,17 @@ namespace GridBoard
 
     public class LineClearData
     {
+        public List<TileData> list;
         public HashSet<Tile> tiles;
         Queue<Tile> queue;
 
         public int rowsMatched;
         public int columnsMatched;
 
-        // values
-        public int valTotalDamage;
-
         public LineClearData(HashSet<Tile> blocks, int rowsMatched, int columnsMatched)
         {
             this.tiles = blocks;
+            this.list = blocks.Select(x=>x.data).ToList();
             queue = new Queue<Tile>(blocks.OrderByDescending(x => x.data.priority));
             this.rowsMatched = rowsMatched;
             this.columnsMatched = columnsMatched;

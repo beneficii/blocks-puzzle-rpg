@@ -208,6 +208,14 @@ namespace GridBoard
             return PlaceTile(pos.x, pos.y, data);
         }
 
+        public void UnlockAllTileActions()
+        {
+            foreach (var item in GetAllTiles())
+            {
+                item.isActionLocked = false;
+            }
+        }
+
         void Clear()
         {
             for (int y = 0; y < height; y++)
@@ -551,6 +559,21 @@ namespace GridBoard
             return tilesAround;
         }
 
+        public IEnumerable<Tile> GetAllTiles()
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var tile = tiles[x, y];
+                    if (tile)
+                    {
+                        yield return tile;
+                    }
+                }
+            }
+        }
+
         public IEnumerable<Tile> GetEmptyTiles()
         {
             for (int y = 0; y < height; y++)
@@ -581,7 +604,7 @@ namespace GridBoard
         public Tile TakeEmptyTile()
         {
             Tile tile = null;
-            while (emptyTileQueue.Count > 0 && !tile)
+            while (emptyTileQueue.Count > 0 && (!tile || tile.isTaken))
             {
                 tile = emptyTileQueue.Dequeue();
             }

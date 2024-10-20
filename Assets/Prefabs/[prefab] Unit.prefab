@@ -1406,6 +1406,7 @@ MonoBehaviour:
   contentDialog: {fileID: 6238317790878161591}
   parentHp: {fileID: 77189621990512210}
   visuals: {fileID: 11400000, guid: 40bf35631a9ba8b499553f1194e54716, type: 2}
+  modifiers: 
   lifetime: 0
 --- !u!95 &5229965711553750906
 Animator:
@@ -1463,7 +1464,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.52772546, y: 0.85457575}
+  m_Offset: {x: -0.35005438, y: 1.346588}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -1473,7 +1474,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.774201, y: 4.5408487}
+  m_Size: {x: 5.4188585, y: 3.556824}
   m_EdgeRadius: 0
 --- !u!114 &3364254287350787783
 MonoBehaviour:
