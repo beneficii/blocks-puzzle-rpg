@@ -44,6 +44,7 @@ namespace FancyToolkit
                     return;
                 }
                 newCell.Add(this);
+                cachedPosition = obj.transform.localPosition;
             }
 
             public void Remove()
