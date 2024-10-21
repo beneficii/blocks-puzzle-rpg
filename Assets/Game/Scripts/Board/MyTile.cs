@@ -24,6 +24,7 @@ public class MyTile : Tile
         get => power;
         set
         {
+            value = Mathf.Max(value, 0);
             if (power == value) return;
             power = value;
             RefreshNumber();
@@ -66,7 +67,7 @@ public class MyTile : Tile
 
         foreach (var item in pairs)
         {
-            var descr = item.Item1?.GetDescription(this);
+            var descr = item.Item1?.GetDescription();
             if (string.IsNullOrWhiteSpace(descr)) continue;
 
             var sb = new StringBuilder();
@@ -124,15 +125,19 @@ public class MyTile : Tile
         }
     }
 
-    public override IEnumerator OnPlaced()
+    public override void InitBoard(Board board)
     {
+        base.InitBoard(board);
         isOnBoard = true;
         foreach (var item in AllActions())
         {
             item.Add();
         }
+    }
 
-        if (enterAction != null)
+    public override IEnumerator OnPlaced()
+    {
+        if (!isActionLocked && enterAction != null)
         {
             yield return enterAction.Run();
         }
@@ -150,9 +155,22 @@ public class MyTile : Tile
         }
     }
 
+    public override void Clean()
+    {
+        if (isOnBoard)
+        {
+            foreach (var item in AllActions())
+            {
+                item.Remove();
+            }
+        }
+        base.Clean();
+    }
+
+
     public IEnumerator OnCleared(LineClearData clearInfo)
     {
-        if (clearAction != null)
+        if (!isActionLocked && clearAction != null)
         {
             yield return clearAction.Run(clearInfo);
         }
@@ -160,43 +178,11 @@ public class MyTile : Tile
 
     public IEnumerator EndOfTurn()
     {
-        if (endOfTurnAction != null)
+        if (!isActionLocked && endOfTurnAction != null)
         {
             yield return endOfTurnAction.Run();
         }
     }
-
-
-    /*
-    protected int DamageAction(Unit src, Unit target, int damage, LineClearData clearData = null)
-    {
-        if (tile.HasTag("sword") && src.GetModifier(Unit.Modifier.SwordAttack, out var swordAttk))
-        {
-            damage = Mathf.Max(0, damage + swordAttk);
-        }
-
-        if (clearData != null)
-        {
-            clearData.valTotalDamage += damage;
-        }
-
-        return damage;
-    }
-
-    protected int ArmorAction(Unit src, MyTile tile, int damage, LineClearData clearData = null)
-    {
-        if (tile.HasTag("sword") && src.GetModifier(Unit.Modifier.SwordAttack, out var swordAttk))
-        {
-            damage = Mathf.Max(0, damage + swordAttk);
-        }
-
-        if (clearData != null)
-        {
-            clearData.valTotalDamage += damage;
-        }
-
-        return damage;
-    }*/
 
 }
 

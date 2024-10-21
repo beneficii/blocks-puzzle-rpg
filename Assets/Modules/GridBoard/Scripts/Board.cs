@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using FancyToolkit;
 using System.Linq;
 using TMPro;
+using System;
 
 namespace GridBoard
 {
@@ -571,6 +572,14 @@ namespace GridBoard
                         yield return tile;
                     }
                 }
+            }
+        }
+
+        public IEnumerable<Tile> GetAllTiles(Predicate<Tile> func)
+        {
+            foreach (var item in GetAllTiles())
+            {
+                if (func(item)) yield return item;
             }
         }
 

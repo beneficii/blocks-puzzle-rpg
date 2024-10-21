@@ -34,8 +34,11 @@ namespace GridBoard
         {
             return description;
         }
-
-        public bool HasTag(string tag) => tags.Contains(tag);
+        
+        public bool HasTag(string tag)
+            => tag == "any"
+            || type.ToString().ToLower() == tag
+            || tags.Contains(tag);
     }
 
     public abstract class TileAction

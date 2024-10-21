@@ -77,6 +77,7 @@ namespace GridBoard
                 isEmpty = true,
                 colorCode = "FFFFFF",
                 rarity = Rarity.None,
+                type = Tile.Type.Empty,
             };
             placeholderTile = new TileData
             {
@@ -84,6 +85,7 @@ namespace GridBoard
                 isEmpty = true,
                 colorCode = "C65197",
                 rarity = Rarity.None,
+                type = Tile.Type.Empty,
             };
             AddTile(emptyTile);
             AddTile(placeholderTile);

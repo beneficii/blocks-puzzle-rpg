@@ -183,6 +183,11 @@ public class Unit : MonoBehaviour, IDamagable
         refArmor.Add(value + bonus);
     }
 
+    public void SetArmor(int value)
+    {
+        refArmor.Value = value;
+    }
+
     public void RemoveHp(int damage)
     {
         var bonusModifier = team == Team.Enemy ? CombatModifier.Strength : CombatModifier.EnemyStrength;

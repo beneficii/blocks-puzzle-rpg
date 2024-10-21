@@ -51,7 +51,7 @@ namespace GridBoard
             }
         }
 
-        public bool isPlaced;
+        public bool isBeingPlaced;
         public bool isTaken;
         public bool isFadedOut;
         public bool isActionLocked;
@@ -289,7 +289,12 @@ namespace GridBoard
 
         public virtual void OnRemoved()
         {
+            Clean();
+        }
 
+        public virtual void Clean()
+        {
+            Init(TileCtrl.current.emptyTile);
         }
 
         IEnumerator UpgradeRoutine()
@@ -350,7 +355,7 @@ namespace GridBoard
 
         public bool HasTag(string tag)
         {
-            return data.tags.Contains(tag);
+            return data.HasTag(tag);
         }
 
         private void FixedUpdate()
@@ -380,6 +385,7 @@ namespace GridBoard
             Blessing,
             Trap,
             Curse,
+            Empty,
         }
 
         public class Info

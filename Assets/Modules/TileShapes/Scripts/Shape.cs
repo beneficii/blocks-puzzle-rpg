@@ -152,14 +152,11 @@ namespace TileShapes
                 shouldDestroy = true;
 
                 board.UnlockAllTileActions();
-                foreach (var tile in result)
-                {
-                    yield return tile.OnPlaced();
-                }
-                foreach (var tile in result)
-                {
-                    tile.isPlaced = true;
-                }
+
+                // make sure on placed effects don't affect this shape
+                foreach (var tile in result) tile.isBeingPlaced = true;
+                foreach (var tile in result) yield return tile.OnPlaced();
+                foreach (var tile in result) tile.isBeingPlaced = false;
                 board.SetShouldCalculate(true);
             }
             else
