@@ -306,8 +306,9 @@ namespace TileActions
                 Debug.LogError("SpawnTile: Component not a tile");
                 return;
             }
+            tile.SetBoard(parent.board);
             tile.Init(GetData());
-            tile.InitBoard(parent.board);
+            tile.isActionLocked = true;
         }
 
         public override IEnumerator Run(int multiplier = 1)

@@ -121,11 +121,10 @@ namespace TileActions
                 var pos = item.position;
                 item.Clean();
                 item.Init(data);
-                item.InitBoard(item.board);
+                item.isActionLocked = true;
 
                 yield return new WaitForSeconds(.1f);
             }
-            yield return parent.FadeOut(10f);
         }
 
         public class Builder : FactoryBuilder<TileActionBase, string, string>
@@ -175,7 +174,7 @@ namespace TileActions
             }
 
             yield return nestedAction.Run();
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.05f);
         }
 
         public class Builder : FactoryBuilder<TileActionBase, int, FactoryBuilder<TileActionBase>>

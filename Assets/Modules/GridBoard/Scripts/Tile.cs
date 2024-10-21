@@ -120,15 +120,10 @@ namespace GridBoard
             if (progressBar) progressBar.OnFinished += HandleProgressFinished;
         }
 
-        public virtual void InitBoard(Board board)
+        public virtual void SetBoard(Board board)
         {
             this.board = board;
-        }
-
-        public virtual void Init(Info info, int level = 0)
-        {
-            Init(info.data, level);
-            position = info.pos;
+            SetRenderLayer(RenderLayer.Board);
         }
 
         IEnumerator DebugBlink(Color color)

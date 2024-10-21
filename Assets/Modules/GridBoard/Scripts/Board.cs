@@ -145,10 +145,9 @@ namespace GridBoard
             instance.transform.localPosition = Vector3.zero;
             tiles[x, y] = instance;
             instance.position = new(x, y);
-            instance.InitBoard(this);
+            instance.SetBoard(this);
 
             calculateGrid = true;
-            instance.SetRenderLayer(Tile.RenderLayer.Board);
             OnTilePlaced?.Invoke(instance);
 
             return true;
@@ -159,13 +158,13 @@ namespace GridBoard
             if (!CanPlace(x, y)) return null;
 
             var instance = Instantiate(prefabTile, bgTiles[x, y].transform);
-            instance.Init(data);
 
             if (!PlaceTileInstant(x, y, instance))
             {
                 Destroy(instance);
                 return null;
             }
+            instance.Init(data);
 
             return instance;
         }

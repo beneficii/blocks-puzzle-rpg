@@ -58,7 +58,8 @@ namespace TileShapes
                 var instance = Instantiate(board.prefabTile, transform);
                 instance.SetRenderLayer(Tile.RenderLayer.Inventory);
                 instance.transform.localPosition = Tile.IndexToPos(item.pos);
-                instance.Init(item);
+                instance.position = item.pos;
+                instance.Init(item.data);
                 blocks.Add(instance);
             }
 

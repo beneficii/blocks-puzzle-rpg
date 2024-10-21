@@ -16,8 +16,6 @@ public class MyTile : Tile
     TileActionBase enterAction;
     TileActionBase passiveEffect;
 
-    bool isOnBoard;
-
     int power;
     public int Power
     {
@@ -123,15 +121,13 @@ public class MyTile : Tile
         {
             item.Init(this);
         }
-    }
 
-    public override void InitBoard(Board board)
-    {
-        base.InitBoard(board);
-        isOnBoard = true;
-        foreach (var item in AllActions())
+        if (board)
         {
-            item.Add();
+            foreach (var item in AllActions())
+            {
+                item.Add();
+            }
         }
     }
 
@@ -143,21 +139,9 @@ public class MyTile : Tile
         }
     }
 
-    public override void OnRemoved()
-    {
-        base.OnRemoved();
-        if (isOnBoard)
-        {
-            foreach (var item in AllActions())
-            {
-                item.Remove();
-            }
-        }
-    }
-
     public override void Clean()
     {
-        if (isOnBoard)
+        if (board)
         {
             foreach (var item in AllActions())
             {
