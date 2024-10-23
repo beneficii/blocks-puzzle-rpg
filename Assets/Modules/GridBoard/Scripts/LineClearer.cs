@@ -141,7 +141,6 @@ namespace GridBoard
             foreach (var item in tileSet)
             {
                 yield return item.FadeOut(10f);
-                item.OnRemoved();
                 Destroy(item.gameObject);
             }
         }

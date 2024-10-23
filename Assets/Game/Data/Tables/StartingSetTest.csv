@@ -1,10 +1,12 @@
 id|amount
 sword|2
 shield|3
-axe|0
+axe|3
 moonlight|0
-fireBook|1
+fireBook|2
 finalStrike|1
 doubleAxe|1
 ring|3
 fireball|0
+disarmShield|2
+doubleAxe|2

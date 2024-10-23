@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour, IDamagable
 {
+    public static event System.Action<Unit, int> OnReceiveDamage;
+
     public ValueBar health;
     [SerializeField] SpriteRenderer render;
     [SerializeField] SpriteRenderer shadow;
@@ -194,9 +196,12 @@ public class Unit : MonoBehaviour, IDamagable
 
         if (damage <= 0) return;
 
+        OnReceiveDamage?.Invoke(this, damage);
+
         AnimGetHit();
         health.Remove(damage);
         refHealth.Remove(damage);
+
     }
 
     public void SetHp(int value)

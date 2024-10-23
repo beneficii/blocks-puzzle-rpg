@@ -17,6 +17,8 @@ namespace GridBoard
         public static Vector2Int PosToIndex(Vector2 pos) => (pos * scale).ToIntVector2();
 
         public static event System.Action<Tile> OnClickDone;
+        public static event System.Action<Tile> OnPlaced;
+
 
         [SerializeField] int baseRenderLayerOrder = 100;
         [SerializeField] protected SpriteRenderer bgRender;
@@ -56,11 +58,6 @@ namespace GridBoard
         public bool isFadedOut;
         public bool isActionLocked;
 
-        public int GetPower()
-        {
-            return 1 << Level;
-        }
-
         public bool IsInProgress => progressBar && progressBar.IsActive;
 
 
@@ -90,6 +87,8 @@ namespace GridBoard
 
         public virtual void Init(TileData data, int level = -1)
         {
+            if (data != null) Clean();
+
             this.data = data;
             iconRender.sprite = data.visuals?.sprite;
             if (level >= 0)
@@ -261,7 +260,7 @@ namespace GridBoard
             StartCoroutine(SpawnRoutine());
         }
 
-        IEnumerator ClickRoutine()
+        public IEnumerator ClickAnimationRoutine()
         {
             float speed = 1f;
             float progress = 0.8f;
@@ -279,17 +278,18 @@ namespace GridBoard
 
         public void AnimateClick()
         {
-            StartCoroutine(ClickRoutine());
+            StartCoroutine(ClickAnimationRoutine());
         }
 
-        public virtual void OnRemoved()
+        private void OnDestroy()
         {
             Clean();
         }
 
-        public virtual void Clean()
+        protected virtual void Clean()
         {
-            Init(TileCtrl.current.emptyTile);
+            //Init(TileCtrl.current.emptyTile);
+            data = null;
         }
 
         IEnumerator UpgradeRoutine()
@@ -308,8 +308,9 @@ namespace GridBoard
             transform.localScale = Vector3.one;
         }
 
-        public virtual IEnumerator OnPlaced()
+        public virtual IEnumerator Place()
         {
+            OnPlaced?.Invoke(this);
             yield break;
         }
 

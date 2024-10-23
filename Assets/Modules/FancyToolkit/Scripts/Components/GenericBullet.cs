@@ -54,7 +54,7 @@ namespace FancyToolkit
             return this;
         }
 
-        public GenericBullet AddSpleen(Vector2 direction)
+        public GenericBullet SetSpleen(Vector2 direction)
         {
             spleenDirection = direction;
             return this;

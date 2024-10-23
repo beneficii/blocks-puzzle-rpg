@@ -7,6 +7,8 @@ namespace GridBoard
 {
     public class TileData
     {
+        public const string anyTag = "any";
+
         public TileVisuals visuals;
         public string idVisuals;
         public string id;
@@ -15,7 +17,7 @@ namespace GridBoard
         public bool isEmpty;
         public int startingLevel;
         public int cost;
-        public List<string> tags;
+        public List<string> tags = new();
         public Tile.Type type;
 
 
@@ -36,9 +38,10 @@ namespace GridBoard
         }
         
         public bool HasTag(string tag)
-            => tag == "any"
+            => tag == anyTag
             || type.ToString().ToLower() == tag
             || tags.Contains(tag);
+
     }
 
     public abstract class TileAction

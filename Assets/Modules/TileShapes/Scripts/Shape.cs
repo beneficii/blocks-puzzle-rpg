@@ -156,7 +156,7 @@ namespace TileShapes
 
                 // make sure on placed effects don't affect this shape
                 foreach (var tile in result) tile.isBeingPlaced = true;
-                foreach (var tile in result) yield return tile.OnPlaced();
+                foreach (var tile in result) yield return tile.Place();
                 foreach (var tile in result) tile.isBeingPlaced = false;
                 board.SetShouldCalculate(true);
             }

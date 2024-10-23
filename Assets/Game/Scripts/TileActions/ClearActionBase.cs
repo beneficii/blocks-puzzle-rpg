@@ -7,6 +7,9 @@ using System.Linq;
 using System;
 using UnityEngine.Assertions;
 using UnityEngine.UIElements;
+using Mono.Cecil;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace TileActions
 {
@@ -27,18 +30,11 @@ namespace TileActions
         {
         }
 
-        void Action(Component comp, int multipler)
-        {
-            if (!comp || comp is not Unit unit) return;
-
-            unit.AddArmor(Power * multipler);
-        }
-
         public override IEnumerator Run(int multiplier = 1)
         {
             var bullet = MakeBullet(parent)
                             .SetTarget(CombatArena.current.player)
-                            .SetAction((x)=> Action(x,multiplier))
+                            .SetUnitAction((x)=> x.AddArmor(Power * multiplier))
                             .SetLaunchDelay(0.09f);
             yield return new WaitForSeconds(.07f);
         }
@@ -108,54 +104,110 @@ namespace TileActions
 
         public class Builder : FactoryBuilder<TileActionBase, int, FactoryBuilder<TileActionBase>>
         {
-            public override TileActionBase Build() => new ConsumeArmorAnd(value1, value2.Build());
-        }
-    }
-
-    public class DamageMultiSpell : ClearActionBase
-    {
-        int damageMultiplier;
-
-        public override string GetDescription()
-           => $"Deal {damageMultiplier}x swords matched in damage";
-
-        public DamageMultiSpell(int damageMultiplier)
-        {
-            this.damageMultiplier = damageMultiplier;
-        }
-
-        public override IEnumerator Run(LineClearData match)
-        {
-            var captured = match.tiles
-                .Where(x => x.data.type == Tile.Type.Weapon)
-                .ToList();
-
-            foreach (var tile in captured) {
-                match.tiles.Remove(tile);
-
-                yield return tile.FadeOut(8f);
-                MakeBullet(tile)//, DataManager.current.vfxDict.Get("poof"))
-                    .AddSpleen(Vector2.zero)
-                    .SetSpeed(15)
-                    .SetSprite(tile.data.visuals.sprite)
-                    .SetTarget(parent);
-                yield return new WaitForSeconds(.05f);
-            }
-            yield return new WaitForSeconds(.1f);
-
-            yield return parent.FadeOut(10f);
-            MakeBullet(parent)
-                .SetTarget(CombatArena.current.enemy)
-                .SetDamage(captured.Count * damageMultiplier);
-        }
-
-        public class Builder : FactoryBuilder<TileActionBase, int>
-        {
-            public override TileActionBase Build() => new DamageMultiSpell(value);
+            public override TileActionBase Build() => new ConsumeArmorAnd(value, value2.Build());
         }
     }
 
     public class ConsumeTagAnd : ClearActionBase
+    {
+        int amount;
+        string tag;
+        ActionTargetType targetType;
+        TileActionBase nestedAction;
+
+        public override string GetDescription()
+        {
+            var descr = $"Clean {GetTargetingTypeName(targetType, tag)} and {nestedAction.GetDescription()} for each";
+            if (amount > 1) descr += $" {amount}";
+
+            return descr;
+        }
+
+        public ConsumeTagAnd(int amount, string tag, ActionTargetType targetType, TileActionBase nestedAction)
+        {
+            this.amount = amount;
+            this.tag = tag;
+            this.targetType = targetType;
+            this.nestedAction = nestedAction;
+        }
+
+        public override void Init(MyTile tile)
+        {
+            base.Init(tile);
+            nestedAction.Init(tile);
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            int count = 0;
+            foreach (var item in FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
+            {
+                item.Init(TileCtrl.current.emptyTile);
+                count++;
+            }
+
+            if (count < 1) yield break;
+
+            nestedAction.Run(multiplier * count);
+            yield return new WaitForSeconds(.1f);
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase, int, string, ActionTargetType, FactoryBuilder<TileActionBase>>
+        {
+            public override void Init(StringScanner scanner)
+            {
+                base.Init(scanner);
+            }
+            public override TileActionBase Build()
+            {
+                return new ConsumeTagAnd(value, value2, value3, value4.Build());
+            }
+        }
+    }
+
+    public class ConsumePower : TileActionBase
+    {
+        string tag;
+        ActionTargetType targetType;
+
+        public override string GetDescription()
+        {
+            var descr = $"Clean {GetTargetingTypeName(targetType, tag)} and gain their power";
+            return descr;
+        }
+
+        public ConsumePower(string tag, ActionTargetType targetType)
+        {
+            this.tag = tag;
+            this.targetType = targetType;
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            //foreach (var target in FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
+            foreach (var target in FindTileTargets(parent, targetType, (x) => {
+                return x.HasTag(tag) && x.Power > 0;
+            }))
+            {
+                int pwr = target.Power;
+                MakeBullet(target)
+                    .SetTarget(parent)
+                    .SetSpleen(default)
+                    .SetTileAction(x => {
+                        parent.Power += pwr;
+                    });
+                target.Init(TileCtrl.current.emptyTile);
+                yield return new WaitForSeconds(.15f);
+            }
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase, string, ActionTargetType>
+        {
+            public override TileActionBase Build() => new ConsumePower(value, value2);
+        }
+    }
+
+    public class ConsumeClearedAnd : ClearActionBase
     {
         int amount;
         string tag;
@@ -169,7 +221,7 @@ namespace TileActions
             return descr;
         }
 
-        public ConsumeTagAnd(int amount, string tag, TileActionBase nestedAction)
+        public ConsumeClearedAnd(int amount, string tag, TileActionBase nestedAction)
         {
             this.amount = amount;
             this.tag = tag;
@@ -195,7 +247,7 @@ namespace TileActions
 
                 yield return tile.FadeOut(8f);
                 MakeBullet(tile)//, DataManager.current.vfxDict.Get("poof"))
-                    .AddSpleen(Vector2.zero)
+                    .SetSpleen(default)
                     .SetSpeed(15)
                     .SetSprite(tile.data.visuals.sprite)
                     .SetTarget(parent);
@@ -207,26 +259,9 @@ namespace TileActions
             yield return parent.FadeOut(10f);
         }
 
-        public override IEnumerator Run(int multiplier = 1)
-        {
-            var player = CombatArena.current.player;
-            if (!player) yield break;
-            var multi = player.GetArmor() / amount;
-            if (multi <= 0)
-            {
-                yield break;
-            }
-            // remove armor to turn into stuff
-            player.SetArmor(0);
-            //player.SetArmor(player.GetArmor() - (amount * multiplier));
-
-            yield return nestedAction.Run(multiplier);
-            yield return new WaitForSeconds(.1f);
-        }
-
         public class Builder : FactoryBuilder<TileActionBase, int, string, FactoryBuilder<TileActionBase>>
         {
-            public override TileActionBase Build() => new ConsumeTagAnd(value1, value2, value3.Build());
+            public override TileActionBase Build() => new ConsumeClearedAnd(value, value2, value3.Build());
         }
     }
 
@@ -257,19 +292,20 @@ namespace TileActions
             int totalCount = match.list.Count(x => x.HasTag(tag)) / amount;
 
             if (totalCount == 0) yield break;
-
+            yield return nestedAction.Run(totalCount);
+            /*
             for (int i = 0; i < totalCount; i++)
             {
                 yield return nestedAction.Run();
                 yield return new WaitForSeconds(.1f);
-            }
+            }*/
 
             yield return parent.FadeOut(10f);
         }
 
         public class Builder : FactoryBuilder<TileActionBase, int, string, FactoryBuilder<TileActionBase>>
         {
-            public override TileActionBase Build() => new ForCleared(value1, value2, value3.Build());
+            public override TileActionBase Build() => new ForCleared(value, value2, value3.Build());
         }
     }
 
@@ -299,13 +335,8 @@ namespace TileActions
             }
         }
 
-        void Spawn(Component component)
+        void Spawn(MyTile tile)
         {
-            if (component is not Tile tile)
-            {
-                Debug.LogError("SpawnTile: Component not a tile");
-                return;
-            }
             tile.SetBoard(parent.board);
             tile.Init(GetData());
             tile.isActionLocked = true;
@@ -329,7 +360,7 @@ namespace TileActions
                 MakeBullet(parent)
                     .SetTarget(target)
                     .SetSprite(data.visuals.sprite)
-                    .SetAction(Spawn);
+                    .SetTileAction(Spawn);
 
                 yield return new WaitForSeconds(.05f);
             }
@@ -338,7 +369,7 @@ namespace TileActions
 
         public class Builder : FactoryBuilder<TileActionBase, int, string>
         {
-            public override TileActionBase Build() => new SpawnTile(value1, value2);
+            public override TileActionBase Build() => new SpawnTile(value, value2);
         }
     }
 }

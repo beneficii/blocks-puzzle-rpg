@@ -76,12 +76,19 @@ namespace FancyToolkit
         }
     }
 
-    public static class VecUtil
+    public static class VectorUtil
     {
         public static int DistanceSqr(int ax, int ay, int bx, int by)
         {
             var diffX = ax - bx;
             var diffY = ay - by;
+            return diffX * diffX + diffY * diffY;
+        }
+
+        public static int DistanceSqr(Vector2Int a, Vector2Int b)
+        {
+            var diffX = a.x - b.x;
+            var diffY = a.y - b.y;
             return diffX * diffX + diffY * diffY;
         }
     }

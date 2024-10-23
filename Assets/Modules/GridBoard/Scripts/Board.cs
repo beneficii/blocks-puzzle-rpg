@@ -423,7 +423,6 @@ namespace GridBoard
             var pos = tile.position;
             if (oldBoard.GetItem(pos) == tile)
             {
-                tile.OnRemoved();
                 tile.board.OnTileRemoved?.Invoke(tile);
                 oldBoard.tiles[pos.x, pos.y] = null;
             }
@@ -436,7 +435,6 @@ namespace GridBoard
 
             if (tile.Collect())
             {
-                tile.OnRemoved();
                 OnTileRemoved?.Invoke(tile);
                 tiles[x, y] = null;
                 return tile;

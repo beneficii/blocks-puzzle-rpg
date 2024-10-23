@@ -1,24 +1,24 @@
-id|idVisuals|title|colorCode|description|power|powerType|rarity|type|priority|tags|clearAction|endTurnAction|passive|enterAction
-sword|basic_sword|Sword|a4dddb||4|Damage|Common|weapon|0|sword|Damage|||
-shield|basic_shield|Shield|e8c170||3|Defense|Common|armor|0|shield|Defense|||BuffPowerAround 3 Defense
-disarmShield|trap_dis_shield|Sturdy Shield||Add 2 defense and disarm one trap|2|Defense|Common|armor|0|shield||||
-finalStrike|final_blow|Final Strike|df84a5||4|None|Common|spell|10||ConsumeTagAnd 1 sword Damage|||
-moonlight|moonlight|Moonlight||Your shields give 1 extra defense|1|None|Common|blessing|0|||||
-axe|axe|Axe|||7|Damage|Common|weapon|0|axe|Damage|||
-doubleAxe|axe2|Double Edged Axe||Deal 10 damage and 3 damage to self|10|Damage|Common|weapon|0|axe|Damage|||
-ring|ring|Golden Ring|||2|Damage|Common|armor|1|ring||||TransformAround any batCurse
-fireBook|fire_book|Book of Fire|cf573c||2|None|Common|spell|0||SpawnTile 2 fireball|||
-batCurse|bat_curse|Bat curse|||1|None|None|curse|-1|||TransformAround empty batCurse||
-trap|basic_trap|Explosive Trap||Deal 10 damage to you|10|Damage|None|trap|0|||||
-mushroomCurse|mushroom|Cursed Mushroom||Deals 1 damage to you every turn|1|Damage|None|curse|0|||||
-fireball|fire|Fireball|||3|Damage|None|weapon|0|fire|Damage|||
-||||||||||||||
-||||||||||||||
-||||||||||||||
-||||||||||||||
-||||||||||||||
-||||||||||||||
-||||||||||||||
-||||||||||||||
-||||||||||||||
-||||||||||||||
+id|idVisuals|title|colorCode|description|power|powerType|rarity|type|priority|tags|clearAction|endTurnAction|enterAction|passive|
+sword|basic_sword|Sword|a4dddb||4|Damage|Common|weapon|0|sword|Damage||||
+shield|basic_shield|Shield|e8c170||3|Defense|Common|armor|0|shield|Defense|BuffPower Biggest 2 Damage|BuffPower Around 3 Defense||
+disarmShield|trap_dis_shield|Sturdy Shield|||2|Defense|Common|armor|0|shield||ConsumePower shield all|||
+finalStrike|final_blow|Final Strike|df84a5||4|None|Common|spell|10||ConsumeClearedAnd 1 sword Damage||||
+moonlight|moonlight|Moonlight||Your shields give 1 extra defense|1|None|Common|blessing|0||||||
+axe|axe|Axe|||3|Damage|Common|weapon|0|axe|Damage|BuffPower Self 2 Damage|ConsumePower axe closest||
+doubleAxe|axe2|Double Edged Axe|||5|Damage|Common|weapon|0|axe|Damage||||
+ring|ring|Golden Ring|||2|Damage|Common|armor|1|ring|||TransformInto biggest||
+fireBook|fire_book|Book of Fire|cf573c||1|Damage|Common|spell|0||SpawnTile 2 fireball|ConsumeTagAnd 1 fire all Damage|TransformInto closest||
+batCurse|bat_curse|Bat curse|||1|None|None|curse|-1|||TransformAround empty batCurse|||
+trap|basic_trap|Explosive Trap||Deal 10 damage to you|10|Damage|None|trap|0||||||
+mushroomCurse|mushroom|Cursed Mushroom||Deals 1 damage to you every turn|1|Damage|None|curse|0||||||
+fireball|fire|Fireball|||3|Damage|None|weapon|0|fire|Damage||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||
+|||||||||||||||

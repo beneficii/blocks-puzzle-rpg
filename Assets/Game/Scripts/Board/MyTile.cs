@@ -126,31 +126,36 @@ public class MyTile : Tile
         {
             foreach (var item in AllActions())
             {
-                item.Add();
+                item.SetOnBoard(true);
             }
         }
     }
 
-    public override IEnumerator OnPlaced()
+    public override IEnumerator Place()
     {
         if (!isActionLocked && enterAction != null)
         {
             yield return enterAction.Run();
         }
+        yield return base.Place();
     }
 
-    public override void Clean()
+    protected override void Clean()
     {
-        if (board)
+        foreach (var item in AllActions())
         {
-            foreach (var item in AllActions())
-            {
-                item.Remove();
-            }
+            item.SetOnBoard(false);
         }
+
+        clearAction = null;
+        endOfTurnAction = null;
+        enterAction = null;
+        passiveEffect = null;
+
+        txtPower.text = $"";
+
         base.Clean();
     }
-
 
     public IEnumerator OnCleared(LineClearData clearInfo)
     {
@@ -176,4 +181,5 @@ public enum TileStatType
     None,
     Damage,
     Defense,
+    Power,  // other
 }

@@ -11,6 +11,7 @@ public class StageData : DataWithId
     public Type type;
     public List<string> rewards;
     public string specialTile;
+    public string background;
 
     [System.Serializable]
     public enum Type
