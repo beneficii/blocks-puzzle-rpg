@@ -228,6 +228,18 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 #endif
     }
 
+
+#if UNITY_EDITOR
+    [SerializeField] string debugId;
+    [EasyButtons.Button("DebugId")]
+    public void DebugId()
+    {
+        if (string.IsNullOrEmpty(debugId)) return;
+
+        Debug.Log($"{board.dictTileCounter.Get(debugId)}");
+    }
+#endif
+
     IEnumerator ILineClearHandler.HandleLinesCleared(LineClearData clearData)
     {
         shapePanel.IsLocked = true;

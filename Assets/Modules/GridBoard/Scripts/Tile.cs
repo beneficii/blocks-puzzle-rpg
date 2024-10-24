@@ -18,7 +18,8 @@ namespace GridBoard
 
         public static event System.Action<Tile> OnClickDone;
         public static event System.Action<Tile> OnPlaced;
-
+        public static event System.Action<Tile, bool> OnChangedBoardState;
+        bool boardState = false;
 
         [SerializeField] int baseRenderLayerOrder = 100;
         [SerializeField] protected SpriteRenderer bgRender;
@@ -87,7 +88,7 @@ namespace GridBoard
 
         public virtual void Init(TileData data, int level = -1)
         {
-            if (data != null) Clean();
+            if (this.data != null) Clean();
 
             this.data = data;
             iconRender.sprite = data.visuals?.sprite;
@@ -113,10 +114,14 @@ namespace GridBoard
                 onDragAccept = new List<TileActionAccept>();
             }
             
-
             stateDefault = Factory<TileState>.Create(data.defaultState);
             SetDefaultState();
             if (progressBar) progressBar.OnFinished += HandleProgressFinished;
+            if (boardState != (bool)board)
+            {
+                boardState = (bool)board;
+                OnChangedBoardState?.Invoke(this, boardState);
+            }
         }
 
         public virtual void SetBoard(Board board)
@@ -288,6 +293,8 @@ namespace GridBoard
 
         protected virtual void Clean()
         {
+            boardState = false;
+            OnChangedBoardState?.Invoke(this, false);
             //Init(TileCtrl.current.emptyTile);
             data = null;
         }

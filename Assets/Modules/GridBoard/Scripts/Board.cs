@@ -45,6 +45,8 @@ namespace GridBoard
         public UnityEvent<Tile> OnMouseTileChanged;
         public UnityEvent<Vector2Int?> OnMousePosChanged;
 
+        public Dictionary<string, int> dictTileCounter = new();
+
         bool calculateGrid = false;
 
         Queue<Tile> emptyTileQueue = new();
@@ -114,11 +116,20 @@ namespace GridBoard
                 item.InitBoard(this);
             }
             Changed();
+            Tile.OnChangedBoardState += HandleTileChangedBoardState;
         }
 
         void Awake()
         {
             Init();
+        }
+
+        void HandleTileChangedBoardState(Tile tile, bool state)
+        {
+            var key = tile.data.id;
+            if (!dictTileCounter.ContainsKey(key)) dictTileCounter.Add(key, 0);
+            
+            dictTileCounter[key] += state ? +1 : -1;
         }
 
         public bool CanPlace(int x, int y)
@@ -670,6 +681,11 @@ namespace GridBoard
             }
         }
 
+        private void OnDestroy()
+        {
+            Tile.OnChangedBoardState -= HandleTileChangedBoardState;
+        }
+
         private void OnDrawGizmosSelected()
         {
         }
@@ -799,6 +815,8 @@ namespace GridBoard
         public override string ToString()
             => string.Join(" ", tiles.Select(x => x.ToString()));
     }
+
+
     /*
     public class SavedState
     {

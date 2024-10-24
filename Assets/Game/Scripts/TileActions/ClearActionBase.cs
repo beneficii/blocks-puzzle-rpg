@@ -140,15 +140,19 @@ namespace TileActions
         public override IEnumerator Run(int multiplier = 1)
         {
             int count = 0;
-            foreach (var item in FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
+            foreach (var target in FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
             {
-                item.Init(TileCtrl.current.emptyTile);
                 count++;
+                MakeBullet(target)
+                    .SetTarget(parent)
+                    .SetSpleen(default);
+                target.Init(TileCtrl.current.emptyTile);
+                yield return new WaitForSeconds(0.1f);
             }
 
             if (count < 1) yield break;
 
-            nestedAction.Run(multiplier * count);
+            yield return nestedAction.Run(multiplier * count);
             yield return new WaitForSeconds(.1f);
         }
 
@@ -354,7 +358,7 @@ namespace TileActions
             for (int i = 0; i < count * multiplier; i++)
             {
                 var target = parent.board.TakeEmptyTile();
-                if (!target) Debug.Log("no empty tiles");
+                if (!target) Debug.Log("no empty tiles"); // todo: sometimmes works wrong
                 if (!target) yield break;
 
                 MakeBullet(parent)
