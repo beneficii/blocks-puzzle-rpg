@@ -263,9 +263,8 @@ public class Unit : MonoBehaviour, IDamagable
         //animator.SetTrigger($"hit");
     }
 
-#if UNITY_EDITOR
     [EasyButtons.Button]
-    void LoadVisualData()
+    public void LoadVisualData()
     {
         if (!visuals)
         {
@@ -284,8 +283,9 @@ public class Unit : MonoBehaviour, IDamagable
         }*/
     }
 
+#if UNITY_EDITOR
     [EasyButtons.Button]
-    void SaveVisualData()
+    public void SaveVisualData()
     {
         if (!visuals)
         {

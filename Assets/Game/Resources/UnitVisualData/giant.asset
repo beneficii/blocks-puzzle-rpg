@@ -45,9 +45,15 @@ MonoBehaviour:
   - {fileID: -542921747, guid: 9bee27f145f26e54d88166bc2cbf15c0, type: 3}
   - {fileID: 2009535085, guid: 9bee27f145f26e54d88166bc2cbf15c0, type: 3}
   - {fileID: 1868840818, guid: 9bee27f145f26e54d88166bc2cbf15c0, type: 3}
-  frIddle: 0
-  frAttack1: 0
-  frAttack2: 0
-  frHit: 0
-  hpPos: {x: 0, y: 0}
-  actionPos: {x: 0, y: 0}
+  frIddle: 7
+  frAttack1: 7
+  frAttack2: 14
+  frHit: 4
+  flipX: 1
+  hpPos: {x: 0.45, y: -0.4690001}
+  actionPos: {x: 2.61, y: 3.26}
+  fxAttack: {fileID: 11400000, guid: 85e93547b6986fa42871fa4d63a9682f, type: 2}
+  fxDeath: {fileID: 11400000, guid: 6e320275708c4ca4083e128bf7904fa5, type: 2}
+  soundAttack: {fileID: 0}
+  soundAbility: {fileID: 0}
+  soundDeath: {fileID: 0}

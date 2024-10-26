@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 using GridBoard;
 using System;
+using System.Collections.Generic;
+using static UnityEditor.Progress;
+using System.Linq;
 
 namespace TileActions
 {
@@ -126,7 +129,7 @@ namespace TileActions
         TileActionBase nestedAction;
         public override string GetDescription()
         {
-            return $"{nestedAction.GetDescription()} if there are at least {amount} '{parent.name}' on board";
+            return $"{nestedAction.GetDescription()} if there are at least {amount} '{parent.data.title}' on board";
         }
 
         public IfEnoughOnBoard(int amount, TileActionBase nestedAction)
@@ -157,7 +160,65 @@ namespace TileActions
         {
             public override TileActionBase Build() => new IfEnoughOnBoard(value, value2.Build());
         }
+    }
 
-        
+
+    public class AddPowerPassiveTo : PassiveEffect
+    {
+        string tag;
+        int amount;
+
+        public override string GetDescription()
+            => $"{tag} tiles have {amount.SignedStr()} power";
+
+        public AddPowerPassiveTo(string tag, int amount)
+        {
+            this.tag = tag;
+            this.amount = amount;
+        }
+
+        bool IsMatching(Tile tile) => tile is MyTile myTile && myTile.HasTag(tag);
+
+        IEnumerable<MyTile> GetTargets()
+        {
+            foreach (var item in parent.board.GetAllTiles().Where(x=>IsMatching(x)))
+            {
+                yield return (MyTile)item;
+            }
+        }
+
+        void Apply(Tile tile, int power)
+        {
+            if (tile is MyTile myTile) myTile.Power += power;
+        }
+
+        void HandleTileOnBoard(Tile item, bool state)
+        {
+            if (!state) return;
+            if (IsMatching(item)) Apply(item, amount);
+        } 
+
+        protected override void Add()
+        {
+            Tile.OnChangedBoardState += HandleTileOnBoard;
+            foreach (var item in GetTargets())
+            {
+                Apply(item, amount);
+            }
+        }
+
+        protected override void Remove()
+        {
+            Tile.OnChangedBoardState -= HandleTileOnBoard;
+            foreach (var item in GetTargets())
+            {
+                Apply(item, -amount);
+            }
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase, string, int>
+        {
+            public override TileActionBase Build() => new AddPowerPassiveTo(value, value2);
+        }
     }
 }

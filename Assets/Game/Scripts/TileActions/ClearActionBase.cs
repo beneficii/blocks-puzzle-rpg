@@ -358,7 +358,7 @@ namespace TileActions
             for (int i = 0; i < count * multiplier; i++)
             {
                 var target = parent.board.TakeEmptyTile();
-                if (!target) Debug.Log("no empty tiles"); // todo: sometimmes works wrong
+                //if (!target) Debug.Log("no empty tiles");
                 if (!target) yield break;
 
                 MakeBullet(parent)

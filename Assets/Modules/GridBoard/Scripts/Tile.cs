@@ -86,7 +86,12 @@ namespace GridBoard
 
         public Sprite GetIcon() => data.visuals?.sprite;
 
-        public virtual void Init(TileData data, int level = -1)
+        public virtual void InitVirtual(TileData data)
+        {
+
+        }
+
+        public void Init(TileData data, int level = -1)
         {
             if (this.data != null) Clean();
 
@@ -117,6 +122,8 @@ namespace GridBoard
             stateDefault = Factory<TileState>.Create(data.defaultState);
             SetDefaultState();
             if (progressBar) progressBar.OnFinished += HandleProgressFinished;
+            isTaken = false;
+            InitVirtual(data);
             if (boardState != (bool)board)
             {
                 boardState = (bool)board;
@@ -293,9 +300,12 @@ namespace GridBoard
 
         protected virtual void Clean()
         {
-            boardState = false;
-            OnChangedBoardState?.Invoke(this, false);
-            //Init(TileCtrl.current.emptyTile);
+            if (boardState != false)
+            {
+                boardState = false;
+                OnChangedBoardState?.Invoke(this, false);
+            }
+            
             data = null;
         }
 
@@ -358,7 +368,7 @@ namespace GridBoard
 
         public bool HasTag(string tag)
         {
-            return data.HasTag(tag);
+            return data != null && data.HasTag(tag);
         }
 
         private void FixedUpdate()

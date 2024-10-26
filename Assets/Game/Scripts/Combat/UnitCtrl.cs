@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class UnitCtrl
 {
-    const string visualsFolder = "UnitVisualData";
+    public const string visualsFolder = "UnitVisualData";
 
     static UnitCtrl _current;
     public static UnitCtrl current

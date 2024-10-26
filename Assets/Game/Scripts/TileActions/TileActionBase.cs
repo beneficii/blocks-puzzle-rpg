@@ -172,6 +172,10 @@ public abstract class TileActionBase
         }
     }
 
+    protected IEnumerable<MyTile> FindTileTargets(MyTile parent, ActionTargetType targetType, string tag)
+        => FindTileTargets(parent, targetType, (x) => x.HasTag(tag));
+
+
     public virtual void Init(MyTile tile)
     {
         this.parent = tile;

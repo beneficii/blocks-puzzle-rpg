@@ -18,4 +18,4 @@ MonoBehaviour:
   - {fileID: 51355319, guid: 949d83fd193c0a246ad077f5d89733b1, type: 3}
   - {fileID: 552190326, guid: 949d83fd193c0a246ad077f5d89733b1, type: 3}
   - {fileID: 411848768, guid: 949d83fd193c0a246ad077f5d89733b1, type: 3}
-  actionFrame: -1
+  actionFrame: 2

@@ -210,7 +210,6 @@ namespace TileActions
         }
     }
 
-
     public class ForOnBoard : TileActionBase
     {
         int amount;

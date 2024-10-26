@@ -57,7 +57,7 @@ MonoBehaviour:
   hpPos: {x: 0.45, y: -0.4690001}
   actionPos: {x: 1.61, y: 2.524}
   fxAttack: {fileID: 11400000, guid: 3bffae700eb564141999a9244512e8ec, type: 2}
-  fxDeath: {fileID: 0}
+  fxDeath: {fileID: 11400000, guid: 6e320275708c4ca4083e128bf7904fa5, type: 2}
   soundAttack: {fileID: 0}
   soundAbility: {fileID: 0}
   soundDeath: {fileID: 0}

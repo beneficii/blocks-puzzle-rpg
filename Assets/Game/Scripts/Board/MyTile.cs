@@ -19,10 +19,9 @@ public class MyTile : Tile
     int power;
     public int Power
     {
-        get => power;
+        get => Mathf.Max(power, 0);
         set
         {
-            value = Mathf.Max(value, 0);
             if (power == value) return;
             power = value;
             RefreshNumber();
@@ -102,10 +101,8 @@ public class MyTile : Tile
         animatingNumber = false;
     }
 
-    public override void Init(TileData data, int level = -1)
+    public override void InitVirtual(TileData data)
     {
-        base.Init(data, level);
-
         var myData = this.myData;
         if (myData == null) return;
 

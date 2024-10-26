@@ -27,6 +27,7 @@ namespace FancyToolkit
 
         private void OnDestroy()
         {
+            if (items == null) return;
             foreach (var item in items)
             {
                 item.reference.OnChanged -= HandleChanged;

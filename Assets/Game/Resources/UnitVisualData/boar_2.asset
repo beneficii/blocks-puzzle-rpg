@@ -49,15 +49,15 @@ MonoBehaviour:
   - {fileID: -724109735, guid: 35d299a23bae62c4e816df4a604bc7da, type: 3}
   - {fileID: 957079037, guid: 35d299a23bae62c4e816df4a604bc7da, type: 3}
   - {fileID: 776802176, guid: 35d299a23bae62c4e816df4a604bc7da, type: 3}
-  frIddle: 0
-  frAttack1: 0
-  frAttack2: 0
-  frHit: 0
+  frIddle: 8
+  frAttack1: 12
+  frAttack2: 12
+  frHit: 3
   flipX: 1
-  hpPos: {x: 0, y: 0}
-  actionPos: {x: 0, y: 0}
-  fxAttack: {fileID: 11400000, guid: 3bffae700eb564141999a9244512e8ec, type: 2}
-  fxDeath: {fileID: 0}
+  hpPos: {x: 0.45, y: -0.4690001}
+  actionPos: {x: 1.61, y: 2.524}
+  fxAttack: {fileID: 11400000, guid: a7b89b32b6a309a44a6b4a01b1574fa0, type: 2}
+  fxDeath: {fileID: 11400000, guid: 6e320275708c4ca4083e128bf7904fa5, type: 2}
   soundAttack: {fileID: 0}
   soundAbility: {fileID: 0}
   soundDeath: {fileID: 0}
