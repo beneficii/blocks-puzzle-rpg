@@ -6,16 +6,14 @@ using TileShapes;
 using FancyToolkit;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEditor.U2D.Aseprite;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
-    [SerializeField] TextAsset tableTiles;
-    [SerializeField] TextAsset tableStartingTiles;
-    [SerializeField] TextAsset tableUnits;
-    [SerializeField] TextAsset tableStages;
+    [SerializeField] List<SpriteRenderer> bgRenders;
 
     Board board;
-    TileShapes.ShapePanel shapePanel;
+    ShapePanel shapePanel;
 
     CombatArena arena;
 
@@ -33,29 +31,13 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     private void Awake()
     {
-        StageCtrl.current.AddData(tableStages);
-        TileCtrl.current.AddData<MyTileData>(tableTiles);
-        UnitCtrl.current.AddData<UnitData>(tableUnits);
-        
-        board = FindAnyObjectByType<Board>();
-        board.Init();
-     
-
-        shapePanel = FindAnyObjectByType<TileShapes.ShapePanel>();
-
-        arena = CombatArena.current;
-        var startingTiles = FancyCSV.FromText<TileEntry>(tableStartingTiles.text)
-            .SelectMany(x => Enumerable.Repeat(x.id, x.amount))
-            .Select(id => TileCtrl.current.GetTile(id));
-
-        tileQueue = new(startingTiles);
+        tileQueue = new(Game.current.GetDeck());
     }
 
     private void OnEnable()
     {
         LineClearer.AddHandler(this);
         //BtGrid.OnBoardChanged += HandleBoardChanged;
-        shapePanel.OnOutOfShapes += NewTurn;
         Unit.OnKilled += HandleUnitKilled;
         UISelectTileCard.OnSelectTile += HandleTileAddToSet;
         UISelectTileCard.OnBuyTile += HandleTileAddToSet;
@@ -65,7 +47,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     {
         LineClearer.RemoveHandler(this);
         //BtGrid.OnBoardChanged -= HandleBoardChanged;
-        shapePanel.OnOutOfShapes -= NewTurn;
         Unit.OnKilled -= HandleUnitKilled;
         UISelectTileCard.OnSelectTile -= HandleTileAddToSet;
         UISelectTileCard.OnBuyTile -= HandleTileAddToSet;
@@ -74,6 +55,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     void HandleTileAddToSet(UISelectTileCard card)
     {
         tileQueue.Add(card.data);
+        Game.current.AddTileToDeck(card.data.id);
     }
 
     void HandleUnitKilled(Unit unit)
@@ -95,7 +77,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         //board.LoadRandomLayout(data.boardLevel, data.specialBlockData); // ToDo
 
-        shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
 
         return enemy;
     }
@@ -105,27 +86,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         yield return new WaitForSeconds(2f);
 
         UIHudRewards.current.Show(StageCtrl.current.Data.rewards);
-
-        /*
-        if (!arena.player)
-        {
-            MenuCtrl.Load(GameOverType.Defeat);
-            yield break;
-        }
-
-        BtUpgradeCtrl.current.Show(reward, 3);
-
-        var next = MapCtrl.current.Next();
-        if (next == null)
-        {
-            MenuCtrl.Load(GameOverType.Victory);
-            GameSave.Clear();
-            yield break;
-        }
-        SpawnEnemy(next.unitData);
-        arena.player.CombatFinished();
-
-        yield return new WaitWhile(() => BtUpgradeCtrl.current.IsOpen);*/
     }
 
     public void NewTurn() => NewTurn(0.1f);
@@ -155,10 +115,15 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         if (!arena.player || !arena.enemy) yield break;
         yield return new WaitForSeconds(delay / 2f);
 
-        foreach (var unit in arena.GetUnits())
+
+        foreach (var unit in arena.GetEnemies())
         {
+            yield return unit.EndOfTurn();
             yield return unit.RoundActionPhase();
         }
+
+        if (arena.player) yield return arena.player.EndOfTurn();
+
 
         yield return new WaitForSeconds(0.5f);
         foreach (var unit in arena.GetUnits())
@@ -172,12 +137,78 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         shapePanel.IsLocked = false;
     }
 
+    void InitCombat()
+    {
+        var stageData = StageCtrl.current.Data;
+
+        UIHudCombat.current.Show();
+        board = FindAnyObjectByType<Board>();
+        board.Init();
+
+        shapePanel = FindAnyObjectByType<ShapePanel>();
+
+        board.LoadRandomLayout(stageData.specialTile);
+        shapePanel.OnOutOfShapes += NewTurn;
+        shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
+    }
+
+    public void InitShop()
+    {
+        var stageData = StageCtrl.current.Data;
+        var rng = Game.current.CreateStageRng();
+        var list = new List<MyTileData>();
+
+        void AddRarity(Rarity rarity, int count)
+        {
+            var items = TileCtrl.current.GetAllTiles()
+                .Cast<MyTileData>()
+                .Where(x => x.rarity == rarity)
+                .ToList();
+            list.AddRange(items.RandN(count, rng));
+        }
+
+        AddRarity(Rarity.Common, 3);
+        AddRarity(Rarity.Uncommon, 2);
+        list.Add(TileCtrl.current.GetTile<MyTileData>("health"));
+
+
+        UIHudSelectTile.current.Show(SelectTileType.Shop, list);
+
+    }
+
     IEnumerator Start()
     {
-        yield return null;
         var stageData = StageCtrl.current.Data;
-        board.LoadRandomLayout(stageData.specialTile);
-        SpawnEnemy(stageData.units[0]);
+        if (Game.current.bgDict.TryGetValue(stageData.background, out var bgSprite))
+        {
+            foreach (var item in bgRenders) item.sprite = bgSprite;
+        }
+
+        arena = CombatArena.current;
+        arena.SpawnEnemy(stageData.units[0]);
+        var player = arena.SpawnPlayer();
+        var hp = Game.current.GetPlayerHealth();
+        player.SetHp(hp.x);
+
+        yield return null;
+        switch (stageData.type)
+        {
+            case StageData.Type.Enemy:
+            case StageData.Type.Elite:
+            case StageData.Type.Boss:
+                InitCombat();
+                break;
+            case StageData.Type.Shop:
+                InitShop();
+                break;
+            case StageData.Type.Dialog:
+                break;
+            default:
+                Debug.LogError("Unknown type");
+                break;
+        }
+
+        
     }
 
 
@@ -212,17 +243,12 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            UIHudRewards.current.Show(new List<string>{ "gold 1", "gold 20", "tile", "tile" });
+            UIHudRewards.current.Show(new List<string>{ "gold 1", "gold 20"});
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             UIHudDialog.current.Show("test");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            UIHudSelectTile.current.Show(SelectTileType.Shop, TileCtrl.current.GetAllTiles().RandN(5));
         }
 
 #endif
@@ -259,12 +285,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             yield return tile.OnCleared(clearData);
         }
         shapePanel.IsLocked = false;
-    }
-
-    public class TileEntry
-    {
-        public string id;
-        public int amount;
     }
 }
 

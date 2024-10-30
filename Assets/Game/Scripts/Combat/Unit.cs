@@ -47,6 +47,8 @@ public class Unit : MonoBehaviour, IDamagable
     public List<int> modifiers;
     public int lifetime = 0;
 
+    public bool modifierDontResetArmorOnce;
+
     public string GetDescription()
     {
         return nextAction?.GetLongDescription(this)??data.description;
@@ -151,7 +153,7 @@ public class Unit : MonoBehaviour, IDamagable
     {
         OnKilled?.Invoke(this);
         data.visuals.soundDeath?.PlayNow();
-        DataManager.current.CreateFX(data.visuals.fxDeath, transform.position, Destroy);
+        Game.current.CreateFX(data.visuals.fxDeath, transform.position, Destroy);
     }
 
     void HandleHealthChange(int value, int delta)
@@ -218,10 +220,24 @@ public class Unit : MonoBehaviour, IDamagable
 
     public IEnumerator RoundActionPhase()
     {
+        
         lifetime++;
         if (nextAction == null) yield break;
         yield return nextAction.Run(this, target);
         SetNextAction();
+    }
+
+    public IEnumerator EndOfTurn()
+    {
+        yield return null;
+        if (modifierDontResetArmorOnce)
+        {
+            modifierDontResetArmorOnce = false;
+        }
+        else
+        {
+            SetArmor(0);
+        }
     }
 
     public void CombatFinished()

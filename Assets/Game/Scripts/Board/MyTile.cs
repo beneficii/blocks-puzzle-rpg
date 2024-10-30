@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using GridBoard;
 using TMPro;
+using DG.Tweening;
+using FancyTweens;
 
 public class MyTile : Tile
 {
@@ -41,10 +43,10 @@ public class MyTile : Tile
     {
         if (myData == null) return "";
 
-        var mainDescription = data.GetDescription();
-        if (!string.IsNullOrWhiteSpace(mainDescription))
+        var baseDescription = data.description;
+        if (!string.IsNullOrWhiteSpace(baseDescription))
         {
-            return mainDescription;
+            return baseDescription;
         }
 
         var lines = new List<string>();
@@ -54,12 +56,16 @@ public class MyTile : Tile
             lines.Add(data.description);
         }
 
+        var buyAction = myData.buyAction?.Build();
+        buyAction?.Init(this);
+
         var pairs = new List<System.Tuple<TileActionBase, string>>
         {
             new(enterAction, "Enter"),
             new(clearAction, "Clear"),
             new(endOfTurnAction, "EndOfTurn"),
             new(passiveEffect, ""),
+            new(buyAction, ""),
         };
 
         foreach (var item in pairs)
@@ -86,19 +92,7 @@ public class MyTile : Tile
         }
 
         txtPower.text = $"{Power}";
-        if (!skipAnimation) StartCoroutine(AnimateNumber());
-    }
-
-    bool animatingNumber;
-    IEnumerator AnimateNumber()
-    {
-        if (animatingNumber) yield break;
-        animatingNumber = true;
-        var ls = txtPower.transform.localScale;
-        txtPower.transform.localScale *= 1.2f;
-        yield return new WaitForSeconds(0.25f);
-        txtPower.transform.localScale = ls;
-        animatingNumber = false;
+        if (!skipAnimation) txtPower.GetComponent<TweenTarget>().ScaleUpDown(.3f);
     }
 
     public override void InitVirtual(TileData data)

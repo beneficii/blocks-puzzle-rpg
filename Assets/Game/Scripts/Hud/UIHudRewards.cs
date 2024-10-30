@@ -16,6 +16,7 @@ public class UIHudRewards : UIHudBase
     }
 
     [SerializeField] UICombatReward templateItem;
+    [SerializeField] GameObject warningSkip;
 
     List<UICombatReward> instantiatedItems = new();
 
@@ -49,6 +50,7 @@ public class UIHudRewards : UIHudBase
 
     private void OnDisable()
     {
+        warningSkip.gameObject.SetActive(false);
         UICombatReward.OnClicked -= HandleRewardClicked;
     }
 
@@ -67,15 +69,21 @@ public class UIHudRewards : UIHudBase
 
     public void Skip()
     {
-        foreach (var item in instantiatedItems)
+        if (!warningSkip.gameObject.activeSelf)
         {
-            if (item)
+            foreach (var item in instantiatedItems)
             {
-                Game.ToDo("Some warning about unclaimed rewards");
+                if (!item) continue;
+
+                warningSkip.gameObject.SetActive(true);
                 return;
             }
         }
 
-        Close();
+        int? playerHp = null;
+        var player = CombatArena.current.player;
+        if (player) playerHp = player.health.Value;
+
+        Game.current.FinishLevel(playerHp);
     }
 }

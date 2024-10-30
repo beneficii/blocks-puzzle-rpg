@@ -12,31 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e242ffcf8a002064a810e546642ca84a, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  emptyBlock: {fileID: 11400000, guid: 315c25d2d38a7554f94cc5df3f7fb543, type: 2}
-  blocks:
-  - {fileID: 11400000, guid: b18b64dc803babc43aa00a3d6ead4055, type: 2}
-  - {fileID: 11400000, guid: cf659f8d154715d48a5e2c63c921ab45, type: 2}
-  - {fileID: 11400000, guid: f0d8aa20bf956be4ca8bb4c815bbfda3, type: 2}
-  - {fileID: 11400000, guid: a58b4b10bfaad4f4f852e9e98242a89e, type: 2}
-  - {fileID: 11400000, guid: 989a279dd64dd2748aca99263d61132d, type: 2}
-  - {fileID: 11400000, guid: 235598fb001f32543b6f6bf717dec050, type: 2}
-  - {fileID: 11400000, guid: 441434cc9b4aa7b4c811f36cc4714b8f, type: 2}
-  - {fileID: 11400000, guid: 06295b5f09f58ba418438c7f84a60306, type: 2}
-  - {fileID: 11400000, guid: fbd516199dec66042a194425ef407d80, type: 2}
-  - {fileID: 11400000, guid: 9dae125fcd636994ea7eaf0084e5d9a3, type: 2}
-  - {fileID: 11400000, guid: b11b280a56b193c46a48cb8ed5c3273e, type: 2}
-  - {fileID: 11400000, guid: 09aaf1b4871649b4e95b7e10a1bc514d, type: 2}
-  - {fileID: 11400000, guid: 7151a0dc021b6f3449cc4379c3dfa80e, type: 2}
-  - {fileID: 11400000, guid: 644beabbf4947844da3ff503b793bf82, type: 2}
-  - {fileID: 11400000, guid: f7a41e66150afb24795ea697b8e41593, type: 2}
-  - {fileID: 11400000, guid: 1db0604e1e0cbdd4ba1d15f7d8c8f51b, type: 2}
-  - {fileID: 11400000, guid: cd755f3028e81754b9d12fe235861a79, type: 2}
-  blockSprites:
-  - {fileID: 1908480696, guid: 6ccade53a28071b4ea4c8a94ee8017a3, type: 3}
-  vFxs:
-  - {fileID: 5952893279834582914, guid: 8298828e1751a344987117f1517b9096, type: 3}
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
-  prefabBlock: {fileID: 7838597587156728765, guid: fe3d28d4abc699d419f6521a0e5a2591, type: 3}
-  prefabShape: {fileID: 4817354188293728932, guid: 31381e7387a87074c80bbb4c82b1c6ff, type: 3}
   prefabBullet: {fileID: 7667046944190593093, guid: 1876af816686cf94d80eae434ee347c4, type: 3}
   fxPrefab: {fileID: 9081837997925683738, guid: 1bfffaae75667834baef60651d95285a, type: 3}
+  tableTiles: {fileID: 4900000, guid: 74fb23fd077da464c97197158a3d257d, type: 3}
+  tableStartingTiles: {fileID: 4900000, guid: e21e077e224f2ea409bbc4d43af5146a, type: 3}
+  tableUnits: {fileID: 4900000, guid: 0d87e4e20afdc224f9beec775e290359, type: 3}
+  tableStages: {fileID: 4900000, guid: 401bddedab5568b43947426080689229, type: 3}

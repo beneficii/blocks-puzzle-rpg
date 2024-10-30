@@ -21,7 +21,7 @@ public class UIHudSelectTile : UIHudBase
 
     List<UISelectTileCard> cards = new();
 
-    public void Show(SelectTileType type, List<TileData> list)
+    public void Show(SelectTileType type, List<MyTileData> list)
     {
         Opened();
         Clear();

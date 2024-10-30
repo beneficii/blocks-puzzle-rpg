@@ -52,6 +52,41 @@ public class UICombatReward : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void ShowTileRewards()
+    {
+        var stageData = StageCtrl.current.Data;
+
+        List<MyTileData> list;
+        if (stageData.type == StageData.Type.Boss)
+        {
+            // uncommon
+            list = TileCtrl.current.GetAllTiles()
+                .Cast<MyTileData>()
+                .Where(x=>x.rarity == Rarity.Rare)
+                .ToList();
+
+        }
+        else if (stageData.type == StageData.Type.Elite)
+        {
+            list = TileCtrl.current.GetAllTiles()
+                .Cast<MyTileData>()
+                .Where(x => x.rarity == Rarity.Uncommon)
+                .ToList();
+
+        }
+        else
+        {
+            // normal enemies
+            list = TileCtrl.current.GetAllTiles()
+                .Cast<MyTileData>()
+                .Where(x => x.rarity == Rarity.Common)
+                .ToList();
+
+        }
+
+        UIHudSelectTile.current.Show(SelectTileType.Choise, list.RandN(3, Game.current.CreateStageRng()));
+    }
+
     public void Click()
     {
         switch (id)
@@ -63,8 +98,8 @@ public class UICombatReward : MonoBehaviour
                 }
                 break;
             case RewardType.Tile:
-                var tiles = TileCtrl.current.GetAllTiles();
-                UIHudSelectTile.current.Show(SelectTileType.Choise, tiles.RandN(3));
+                ShowTileRewards();
+                
                 break;
             default:
                 Debug.LogError($"Unknown reward type");

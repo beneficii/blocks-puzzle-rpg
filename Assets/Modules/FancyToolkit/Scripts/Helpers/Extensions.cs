@@ -65,6 +65,16 @@ namespace FancyToolkit
             );
         }
 
+        public static Vector3 RandomAround(this Vector3 vector, float distance, System.Random rng)
+        {
+            int precision = 10000;
+            int radius = (int)(distance * precision);
+            return vector + new Vector3(
+                rng.Next(-radius, +radius) / (float)precision,
+                rng.Next(-radius, +radius) / (float)precision
+            );
+        }
+
         public static Vector2 RandomAround(this Vector2 vector, float radiusX, float radiusY = -1f)
         {
             if (radiusY < 0) radiusY = radiusX;
@@ -122,14 +132,14 @@ namespace FancyToolkit
             return result;
         }
 
-        public static TValue Get<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key)
+        public static TValue Get<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue def = default)
         {
             if (dict.TryGetValue(key, out var value))
             {
                 return value;
             }
 
-            return default;
+            return def;
         }
 
         public static TValue Rand<TValue>(this IEnumerable<TValue> list)
@@ -164,6 +174,16 @@ namespace FancyToolkit
 
             return list
                 .OrderBy(x => System.Guid.NewGuid())
+                .Take(n)
+                .ToList();
+        }
+
+        public static List<TValue> RandN<TValue>(this IEnumerable<TValue> list, int n, System.Random rng)
+        {
+            n = Mathf.Min(list.Count(), n);
+
+            return list
+                .OrderBy(x => rng.Next())
                 .Take(n)
                 .ToList();
         }

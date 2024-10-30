@@ -1,6 +1,8 @@
 ﻿using GridBoard;
 using UnityEngine;
 using UnityEngine.UI;
+using FancyToolkit;
+using UnityEngine.LowLevel;
 
 public class UISelectTileCard : MonoBehaviour
 {
@@ -11,20 +13,26 @@ public class UISelectTileCard : MonoBehaviour
     [SerializeField] CanvasGroup cg;
     [SerializeField] Button btnBuy;
     [SerializeField] Button btnSelect;
+    [SerializeField] Image imgBg;
+
+    [SerializeField] Sprite spriteBgSpecial;
+
+    [SerializeField] MyTile dummyTile;
 
     SelectTileType type;
-    public TileData data { get; private set; }
-    
+    public MyTileData data { get; private set; }
 
-    public void Init(SelectTileType type, TileData data)
+    public void Init(SelectTileType type, MyTileData data)
     {
         this.type = type;
         this.data = data;
-        infoPanel.Init(data);
+        dummyTile.Init(data);
+        infoPanel.Init(dummyTile);
         if (type != SelectTileType.Shop) infoPanel.HideCost();
 
         btnBuy.gameObject.SetActive(type == SelectTileType.Shop);
         btnSelect.gameObject.SetActive(type == SelectTileType.Choise);
+        if (data.buyAction != null) imgBg.sprite = spriteBgSpecial;
     }
 
     public void Select()
@@ -34,7 +42,21 @@ public class UISelectTileCard : MonoBehaviour
 
     public void Buy()
     {
-        OnBuyTile?.Invoke(this);
+        if (!ResCtrl<ResourceType>.current.Remove(ResourceType.Gold, data.cost))
+        {
+            Game.ToDo("Not enough gold");
+            return;
+        }
+
+        if (data.buyAction != null)
+        {
+            data.buyAction.Build().Run();
+        }
+        else
+        {
+            OnBuyTile?.Invoke(this);
+        }
+
         Hide();
     }
 

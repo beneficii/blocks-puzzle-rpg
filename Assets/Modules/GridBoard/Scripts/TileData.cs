@@ -1,6 +1,7 @@
 ﻿using FancyToolkit;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace GridBoard
@@ -36,7 +37,7 @@ namespace GridBoard
         {
             return description;
         }
-        
+
         public bool HasTag(string tag)
             => tag == anyTag
             || type.ToString().ToLower() == tag

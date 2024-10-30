@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6671204689790788052}
   - component: {fileID: 7594231565741666994}
   - component: {fileID: 8751292083395359731}
+  - component: {fileID: 4479954315765880710}
   m_Layer: 6
   m_Name: '[text] power'
   m_TagString: Untagged
@@ -175,6 +176,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7594231565741666994}
   m_maskType: 0
+--- !u!114 &4479954315765880710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298345359527558727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e49201bfc31274ab28da7c5b46e959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2699301321788488308
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,9 +427,10 @@ MonoBehaviour:
   debug: 0
   objLabels: []
   txtLevelCaption: {fileID: 0}
-  isPlaced: 0
+  isBeingPlaced: 0
   isTaken: 0
-  isRemoved: 0
+  isFadedOut: 0
+  isActionLocked: 0
   txtPower: {fileID: 8751292083395359731}
 --- !u!1 &5962848257403878483
 GameObject:

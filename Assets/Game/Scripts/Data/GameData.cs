@@ -16,6 +16,11 @@ public class GameData : ScriptableObject
     public GenericBullet prefabBullet;
     public FxAnimator fxPrefab;
 
+    public TextAsset tableTiles;
+    public TextAsset tableStartingTiles;
+    public TextAsset tableUnits;
+    public TextAsset tableStages;
+
     public class TileColors
     {
         public Color color1;

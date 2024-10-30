@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using FancyToolkit;
+using UnityEngine;
 
 namespace RogueLikeMap
 {
-    [CreateAssetMenu(menuName = "Game/RoguelikeMap/NodeType")]
-    public class NodeType : ScriptableObject
+    public class NodeType : DataWithId
     {
         public Sprite sprite;
 
@@ -12,7 +13,8 @@ namespace RogueLikeMap
             var state = info.state;
             if (state == NodeState.Available)
             {
-                Debug.Log("Clicked new node");
+                Run(info);
+                //Debug.Log("Clicked new node");
                 return;
             }
 
@@ -25,7 +27,7 @@ namespace RogueLikeMap
             Debug.Log($"Clicked on non aviable node (state: {state})");
         }
 
-        public virtual void Run()
+        public virtual void Run(NodeInfo info)
         {
             Debug.Log("Node::Run");
         }

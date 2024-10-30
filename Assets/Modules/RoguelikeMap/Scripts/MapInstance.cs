@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using FancyToolkit;
+using DG.Tweening;
 
 namespace RogueLikeMap
 {
@@ -9,7 +10,7 @@ namespace RogueLikeMap
     {
         [SerializeField] MapNode prefabNode;
         [SerializeField] LineRenderer prefabLine;
-        [SerializeField] Vector2 spacing = new(2,2);
+        [SerializeField] Vector2 spacing = new(2f, 2f);
         [SerializeField] float spread = 0.4f;
         [SerializeField] Transform container;
 
@@ -23,18 +24,19 @@ namespace RogueLikeMap
         List<MapNode> availableNodes;
         List<EdgeInfo> availablePaths;
 
-        public void Init(MapLayout layout)
+        public void Init(MapLayout layout, System.Random rng = null)
         {
             nodes = new();
             edges = new();
             availableNodes = new();
             availablePaths = new();
+            if (rng == null) rng = new System.Random();
 
             foreach (var item in layout.nodes)
             {
                 var pos = item.pos;
                 var worldPos = transform.position + new Vector3(pos.x * spacing.x, pos.y * spacing.y);
-                var instance = Instantiate(prefabNode, worldPos.RandomAround(spread), Quaternion.identity, container);
+                var instance = Instantiate(prefabNode, worldPos.RandomAround(spread, rng), Quaternion.identity, container);
                 instance.Init(item);
                 nodes.Add(item.pos, instance);
                 instance.SetState(item.state);
@@ -82,13 +84,15 @@ namespace RogueLikeMap
 
         protected virtual void HandleNodeClick(MapNode node)
         {
+            /*
             if (node.info.state == NodeState.Available)
             {
                 currentNode?.SetState(NodeState.Visited);
                 currentNode = node;
 
-                node.SetState(NodeState.Current);
-
+                
+                //node.SetState(NodeState.Current);
+                
                 foreach (var item in availableNodes)
                 {
                     if (item == node) continue;
@@ -117,7 +121,7 @@ namespace RogueLikeMap
                         item.render.SetMaterials(materialLineCurrent);
                     }
                 }
-            }
+            }*/
         }
 
         LineRenderer DrawLine(Vector2 start, Vector2 end)

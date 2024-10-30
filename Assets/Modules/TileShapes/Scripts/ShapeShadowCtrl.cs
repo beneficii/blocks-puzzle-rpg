@@ -13,7 +13,7 @@ namespace TileShapes
         [SerializeField] Color color;
         [SerializeField] int sortingOrder = 21;
 
-        Board board;
+        [SerializeField] Board board;
 
         List<Transform> blocks = new();
         int blocksUsed = 0;
@@ -81,7 +81,7 @@ namespace TileShapes
 
         private void Start()
         {
-            board = FindAnyObjectByType<Board>();
+            //board = FindAnyObjectByType<Board>();
         }
 
         private void Update()

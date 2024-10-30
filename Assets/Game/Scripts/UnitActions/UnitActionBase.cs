@@ -12,7 +12,7 @@ namespace UnitAction
     public abstract class Base
     {
         public GameObject GetIndicatorPrefab()
-            => DataManager.current.unitActionPrefabs.Get(ActionVisualId);
+            => Game.current.unitActionPrefabs.Get(ActionVisualId);
 
         public virtual string GetShortDescription(Unit parent) => "";
         public virtual string GetLongDescription(Unit parent) => "";
@@ -41,12 +41,16 @@ namespace UnitAction
             yield return new WaitForSeconds(0.1f);
             if (!target || !parent) yield break;
 
-
-            DataManager.current.CreateFX(parent.data.visuals.fxAttack, target.transform.position, ()=>
+            bool isFxFinished = false;
+            Game.current.CreateFX(parent.data.visuals.fxAttack, target.transform.position, ()=>
             {
+                isFxFinished = true;
                 if (!target) return;
                 target.RemoveHp(value);
             });
+
+            yield return new WaitUntil(() => isFxFinished);
+            yield return new WaitForSeconds(0.05f);
         }
 
         public class Builder : FactoryBuilder<Base, int>

@@ -1,24 +1,24 @@
-id|idVisuals|title|colorCode|description|power|powerType|rarity|type|priority|tags|clearAction|endTurnAction|enterAction|passive|
-sword|basic_sword|Sword|a4dddb||4|Damage|Common|weapon|0|sword|Damage||||
-shield|basic_shield|Shield|e8c170||3|Defense|Common|armor|0|shield|Defense|BuffPower Biggest 2 Damage|BuffPower Around 3 Defense||
-disarmShield|trap_dis_shield|Sturdy Shield|||2|Defense|Common|armor|0|shield||ConsumePower shield all|||
-finalStrike|final_blow|Final Strike|df84a5||4|None|Common|spell|10||ConsumeClearedAnd 1 sword Damage|||AddPowerPassiveTo shield 2|
-moonlight|moonlight|Moonlight||Your shields give 1 extra defense|1|None|Common|blessing|0||||||
-axe|axe|Axe|||3|Damage|Common|weapon|0|axe|Damage|BuffPower Self 2 Damage|ConsumePower axe closest||
-doubleAxe|axe2|Double Edged Axe|||5|Damage|Common|weapon|0|axe|Damage|||OnTilePlaced ring AddPower 5|
-ring|ring|Golden Ring|||2|Damage|Common|armor|1|ring||IfEnoughOnBoard 3 SpawnTile 30 fireball|||
-fireBook|fire_book|Book of Fire|cf573c||1|Damage|Common|spell|0||SpawnTile 2 fireball|ConsumeTagAnd 1 fire all Damage|||
-batCurse|bat_curse|Bat curse|||1|None|None|curse|-1|||TransformAround empty batCurse|||
-trap|basic_trap|Explosive Trap||Deal 10 damage to you|10|Damage|None|trap|0||||||
-mushroomCurse|mushroom|Cursed Mushroom||Deals 1 damage to you every turn|1|Damage|None|curse|0||||||
-fireball|fire|Fireball|||3|Damage|None|weapon|0|fire|Damage||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
-|||||||||||||||
+id|idVisuals|title|colorCode|description|cost|power|powerType|rarity|type|priority|tags|clearAction|endTurnAction|enterAction|passive|buyAction
+sword|basic_sword|Sword|a4dddb||32|4|Damage|Common|weapon|0|sword|Damage||||
+shield|basic_shield|Shield|e8c170||27|3|Defense|Common|armor|0|shield|Defense|BuffPower Biggest 2 Damage|BuffPower Around 3 Defense||
+disarmShield|trap_dis_shield|Sturdy Shield|||40|2|Defense|Common|armor|0|shield||ConsumePower shield all|||
+finalStrike|final_blow|Final Strike|df84a5||90|4|None|Rare|spell|10||ConsumeClearedAnd 1 sword Damage|||AddPowerPassiveTo shield 2|
+moonlight|moonlight|Moonlight|||70|1|None|Uncommon|blessing|0|||||AddPowerPassiveTo shield 1|
+axe|axe|Axe|||30|3|Damage|Common|weapon|0|axe|Damage|BuffPower Self 2 Damage|ConsumePower axe closest||
+doubleAxe|axe2|Double Edged Axe|||40|5|Damage|Uncommon|weapon|0|axe|Damage|||OnTilePlaced ring AddPower 5|
+ring|ring|Golden Ring|||50|2|Damage|Uncommon|armor|1|ring||IfEnoughOnBoard 3 SpawnTile 30 fireball|||
+fireBook|fire_book|Book of Fire|cf573c||60|1|Damage|Uncommon|spell|0||SpawnTile 2 fireball|ConsumeTagAnd 1 fire all Damage|||
+batCurse|bat_curse|Bat curse|||0|1|None|None|curse|-1|||TransformAround empty batCurse|||
+trap|basic_trap|Explosive Trap||Deal 10 damage to you|0|10|Damage|None|trap|0||||||
+mushroomCurse|mushroom|Cursed Mushroom||Deals 1 damage to you every turn|0|1|Damage|None|curse|0||||||
+fireball|fire|Fireball|||0|3|Damage|None|weapon|0|fire|Damage||||
+health|health|Potion|||50|50|None|None|none|0||||||HealPlayerBuy
+||||||||||||||||
+||||||||||||||||
+||||||||||||||||
+||||||||||||||||
+||||||||||||||||
+||||||||||||||||
+||||||||||||||||
+||||||||||||||||
+||||||||||||||||

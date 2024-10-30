@@ -75,8 +75,8 @@ public class CombatArena : MonoBehaviour
         if (enemy) yield return enemy;
     }
 
-    private void Start()
+    public IEnumerable<Unit> GetEnemies()
     {
-        SpawnPlayer();
+        if (enemy) yield return enemy;
     }
 }

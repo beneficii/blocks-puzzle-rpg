@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabNode: {fileID: 417809631742895467, guid: c663efe01ff19f245bb3ecca27dd62b7, type: 3}
   prefabLine: {fileID: 5905054514732560436, guid: 224f5039e6f95364eba4a7597de69212, type: 3}
-  spacing: {x: 2.5, y: 3}
+  spacing: {x: 2, y: 2}
   spread: 0.4
   container: {fileID: 410670430085556452}
   materialLineDefault:

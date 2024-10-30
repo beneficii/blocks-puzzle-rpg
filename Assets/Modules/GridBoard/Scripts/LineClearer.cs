@@ -140,7 +140,7 @@ namespace GridBoard
             tileSet = new HashSet<Tile>(tilesRemoved);
             foreach (var item in tileSet)
             {
-                yield return item.FadeOut(10f);
+                yield return item.FadeOut(20f);
                 Destroy(item.gameObject);
             }
         }

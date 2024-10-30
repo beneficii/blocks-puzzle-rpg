@@ -26,7 +26,7 @@ public abstract class TileActionBase
     protected GenericBullet MakeBullet(Tile parent)
     {
         var rand = Random.Range(0, 2) == 0;
-        var bullet = DataManager.current.gameData.prefabBullet.MakeInstance(parent.transform.position)
+        var bullet = Game.current.MakeBullet(parent.transform.position)
             .SetSpleen(rand ? Vector2.left : Vector2.right)
             .SetSprite(parent.GetIcon());
 
@@ -36,7 +36,7 @@ public abstract class TileActionBase
     protected GenericBullet MakeBullet(Tile parent, Vector2 position)
     {
         var rand = Random.Range(0, 2) == 0;
-        var bullet = DataManager.current.gameData.prefabBullet.MakeInstance(position)
+        var bullet = Game.current.MakeBullet(position)
             .SetSpleen(rand ? Vector2.left : Vector2.right)
             .SetSprite(parent.GetIcon());
 

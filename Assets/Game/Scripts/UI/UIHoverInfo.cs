@@ -64,6 +64,12 @@ public class UIHoverInfo : MonoBehaviour
         if (txtDescription) txtDescription.text = data.GetDescription();
     }
 
+    public void Init(Tile info)
+    {
+        Init(info.data);
+        if (txtDescription) txtDescription.text = info.GetDescription();
+    }
+
     void Show(Tile info)
     {
         Init(info.data);

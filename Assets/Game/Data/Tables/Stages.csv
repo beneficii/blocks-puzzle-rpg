@@ -1,15 +1,15 @@
 id|units|difficulty|type|rewards|specialTile|background
-test|boar|1|Enemy|gold 32; tile|empty|todo
-||||||
-||||||
-||||||
-||||||
-||||||
-||||||
-||||||
-||||||
-||||||
-||||||
+test|slime|0|Enemy|gold 8; tile|empty|bg6
+test1|bat|1|Enemy|gold 15; tile|empty|bg5
+test2|snake|2|Enemy|gold 23; tile|empty|bg3
+test3|boar|3|Elite|gold 33; tile|empty|bg5
+shop|Wizard|4|Shop|||bg2
+test4|dino|5|Enemy|gold 25; tile|empty|bg3
+test5|mushroom|6|Enemy|gold 30; tile|empty|bg2
+test6|bat_2|7|Enemy|gold 36; tile|empty|bg2
+shop2|Wizard|8|Shop|||bg2
+boss2|dragon|9|Boss|gold 100; tile|empty|bg4
+shoptest|Wizard|0|Shop|||bg2
 ||||||
 ||||||
 ||||||
