@@ -50,7 +50,9 @@ public class UISelectTileCard : MonoBehaviour
 
         if (data.buyAction != null)
         {
-            data.buyAction.Build().Run();
+            var action = data.buyAction.Build();
+            action.Init(dummyTile);
+            Game.current.StartCoroutine(action.Run());
         }
         else
         {

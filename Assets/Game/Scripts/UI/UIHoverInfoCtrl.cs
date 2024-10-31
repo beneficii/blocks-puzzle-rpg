@@ -10,15 +10,29 @@ public class UIHoverInfoCtrl : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] UIHoverInfo infoPanel;
 
-    Collider2D currentColider;
-
+    Transform currentColider;
+    Transform currentUIElement;
 
     private void Start()
     {
         ShowCollider(null);
     }
 
-    void ShowCollider(Collider2D collider)
+    public void LockOnUIElement(Transform collider)
+    {
+        currentUIElement = collider;
+        ShowCollider(collider);
+    }
+
+    public void HideCollider(Transform collider)
+    {
+        if (currentColider == collider)
+        {
+            ShowCollider(null);
+        }
+    }
+
+    public void ShowCollider(Transform collider)
     {
         currentColider = collider;
         infoPanel.gameObject.SetActive(false);
@@ -37,11 +51,13 @@ public class UIHoverInfoCtrl : MonoBehaviour
 
     private void Update()
     {
+        if (currentUIElement) return;
+
         RaycastHit2D hit = Physics2D.Raycast(Helpers.MouseToWorldPosition(), Vector2.zero, 10, layerMask);
 
-        if (currentColider != hit.collider)
+        if (currentColider != hit.transform)
         {
-            ShowCollider(hit.collider);
+            ShowCollider(hit.transform);
         }
     }
 }

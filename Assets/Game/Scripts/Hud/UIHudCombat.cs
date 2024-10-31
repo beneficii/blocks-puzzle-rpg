@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using FancyToolkit;
+using GridBoard;
 
 public class UIHudCombat : UIHudBase
 {
@@ -11,21 +14,40 @@ public class UIHudCombat : UIHudBase
             if (!_current)
             {
                 _current = FindFirstObjectByType<UIHudCombat>();
-                _current.Init();
             }
 
             return _current;
         }
     }
 
-    public void Start()
+    [SerializeField] UISkillButton templateButton;
+
+    public List<UISkillButton> skillButtons { get; private set; } = new();
+
+    void Clear()
     {
-        //Opened();
+        foreach (var button in skillButtons)
+        {
+            Destroy(button.gameObject);
+        }
+        skillButtons.Clear();
     }
 
-    void Init()
-    {
 
+    public IEnumerator InitSkills(Board board)
+    {
+        Clear();
+        foreach (var data in Game.current.GetSkills())
+        {
+            var instance = UIUtils.CreateFromTemplate(templateButton);
+            instance.Init(data, board);
+            skillButtons.Add(instance);
+        }
+
+        foreach (var item in skillButtons)
+        {
+            yield return item.CombatStarted();
+        }
     }
 
     public void Show()

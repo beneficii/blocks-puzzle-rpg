@@ -137,7 +137,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         shapePanel.IsLocked = false;
     }
 
-    void InitCombat()
+    IEnumerator InitCombat()
     {
         var stageData = StageCtrl.current.Data;
 
@@ -149,6 +149,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         board.LoadRandomLayout(stageData.specialTile);
         shapePanel.OnOutOfShapes += NewTurn;
+        yield return UIHudCombat.current.InitSkills(board);
         shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
     }
 
@@ -171,9 +172,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         AddRarity(Rarity.Uncommon, 2);
         list.Add(TileCtrl.current.GetTile<MyTileData>("health"));
 
-
         UIHudSelectTile.current.Show(SelectTileType.Shop, list);
-
     }
 
     IEnumerator Start()
@@ -196,7 +195,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             case StageData.Type.Enemy:
             case StageData.Type.Elite:
             case StageData.Type.Boss:
-                InitCombat();
+                StartCoroutine(InitCombat());
                 break;
             case StageData.Type.Shop:
                 InitShop();

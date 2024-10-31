@@ -11,6 +11,7 @@ using System.Linq;
 public class Game : MonoBehaviour
 {
     public static Game current { get; private set; }
+    public const int maxSkills = 4;
 
     [SerializeField] GameData gameData;
 
@@ -32,7 +33,7 @@ public class Game : MonoBehaviour
     public void AddTileToDeck(string id)
     {
         state.deck.Add(id);
-        state.Save();
+        //state.Save(); // don't save to prevent shop abuse
     }
 
     public List<string> GetStartingDeck()
@@ -47,6 +48,7 @@ public class Game : MonoBehaviour
         StageCtrl.current.AddData(gameData.tableStages);
         TileCtrl.current.AddData<MyTileData>(gameData.tableTiles);
         UnitCtrl.current.AddData<UnitData>(gameData.tableUnits);
+        SkillCtrl.current.AddData<SkillData>(gameData.tableSkills);
 
         unitActionPrefabs = Resources.LoadAll<GameObject>("ActionVisuals").ToDictionary(x => x.name);
         fxDict = Resources.LoadAll<FxData>("FxData").ToDictionary(x => x.name);
@@ -79,6 +81,9 @@ public class Game : MonoBehaviour
         {
             NewGame(); //ToDo: control this from menu or smth
         }
+
+        ResCtrl<ResourceType>.current.Set(ResourceType.Gold, state.gold);
+        ResCtrl<ResourceType>.current.Set(ResourceType.Level, state.visitedNodes.Count);
     }
 
     void HandleMapSceneReady(MapScene scene)
@@ -124,6 +129,13 @@ public class Game : MonoBehaviour
             .ToList();
     }
 
+    public List<SkillData> GetSkills()
+    {
+        return state.skills.Take(maxSkills)
+            .Select(SkillCtrl.current.Get)
+            .ToList();
+    }
+
     public string GetSceneToLoad()
     {
         if (state == null)
@@ -149,6 +161,7 @@ public class Game : MonoBehaviour
         var layout = state.GenerateMapLayout();
         var node = layout.nodes[idx];
         StageCtrl.current.SetStage((StageData)node.type);
+        ResCtrl<ResourceType>.current.Set(ResourceType.Level, node.index);
         stageSeed = node.random;
     }
 

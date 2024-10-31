@@ -20,6 +20,7 @@ public class GameData : ScriptableObject
     public TextAsset tableStartingTiles;
     public TextAsset tableUnits;
     public TextAsset tableStages;
+    public TextAsset tableSkills;
 
     public class TileColors
     {

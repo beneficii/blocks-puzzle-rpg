@@ -43,7 +43,7 @@ public abstract class TileActionBase
         return bullet;
     }
 
-    protected string GetTargetingTypeName(ActionTargetType targetType, string tag = TileData.anyTag)
+    public static string GetTargetingTypeName(ActionTargetType targetType, string tag = TileData.anyTag)
     {
         if (tag == TileData.anyTag)
         {

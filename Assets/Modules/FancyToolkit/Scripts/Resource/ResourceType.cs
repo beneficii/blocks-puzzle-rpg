@@ -43,6 +43,7 @@ namespace FancyToolkit
         Gold,
         MaxGold,
         Exp,
+        Level,
     }
 
     [System.Serializable]

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace FancyToolkit
 {
     public interface IHasInfo
     {
+        public Sprite GetIcon();
         public bool ShouldShowInfo();
         public string GetTitle();
         public string GetDescription();

@@ -19,3 +19,4 @@ MonoBehaviour:
   tableStartingTiles: {fileID: 4900000, guid: e21e077e224f2ea409bbc4d43af5146a, type: 3}
   tableUnits: {fileID: 4900000, guid: 0d87e4e20afdc224f9beec775e290359, type: 3}
   tableStages: {fileID: 4900000, guid: 401bddedab5568b43947426080689229, type: 3}
+  tableSkills: {fileID: 4900000, guid: cebc20c864c7ee44fafbfecf47944230, type: 3}

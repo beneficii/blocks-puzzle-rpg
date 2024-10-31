@@ -76,6 +76,13 @@ public class UIHoverInfo : MonoBehaviour
         if (txtDescription) txtDescription.text = info.GetDescription();
     }
 
+    void Show(UISkillButton button)
+    {
+        Show((IHasInfo)button);
+
+        if (imgIcon) imgIcon.sprite = button.data.sprite;
+    }
+
     void Show(Unit unit)
     {
         var data = unit.data;
@@ -89,17 +96,11 @@ public class UIHoverInfo : MonoBehaviour
         if (!string.IsNullOrEmpty(tip) && hints.Count > 0) hints[0].Show(tip);
     }
 
-    public void Show(Collider2D collider)
+    public void Show(Transform collider)
     {
         if (!collider)
         {
             Hide();
-            return;
-        }
-
-        if (collider.TryGetComponent<IHasInfo>(out var info))
-        {
-            Show(info);
             return;
         }
 
@@ -112,6 +113,18 @@ public class UIHoverInfo : MonoBehaviour
         if (collider.TryGetComponent<Tile>(out var tile))
         {
             Show(tile);
+            return;
+        }
+
+        if (collider.TryGetComponent<UISkillButton>(out var skill))
+        {
+            Show(skill);
+            return;
+        }
+
+        if (collider.TryGetComponent<IHasInfo>(out var info))
+        {
+            Show(info);
             return;
         }
 

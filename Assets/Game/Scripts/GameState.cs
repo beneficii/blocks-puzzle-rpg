@@ -1,4 +1,5 @@
-﻿using RogueLikeMap;
+﻿using FancyToolkit;
+using RogueLikeMap;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class GameState
     public int currentNode;
     public Vector2Int playerHealth;
     public List<string> deck;
+    public List<string> skills;
+    public int gold;
 
     public static bool HasSave()
         => PlayerPrefs.HasKey(prefsKey);
@@ -29,6 +32,7 @@ public class GameState
 
     public void Save()
     {
+        gold = ResCtrl<ResourceType>.current.Get(ResourceType.Gold);
         var json = JsonUtility.ToJson(this);
         PlayerPrefs.SetString(prefsKey, json);
         PlayerPrefs.Save();
@@ -108,11 +112,8 @@ public class GameState
         this.currentNode = -1;
         this.playerHealth = new(100, 100);
         this.deck = Game.current.GetStartingDeck();
+        this.skills = new List<string> { "test" };
+        this.gold = 200;
         GenerateMapLayout();
-    }
-
-    public GameState()
-    {
-
     }
 }

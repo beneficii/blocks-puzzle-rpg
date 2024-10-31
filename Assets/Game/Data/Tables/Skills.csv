@@ -1,0 +1,2 @@
+id|idVisual|name|clickCondition|onClick|onEndTurn|onStartCombat
+test|overwhelm|Overwhelm|Once|SpawnTile 4 sword||
