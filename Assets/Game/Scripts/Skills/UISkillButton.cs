@@ -67,7 +67,7 @@ public class UISkillButton : MonoBehaviour, IHasInfo
         if (clickCondition == null || onClick == null) return;
         if (!clickCondition.CanUse)
         {
-            Game.ToDo(clickCondition.GetErrorUnusable());
+            MainUI.current.ShowMessage(clickCondition.GetErrorUnusable());
             return;
         }
 

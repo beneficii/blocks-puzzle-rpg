@@ -44,7 +44,7 @@ public class UISelectTileCard : MonoBehaviour
     {
         if (!ResCtrl<ResourceType>.current.Remove(ResourceType.Gold, data.cost))
         {
-            Game.ToDo("Not enough gold");
+            MainUI.current.ShowMessage("Not enough gold");
             return;
         }
 

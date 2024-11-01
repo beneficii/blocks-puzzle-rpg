@@ -7,6 +7,7 @@ using FancyToolkit;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEditor.U2D.Aseprite;
+using UnityEditor.VersionControl;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
@@ -248,6 +249,11 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             UIHudDialog.current.Show("test");
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            MainUI.current.ShowMessage("Some test message!");
         }
 
 #endif
