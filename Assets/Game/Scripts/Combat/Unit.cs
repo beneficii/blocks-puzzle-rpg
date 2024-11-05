@@ -183,6 +183,13 @@ public class Unit : MonoBehaviour, IDamagable
         refArmor.Add(value);
     }
 
+    public void RemoveArmor(int value)
+    {
+        if (value <= 0) return;
+
+        refArmor.Remove(value);
+    }
+
     public void SetArmor(int value)
     {
         refArmor.Value = value;

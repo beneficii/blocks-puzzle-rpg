@@ -9,7 +9,6 @@ using TileActions;
 public class MyTileData : TileData
 {
     public int power;
-    public TileStatType powerType;
 
     public FactoryBuilder<TileActionBase> clearAction;
     public FactoryBuilder<TileActionBase> endTurnAction;

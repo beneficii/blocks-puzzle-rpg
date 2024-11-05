@@ -1,24 +1,54 @@
-id|idVisuals|title|colorCode|description|cost|power|powerType|rarity|type|priority|tags|clearAction|endTurnAction|enterAction|passive|buyAction
-sword|basic_sword|Sword|a4dddb||32|4|Damage|Common|weapon|0|sword|Damage||||
-shield|basic_shield|Shield|e8c170||27|3|Defense|Common|armor|0|shield|Defense|BuffPower Biggest 2 Damage|BuffPower Around 3 Defense||
-disarmShield|trap_dis_shield|Sturdy Shield|||40|2|Defense|Common|armor|0|shield||ConsumePower shield all|||
-finalStrike|final_blow|Final Strike|df84a5||90|4|None|Rare|spell|10||ConsumeClearedAnd 1 sword Damage|||AddPowerPassiveTo shield 2|
-moonlight|moonlight|Moonlight|||70|1|None|Uncommon|blessing|0|||||AddPowerPassiveTo shield 1|
-axe|axe|Axe|||30|3|Damage|Common|weapon|0|axe|Damage|BuffPower Self 2 Damage|ConsumePower axe closest||
-doubleAxe|axe2|Double Edged Axe|||40|5|Damage|Uncommon|weapon|0|axe|Damage|||OnTilePlaced ring AddPower 5|
-ring|ring|Golden Ring|||50|2|Damage|Uncommon|armor|1|ring||IfEnoughOnBoard 3 SpawnTile 30 fireball|||
-fireBook|fire_book|Book of Fire|cf573c||60|1|Damage|Uncommon|spell|0||SpawnTile 2 fireball|ConsumeTagAnd 1 fire all Damage|||
-batCurse|bat_curse|Bat curse|||0|1|None|None|curse|-1|||TransformAround empty batCurse|||
-trap|basic_trap|Explosive Trap||Deal 10 damage to you|0|10|Damage|None|trap|0||||||
-mushroomCurse|mushroom|Cursed Mushroom||Deals 1 damage to you every turn|0|1|Damage|None|curse|0||||||
-fireball|fire|Fireball|||0|3|Damage|None|weapon|0|fire|Damage||||
-health|health|Potion|||50|50|None|None|none|0||||||HealPlayerBuy
-||||||||||||||||
-||||||||||||||||
-||||||||||||||||
-||||||||||||||||
-||||||||||||||||
-||||||||||||||||
-||||||||||||||||
-||||||||||||||||
-||||||||||||||||
+id|idVisuals|title|colorCode|description|cost|power|rarity|type|priority|tags|clearAction|endTurnAction|enterAction|passive|buyAction||
+health|health|Potion|||50|50|None|none|0||||||HealPlayerBuy|health|
+|||||||||||||||||
+sword|basic_sword|Cheap Sword|a4dddb||99|4|Basic|weapon|0|sword|Damage|||||sword|
+shortSword|sword1|ShortSword|||99|2|None|weapon|0|sword|Damage|||||shortSword|
+jaggedSword|sword2|Jagged Sword|||99|8|Common|weapon|0|sword|DamageAnd SpawnTile 1 spikeTrap|||||jaggedSword|
+heavySword|sword3|Wide Sword|||99|3|Uncommon|weapon|0|sword|DamageAnd SpawnTile 2 shortSword|||||heavySword|
+strength|fist|Strength|||99|0|Uncommon|spell|0||||BuffPower Around 3 Damage|||strength|
+bladeRing|bladed_ring|Blade Ring|||99|0|Common|armor|0|ring||ForOnBoard 3 SpawnTile 1 shortSword||||bladeRing|
+focusBlades|focus_blades|Focus Blades|df84a5||99|4|Uncommon|spell|10|||||||focusBlades|
+|||||||||||||||||
+shield|basic_shield|Round Shield|e8c170||99|3|Basic|armor|0|shield|Defense|||||shield|
+trapShield|trap_dis_shield|Snarebound Shield|||99|2|Common|armor|0|shield|Defense||AddPowerForEachOnBoard 2 trap|||trapShield|
+resilentShield|shield1|Resilent Shield|||99|3|Uncommon|armor|0|shield|Defense|||OnPlayerDamage 0 AddPower 2||resilentShield|
+guardShield|shield2|Guarding Shield|||99|1|Common|armor|0|shield|BuffPower Biggest 2 Defense|||||guardShield|
+shieldBash|shieldBash|Shield Bash|||99|0|Uncommon|spell|1||ConvertPowerTo Damage Biggest shield|||||shieldBash|
+mentalBarrier|mental_barrier|Mental Barrier|||99|0|Uncommon|spell|1||ConvertPowerTo Defense Biggest shield|||||mentalBarrier|
+|||||||||||||||||
+axe|axe|Rampant Axe|||99|2|Uncommon|weapon|0|axe|Damage|AddPower 2||||axe|
+cursedAxe|axe1|Nightmare Axe|||99|1|Uncommon|weapon|0|axe|Damage||SuckOutPower around axe spikeTrap|||cursedAxe|
+recklessAxe|axe2|Reckless Axe|||99|15|Common|weapon|0|axe|DamageBoth|||||recklessAxe|
+extraStrike|final_blow|Extra Strike|||99|0|Uncommon|spell|-20||CopyHighestDamage|||||extraStrike|
+|||||||||||||||||
+ring|ring|Golden Ring|||25|0|Common|armor|0|ring||Defense||||ring|
+|||||||||||||||||
+goo|goo|Copying Goo|||188|0|Rare|spell|0||||TransformInto biggest any|||goo|
+|||||||||||||||||
+trap|basic_trap|Explosive Trap|||0|0|None|trap|-5||TransformAround nonempty empty 0|||||trap|
+batTrap|bat_trap|Bat Trap|||0|10|None|trap|-5||HealEnemy|||||batTrap|
+spikeTrap|spikes|Spike Trap|||0|3|None|trap|-5||DamagePlayer|||||spikeTrap|
+snakeTrap|snake_trap|Snake Trap|||0|20|None|trap|-5||RemoveArmor|||||snakeTrap|
+|||||||||||||||||
+axeCurse|cursed_axe|Cursed Axe|||0|2|None|curse|-10|axe|DamagePlayer|SuckOutPower biggest any empty||||cursedAxe|
+cursedRing|cursed_ring|Cursed Ring|||0|2|None|curse|-10|ring||||EnemyDefense||cursedRing|
+batCurse|bat_curse|Bat Curse|||0|2|None|curse|-10|||||HealEnemy||batCurse|
+snakeCurse|snake|Snake Curse|||0|0|None|curse|-10|||||AddPowerPassiveTo shield -2||snakeCurse|
+boarCurse|boar|Boar Curse|||0|0|None|curse|-10|||||AddPowerPassiveTo weapon -2||boarCurse|
+mushroomCurse|mushroom|Mushroom Curse|||0|2|None|curse|-10|curse|DamagePlayer|TransformAround empty mushroomCurse 2||||mushroomCurse|
+|||||||||||||||||
+fireball|fire|Fireball|||0|1|None|weapon|0|fire|Damage|||||fireball|
+fireBook|fire_book|Book of Fire|cf573c||60|2|Uncommon|spell|0||ConsumeClearedAnd 1 fire Damage|SpawnTile 2 fireball||||fireBook|
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||
+|||||||||||||||||

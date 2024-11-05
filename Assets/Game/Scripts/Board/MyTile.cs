@@ -30,6 +30,8 @@ public class MyTile : Tile
         }
     }
 
+    public TileStatType StatType => clearAction?.StatType ?? TileStatType.None;
+
     IEnumerable<TileActionBase> AllActions()
     {
         if (clearAction != null) yield return clearAction;
@@ -85,7 +87,7 @@ public class MyTile : Tile
 
     void RefreshNumber(bool skipAnimation = false)
     {
-        if (myData.powerType == TileStatType.None)
+        if (StatType == TileStatType.None)
         {
             txtPower.text = "";
             return;

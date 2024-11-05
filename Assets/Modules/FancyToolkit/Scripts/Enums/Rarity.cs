@@ -12,5 +12,6 @@ namespace FancyToolkit
         Uncommon,
         Rare,
         Legendary,
+        ToDo,
     }
 }

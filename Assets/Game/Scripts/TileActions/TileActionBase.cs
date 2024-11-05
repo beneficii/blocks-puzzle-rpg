@@ -5,14 +5,18 @@ using FancyToolkit;
 using GridBoard;
 using System.Collections;
 using TileActions;
-using UnityEditor.U2D.Aseprite;
 
 public abstract class TileActionBase
 {
+    protected const string keyDamage = "damage";
+    protected const string keyArmor = "armor";
+
     public bool isOnBoard;
     protected MyTile parent;
 
     protected int Power => parent.Power;
+
+    public virtual TileStatType StatType => TileStatType.None;
 
     public abstract string GetDescription();
 
@@ -31,6 +35,20 @@ public abstract class TileActionBase
             .SetSprite(parent.GetIcon());
 
         return bullet;
+    }
+
+    protected GenericBullet MakeDmgBullet(Tile parent, int damage)
+    {
+        LineClearData.current?.RegisterValue(keyDamage, damage);
+        return MakeBullet(parent)
+            .SetDamage(damage);
+    }
+
+    protected GenericBullet MakeDefBullet(Tile parent, int armor)
+    {
+        LineClearData.current?.RegisterValue(keyArmor, armor);
+        return MakeBullet(parent)
+            .SetUnitAction((x) => x.AddArmor(armor));
     }
 
     protected GenericBullet MakeBullet(Tile parent, Vector2 position)
@@ -102,8 +120,7 @@ public abstract class TileActionBase
             {
 
                 if (item is not MyTile tile || tile.isBeingPlaced || tile == parent) continue;
-                var data = tile.myData;
-                if (data == null || data.powerType == TileStatType.None) continue;
+                if (tile.StatType == TileStatType.None) continue;
                 if (filter != null && !filter(tile)) continue;
 
                 if (tile.Power > maxPower)

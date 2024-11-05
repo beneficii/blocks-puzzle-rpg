@@ -161,7 +161,7 @@ public class Game : MonoBehaviour
         var layout = state.GenerateMapLayout();
         var node = layout.nodes[idx];
         StageCtrl.current.SetStage((StageData)node.type);
-        ResCtrl<ResourceType>.current.Set(ResourceType.Level, node.index);
+        ResCtrl<ResourceType>.current.Set(ResourceType.Level, node.pos.x);
         stageSeed = node.random;
     }
 
@@ -189,7 +189,6 @@ public class Game : MonoBehaviour
     {
         GameState.ClearSave();
     }
-
 
     public FxAnimator CreateFX(string id, Vector2 position, System.Action action = null)
     {

@@ -45,7 +45,8 @@ namespace GridBoard
         public UnityEvent<Tile> OnMouseTileChanged;
         public UnityEvent<Vector2Int?> OnMousePosChanged;
 
-        public Dictionary<string, int> dictTileCounter = new();
+        Dictionary<string, int> dictTileCounter = new();
+        Dictionary<string, int> dictTagCounter = new();
 
         bool calculateGrid = false;
 
@@ -95,6 +96,9 @@ namespace GridBoard
             return render;
         }
 
+        public int GetIdTileCount(string id) => dictTileCounter.Get(id);
+        public int GetTagTileCount(string tag) => dictTagCounter.Get(tag);
+
         public void Init()
         {
             if (bgTiles != null) return;
@@ -126,10 +130,15 @@ namespace GridBoard
 
         void HandleTileChangedBoardState(Tile tile, bool state)
         {
-            var key = tile.data.id;
-            if (!dictTileCounter.ContainsKey(key)) dictTileCounter.Add(key, 0);
-            
-            dictTileCounter[key] += state ? +1 : -1;
+            var id = tile.data.id;
+            if (!dictTileCounter.ContainsKey(id)) dictTileCounter.Add(id, 0);
+            dictTileCounter[id] += state ? +1 : -1;
+
+            foreach (var tag in tile.data.tags)
+            {
+                if (!dictTagCounter.ContainsKey(tag)) dictTagCounter.Add(tag, 0);
+                dictTagCounter[tag] += state ? +1 : -1;
+            }
         }
 
         public bool CanPlace(int x, int y)

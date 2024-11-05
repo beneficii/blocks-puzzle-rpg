@@ -143,6 +143,8 @@ namespace GridBoard
                 yield return item.FadeOut(20f);
                 Destroy(item.gameObject);
             }
+
+            clearData.Destroy();
         }
         
 
@@ -173,12 +175,41 @@ namespace GridBoard
 
     public class LineClearData
     {
+        public static LineClearData current { get; private set; }
+
         public List<TileData> list;
         public HashSet<Tile> tiles;
         Queue<Tile> queue;
 
         public int rowsMatched;
         public int columnsMatched;
+
+        Dictionary<string, int> maxCustomValue = new();
+        Dictionary<string, int> totalCustomValue = new();
+
+        public void RegisterValue(string key, int value)
+        {
+            if (!maxCustomValue.TryGetValue(key, out var max))
+            {
+                maxCustomValue.Add(key, value);
+            }
+            else
+            {
+                maxCustomValue[key] = Mathf.Max(value, max);
+            }
+
+            if (!totalCustomValue.TryGetValue(key, out var total))
+            {
+                totalCustomValue.Add(key, value);
+            }
+            else
+            {
+                totalCustomValue[key] = total + value;
+            }
+        }
+
+        public int GetValueMax(string key) => maxCustomValue.Get(key);
+        public int GetValueTotal(string key) => totalCustomValue.Get(key);
 
         public LineClearData(HashSet<Tile> blocks, int rowsMatched, int columnsMatched)
         {
@@ -187,6 +218,12 @@ namespace GridBoard
             queue = new Queue<Tile>(blocks.OrderByDescending(x => x.data.priority));
             this.rowsMatched = rowsMatched;
             this.columnsMatched = columnsMatched;
+            current = this;
+        }
+
+        public void Destroy()
+        {
+            current = null;
         }
 
         public Tile PickNextTile()

@@ -146,7 +146,7 @@ namespace TileActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            if (parent.board.dictTileCounter.Get(parent.data.id) < amount) yield break;
+            if (parent.board.GetIdTileCount(parent.data.id) < amount) yield break;
 
             foreach (var item in FindTileTargets(parent, ActionTargetType.All, (x)=>x.data.id == parent.data.id))
             {

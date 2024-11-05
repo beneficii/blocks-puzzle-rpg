@@ -6,10 +6,6 @@ using FancyToolkit;
 using System.Linq;
 using System;
 using UnityEngine.Assertions;
-using UnityEngine.UIElements;
-using Mono.Cecil;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace TileActions
 {
@@ -24,17 +20,14 @@ namespace TileActions
     public class Defense : TileActionBase
     {
         public override string GetDescription()
-            => $"Gain {Power} defense";
+            => $"Gain {Power} armor";
 
-        public Defense()
-        {
-        }
+        public override TileStatType StatType => TileStatType.Defense;
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            var bullet = MakeBullet(parent)
+            var bullet = MakeDefBullet(parent, Power * multiplier)
                             .SetTarget(CombatArena.current.player)
-                            .SetUnitAction((x)=> x.AddArmor(Power * multiplier))
                             .SetLaunchDelay(0.09f);
             yield return new WaitForSeconds(.07f);
         }
@@ -42,6 +35,76 @@ namespace TileActions
         public class Builder : FactoryBuilder<TileActionBase>
         {
             public override TileActionBase Build() => new Defense();
+        }
+    }
+
+    public class CopyHighestDamage : ClearActionBase
+    {
+        public override string GetDescription()
+            => $"Copy highest damage in a clear";
+
+        public override IEnumerator Run(LineClearData match)
+        {
+            MakeDmgBullet(parent, match.GetValueMax(keyDamage))
+                .SetTarget(CombatArena.current.enemy)
+                .SetLaunchDelay(0.2f);
+
+            yield return parent.FadeOut(10f);
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase>
+        {
+            public override TileActionBase Build() => new CopyHighestDamage();
+        }
+    }
+
+    public class RemoveArmor : TileActionBase
+    {
+        public override string GetDescription()
+            => $"Remove {Power} armor";
+
+        public RemoveArmor()
+        {
+
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            var bullet = MakeBullet(parent)
+                            .SetTarget(CombatArena.current.player)
+                            .SetUnitAction((x) => x.RemoveArmor(Power * multiplier))
+                            .SetLaunchDelay(0.09f);
+            yield return new WaitForSeconds(.07f);
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase>
+        {
+            public override TileActionBase Build() => new RemoveArmor();
+        }
+    }
+
+    public class EnemyDefense : TileActionBase
+    {
+        public override string GetDescription()
+            => $"Enemy gains {Power} armor";
+
+        public override TileStatType StatType => TileStatType.Defense;
+
+        public EnemyDefense()
+        {
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            var bullet = MakeDefBullet(parent, Power * multiplier)
+                            .SetTarget(CombatArena.current.enemy)
+                            .SetLaunchDelay(0.09f);
+            yield return new WaitForSeconds(.07f);
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase>
+        {
+            public override TileActionBase Build() => new EnemyDefense();
         }
     }
 

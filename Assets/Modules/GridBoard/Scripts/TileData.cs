@@ -9,6 +9,7 @@ namespace GridBoard
     public class TileData
     {
         public const string anyTag = "any";
+        public const string nonEmpty = "nonempty";
 
         public TileVisuals visuals;
         public string idVisuals;
@@ -40,6 +41,8 @@ namespace GridBoard
 
         public bool HasTag(string tag)
             => tag == anyTag
+            || tag == id
+            || (tag == nonEmpty && id != "empty")
             || type.ToString().ToLower() == tag
             || tags.Contains(tag);
 

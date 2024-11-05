@@ -72,8 +72,7 @@ public abstract class SkillActionBase
             {
 
                 if (item is not MyTile tile || tile.isBeingPlaced) continue;
-                var data = tile.myData;
-                if (data == null || data.powerType == TileStatType.None) continue;
+                if (tile.StatType == TileStatType.None) continue;
                 if (filter != null && !filter(tile)) continue;
 
                 if (tile.Power > maxPower)
@@ -81,8 +80,6 @@ public abstract class SkillActionBase
                     biggest = tile;
                     maxPower = tile.Power;
                 }
-
-
             }
             if (biggest) yield return biggest;
             yield break;

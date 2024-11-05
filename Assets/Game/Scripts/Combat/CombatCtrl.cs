@@ -267,7 +267,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     {
         if (string.IsNullOrEmpty(debugId)) return;
 
-        Debug.Log($"{board.dictTileCounter.Get(debugId)}");
+        Debug.Log($"{board.GetIdTileCount(debugId)}");
     }
 #endif
 
