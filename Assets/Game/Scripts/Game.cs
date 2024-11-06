@@ -10,6 +10,8 @@ using System.Linq;
 [DefaultExecutionOrder(-20)]
 public class Game : MonoBehaviour
 {
+    const string sceneMenu = "MainMenu";
+
     public static Game current { get; private set; }
     public const int maxSkills = 4;
 
@@ -38,6 +40,8 @@ public class Game : MonoBehaviour
 
     public List<string> GetStartingDeck()
     {
+        //return TileCtrl.current.GetAllTiles().Select(x => x.id).ToList();
+
         return FancyCSV.FromText<TileEntry>(gameData.tableStartingTiles.text)
             .SelectMany(x => Enumerable.Repeat(x.id, x.amount))
             .ToList();
@@ -72,18 +76,18 @@ public class Game : MonoBehaviour
 
         Init();
 
-        if (GameState.HasSave())
+        // For testing autoload level and stuff
+        if (SceneManager.GetActiveScene().name != sceneMenu)
         {
-            state = GameState.Load();
-            SetCurrentStage();
+            if (GameState.HasSave())
+            {
+                Continue();
+            }
+            else
+            {
+                NewGame();
+            }
         }
-        else
-        {
-            NewGame(); //ToDo: control this from menu or smth
-        }
-
-        ResCtrl<ResourceType>.current.Set(ResourceType.Gold, state.gold);
-        ResCtrl<ResourceType>.current.Set(ResourceType.Level, state.visitedNodes.Count);
     }
 
     void HandleMapSceneReady(MapScene scene)
@@ -102,11 +106,16 @@ public class Game : MonoBehaviour
     public void Continue()
     {
         state = GameState.Load();
+        SetCurrentStage();
+        ResCtrl<ResourceType>.current.Set(ResourceType.Gold, state.gold);
+        ResCtrl<ResourceType>.current.Set(ResourceType.Level, state.visitedNodes.Count);
     }
 
     public void RestartLevel()
     {
         Helpers.RestartScene();
+        ResCtrl<ResourceType>.current.Set(ResourceType.Gold, state.gold);
+        ResCtrl<ResourceType>.current.Set(ResourceType.Level, state.visitedNodes.Count);
     }
 
     public static void ToDo(string message)
@@ -114,7 +123,7 @@ public class Game : MonoBehaviour
         Debug.Log(message);
     }
 
-    void LoadScene()
+    public void LoadScene()
     {
         SceneManager.LoadScene("Loading");
     }
@@ -140,9 +149,7 @@ public class Game : MonoBehaviour
     {
         if (state == null)
         {
-            // load menu
-            Debug.LogError("ToDo: menu");
-            return null;
+            return sceneMenu;
         }
         else if (state.currentNode < 0)
         {
@@ -188,6 +195,7 @@ public class Game : MonoBehaviour
     public void GameOver()
     {
         GameState.ClearSave();
+        state = null;
     }
 
     public FxAnimator CreateFX(string id, Vector2 position, System.Action action = null)

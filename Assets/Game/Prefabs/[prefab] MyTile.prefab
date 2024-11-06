@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 2573910496568900375}
   - component: {fileID: 6602989609819292421}
   - component: {fileID: 1193997648673207284}
+  - component: {fileID: 4685713309039623503}
   m_Layer: 6
   m_Name: '[prefab] MyTile'
   m_TagString: Untagged
@@ -432,6 +433,33 @@ MonoBehaviour:
   isFadedOut: 0
   isActionLocked: 0
   txtPower: {fileID: 8751292083395359731}
+--- !u!50 &4685713309039623503
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294852231381999460}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5962848257403878483
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5251110733237101950
 Transform:
   m_ObjectHideFlags: 0
@@ -557,7 +585,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6639264913873032360}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

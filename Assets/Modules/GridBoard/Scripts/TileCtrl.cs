@@ -8,7 +8,7 @@ namespace GridBoard
 {
     public class TileCtrl
     {
-        const string visualsFolder = "TileVisuals";
+        const string visualsFolder = "TileIcons";
 
         static TileCtrl _current;
         public static TileCtrl current
@@ -30,35 +30,6 @@ namespace GridBoard
 
         public Dictionary<string, TileData> tileDict { get; private set; }
         public Dictionary<string, TileData> colorDict { get; private set; }
-
-        private TileVisuals CreateScriptableObject(string name)
-        {
-#if UNITY_EDITOR
-            var newObject = ScriptableObject.CreateInstance<TileVisuals>();
-
-            var sprite = Resources.Load<Sprite>($"TileIcons/{name}");
-            newObject.sprite = sprite;
-
-            if (sprite == null)
-            {
-                Debug.LogWarning($"Sprite with name {name} not found in Resources/TileIcons/.");
-            }
-
-            // Ensure the directory exists
-            string path = Path.Combine("Assets/Resources", visualsFolder);
-            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-
-            // Save the new ScriptableObject to the Resources folder
-            string assetPath = Path.Combine(path, name + ".asset");
-            UnityEditor.AssetDatabase.CreateAsset(newObject, assetPath);
-            UnityEditor.AssetDatabase.SaveAssets();
-
-            Debug.Log("Created new ScriptableObject: " + name);
-            return newObject;
-#else
-            return null;
-#endif
-        }
 
         public TileData GetTile(string id) => tileDict.Get(id);
         public List<TileData> GetAllTiles() => tileDict.Values.Where(x=>x.rarity != Rarity.None).ToList();
@@ -108,7 +79,7 @@ namespace GridBoard
 
         public void AddData<TClass>(TextAsset csv) where TClass : TileData, new()
         {
-            var visuals = Resources.LoadAll<TileVisuals>(visualsFolder)
+            var visuals = Resources.LoadAll<Sprite>(visualsFolder)
                 .ToDictionary(x => x.name);
 
             var list = FancyCSV.FromText<TClass>(csv.text);
@@ -118,12 +89,11 @@ namespace GridBoard
 
                 if (string.IsNullOrWhiteSpace(visualId)) continue;
 
-                if (!visuals.TryGetValue(visualId, out TileVisuals visual))
+                item.sprite = visuals.Get(visualId);
+                if (item.sprite == null)
                 {
-                    visual = CreateScriptableObject(visualId);
+                    Debug.LogError($"No sprite for {item.id} ({visualId})");
                 }
-
-                item.visuals = visual;
             }
 
             foreach (var item in list)

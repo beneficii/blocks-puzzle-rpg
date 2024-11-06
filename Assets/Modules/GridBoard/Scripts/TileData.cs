@@ -11,7 +11,7 @@ namespace GridBoard
         public const string anyTag = "any";
         public const string nonEmpty = "nonempty";
 
-        public TileVisuals visuals;
+        public Sprite sprite;
         public string idVisuals;
         public string id;
         public string title;

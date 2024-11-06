@@ -4,7 +4,7 @@ using UnityEngine;
 using GridBoard;
 using FancyToolkit;
 using System.Linq;
-using log4net.Util;
+using UnityEditor.Build;
 
 namespace TileShapes
 {
@@ -18,13 +18,12 @@ namespace TileShapes
         public ShapeData data { get; private set; }
         public int rotation { get; private set; }
 
-        [SerializeField] Tile prefabTile;
         [SerializeField] AudioClip soundPickup;
         [SerializeField] AudioClip soundPlace;
 
         public Info GetInfo() => new Info(data, rotation);
 
-        List<Tile> blocks;
+        List<Tile> tiles;
 
         Board board;
         ShapePanel parent;
@@ -36,13 +35,13 @@ namespace TileShapes
 
         void Clear()
         {
-            if (blocks == null) return;
+            if (tiles == null) return;
 
-            foreach (var item in blocks)
+            foreach (var item in tiles)
             {
                 Destroy(item.gameObject);
             }
-            blocks.Clear();
+            tiles.Clear();
         }
 
         public void Init(ShapeData data, int rotation, Board board, ShapePanel parent)
@@ -50,7 +49,7 @@ namespace TileShapes
             this.board = board;
             this.parent = parent;
             Clear();
-            blocks = new List<Tile>();
+            tiles = new List<Tile>();
             this.data = data;
             this.rotation = rotation;
             foreach (var item in data.GetTiles(rotation))
@@ -60,10 +59,11 @@ namespace TileShapes
                 instance.transform.localPosition = Tile.IndexToPos(item.pos);
                 instance.position = item.pos;
                 instance.Init(item.data);
-                blocks.Add(instance);
+                tiles.Add(instance);
             }
 
             SetDragState(false);
+            StartCoroutine(UpdateShapeCollider());
         }
 
         public void Init(Info info, Board board, ShapePanel parent)
@@ -90,10 +90,10 @@ namespace TileShapes
 
             if (value)
             {
-                CalculateMouseSpeed();
-                prevDragPosition = Input.mousePosition;
+                //CalculateMouseSpeed();
+                //prevDragPosition = Input.mousePosition;
                 transform.localScale = Vector3.one;
-                transform.position = Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
+                transform.position = Helpers.MouseToWorldPosition(); //+ Vector2.up * offsetDrag;
                 soundPickup?.PlayNow();
             }
             else
@@ -102,7 +102,15 @@ namespace TileShapes
             }
         }
 
-        public void OnMouseDown()
+        public void SetHighlight(bool value)
+        {
+            foreach (var item in tiles)
+            {
+                item.SetHighlight(value);
+            }
+        }
+
+        public void MouseDown()
         {
             if (parent.IsLocked) return;
             if (FancyInputCtrl.IsMouseOverUI()) return;
@@ -114,7 +122,7 @@ namespace TileShapes
             //=> Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
             => transform.position + Vector3.up * offsetDrag;
 
-        public void OnMouseUp()
+        public void MouseUp()
         {
             if (!isDragging) return;
 
@@ -129,13 +137,42 @@ namespace TileShapes
             if (shouldDestroy) Destroy(gameObject);
         }
 
+
+        IEnumerator UpdateShapeCollider()
+        {
+            yield return new WaitForSeconds(.1f); // ToDo: figure out why shapes not intializing sometimes
+            var shapeCollider = GetComponent<BoxCollider2D>();
+            Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
+            bool boundsSet = false;
+
+            foreach (var child in tiles)
+            {
+                Collider2D tileCollider = child.GetComponent<Collider2D>();
+                var prevBounds = bounds;
+                if (!boundsSet)
+                {
+                    bounds = tileCollider.bounds;
+                    boundsSet = true;
+                }
+                else
+                {
+                    bounds.Encapsulate(tileCollider.bounds);
+                }
+                boundsSet = true;
+            }
+
+            shapeCollider.offset = bounds.center - transform.position;
+            shapeCollider.size = bounds.size;
+        }
+
         private void LateUpdate()
         {
             if (!isDragging) return;
-            var delta = Input.mousePosition - prevDragPosition;
+            //var delta = Input.mousePosition - prevDragPosition;
             //transform.position += DragPosition();
-            transform.position += new Vector3(delta.x * moveSpeed.x, delta.y * moveSpeed.y);
-            prevDragPosition = Input.mousePosition;
+            //transform.position += new Vector3(delta.x * moveSpeed.x, delta.y * moveSpeed.y);
+            //prevDragPosition = Input.mousePosition;
+            transform.position = Helpers.MouseToWorldPosition();
         }
 
         public IEnumerator DropAt(Vector2Int pos)

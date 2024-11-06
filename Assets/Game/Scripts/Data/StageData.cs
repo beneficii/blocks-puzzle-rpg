@@ -28,6 +28,6 @@ public class StageData : NodeType
         Elite,
         Shop,
         Dialog,
-        Boss
+        Boss,
     }
 }

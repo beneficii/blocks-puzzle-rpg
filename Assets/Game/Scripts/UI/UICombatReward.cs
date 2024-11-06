@@ -59,12 +59,10 @@ public class UICombatReward : MonoBehaviour
         List<MyTileData> list;
         if (stageData.type == StageData.Type.Boss)
         {
-            // uncommon
             list = TileCtrl.current.GetAllTiles()
                 .Cast<MyTileData>()
                 .Where(x=>x.rarity == Rarity.Rare)
                 .ToList();
-
         }
         else if (stageData.type == StageData.Type.Elite)
         {
@@ -72,7 +70,6 @@ public class UICombatReward : MonoBehaviour
                 .Cast<MyTileData>()
                 .Where(x => x.rarity == Rarity.Uncommon)
                 .ToList();
-
         }
         else
         {
@@ -81,10 +78,10 @@ public class UICombatReward : MonoBehaviour
                 .Cast<MyTileData>()
                 .Where(x => x.rarity == Rarity.Common)
                 .ToList();
-
         }
 
-        UIHudSelectTile.current.Show(SelectTileType.Choise, list.RandN(3, Game.current.CreateStageRng()));
+
+        UIHudSelectTile.current.ShowChoise(list.RandN(3, Game.current.CreateStageRng()));
     }
 
     public void Click()

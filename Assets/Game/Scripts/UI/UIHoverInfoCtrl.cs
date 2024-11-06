@@ -51,7 +51,10 @@ public class UIHoverInfoCtrl : MonoBehaviour
 
     private void Update()
     {
-        if (currentUIElement) return;
+        if (currentUIElement)
+        {
+            return;
+        }
 
         RaycastHit2D hit = Physics2D.Raycast(Helpers.MouseToWorldPosition(), Vector2.zero, 10, layerMask);
 

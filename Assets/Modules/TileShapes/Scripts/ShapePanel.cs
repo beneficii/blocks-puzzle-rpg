@@ -22,6 +22,12 @@ namespace TileShapes
         [SerializeField] Board board;
         [SerializeField] Transform anchor;
 
+        [SerializeField] LayerMask layerMask;
+
+        Transform currentColider;
+        Shape currentShapeUnderMouse;
+        Shape currentDraggedShape;
+
         List<Shape> shapes = new();
 
         List<ShapeData> pool;
@@ -187,20 +193,48 @@ namespace TileShapes
             poolIdx = 0;
         }
 
-#if UNITY_EDITOR
-        private void Update()
+        void SetShapeUnderMouse(Transform trans)
         {
-            if (Input.GetKeyDown(KeyCode.G))
+            if (currentShapeUnderMouse)
             {
-                GenerateNew(true);
+                currentShapeUnderMouse.SetHighlight(false);
             }
 
-            if (Input.GetKeyDown(KeyCode.H))
+            currentColider = trans;
+            currentShapeUnderMouse = trans ? trans.GetComponent<Shape>() : null;
+
+            if (currentShapeUnderMouse)
             {
-                HintCtrl.current.Show(hints);
+                currentShapeUnderMouse.SetHighlight(true);
             }
         }
-#endif
+
+        private void Update()
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Helpers.MouseToWorldPosition(), Vector2.zero, 10, layerMask);
+            var trans = hit.transform;
+            if (currentColider != trans)
+            {
+                SetShapeUnderMouse(trans);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (currentShapeUnderMouse)
+                {
+                    currentShapeUnderMouse.MouseDown();
+                    currentDraggedShape = currentShapeUnderMouse;
+                }
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (currentDraggedShape)
+                {
+                    currentDraggedShape.MouseUp();
+                    currentDraggedShape = null;
+                }
+            }
+        }
 
         public bool HasHints()
         {

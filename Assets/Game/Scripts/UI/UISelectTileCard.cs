@@ -20,15 +20,24 @@ public class UISelectTileCard : MonoBehaviour
     [SerializeField] MyTile dummyTile;
 
     SelectTileType type;
+    int price;
     public MyTileData data { get; private set; }
 
-    public void Init(SelectTileType type, MyTileData data)
+    public void Init(SelectTileType type, MyTileData data, int price = 0)
     {
         this.type = type;
         this.data = data;
+        this.price = price;
         dummyTile.Init(data);
         infoPanel.Init(dummyTile);
-        if (type != SelectTileType.Shop) infoPanel.HideCost();
+        if (type == SelectTileType.Shop)
+        {
+            infoPanel.SetCost(price);
+        }
+        else
+        {
+            infoPanel.HideCost();
+        }
 
         btnBuy.gameObject.SetActive(type == SelectTileType.Shop);
         btnSelect.gameObject.SetActive(type == SelectTileType.Choise);
@@ -42,7 +51,7 @@ public class UISelectTileCard : MonoBehaviour
 
     public void Buy()
     {
-        if (!ResCtrl<ResourceType>.current.Remove(ResourceType.Gold, data.cost))
+        if (!ResCtrl<ResourceType>.current.Remove(ResourceType.Gold, price))
         {
             MainUI.current.ShowMessage("Not enough gold");
             return;

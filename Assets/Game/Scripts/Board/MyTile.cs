@@ -65,7 +65,7 @@ public class MyTile : Tile
         {
             new(enterAction, "Enter"),
             new(clearAction, "Clear"),
-            new(endOfTurnAction, "EndOfTurn"),
+            new(endOfTurnAction, "Turn end"),
             new(passiveEffect, ""),
             new(buyAction, ""),
         };
@@ -97,6 +97,12 @@ public class MyTile : Tile
         if (!skipAnimation) txtPower.GetComponent<TweenTarget>().ScaleUpDown(.3f);
     }
 
+    public override IEnumerator FadeOut(float fadeSpeed)
+    {
+        txtPower.gameObject.SetActive(false);
+        return base.FadeOut(fadeSpeed);
+    }
+
     public override void InitVirtual(TileData data)
     {
         var myData = this.myData;
@@ -104,7 +110,6 @@ public class MyTile : Tile
 
         this.power = myData.power;
 
-        RefreshNumber(true);
 
         clearAction = myData.clearAction?.Build();
         endOfTurnAction = myData.endTurnAction?.Build();
@@ -122,6 +127,8 @@ public class MyTile : Tile
                 item.SetOnBoard(true);
             }
         }
+
+        RefreshNumber(true);
     }
 
     public override IEnumerator Place()

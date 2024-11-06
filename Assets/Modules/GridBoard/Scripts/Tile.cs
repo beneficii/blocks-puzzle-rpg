@@ -84,7 +84,7 @@ namespace GridBoard
         public virtual string GetDescription()
             => data.GetDescription(this);
 
-        public Sprite GetIcon() => data.visuals?.sprite;
+        public Sprite GetIcon() => data.sprite;
 
         public virtual void InitVirtual(TileData data)
         {
@@ -96,7 +96,7 @@ namespace GridBoard
             if (this.data != null) Clean();
 
             this.data = data;
-            iconRender.sprite = data.visuals?.sprite;
+            iconRender.sprite = data.sprite;
             if (level >= 0)
             {
                 Level = level;
@@ -234,7 +234,7 @@ namespace GridBoard
             isTaken = true;
         }
 
-        public IEnumerator FadeOut(float fadeSpeed)
+        public virtual IEnumerator FadeOut(float fadeSpeed)
         {
             if (isFadedOut) yield break;
 
@@ -334,6 +334,11 @@ namespace GridBoard
         public void AnimateUpgrade()
         {
             StartCoroutine(UpgradeRoutine());
+        }
+
+        public void SetHighlight(bool value)
+        {
+            hlRender.enabled = value;
         }
 
         public void SetAttention(bool value)

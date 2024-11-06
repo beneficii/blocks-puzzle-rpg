@@ -60,7 +60,7 @@ namespace TileActions
                             .SetLaunchDelay(0.05f);
 
             yield return new WaitForSeconds(.1f);
-            nestedAction.Run(multiplier);
+            yield return nestedAction.Run(multiplier);
         }
 
         public class Builder : FactoryBuilder<TileActionBase, FactoryBuilder<TileActionBase>>
@@ -100,9 +100,13 @@ namespace TileActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            var bullet = MakeDmgBullet(parent, Power * multiplier)
-                            .SetTarget(CombatArena.current.player)
-                            .SetLaunchDelay(0.2f);
+            MakeDmgBullet(parent, Power * multiplier)
+                        .SetTarget(CombatArena.current.player)
+                        .SetLaunchDelay(0.2f);
+
+            MakeDmgBullet(parent, Power * multiplier)
+                        .SetTarget(CombatArena.current.enemy)
+                        .SetLaunchDelay(0.2f);
 
             yield return new WaitForSeconds(.2f);
         }
@@ -125,7 +129,7 @@ namespace TileActions
         public override IEnumerator Run(int multiplier = 1)
         {
             var bullet = MakeBullet(parent)
-                            .SetTarget(CombatArena.current.player)
+                            .SetTarget(CombatArena.current.enemy)
                             .SetHealing(Power * multiplier)
                             .SetLaunchDelay(0.2f);
 
@@ -168,15 +172,16 @@ namespace TileActions
         public override string GetDescription()
             => $"Add {value.SignedStr()} power to this tile for each {tag} on board";
 
-        public AddPowerForEachOnBoard(int value)
+        public AddPowerForEachOnBoard(int value, string tag)
         {
             this.value = value;
+            this.tag = tag;
         }
 
         public override IEnumerator Run(int multiplier = 1)
         {
             bool hadTargets = false;
-            foreach (var target in FindTileTargets(parent, ActionTargetType.Around, tag))
+            foreach (var target in FindTileTargets(parent, ActionTargetType.All, tag))
             {
                 hadTargets = true;
                 MakeBullet(target)
@@ -188,12 +193,11 @@ namespace TileActions
                 yield return new WaitForSeconds(.05f);
             }
             if (hadTargets) yield return new WaitForSeconds(.1f);
-
         }
 
-        public class Builder : FactoryBuilder<TileActionBase, int>
+        public class Builder : FactoryBuilder<TileActionBase, int, string>
         {
-            public override TileActionBase Build() => new AddPowerForEachOnBoard(value);
+            public override TileActionBase Build() => new AddPowerForEachOnBoard(value, value2);
         }
     }
 
@@ -357,6 +361,43 @@ namespace TileActions
         }
     }
 
+    public class BuffPowerTag : TileActionBase
+    {
+        ActionTargetType targetType;
+        int value;
+        string tag;
+        public override string GetDescription()
+            => $"{value.SignedStr()} power to {GetTargetingTypeName(targetType, tag)}";
+
+        public BuffPowerTag(ActionTargetType targetType, int value, string tag)
+        {
+            this.targetType = targetType;
+            this.value = value;
+            this.tag = tag;
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            foreach (var tile in FindTileTargets(parent, targetType, tag))
+            {
+
+                MakeBullet(parent)
+                    .SetTarget(tile)
+                    .SetSpleen(default)
+                    .SetTileAction(x => x.Power += value * multiplier);
+
+                yield return new WaitForSeconds(.1f);
+            }
+            //yield return parent.ClickAnimationRoutine();
+            //yield return new WaitForSeconds(.05f);
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase, ActionTargetType, int, string>
+        {
+            public override TileActionBase Build() => new BuffPowerTag(value, value2, value3);
+        }
+    }
+
     public class TransformAround : TileActionBase
     {
         string tag;
@@ -387,7 +428,7 @@ namespace TileActions
             }
             else
             {
-                count = 9;
+                this.count = 9;
             }
         }
 
@@ -397,11 +438,9 @@ namespace TileActions
             var targets = FindTileTargets(parent, ActionTargetType.Around, tag).ToList();
             foreach (var item in targets.Shuffled().Take(count * multiplier))
             {
-                if (item.isBeingPlaced
-                    || !item.data.HasTag(tag)) continue;
-
                 MakeBullet(parent)
                         .SetTarget(item)
+                        .SetSpleen(default)
                         .SetTileAction(x =>
                         {
                             x.Init(data);
@@ -468,7 +507,20 @@ namespace TileActions
         TileData GetData() => TileCtrl.current.GetTile(id);
 
         public override string GetDescription()
-            => $"Steal power from surrounding {tag} tiles and turn them into '{GetData().title}'";
+        {
+            var descr = $"Steal power from {GetTargetingTypeName(targetType, tag)}";
+
+            if (id == "empty")
+            {
+                descr += " and clear them";
+            }
+            else
+            {
+                descr += $" and turn them into '{GetData().title}'";
+            }
+
+            return descr;
+        }
 
         public SuckOutPower(ActionTargetType targetType, string tag, string id)
         {

@@ -54,7 +54,7 @@ namespace SkillActions
 
                 MakeBullet()
                     .SetTarget(target)
-                    .SetSprite(data.visuals.sprite)
+                    .SetSprite(data.sprite)
                     .SetTileAction(Spawn);
 
                 yield return new WaitForSeconds(.05f);

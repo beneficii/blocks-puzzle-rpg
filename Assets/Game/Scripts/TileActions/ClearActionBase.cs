@@ -96,10 +96,10 @@ namespace TileActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            var bullet = MakeDefBullet(parent, Power * multiplier)
-                            .SetTarget(CombatArena.current.enemy)
-                            .SetLaunchDelay(0.09f);
-            yield return new WaitForSeconds(.07f);
+            MakeDefBullet(parent, Power * multiplier)
+                        .SetTarget(CombatArena.current.enemy)
+                        .SetLaunchDelay(0.05f);
+            yield return new WaitForSeconds(.1f);
         }
 
         public class Builder : FactoryBuilder<TileActionBase>
@@ -305,7 +305,7 @@ namespace TileActions
         public override IEnumerator Run(LineClearData match)
         {
             var captured = match.tiles
-                .Where(x => x.data.type == Tile.Type.Weapon)
+                .Where(x => x.HasTag(tag))
                 .ToList();
 
             foreach (var tile in captured)
@@ -316,7 +316,7 @@ namespace TileActions
                 MakeBullet(tile)//, DataManager.current.vfxDict.Get("poof"))
                     .SetSpleen(default)
                     .SetSpeed(15)
-                    .SetSprite(tile.data.visuals.sprite)
+                    .SetSprite(tile.data.sprite)
                     .SetTarget(parent);
                 yield return new WaitForSeconds(.05f);
             }
@@ -376,7 +376,6 @@ namespace TileActions
         }
     }
 
-
     public class SpawnTile : TileActionBase
     {
         int count;
@@ -426,7 +425,7 @@ namespace TileActions
 
                 MakeBullet(parent)
                     .SetTarget(target)
-                    .SetSprite(data.visuals.sprite)
+                    .SetSprite(data.sprite)
                     .SetTileAction(Spawn);
 
                 yield return new WaitForSeconds(.05f);

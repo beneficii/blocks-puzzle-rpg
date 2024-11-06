@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using FancyToolkit;
 using GridBoard;
+using Unity.Android.Gradle.Manifest;
 
 
 public class UIHoverInfo : MonoBehaviour
@@ -57,7 +58,7 @@ public class UIHoverInfo : MonoBehaviour
 
     public void Init(TileData data)
     {
-        if (imgIcon) imgIcon.sprite = data.visuals?.sprite;
+        if (imgIcon) imgIcon.sprite = data.sprite;
         if (txtTitle) txtTitle.text = data.title;
         if (txtCost) txtCost.text = $"Cost: {data.cost}";
         if (txtTags) txtTags.text = string.Join(", ", data.tags);
@@ -70,8 +71,18 @@ public class UIHoverInfo : MonoBehaviour
         if (txtDescription) txtDescription.text = info.GetDescription();
     }
 
+    public void SetCost(int price)
+    {
+        if (txtCost) txtCost.text = $"Cost: {price}";
+    }
+
     void Show(Tile info)
     {
+        if (info.data.isEmpty)
+        {
+            Hide();
+            return;
+        }
         Init(info.data);
         if (txtDescription) txtDescription.text = info.GetDescription();
     }

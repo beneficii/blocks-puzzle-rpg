@@ -102,9 +102,9 @@ public class UISkillButton : MonoBehaviour, IHasInfo
 
         var pairs = new List<System.Tuple<SkillActionBase, string>>
         {
-            new(onStartCombat, "Start of Combat"),
-            new(onEndTurn, "End of Turn"),
-            new(onClick, "On Use"),
+            new(onStartCombat, "Start of combat"),
+            new(onEndTurn, "Turn end"),
+            new(onClick, "Use"),
         };
 
         foreach (var item in pairs)

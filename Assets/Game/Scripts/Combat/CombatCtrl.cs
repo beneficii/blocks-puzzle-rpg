@@ -61,10 +61,15 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     void HandleUnitKilled(Unit unit)
     {
-        if (unit == arena.enemy || unit == arena.player)
+        if (unit == arena.player)
         {
             StopAllCoroutines();
-            StartCoroutine(CombatFinished());
+            StartCoroutine(CombatFinished(false));
+        }
+        else if (unit == arena.enemy)
+        {
+            StopAllCoroutines();
+            StartCoroutine(CombatFinished(true));
         }
     }
 
@@ -82,11 +87,27 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         return enemy;
     }
 
-    IEnumerator CombatFinished()
+    IEnumerator CombatFinished(bool victory)
     {
         yield return new WaitForSeconds(2f);
 
-        UIHudRewards.current.Show(StageCtrl.current.Data.rewards);
+        if (victory)
+        {
+            if (StageCtrl.current.Data.type == StageData.Type.Boss)
+            {
+                UIHudGameOver.current.Show(true);
+            }
+            else
+            {
+                UIHudRewards.current.Show(StageCtrl.current.Data.rewards);
+            }
+        }
+        else
+        {
+            Game.current.GameOver();
+            UIHudGameOver.current.Show(false);
+        }
+
     }
 
     public void NewTurn() => NewTurn(0.1f);
@@ -173,7 +194,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         AddRarity(Rarity.Uncommon, 2);
         list.Add(TileCtrl.current.GetTile<MyTileData>("health"));
 
-        UIHudSelectTile.current.Show(SelectTileType.Shop, list);
+        UIHudSelectTile.current.ShowShop(list, rng);
     }
 
     IEnumerator Start()
