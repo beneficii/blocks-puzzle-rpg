@@ -47,7 +47,7 @@ public class GameState
     {
         var mapSize = new Vector2Int(9, 6);
         var rng = new System.Random(seed);
-        var mapLayout = MapGenerator.GenerateLayout(mapSize, 6, rng);
+        var mapLayout = MapGenerator.GenerateLayout(mapSize, 6, rng, 1);
 
         // ToDo: adjust difficulty       0, 1, 2, 3, 4, 5, 6
         //var difficulty = new List<int> { 1, 3, 1, 1, 3 };
@@ -112,7 +112,7 @@ public class GameState
         this.currentNode = -1;
         this.playerHealth = new(100, 100);
         this.deck = Game.current.GetStartingDeck();
-        this.skills = new List<string> { "test" };
+        this.skills = new List<string>();
         this.gold = 200;
         GenerateMapLayout();
     }

@@ -14,8 +14,6 @@ namespace GridBoard
         public int width = 8;
         public int height = 8;
 
-        public event System.Action OnChanged;
-        public event System.Action OnChangedLate;
         public event System.Action OnCleared;
 
         public event System.Action<Tile> OnTilePlaced;
@@ -48,14 +46,9 @@ namespace GridBoard
         Dictionary<string, int> dictTileCounter = new();
         Dictionary<string, int> dictTagCounter = new();
 
-        bool calculateGrid = false;
+        public int StateVersion { get; private set; }
 
         Queue<Tile> emptyTileQueue = new();
-
-        public void SetShouldCalculate(bool value)
-        {
-            calculateGrid = value;
-        }
 
         List<Vector2Int> adjDeltas = new()
         {
@@ -119,7 +112,7 @@ namespace GridBoard
             {
                 item.InitBoard(this);
             }
-            Changed();
+            StateVersion++;
             Tile.OnChangedBoardState += HandleTileChangedBoardState;
         }
 
@@ -167,7 +160,7 @@ namespace GridBoard
             instance.position = new(x, y);
             instance.SetBoard(this);
 
-            calculateGrid = true;
+            StateVersion++;
             OnTilePlaced?.Invoke(instance);
 
             return true;
@@ -259,8 +252,7 @@ namespace GridBoard
                 var pos = info.pos;
                 tiles[pos.x, pos.y] = PlaceTileInstant(info);
             }
-            calculateGrid = true;
-            Changed();
+            StateVersion++;
         }
 
         public void LoadRandomLayout(TileData specialTile = null)
@@ -292,12 +284,6 @@ namespace GridBoard
             }
 
             LoadLayout(randomLayout);
-        }
-
-        void Changed()
-        {
-            OnChanged?.Invoke();
-            OnChangedLate?.Invoke();
         }
 
         TextMeshPro txtDebug;
@@ -682,12 +668,6 @@ namespace GridBoard
         private void Update()
         {
             CheckTileUnderMouse();
-
-            if (calculateGrid)
-            {
-                calculateGrid = false;
-                Changed();
-            }
         }
 
         private void OnDestroy()
@@ -825,64 +805,10 @@ namespace GridBoard
             => string.Join(" ", tiles.Select(x => x.ToString()));
     }
 
-
-    /*
-    public class SavedState
+    public interface IBoardUpdateSubscriber
     {
-        BtBlockData[,] blocks;
-        int[,] bgs;
+        bool NeedsUpdate { get; }
+        void BoardUpdated(Board board);
+    }
 
-        public SavedState(BtGrid grid)
-        {
-            var width = BtGrid.width;
-            var height = BtGrid.height;
-            var arr = new BtBlockData[width, height];
-            var spr = new int[width, height];
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    var block = grid.blocks[x, y];
-                    if (block)
-                    {
-                        arr[x, y] = block.data;
-                        spr[x, y] = block.spriteIdx;
-                    }
-                }
-            }
-
-            blocks = arr;
-            bgs = spr;
-        }
-
-        public void Load(BtGrid grid)
-        {
-            var width = BtGrid.width;
-            var height = BtGrid.height;
-            var arr = new BtBlock[width, height];
-
-            grid.columnBlockCount = new int[width];
-            grid.rowBlockCount = new int[height];
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    var oldBlock = grid.blocks[x, y];
-                    if (oldBlock) Destroy(oldBlock.gameObject);
-
-                    var data = blocks[x, y];
-                    var spriteIdx = bgs[x, y];
-
-                    if (data)
-                    {
-                        arr[x, y] = grid.PlaceBlock(x, y, data, spriteIdx);
-                    }
-                }
-            }
-
-            grid.blocks = arr;
-        }
-    }*/
 }

@@ -24,6 +24,14 @@ namespace RogueLikeMap
         List<MapNode> availableNodes;
         List<EdgeInfo> availablePaths;
 
+        public void UnlockAllNodes()
+        {
+            foreach (var item in nodes.Values)
+            {
+                item.SetState(NodeState.Available);
+            }
+        }
+
         public void Init(MapLayout layout, System.Random rng = null)
         {
             nodes = new();

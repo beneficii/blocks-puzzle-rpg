@@ -1,29 +1,58 @@
-﻿using FancyToolkit;
+﻿using System.Collections.Generic;
+using FancyToolkit;
 using TMPro;
 using UnityEngine;
 
-public class UIDIalogOption : MonoBehaviour
+public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
 {
     [SerializeField] TextMeshProUGUI txtMessage;
 
     DialogData data;
 
+    List<DialogAction> actions;
+
+    public IHasInfo GetInfo()
+    {
+        foreach (DialogAction action in actions)
+        {
+            if (action.GetInfo() != null) return action.GetInfo();
+        }
+
+        return null;
+    }
+
     public void Init(DialogData data)
     {
         this.data = data;
-        txtMessage.text = data.text;
-        // ToDo: maybe give action hint
-    }
+        string message = data.text;
 
-    public void Select()
-    {
-        //ToDo: execute action
+        actions = new();
+        var lines = new List<string>();
         foreach (var item in data.actions)
         {
             var action = Factory<DialogAction>.Create(item);
             if (action == null) continue;
 
-            action.Execute();
+            var descr = action.GetDescription();
+            if (!string.IsNullOrEmpty(descr))
+            {
+                lines.Add(descr);
+            }
+            actions.Add(action);
+        }
+
+        if (lines.Count > 0)
+        {
+            message += $" [{string.Join(", ", lines)}]";
+        }
+        txtMessage.text = message;
+    }
+
+    public void Select()
+    {
+        foreach (var item in actions)
+        {
+            item.Execute();
         }
         UIHudDialog.current.Close();
     }

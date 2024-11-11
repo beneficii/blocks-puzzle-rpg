@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RogueLikeMap;
 using FancyToolkit;
+using UnityEngine.SceneManagement;
 
 namespace RogueLikeMap
 {
@@ -26,6 +27,22 @@ namespace RogueLikeMap
             mapInstance = Instantiate(prefabMapInstance, mapParent);
 
             mapInstance.Init(layout, rng);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                FindAnyObjectByType<MapInstance>().UnlockAllNodes();
+            }
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Game.current.GameOver();
+                Destroy(Game.current.gameObject);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+#endif
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,7 +78,7 @@ namespace Assets.Game.Scripts.Combat
                 PlayAnimation(Unit.AnimType.Hit);
             }
         }
-
+#if UNITY_EDITOR
         [EasyButtons.Button]
         public void SaveAll()
         {
@@ -88,5 +87,6 @@ namespace Assets.Game.Scripts.Combat
                 unit.SaveVisualData();
             }
         }
+#endif
     }
 }

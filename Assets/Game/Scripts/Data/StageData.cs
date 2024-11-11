@@ -1,5 +1,4 @@
 ﻿using FancyToolkit;
-using NUnit.Framework;
 using RogueLikeMap;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,10 +9,10 @@ public class StageData : NodeType
     public List<string> units;
     public int difficulty;
     public Type type;
-    public List<string> rewards;
+    public Rarity reward;
     public string specialTile;
     public string background;
-    public string iconName;
+    public string dialog;
 
     public override void Run(NodeInfo info)
     {
@@ -29,5 +28,6 @@ public class StageData : NodeType
         Shop,
         Dialog,
         Boss,
+        Victory,
     }
 }

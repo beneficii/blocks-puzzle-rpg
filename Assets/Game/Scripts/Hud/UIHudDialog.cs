@@ -27,6 +27,7 @@ public class UIHudDialog : UIHudBase
 
     Dictionary<string, List<DialogData>> dict;
     string nextDialogID;
+    StageData.Type nextStageType;
 
     void Init()
     {
@@ -41,6 +42,8 @@ public class UIHudDialog : UIHudBase
             }
             sublist.Add(item);
         }
+
+        nextStageType = StageCtrl.current.Data.type;
     }
 
     public void Show(string id)
@@ -79,6 +82,11 @@ public class UIHudDialog : UIHudBase
         nextDialogID = id;
     }
 
+    public void SetNext(StageData.Type type)
+    {
+        nextStageType = type;
+    }
+
     void Clear()
     {
         templateOption.Clear();
@@ -96,6 +104,8 @@ public class UIHudDialog : UIHudBase
 
         Clear();
         Closed();
+
+        FindAnyObjectByType<CombatCtrl>().Init(nextStageType);
     }
 
 }

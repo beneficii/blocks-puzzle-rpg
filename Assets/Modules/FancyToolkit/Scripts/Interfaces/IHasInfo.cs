@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace FancyToolkit
@@ -14,5 +13,10 @@ namespace FancyToolkit
         public string GetTitle();
         public string GetDescription();
         public List<string> GetTooltips();
+    }
+
+    public interface IHasNestedInfo
+    {
+        IHasInfo GetInfo();
     }
 }

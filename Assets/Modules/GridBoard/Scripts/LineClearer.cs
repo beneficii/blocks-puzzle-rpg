@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 namespace GridBoard
 {
-    public class LineClearer : MonoBehaviour, Board.IModule
+    public class LineClearer : MonoBehaviour, Board.IModule, IWorldUpdateListener
     {
         [SerializeField] AudioClip soundMatchOne;
         [SerializeField] AudioClip soundMatchMultiple;
@@ -20,6 +20,9 @@ namespace GridBoard
         Board board;
 
         static HashSet<ILineClearHandler> lineClearHandlers = new();
+
+        int cachedBoardVersion = -1;
+        public bool NeedsUpdate => board && board.StateVersion != cachedBoardVersion;
 
         public void InitBoard(Board board)
         {
@@ -38,14 +41,12 @@ namespace GridBoard
 
             board.OnTilePlaced += HandleTilePlaced;
             board.OnTileRemoved += HandleTileRemoved;
-            board.OnChanged += HandleBoardChanged;
         }
 
         private void OnDisable()
         {
             board.OnTilePlaced -= HandleTilePlaced;
             board.OnTileRemoved -= HandleTileRemoved;
-            board.OnChanged -= HandleBoardChanged;
         }
 
         public static void AddHandler(ILineClearHandler handler)
@@ -58,8 +59,9 @@ namespace GridBoard
             lineClearHandlers.Remove(handler);
         }
 
-        void HandleBoardChanged()
+        IEnumerator HandleBoardChanged()
         {
+            cachedBoardVersion = board.StateVersion;
             var removeColumns = new List<int>();
             var removeRows = new List<int>();
 
@@ -114,7 +116,7 @@ namespace GridBoard
                     soundMatchMultiple?.PlayWithRandomPitch(0.1f);
                 }
 
-                StartCoroutine(ClearRoutine(tilesRemoved, removeRows.Count, removeColumns.Count));
+                yield return ClearRoutine(tilesRemoved, removeRows.Count, removeColumns.Count);
             }
         }
 
@@ -146,7 +148,6 @@ namespace GridBoard
 
             clearData.Destroy();
         }
-        
 
         void HandleTilePlaced(Tile tile)
         {
@@ -166,6 +167,8 @@ namespace GridBoard
             Assert.IsTrue(rows[pos.y] >= 0);
             Assert.IsTrue(columns[pos.x] >= 0);
         }
+
+        public IEnumerator WorldUpdate() => HandleBoardChanged();
     }
 
     public interface ILineClearHandler

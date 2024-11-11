@@ -50,7 +50,10 @@ namespace FancyToolkit
 
                 string colorTag = ColorUtility.ToHtmlStringRGBA(color);
 
-                lines.Add($"<color=#{colorTag}>{item.prefix}{item.reference.Value}</color>");
+                var maxVal = item.reference.maxValue;
+                var strMax = maxVal != int.MaxValue ? $"/{maxVal}" : "";
+
+                lines.Add($"<color=#{colorTag}>{item.prefix}{item.reference.Value}{strMax}</color>");
 
                 var nr = item.reference.NextRefresh;
                 if (nr > prevRefresh && nr < nextRefresh)

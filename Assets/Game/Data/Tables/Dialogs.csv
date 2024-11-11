@@ -1,15 +1,52 @@
-id|text|actions
-test|Hello there, I see you found the board|
-|Who are you?|Dialog test1
-|Can you offer some guidance?|AddGold 10; Dialog test2
-|Prepare to fight!|Dialog test3
-test1|So you just said hi|
-|yeah, I guess|
-|give more gold|AddGold 100
-test2|you have received gold|
-|thank you|
-|more?|Dialog test22
-test22|No!|
-||
-test3|ToDo: maybe fight sequence|
-|ok|
+id|text|actions|
+dragon1|Are you here to aid those humans? Have you fallen for their lies? Then there is nothing but death here for you||
+|Continue||
+shop_welcome|Welcome stranger, have a look at some of my goods!||
+|Gladly|SwitchType Shop|
+|||
+teacher1|Is that Arcane board in your hands!? Where did you find it.. Well, nevermind, can you help us defeat a Dragon east from here?||
+|I'm not sure I can|Dialog teacher1_a|
+|Why would I?|Dialog teacher1_a|
+|||
+teacher1_a|You are our only hope, our forces are weakened. I can even teach you a skill that will help you||
+|Teach me about swords|GetSkill swordRush|
+|I want to learn about shields|GetSkill shieldRush|
+|I want to master axes|GetSkill axeRush|
+|||
+teacher2|I'm glad you're still alive. You're getting close. Ready for another lesson?||
+|Teach me about swords|GetSkill swordRush|
+|I want to learn about shields|GetSkill shieldRush|
+|I want to master axes|GetSkill axeRush|
+|||
+mimic|There seems to be a lot of gold inside this strange looking chest||
+|Take it|AddGold 100; SwitchType Enemy|
+|Better walk away||
+|||
+reptile1|I see you might be interested in magical tiles. I can sell you some, but you won't get my rare one||
+|Show me your common tiles|SwitchType Shop|
+|Hand over your rare tile|SwitchType Enemy|
+|||
+demo_ending|The dragon is gone, you saved us! Now give us Arcane Board, so we can take care of it and you can enjoy your well deserved rest||
+|Finally! Here you go|Dialog demo_ending_a|
+|What If I don't want to give it back?|Dialog demo_ending_b|
+|||
+demo_ending_a|Congradulations on finishing the demo!||
+|Continue|Victory|
+demo_ending_b|This part of the story will be told in full game||
+|Continue|Victory|
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||
+|||

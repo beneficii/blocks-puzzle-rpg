@@ -4,7 +4,6 @@ using UnityEngine;
 using GridBoard;
 using FancyToolkit;
 using System.Linq;
-using UnityEditor.Build;
 
 namespace TileShapes
 {
@@ -90,15 +89,15 @@ namespace TileShapes
 
             if (value)
             {
-                //CalculateMouseSpeed();
-                //prevDragPosition = Input.mousePosition;
+                CalculateMouseSpeed();
+                prevDragPosition = Input.mousePosition;
                 transform.localScale = Vector3.one;
-                transform.position = Helpers.MouseToWorldPosition(); //+ Vector2.up * offsetDrag;
+                transform.position = Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
                 soundPickup?.PlayNow();
             }
             else
             {
-                transform.localScale = Vector3.one;// * 0.75f;
+                transform.localScale = Vector3.one;
             }
         }
 
@@ -112,7 +111,6 @@ namespace TileShapes
 
         public void MouseDown()
         {
-            if (parent.IsLocked) return;
             if (FancyInputCtrl.IsMouseOverUI()) return;
 
             SetDragState(true);
@@ -168,11 +166,9 @@ namespace TileShapes
         private void LateUpdate()
         {
             if (!isDragging) return;
-            //var delta = Input.mousePosition - prevDragPosition;
-            //transform.position += DragPosition();
-            //transform.position += new Vector3(delta.x * moveSpeed.x, delta.y * moveSpeed.y);
-            //prevDragPosition = Input.mousePosition;
-            transform.position = Helpers.MouseToWorldPosition();
+            var delta = Input.mousePosition - prevDragPosition;
+            transform.position += new Vector3(delta.x * moveSpeed.x, delta.y * moveSpeed.y);
+            prevDragPosition = Input.mousePosition;
         }
 
         public IEnumerator DropAt(Vector2Int pos)
@@ -180,8 +176,8 @@ namespace TileShapes
             var result = board.PlaceTiles(pos.x, pos.y, data.GetTiles(rotation));
             if (result != null)
             {
+                WorldUpdateCtrl.current.TasksInProgress++;
                 // prevent calculating until OnPlace Actions execute
-                board.SetShouldCalculate(false);
                 board.GenerateEmptyTileQueue();
                 //foreach (var block in placed) block.SetBg(data.spriteIdx);
                 OnDropped?.Invoke(this, pos);
@@ -195,7 +191,7 @@ namespace TileShapes
                 foreach (var tile in result) tile.isBeingPlaced = true;
                 foreach (var tile in result) yield return tile.Place();
                 foreach (var tile in result) tile.isBeingPlaced = false;
-                board.SetShouldCalculate(true);
+                WorldUpdateCtrl.current.TasksInProgress--;
             }
             else
             {

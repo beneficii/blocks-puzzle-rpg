@@ -42,21 +42,23 @@ public abstract class SkillActionBase
 
     public abstract string GetDescription();
 
-    public virtual void Init(UISkillButton tile)
+    public virtual void Init(UISkillButton parent)
     {
-        this.parent = tile;
+        this.parent = parent;
     }
 
-    public abstract IEnumerator Run();
+    public abstract IEnumerator Run(int multiplier = 1);
 
-    protected GenericBullet MakeBullet()
+    protected GenericBullet MakeBullet(Vector2 position)
     {
         var rand = Random.Range(0, 2) == 0;
-        var bullet = Game.current.MakeBullet(parent.transform.position)
+        var bullet = Game.current.MakeBullet(position)
             .SetSpleen(rand ? Vector2.left : Vector2.right);
 
         return bullet;
     }
+
+    protected GenericBullet MakeBullet() => MakeBullet(parent.transform.position);
 
     protected string GetTargetingTypeName(ActionTargetType targetType, string tag = TileData.anyTag)
         => TileActionBase.GetTargetingTypeName(targetType, tag);

@@ -40,7 +40,6 @@ public class MyTile : Tile
         if (passiveEffect != null) yield return passiveEffect;
     }
 
-
     public override string GetDescription()
     {
         if (myData == null) return "";

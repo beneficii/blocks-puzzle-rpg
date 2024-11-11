@@ -16,119 +16,73 @@ public class UISkillButton : MonoBehaviour, IHasInfo
 
     public SkillData data { get; private set; }
 
-    SkillClickCondition clickCondition;
-    SkillActionBase onClick;
-    SkillActionBase onEndTurn;
-    SkillActionBase onStartCombat;
+    SkillActionContainer actionContainer;
 
     public Board board { get; private set; }
-
-    IEnumerable<SkillActionBase> AllActions()
-    {
-        if (onClick != null) yield return onClick;
-        if (onEndTurn != null) yield return onEndTurn;
-        if (onStartCombat != null) yield return onStartCombat;
-    }
 
     public void Init(SkillData data, Board board)
     {
         this.data = data;
         this.board = board;
+        imgIcon.sprite = data.sprite;
 
         button.interactable = false;
-        
-        onClick = data.onClick?.Build();
-        onEndTurn = data.onEndTurn?.Build();
-        onStartCombat = data.onStartCombat?.Build();
-        foreach (var item in AllActions())
+
+        actionContainer = new SkillActionContainer(data);
+
+        foreach (var item in actionContainer.AllActions())
         {
             item.Init(this);
         }
-
-        clickCondition = data.clickCondition?.Build();
-        clickCondition?.Init(this);
+        actionContainer.clickCondition.Init(this);
 
         if (board)
         {
-            button.interactable = (clickCondition != null && onClick != null);
+            button.interactable = (actionContainer.clickCondition != null && actionContainer.onClick != null);
         }
     }
 
     public IEnumerator CombatStarted()
     {
-        if (onStartCombat != null)
+        if (actionContainer.onStartCombat != null)
         {
-            yield return onStartCombat.Run();
+            yield return actionContainer.onStartCombat.Run();
         }
     }
 
     public void OnClick()
     {
-        if (clickCondition == null || onClick == null) return;
-        if (!clickCondition.CanUse)
+        if (actionContainer.clickCondition == null || actionContainer.onClick == null) return;
+        if (!actionContainer.clickCondition.CanUse)
         {
-            MainUI.current.ShowMessage(clickCondition.GetErrorUnusable());
+            MainUI.current.ShowMessage(actionContainer.clickCondition.GetErrorUnusable());
             return;
         }
 
-        clickCondition.OnClicked();
-        StartCoroutine(onClick.Run());
+        actionContainer.clickCondition.OnClicked();
+        StartCoroutine(actionContainer.onClick.Run());
     }
 
     public IEnumerator EndTurn()
     {
-        if (onEndTurn != null)
+        if (actionContainer.onEndTurn != null)
         {
-            yield return onEndTurn.Run();
+            yield return actionContainer.onEndTurn.Run();
         }
     }
 
     public void RefreshUse()
     {
-        if (clickCondition == null) return;
-        bool canUse = clickCondition.CanUse;
+        if (actionContainer.clickCondition == null) return;
+        bool canUse = actionContainer.clickCondition.CanUse;
 
         imgIcon.SetAlpha(canUse ? 1 : 0.2f);
     }
 
-    public Sprite GetIcon() => data.sprite;
-    public List<string> GetTooltips() => new();
-    public bool ShouldShowInfo() => true;
-    public string GetTitle() => data.name;
-
-    public string GetDescription()
-    {
-        var lines = new List<string>();
-
-        var pairs = new List<System.Tuple<SkillActionBase, string>>
-        {
-            new(onStartCombat, "Start of combat"),
-            new(onEndTurn, "Turn end"),
-            new(onClick, "Use"),
-        };
-
-        foreach (var item in pairs)
-        {
-            var descr = item.Item1?.GetDescription();
-            if (string.IsNullOrWhiteSpace(descr)) continue;
-
-            var sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(item.Item2)) sb.Append($"<b>{item.Item2}: </b>");
-
-            sb.Append(descr);
-            lines.Add(sb.ToString());
-        }
-
-        if (clickCondition != null)
-        {
-            var descr = clickCondition.GetDescription();
-            if (!string.IsNullOrWhiteSpace(descr))
-            {
-                lines.Add($"{descr}");
-            }
-        }
-
-        return string.Join(". ", lines);
-    }
+    public Sprite GetIcon() => data.GetIcon();
+    public List<string> GetTooltips() => data.GetTooltips();
+    public bool ShouldShowInfo() => data.ShouldShowInfo();
+    public string GetTitle() => data.GetTitle();
+    public string GetDescription() => data.GetDescription(actionContainer);
 
 }

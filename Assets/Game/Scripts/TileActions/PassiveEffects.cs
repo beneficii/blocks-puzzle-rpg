@@ -4,7 +4,6 @@ using UnityEngine;
 using GridBoard;
 using System;
 using System.Collections.Generic;
-using static UnityEditor.Progress;
 using System.Linq;
 
 namespace TileActions
@@ -219,6 +218,75 @@ namespace TileActions
         public class Builder : FactoryBuilder<TileActionBase, string, int>
         {
             public override TileActionBase Build() => new AddPowerPassiveTo(value, value2);
+        }
+    }
+
+    public class AddUnitAttackPassive : PassiveEffect
+    {
+        int amount;
+
+        public override string GetDescription()
+            => $"Enemies have {amount.SignedStr()} damage";
+
+        public AddUnitAttackPassive(int amount)
+        {
+            this.amount = amount;
+        }
+
+        protected override void Add()
+        {
+            var enemy = CombatArena.current?.enemy;
+            if (!enemy) return;
+            enemy.damage += amount;
+            enemy.RefreshAction();
+        }
+
+        protected override void Remove()
+        {
+            var enemy = CombatArena.current?.enemy;
+            if (!enemy) return;
+            enemy.damage -= amount;
+            enemy.RefreshAction();
+        }
+
+
+        public class Builder : FactoryBuilder<TileActionBase, int>
+        {
+            public override TileActionBase Build() => new AddUnitAttackPassive(value);
+        }
+    }
+
+    public class AddUnitDefensePassive : PassiveEffect
+    {
+        int amount;
+
+        public override string GetDescription()
+            => $"Enemies have {amount.SignedStr()} defense";
+
+        public AddUnitDefensePassive(int amount)
+        {
+            this.amount = amount;
+        }
+
+        protected override void Add()
+        {
+            var enemy = CombatArena.current?.enemy;
+            if (!enemy) return;
+            enemy.defense += amount;
+            enemy.RefreshAction();
+        }
+
+        protected override void Remove()
+        {
+            var enemy = CombatArena.current?.enemy;
+            if (!enemy) return;
+            enemy.defense -= amount;
+            enemy.RefreshAction();
+        }
+
+        public class Builder : FactoryBuilder<TileActionBase, int>
+        {
+            public override TileActionBase Build() => new AddUnitDefensePassive(value);
         }
     }
 }

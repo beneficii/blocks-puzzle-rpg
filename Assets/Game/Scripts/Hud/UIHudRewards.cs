@@ -31,7 +31,7 @@ public class UIHudRewards : UIHudBase
         instantiatedItems.Clear();
     }
 
-    public void Show(List<string> rewards)
+    public void Show(List<UICombatReward.Data> rewards)
     {
         Opened();
         Clear();
@@ -43,23 +43,9 @@ public class UIHudRewards : UIHudBase
         }
     }
 
-    private void OnEnable()
-    {
-        UICombatReward.OnClicked += HandleRewardClicked;
-    }
-
     private void OnDisable()
     {
         warningSkip.gameObject.SetActive(false);
-        UICombatReward.OnClicked -= HandleRewardClicked;
-    }
-
-    void HandleRewardClicked(UICombatReward item)
-    {
-        if (item.id == RewardType.Tile)
-        {
-            content.SetActive(false);
-        }
     }
 
     public void Close()

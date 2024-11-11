@@ -1,37 +1,46 @@
-id|name|description|hp|specialTile|actions|
-bat|Bat||50||Attack 4; Armor 2|
-bat_2|Bat Elite||80||Attack 4; Armor 2|
-boar|Wild Boar||120||Attack 4; Armor 2|
-boar_2|Boar Alpha||150||Attack 4; Armor 2|
-bowman|Bowman||70||Attack 4; Armor 2|
-bowman_b|Elite Bowman||100||Attack 4; Armor 2|
-dino|Dino||200||Attack 4; Armor 2|
-dino_2|Dino King||250||Attack 4; Armor 2|
-dragon|Dragon||300||Attack 4; Armor 2|
-dragon_2|Dragon Lord||400||Attack 4; Armor 2|
-ghost|Ghost||60||Attack 4; Armor 2|
-ghost_2|Spirit||100||Attack 4; Armor 2|
-giant|Giant||250||Attack 4; Armor 2|
-giant_2|Titan||300||Attack 4; Armor 2|
-mage|Apprentice Mage||80|||
-mage_b|Mage||100||Attack 4; Armor 2|
-mimic|Mimic||50||Attack 4; Armor 2|
-mimic_2|Ancient Mimic||100||Attack 4; Armor 2|
-mushroom|Mushroom||30||Attack 4; Armor 2|
-mushroom_2|Giant Mushroom||80||Attack 4; Armor 2|
-paladin|Paladin||120||Attack 4; Armor 2|
-paladin_b|Holy Paladin||150||Attack 4; Armor 2|
-reptile|Reptile||100||Attack 4; Armor 2|
-reptile_2|Reptile King||150||Attack 4; Armor 2|
-slime|Slime||40||Attack 4; Armor 2|
-slime_2|Big Slime||100||Attack 4; Armor 2|
-snake|Snake||50||Attack 4; Armor 2|
-snake_2|King Cobra||100||Attack 4; Armor 2|
-warrior|Warrior||100||Attack 4; Armor 2|
-warrior2|Elite Warrior||120||Attack 4; Armor 2|
-warrior2_b|Battle Master||150||Attack 4; Armor 2|
-warrior_b|Commander||150||Attack 4; Armor 2|
-Wizard|Wizard||100||Attack 4; Armor 2|
-Wizard_b|Archmage||120||Attack 4; Armor 2|
-||||||
-||||||
+id|name|description|hp|specialTile|damage|defense|actions||
+mage|Apprentice Mage||80||0|0|||
+|||||||||
+slime|Slime||20|trap|2|1|Attack; Armor; Armor; Attack; Armor||
+bat|Bat||40|batTrap|3|1|Attack; Armor; Armor; SpawnTile; Attack; Armor||
+snake|Snake||40|snakeTrap|4|2|Attack; Attack; Attack; SpawnTile; Armor||
+dino|Dino||60|trap|5|4|Attack; SpawnTile 2; Armor; Attack; Armor; Attack; Armor; Attack; Armor; Attack||
+mushroom|Mushroom||80|mushroomCurse|5|3|SpawnTile; Armor; Armor; Attack; Attack; SpawnTile; Armor; Attack||
+mimic|Mimic||70|cursedRing|7|2|Attack 2; SpawnTile 3; Attack; Armor; Armor; Armor; Attack; Armor; Armor||
+bat_2|Bat Elite||80|batCurse|6|5|Attack; Armor; SpawnTile 2; Attack; Attack; Armor;||
+boar|Wild Boar||100|boarCurse|8|8|Armor 4; Armor; SpawnTile; Attack; Attack 2; Armor; Attack||
+reptile|Reptile||100|axeCurse|8|5|Armor; SpawnTile; Attack; Attack 2; Armor||
+dragon|Dragon||120|dragonFire|8|10|SpawnTile 4; Attack; Armor; Armor; Attack 3||
+|||||||||
+|||||||||
+boar_2|Boar Alpha||150||4|2|Attack 4; Armor 2||
+bowman|Bowman||70||4|2|Attack 4; Armor 2||
+bowman_b|Elite Bowman||100||4|2|Attack 4; Armor 2||
+dino_2|Dino King||250||4|2|Attack 4; Armor 2||
+dragon_2|Dragon Lord||400||4|2|Attack 4; Armor 2||
+ghost|Ghost||60||4|2|Attack 4; Armor 2||
+ghost_2|Spirit||100||4|2|Attack 4; Armor 2||
+giant|Giant||250||4|2|Attack 4; Armor 2||
+giant_2|Titan||300||4|2|Attack 4; Armor 2||
+mage_b|Mage||100||4|2|Attack 4; Armor 2||
+mimic_2|Ancient Mimic||100||4|2|Attack 4; Armor 2||
+mushroom_2|Giant Mushroom||80||4|2|Attack 4; Armor 2||
+paladin|Paladin||120||4|2|Attack 4; Armor 2||
+paladin_b|Holy Paladin||150||4|2|Attack 4; Armor 2||
+reptile_2|Reptile King||150||4|2|Attack 4; Armor 2||
+slime_2|Big Slime||100||4|2|Attack 4; Armor 2||
+snake_2|King Cobra||100||4|2|Attack 4; Armor 2||
+warrior|Warrior||100||4|2|Attack 4; Armor 2||
+warrior2|Elite Warrior||120||4|2|Attack 4; Armor 2||
+warrior2_b|Battle Master||150||4|2|Attack 4; Armor 2||
+warrior_b|Commander||150||4|2|Attack 4; Armor 2||
+Wizard|Wizard||100||4|2|Attack 4; Armor 2||
+Wizard_b|Archmage||120||4|2|Attack 4; Armor 2||
+|||||||||
+|||||||||
+|||||||||
+|||||||||
+|||||||||
+|||||||||
+|||||||||
+|||||||||

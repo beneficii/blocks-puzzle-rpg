@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using TMPro;
 using FancyToolkit;
 using GridBoard;
-using Unity.Android.Gradle.Manifest;
 
 
 public class UIHoverInfo : MonoBehaviour
@@ -136,6 +135,12 @@ public class UIHoverInfo : MonoBehaviour
         if (collider.TryGetComponent<IHasInfo>(out var info))
         {
             Show(info);
+            return;
+        }
+
+        if (collider.TryGetComponent<IHasNestedInfo>(out var infoContainer) && infoContainer.GetInfo() != null)
+        {
+            Show(infoContainer.GetInfo());
             return;
         }
 

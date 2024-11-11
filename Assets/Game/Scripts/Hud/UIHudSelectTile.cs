@@ -21,18 +21,7 @@ public class UIHudSelectTile : UIHudBase
 
     List<UISelectTileCard> cards = new();
 
-    public void Show(SelectTileType type, List<MyTileData> list)
-    {
-        Opened();
-        Clear();
-        foreach (var data in list)
-        {
-            var instance = UIUtils.CreateFromTemplate(templateCard);
-            instance.Init(type, data);
-            cards.Add(instance);
-        }
-        bg.SetActive(type == SelectTileType.Choise);
-    }
+    SelectTileType type;
 
     int GetPrice(Rarity rarity, System.Random rng)
     {
@@ -48,6 +37,7 @@ public class UIHudSelectTile : UIHudBase
 
     public void ShowShop(List<MyTileData> list, System.Random rng)
     {
+        type = SelectTileType.Shop;
         Opened();
         Clear();
         foreach (var data in list)
@@ -61,6 +51,7 @@ public class UIHudSelectTile : UIHudBase
 
     public void ShowChoise(List<MyTileData> list)
     {
+        type = SelectTileType.Choise;
         Opened();
         Clear();
         foreach (var data in list)
@@ -95,6 +86,7 @@ public class UIHudSelectTile : UIHudBase
     {
         Clear();
         Closed();
+        if (type == SelectTileType.Shop) Game.current.FinishLevel();
     }
 
     void HandleTileSelected(UISelectTileCard card)

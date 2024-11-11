@@ -28,6 +28,16 @@ public class UnitMoveIndicator : MonoBehaviour
         }
 
         currentActionVisual = Instantiate(action.GetIndicatorPrefab(), actionParent);
-        txtShortDescription.text = action.GetShortDescription(parent);
+        RefreshShortDescription(action);
+    }
+
+    public void RefreshShortDescription(UnitAction.Base action)
+    {
+        if (action == null)
+        {
+            txtShortDescription.text = "";
+            return;
+        }
+        txtShortDescription.text = action.GetShortDescription();
     }
 }

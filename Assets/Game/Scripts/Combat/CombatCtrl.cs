@@ -5,13 +5,13 @@ using GridBoard;
 using TileShapes;
 using FancyToolkit;
 using System.Linq;
-using UnityEngine.SceneManagement;
-using UnityEditor.U2D.Aseprite;
-using UnityEditor.VersionControl;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
     [SerializeField] List<SpriteRenderer> bgRenders;
+    [SerializeField] Button btnEndTurn;
 
     Board board;
     ShapePanel shapePanel;
@@ -19,16 +19,11 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     CombatArena arena;
 
     public bool EndTurnInProgress { get; private set; } = false;
+    Sequence animSequence;
 
     PoolQueue<TileData> tileQueue;
 
     public int tilesPerTurn = 5;
-
-    public static void LoadScene(string id)
-    {
-        StageCtrl.current.SetStage(id);
-        SceneManager.LoadScene("Combat");
-    }
 
     private void Awake()
     {
@@ -51,6 +46,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         Unit.OnKilled -= HandleUnitKilled;
         UISelectTileCard.OnSelectTile -= HandleTileAddToSet;
         UISelectTileCard.OnBuyTile -= HandleTileAddToSet;
+        animSequence?.Kill();
     }
 
     void HandleTileAddToSet(UISelectTileCard card)
@@ -73,18 +69,35 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
     }
 
-    public Unit SpawnEnemy(string id)
+    List<UICombatReward.Data> GenerateCombatRewards()
     {
-        var enemy = arena.SpawnEnemy(id);
-        //var data = enemy.data;
+        var rng = Game.current.CreateStageRng();
+        var rarity = StageCtrl.current.Data.reward;
 
-        //BtGrid.current.LoadRandomBoard(data.boardLevel, data.specialBlockData);
-        //ShapePanel.current.GenerateNew();
+        int gold = rarity switch
+        {
+            Rarity.Common => rng.Next(20, 40),
+            Rarity.Uncommon => rng.Next(60, 100),
+            Rarity.Rare => rng.Next(130, 180),
+            Rarity.Legendary => rng.Next(300, 400),
+            _ => Random.Range(45, 60),
+        };
 
-        //board.LoadRandomLayout(data.boardLevel, data.specialBlockData); // ToDo
+        return new List<UICombatReward.Data> {
+            new UICombatReward.DataGold(gold),
+            new UICombatReward.DataTile(rarity)
+        };
+    }
 
-
-        return enemy;
+    void HandleDeadEnd()
+    {
+        animSequence?.Kill();
+        btnEndTurn.transform.localScale = Vector3.one;
+        // Sequence to pulse the button up and down
+        animSequence = DOTween.Sequence();
+        animSequence.Append(btnEndTurn.transform.DOScale(1.2f, .2f).SetEase(Ease.OutQuad))
+                .Append(btnEndTurn.transform.DOScale(0.9f, .2f).SetEase(Ease.InQuad))
+                .SetLoops(2, LoopType.Yoyo);
     }
 
     IEnumerator CombatFinished(bool victory)
@@ -93,13 +106,13 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         if (victory)
         {
-            if (StageCtrl.current.Data.type == StageData.Type.Boss)
+            //if (StageCtrl.current.Data.type == StageData.Type.Boss)
+            //{
+            //    UIHudGameOver.current.Show(true);
+            //}
+            //else
             {
-                UIHudGameOver.current.Show(true);
-            }
-            else
-            {
-                UIHudRewards.current.Show(StageCtrl.current.Data.rewards);
+                UIHudRewards.current.Show(GenerateCombatRewards());
             }
         }
         else
@@ -110,21 +123,30 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     }
 
+
+    public IEnumerator NewTurna()
+    {
+        yield break;
+    }
+
     public void NewTurn() => NewTurn(0.1f);
 
     public void NewTurn(float delay)
     {
-        if (EndTurnInProgress) return; // ToDo: maybe soome warning
-
-        EndTurnInProgress = true;
-        if (!arena.enemy) return;   // Let's wait end of combat
-
         StartCoroutine(TurnRoutine(delay));
     }
 
-    IEnumerator TurnRoutine(float delay)
+    public IEnumerator TurnRoutine() => TurnRoutine(0.4f);
+    public IEnumerator TurnRoutine(float delay)
     {
-        shapePanel.IsLocked = true;
+        if (EndTurnInProgress)
+        {
+            yield break; // ToDo: maybe soome warning
+        }
+        btnEndTurn.GetComponent<CanvasGroup>().alpha = 0.3f;
+        EndTurnInProgress = true;   // ToDo: maybe lock button
+        if (!arena.enemy) yield break;   // Let's wait end of combat
+
         yield return new WaitForSeconds(delay);
 
         //RunEndOfTurnPassives();
@@ -137,26 +159,27 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         if (!arena.player || !arena.enemy) yield break;
         yield return new WaitForSeconds(delay / 2f);
 
-
         foreach (var unit in arena.GetEnemies())
         {
             yield return unit.EndOfTurn();
+            if (!unit)
+            {
+                continue;
+            }
             yield return unit.RoundActionPhase();
         }
 
         if (arena.player) yield return arena.player.EndOfTurn();
 
-
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         foreach (var unit in arena.GetUnits())
         {
             unit.RoundFinished();
         }
-        yield return new WaitForSeconds(0.2f);
 
         shapePanel.GenerateNew(false, tileQueue, tilesPerTurn);
+        btnEndTurn.GetComponent<CanvasGroup>().alpha = 1f;
         EndTurnInProgress = false;
-        shapePanel.IsLocked = false;
     }
 
     IEnumerator InitCombat()
@@ -170,9 +193,19 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         shapePanel = FindAnyObjectByType<ShapePanel>();
 
         board.LoadRandomLayout(stageData.specialTile);
-        shapePanel.OnOutOfShapes += NewTurn;
+        shapePanel.OnOutOfShapes.Add(TurnRoutine);
+        shapePanel.OnDeadEnd += HandleDeadEnd;
+        arena.player.board = board;
+        arena.enemy.board = board;
+
+        arena.enemy.SetCombatVisible(true);
+        //arena.player.SetCombatVisible(true);
+
         yield return UIHudCombat.current.InitSkills(board);
         shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
+        var clearer = FindAnyObjectByType<LineClearer>();
+        if (clearer) WorldUpdateCtrl.current.AddSubscriber(clearer);
+        WorldUpdateCtrl.current.AddSubscriber(shapePanel);
     }
 
     public void InitShop()
@@ -197,22 +230,15 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         UIHudSelectTile.current.ShowShop(list, rng);
     }
 
-    IEnumerator Start()
+    public void Init(StageData.Type type, string dialogId = null)
     {
-        var stageData = StageCtrl.current.Data;
-        if (Game.current.bgDict.TryGetValue(stageData.background, out var bgSprite))
+        if (!string.IsNullOrEmpty(dialogId))
         {
-            foreach (var item in bgRenders) item.sprite = bgSprite;
+            UIHudDialog.current.Show(dialogId);
+            return;
         }
 
-        arena = CombatArena.current;
-        arena.SpawnEnemy(stageData.units[0]);
-        var player = arena.SpawnPlayer();
-        var hp = Game.current.GetPlayerHealth();
-        player.SetHp(hp.x);
-
-        yield return null;
-        switch (stageData.type)
+        switch (type)
         {
             case StageData.Type.Enemy:
             case StageData.Type.Elite:
@@ -222,55 +248,60 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             case StageData.Type.Shop:
                 InitShop();
                 break;
-            case StageData.Type.Dialog:
+            case StageData.Type.Victory:
+                Game.current.GameOver();
+                UIHudGameOver.current.Show(true);
                 break;
             default:
-                Debug.LogError("Unknown type");
+                Game.current.FinishLevel();
                 break;
         }
+    }
 
-        
+    IEnumerator Start()
+    {
+        var stageData = StageCtrl.current.Data;
+        if (Game.current.bgDict.TryGetValue(stageData.background, out var bgSprite))
+        {
+            foreach (var item in bgRenders) item.sprite = bgSprite;
+        }
+
+        arena = CombatArena.current;
+        var enemy = arena.SpawnEnemy(stageData.units[0]);
+        var player = arena.SpawnPlayer();
+        enemy.SetCombatVisible(false);
+        //player.SetCombatVisible(false);
+        var hp = Game.current.GetPlayerHealth();
+        player.SetHp(hp.x);
+
+        yield return null;
+        Init(stageData.type, stageData.dialog);
     }
 
 
     private void Update()
     {
-#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Z))
         {
             arena.player.AnimAttack(1);
-            arena.enemy.RemoveHp(50);
+            arena.enemy.RemoveHp(20);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            NewTurn();
+            arena.player.AddArmor(5);
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            arena.player.AddArmor(5);
+            arena.player.RemoveHp(5);
         }
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            arena.player.RemoveHp(5);
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
             arena.player.AddHp(5);
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            UIHudRewards.current.Show(new List<string>{ "gold 1", "gold 20"});
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            UIHudDialog.current.Show("test");
-        }
+#if UNITY_EDITOR
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -294,7 +325,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     IEnumerator ILineClearHandler.HandleLinesCleared(LineClearData clearData)
     {
-        shapePanel.IsLocked = true;
         if (clearData.tiles.Count > 10)
         {
             arena.player.AnimAttack(2);
@@ -310,7 +340,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         {
             yield return tile.OnCleared(clearData);
         }
-        shapePanel.IsLocked = false;
     }
 }
 

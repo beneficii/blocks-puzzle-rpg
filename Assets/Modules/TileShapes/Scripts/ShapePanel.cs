@@ -8,10 +8,10 @@ using FancyToolkit;
 
 namespace TileShapes
 {
-    public class ShapePanel : MonoBehaviour
+    public class ShapePanel : MonoBehaviour, IWorldUpdateListener
     {
         public System.Action<bool> OnShapesGenerated;
-        public System.Action OnOutOfShapes;
+        public CoroutineEvent OnOutOfShapes = new();
         public System.Action OnDeadEnd;
         public UnityEvent<bool> OnHintsAviable;
 
@@ -37,7 +37,7 @@ namespace TileShapes
 
         Queue<Hint> hints;
 
-        public bool IsLocked { get; set; }
+        public bool NeedsUpdate => shouldCheckSlots;
 
         Shape.Info GetWispShape()
         {
@@ -60,16 +60,6 @@ namespace TileShapes
             }
 
             return new(shape);
-        }
-
-        void Init()
-        {
-            board.OnChangedLate += CheckSlots;
-        }
-
-        private void Awake()
-        {
-            Init();
         }
 
         Shape.Info GetNextShape(SimulatedBoard boardState)
@@ -134,12 +124,6 @@ namespace TileShapes
             {
                 item.data = tileQueue.Get();
             }
-        }
-
-        public IEnumerator RefreshAgain()
-        {
-            yield return null;
-            GenerateNew(false);
         }
 
         public void GenerateNew(bool initial = true, PoolQueue<TileData> tileQueue = null, int tilesToPopulate = 0)
@@ -211,6 +195,8 @@ namespace TileShapes
 
         private void Update()
         {
+            if (WorldUpdateCtrl.current.IsUpdating) return;
+
             RaycastHit2D hit = Physics2D.Raycast(Helpers.MouseToWorldPosition(), Vector2.zero, 10, layerMask);
             var trans = hit.transform;
             if (currentColider != trans)
@@ -274,22 +260,7 @@ namespace TileShapes
             }
 
             OnDeadEnd?.Invoke();
-
             //StartCoroutine(RoutineStuck());
-        }
-
-        public void CheckSlots()
-        {
-            if (!shouldCheckSlots) return;
-
-            shouldCheckSlots = false;
-            if (shapes.Count == 0)
-            {
-                OnOutOfShapes?.Invoke();
-                return;
-            }
-
-            CheckDeadEnd();
         }
 
         void HandleShapeDropped(Shape shape, Vector2Int pos)
@@ -381,7 +352,18 @@ namespace TileShapes
                 yield return AutoPlayTurn();
                 yield return new WaitForSeconds(0.1f);
             }
+        }
 
+        public IEnumerator WorldUpdate()
+        {
+            shouldCheckSlots = false;
+            if (shapes.Count == 0)
+            {
+                yield return OnOutOfShapes.Invoke();
+                yield break;
+            }
+
+            CheckDeadEnd();
         }
     }
 }

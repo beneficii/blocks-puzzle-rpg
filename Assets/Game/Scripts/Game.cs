@@ -11,6 +11,8 @@ using System.Linq;
 public class Game : MonoBehaviour
 {
     const string sceneMenu = "MainMenu";
+    const string sceneCombat = "Combat";
+    const string sceneMap = "Map";
 
     public static Game current { get; private set; }
     public const int maxSkills = 4;
@@ -36,6 +38,11 @@ public class Game : MonoBehaviour
     {
         state.deck.Add(id);
         //state.Save(); // don't save to prevent shop abuse
+    }
+
+    public void AddSkill(string id)
+    {
+        state.skills.Add(id);
     }
 
     public List<string> GetStartingDeck()
@@ -153,11 +160,11 @@ public class Game : MonoBehaviour
         }
         else if (state.currentNode < 0)
         {
-            return "Map";
+            return sceneMap;
         }
         else
         {
-            return "Combat";
+            return sceneCombat;
         }
     }
 

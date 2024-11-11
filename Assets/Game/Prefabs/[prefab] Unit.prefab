@@ -466,7 +466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 32
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed382a7ebeaad874988f56833977fd84, type: 2}
   m_sharedMaterial: {fileID: -4289534654538385631, guid: ed382a7ebeaad874988f56833977fd84, type: 2}
@@ -1406,6 +1406,9 @@ MonoBehaviour:
   contentDialog: {fileID: 6238317790878161591}
   parentHp: {fileID: 77189621990512210}
   visuals: {fileID: 11400000, guid: 40bf35631a9ba8b499553f1194e54716, type: 2}
+  damage: 0
+  defense: 0
+  board: {fileID: 0}
   modifiers: 
   lifetime: 0
   modifierDontResetArmorOnce: 0

@@ -1,3 +1,5 @@
 id|idVisual|name|clickCondition|onClick|onEndTurn|onStartCombat
-test|overwhelm|Overwhelm|Once|SpawnTile 4 sword||
-||||||
+test|fellowship|ArmorDown|Once|MultiplyPowerTag Biggest 2 axe||
+swordRush|overwhelm|Sword Dance|Once|SpawnTile 4 sword||
+axeRush|rush|Echoing Axe|Once|MultiplyPowerTag Biggest 2 axe||
+shieldRush|backup|Guard Formation|Once|ConsumeArmorAnd 5 SpawnTile 1 guardShield||

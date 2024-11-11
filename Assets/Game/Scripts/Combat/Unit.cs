@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -36,6 +35,12 @@ public class Unit : MonoBehaviour, IDamagable
     public UnitData data { get; private set; }
     public UnitVisualData visuals;
 
+    public int damage;
+    public int defense;
+
+    public int GetDefense() => defense > 1 ? defense : 1;
+    public int GetDamage() => damage > 1 ? damage : 1;
+
     public Team team { get; private set; } = Team.Enemy;
 
     IntReference refHealth;
@@ -44,19 +49,33 @@ public class Unit : MonoBehaviour, IDamagable
     UnitAction.Base nextAction;
     Unit target;
 
+    public GridBoard.Board board;
+
     public List<int> modifiers;
     public int lifetime = 0;
 
     public bool modifierDontResetArmorOnce;
 
+    bool isCombatVisible = true;
+
     public string GetDescription()
     {
-        return nextAction?.GetLongDescription(this)??data.description;
+        var lines = new List<string>();
+        if (!string.IsNullOrWhiteSpace(data.description)) lines.Add(data.description);
+
+        if (isCombatVisible)
+        {
+            if (damage > 0) lines.Add($"Damage: {damage}");
+            if (defense > 0) lines.Add($"Defense: {defense}");
+            if (nextAction != null) lines.Add(nextAction.GetLongDescription());
+        }
+
+        return string.Join("\n", lines);
     }
 
     public string GetTooltip()
     {
-        return nextAction?.GetTooltip(this);
+        return nextAction?.GetTooltip();
     }
 
     int actionIdx = 0;
@@ -66,6 +85,8 @@ public class Unit : MonoBehaviour, IDamagable
         Assert.IsNotNull(data);
         this.team = team;
         this.data = data;
+        this.damage = data.damage;
+        this.defense = data.defense;
         visuals = data.visuals;
         actionIdx = 0;
         SetAction(null);
@@ -97,6 +118,14 @@ public class Unit : MonoBehaviour, IDamagable
             .Repeat(0, EnumUtil.GetLength<Modifier>())
             .ToList();
     }
+
+    public void SetCombatVisible(bool value)
+    {
+        isCombatVisible = value;
+        moveIndicator.gameObject.SetActive(value);
+        parentHp.gameObject.SetActive(value);
+    }
+
 
     public void SetDialog(string text = null)
     {
@@ -138,8 +167,14 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void SetAction(UnitAction.Base action)
     {
+        action?.Init(this);
         moveIndicator.Init(this, action);
         nextAction = action;
+    }
+
+    public void RefreshAction()
+    {
+        moveIndicator.RefreshShortDescription(nextAction);
     }
 
     void Destroy()
@@ -227,10 +262,9 @@ public class Unit : MonoBehaviour, IDamagable
 
     public IEnumerator RoundActionPhase()
     {
-        
         lifetime++;
         if (nextAction == null) yield break;
-        yield return nextAction.Run(this, target);
+        yield return nextAction.Run(target);
         SetNextAction();
     }
 
@@ -323,7 +357,7 @@ public class Unit : MonoBehaviour, IDamagable
             shadow.localPosition.x,
             shadow.localScale.x
         );*/
-        EditorUtility.SetDirty(visuals);
+        UnityEditor.EditorUtility.SetDirty(visuals);
 
     }
 #endif

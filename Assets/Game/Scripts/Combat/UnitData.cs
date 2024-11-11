@@ -12,6 +12,8 @@ public class UnitData
     public string name;
     public string description;
     public int hp;
+    public int damage;
+    public int defense;
     public string specialTile;
     public List<FactoryBuilder<UnitAction.Base>> actions = new();
 }

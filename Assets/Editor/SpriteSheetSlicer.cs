@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
-using static UnityEditor.U2D.ScriptablePacker;
 using UnityEditor.U2D.Sprites;
 using System.IO;
 using System.Text.RegularExpressions;
-using Codice.Client.BaseCommands.BranchExplorer;
 using System.Linq;
 
 public static class SpriteSheetSlicer

@@ -1,7 +1,6 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace FancyToolkit
 {
@@ -12,7 +11,7 @@ namespace FancyToolkit
 
         public PoolQueue(IEnumerable<T> list)
         {
-            Assert.IsNotEmpty(list);
+            Assert.IsTrue(list.Count() > 0);
 
             initialList = list.ToList();
             GenerateQueue();

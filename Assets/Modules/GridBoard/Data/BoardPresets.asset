@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BoardPresets
   m_EditorClassIdentifier: 
   textureBoards: {fileID: 2800000, guid: c14427e3e7acae44b886786c3a87f560, type: 3}
-  dbTiles: {fileID: 11400000, guid: 721b92e56ce2a1e418e9cfcec2bfafb7, type: 2}
+  size: {x: 7, y: 7}

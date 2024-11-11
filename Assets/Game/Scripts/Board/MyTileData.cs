@@ -15,4 +15,9 @@ public class MyTileData : TileData
     public FactoryBuilder<TileActionBase> enterAction;
     public FactoryBuilder<TileActionBase> passive;
     public FactoryBuilder<TileActionBase> buyAction;
+
+    public override string GetDescription(Tile tile = null)
+    {
+        return base.GetDescription(tile);
+    }
 }

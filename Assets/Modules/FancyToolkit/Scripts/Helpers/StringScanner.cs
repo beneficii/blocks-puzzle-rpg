@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using FixedMath;
-using NUnit.Framework;
 
 namespace FancyToolkit
 {
@@ -120,6 +117,12 @@ namespace FancyToolkit
 
             if (typeof(TValue) == typeof(string))
             {
+                if (Empty)
+                {
+                    val = default;
+                    return false;
+                }
+
                 val = (TValue)(object)NextString();
                 return true;
             }

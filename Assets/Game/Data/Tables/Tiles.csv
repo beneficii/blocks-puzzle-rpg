@@ -35,11 +35,11 @@ cursedRing|cursed_ring|Cursed Ring|2|None|curse|-10|ring||EnemyDefense||||||||
 batCurse|bat_curse|Bat Curse|2|None|curse|-10|||HealEnemy||||||||
 snakeCurse|snake|Snake Curse|0|None|curse|-10|||||AddPowerPassiveTo shield -2||||||
 boarCurse|boar|Boar Curse|0|None|curse|-10|||||AddPowerPassiveTo weapon -2||||||
-mushroomCurse|mushroom|Mushroom Curse|2|None|curse|-10|curse|DamagePlayer|TransformAround empty mushroomCurse 2||||||||
+mushroomCurse|mushroom|Mushroom Curse|2|None|curse|-10||DamagePlayer|TransformAround empty mushroomCurse 2||||||||
+dragonFire|cursed_fire|Dragon Fire|0|None|curse|-10|fire||||AddUnitAttackPassive +1||||||
 |||||||||||||||||
 fireball|fire|Fireball|1|None|weapon|0|fire|Damage|||||||||
-fireBook|fire_book|Book of Fire|2|Uncommon|spell|0||ConsumeClearedAnd 1 fire Damage|SpawnTile 2 fireball||||cf573c||||
-|||||||||||||||||
+fireBook|fire_book|Book of Fire|2|Uncommon|spell|0||ConsumeClearedAnd 1 fire Damage|SpawnTile 2 fireball||||cf573c	||||
 |||||||||||||||||
 |||||||||||||||||
 |||||||||||||||||

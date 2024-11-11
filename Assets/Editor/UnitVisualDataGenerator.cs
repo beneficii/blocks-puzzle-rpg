@@ -3,9 +3,7 @@ using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using UnityEditor.U2D.Sprites;
 using System.Linq;
-using Mono.Cecil;
 
 public class UnitVisualDataGenerator
 {

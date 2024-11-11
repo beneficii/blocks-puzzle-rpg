@@ -59,7 +59,7 @@ namespace RogueLikeMap
             };
         }
 
-        public static MapLayout GenerateLayout(Vector2Int gridSize, int roads, System.Random rng)
+        public static MapLayout GenerateLayout(Vector2Int gridSize, int roads, System.Random rng, int endNodes = 1)
         {
             var edges = new HashSet<Edge>();
             var nodes = new HashSet<Vector2Int>();
@@ -116,7 +116,16 @@ namespace RogueLikeMap
                     curY = nextY;
                 }
 
-                AddEdge(new(gridSize.x - 1, curY), endTile);
+                var curTile = new Vector2Int(gridSize.x - 1, curY);  // Start at the end of the main grid
+                AddEdge(curTile, endTile);  // Connect to the endTile first
+                curTile = endTile;  // Update curTile to endTile
+
+                for (int j = 0; j < endNodes; j++)
+                {
+                    var nextTile = new Vector2Int(endTile.x + j + 1, endTile.y);
+                    AddEdge(curTile, nextTile);
+                    curTile = nextTile;
+                }
             }
 
             return new MapLayout
