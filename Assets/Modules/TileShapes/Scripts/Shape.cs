@@ -12,7 +12,7 @@ namespace TileShapes
         public static System.Action<Shape, bool> OnDragState;
 
         public System.Action<Shape, Vector2Int> OnDropped;
-        public const float offsetDrag = 0f;
+        public const float offsetDrag = 3;
 
         public ShapeData data { get; private set; }
         public int rotation { get; private set; }
@@ -92,7 +92,7 @@ namespace TileShapes
                 CalculateMouseSpeed();
                 prevDragPosition = Input.mousePosition;
                 transform.localScale = Vector3.one;
-                transform.position = Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
+                transform.position = Helpers.MouseToWorldPosition() + Vector2.left * offsetDrag;
                 soundPickup?.PlayNow();
             }
             else

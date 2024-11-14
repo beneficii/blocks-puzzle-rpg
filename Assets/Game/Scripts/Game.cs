@@ -56,12 +56,14 @@ public class Game : MonoBehaviour
 
     void Init()
     {
-        StageCtrl.current.AddData(gameData.tableStages);
+        StageCtrl.current.AddData(gameData.tableStages, true);
+
         TileCtrl.current.AddData<MyTileData>(gameData.tableTiles);
         UnitCtrl.current.AddData<UnitData>(gameData.tableUnits);
         SkillCtrl.current.AddData<SkillData>(gameData.tableSkills);
 
         unitActionPrefabs = Resources.LoadAll<GameObject>("ActionVisuals").ToDictionary(x => x.name);
+        print($"Game::Init / act: {unitActionPrefabs.Count()}");
         fxDict = Resources.LoadAll<FxData>("FxData").ToDictionary(x => x.name);
         bgDict = Resources.LoadAll<Sprite>("Backgrounds").ToDictionary(x => x.name);
     }

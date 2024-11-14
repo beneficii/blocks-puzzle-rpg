@@ -16,15 +16,15 @@ namespace FancyToolkit
 
     public static class FancyCSV
     {
-        public static List<T> FromText<T>(string text) where T : new()
+        public static List<T> FromText<T>(string text, bool debug = false) where T : new()
         {
-            return new FancySheet(text).Convert<T>();
+            return new FancySheet(text, debug).Convert<T>();
         }
 
         public static List<T> FromFile<T>(string filePath) where T : new()
         {
             FancySheet result = null;
-            using (StreamReader sr = new StreamReader(filePath))
+            using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
             {
                 result = new FancySheet(sr);
             }
@@ -62,16 +62,34 @@ namespace FancyToolkit
                     .ToArray();
             }
 
+            bool debug;
 
-            public FancySheet(string content)
+            void QLog(string msg)
             {
-                values = CsvParser.Parse(content, Settings);
-
-                keys = values[0]
-                    .Where(x=>!string.IsNullOrWhiteSpace(x))
-                    .Select(x => x.Split('.'))
-                    .ToArray();
+                if (debug) UnityEngine.Debug.Log(msg);
             }
+            public FancySheet(string content, bool debug = false)
+{
+    this.debug = debug;
+
+    // Normalize line endings to Windows-style (\r\n)
+    string normalizedContent = content.Replace("\r\n", "\n").Replace("\r", "").Replace("\n", "\r\n");
+
+    // Log the content with visible line endings
+    QLog($"{normalizedContent.Replace("\r", "\\r").Replace("\n", "\\n")}");
+
+    // Parse the normalized content
+    values = CsvParser.Parse(normalizedContent, Settings);
+
+    // Extract keys from the parsed content
+    keys = values[0]
+        .Where(x => !string.IsNullOrWhiteSpace(x))
+        .Select(x => x.Split('.'))
+        .ToArray();
+
+    // Log key and value counts
+    QLog($"keys: {keys.Count()} values: {values.Count()}");
+}
 
             public static System.Reflection.MethodInfo GetStingConvertMethod(Type t)
             {

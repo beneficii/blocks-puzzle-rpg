@@ -27,7 +27,7 @@ public class MenuCtrl : MonoBehaviour
         allPanels.Add(panelSettings);
 
         if (GameState.HasSave()) AddButton("Continue", BtnContinue);
-        AddButton("New Game", BtnContinue);
+        AddButton("New Game", BtnPlay);
         AddButton("Credits", BtnCredits);
         AddButton("Settings", BtnSettings);
         AddButton("Exit", BtnExit);

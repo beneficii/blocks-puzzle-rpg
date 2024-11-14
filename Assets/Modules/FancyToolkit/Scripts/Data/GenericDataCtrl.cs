@@ -19,9 +19,10 @@ namespace FancyToolkit
             list.Add(data);
         }
 
-        public void AddData<TClass>(TextAsset csv) where TClass : TData, new()
+        public void AddData<TClass>(TextAsset csv, bool debug = false) where TClass : TData, new()
         {
-            var list = FancyCSV.FromText<TClass>(csv.text);
+            var list = FancyCSV.FromText<TClass>(csv.text, debug);
+            Debug.Log($"GenericDataCtrl<{typeof(TData)}>::Add cnt: {list.Count}");
             foreach (var item in list)
             {
                 Add(item);
@@ -34,7 +35,7 @@ namespace FancyToolkit
 
         }
 
-        public void AddData(TextAsset csv) => AddData<TData>(csv);
+        public void AddData(TextAsset csv, bool debug = false) => AddData<TData>(csv, debug);
     }
 
     public class DataWithId

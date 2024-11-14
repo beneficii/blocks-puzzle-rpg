@@ -70,6 +70,7 @@ public class StageCtrl : GenericDataCtrl<StageData>
     public override void PostInit()
     {
         var sprites = Resources.LoadAll<Sprite>("StageIcons").ToDictionary(x => x.name);
+        Debug.Log($"StageCtrl::PostInit sprites: {sprites.Count}");
         foreach (var item in GetAll())
         {
             item.sprite = sprites.Get(item.type.ToString());
