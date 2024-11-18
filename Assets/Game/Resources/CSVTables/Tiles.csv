@@ -1,54 +1,54 @@
-id|idVisuals|title|power|rarity|type|priority|tags|clearAction|endTurnAction|enterAction|passive|buyAction|colorCode||||
-health|health|Potion|50|None|none|0||||||HealPlayerBuy|||||
-|||||||||||||||||
-sword|basic_sword|Cheap Sword|4|Basic|weapon|0|sword|Damage|||||a4dddb||||
-shortSword|sword1|ShortSword|2|None|weapon|0|sword|Damage|||||||||
-jaggedSword|sword2|Jagged Sword|8|Common|weapon|0|sword|DamageAnd SpawnTile 1 spikeTrap|||||||||
-heavySword|sword3|Wide Sword|3|Uncommon|weapon|0|sword|DamageAnd SpawnTile 2 shortSword|||||||||
-strength|fist|Strength|0|Uncommon|spell|0||||BuffPowerTag Around 3 weapon|||||||
-bladeRing|bladed_ring|Blade Ring|0|Common|armor|0|ring||ForOnBoard 3 SpawnTile 1 shortSword||||||||
-focusBlades|focus_blades|Focus Blades|5|Uncommon|spell|10||ConsumeClearedAnd 1 sword Damage|||||df84a5||||
-|||||||||||||||||
-shield|basic_shield|Round Shield|3|Basic|armor|0|shield|Defense|||||e8c170||||
-trapShield|trap_dis_shield|Snarebound Shield|2|Common|armor|0|shield|Defense||AddPowerForEachOnBoard 2 trap|||||||
-resilentShield|shield1|Resilent Shield|3|Uncommon|armor|0|shield|Defense|||OnPlayerDamage 0 AddPower 2||||||
-guardShield|shield2|Guarding Shield|1|Common|armor|0|shield|BuffPowerTag Biggest 2 shield|||||||||
-shieldBash|shield_bash|Shield Bash|0|Uncommon|spell|1||ConvertPowerTo Damage Biggest shield|||||||||
-mentalBarrier|mental_barrier|Mental Barrier|0|Uncommon|spell|1||ConvertPowerTo Defense Biggest shield|||||||||
-|||||||||||||||||
-axe|axe|Rampant Axe|2|Uncommon|weapon|0|axe|Damage|AddPower 2||||||||
-cursedAxe|axe1|Nightmare Axe|1|Uncommon|weapon|0|axe|Damage||SuckOutPower around axe spikeTrap|||||||
-recklessAxe|axe2|Reckless Axe|15|Common|weapon|0|axe|DamageBoth|||||||||
-extraStrike|final_blow|Extra Strike|0|Uncommon|spell|-20||CopyHighestDamage|||||||||
-|||||||||||||||||
-ring|ring|Golden Ring|1|Common|armor|0|ring||Defense||||||||
-|||||||||||||||||
-goo|goo|Copying Goo|0|Rare|spell|0||||TransformInto biggest any|||||||
-|||||||||||||||||
-trap|basic_trap|Explosive Trap|0|None|trap|-5||TransformAround nonempty empty 0|||||||||
-batTrap|bat_trap|Bat Trap|10|None|trap|-5||HealEnemy|||||||||
-spikeTrap|spikes|Spike Trap|3|None|trap|-5||DamagePlayer|||||||||
-snakeTrap|snake_trap|Snake Trap|20|None|trap|-5||RemoveArmor|||||||||
-|||||||||||||||||
-axeCurse|cursed_axe|Cursed Axe|2|None|curse|-10|axe|DamagePlayer|SuckOutPower biggest any empty||||||||
-cursedRing|cursed_ring|Cursed Ring|2|None|curse|-10|ring||EnemyDefense||||||||
-batCurse|bat_curse|Bat Curse|2|None|curse|-10|||HealEnemy||||||||
-snakeCurse|snake|Snake Curse|0|None|curse|-10|||||AddPowerPassiveTo shield -2||||||
-boarCurse|boar|Boar Curse|0|None|curse|-10|||||AddPowerPassiveTo weapon -2||||||
-mushroomCurse|mushroom|Mushroom Curse|2|None|curse|-10||DamagePlayer|TransformAround empty mushroomCurse 2||||||||
-dragonFire|cursed_fire|Dragon Fire|0|None|curse|-10|fire||||AddUnitAttackPassive +1||||||
-|||||||||||||||||
-fireball|fire|Fireball|1|None|weapon|0|fire|Damage|||||||||
-fireBook|fire_book|Book of Fire|2|Uncommon|spell|0||ConsumeClearedAnd 1 fire Damage|SpawnTile 2 fireball||||cf573c	||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
-|||||||||||||||||
+id,idVisuals,title,power,rarity,type,priority,tags,clearAction,endTurnAction,enterAction,passive,buyAction,colorCode,,,,
+health,health,Potion,50,None,none,0,,,,,,HealPlayerBuy,,,,,
+,,,,,,,,,,,,,,,,,
+sword,basic_sword,Cheap Sword,4,Basic,weapon,0,sword,Damage,,,,,a4dddb,,,,
+shortSword,sword1,ShortSword,2,None,weapon,0,sword,Damage,,,,,,,,,
+jaggedSword,sword2,Jagged Sword,8,Common,weapon,0,sword,DamageAnd SpawnTile 1 spikeTrap,,,,,,,,,
+heavySword,sword3,Wide Sword,3,Uncommon,weapon,0,sword,DamageAnd SpawnTile 2 shortSword,,,,,,,,,
+strength,fist,Strength,0,Uncommon,spell,0,,,,BuffPowerTag Around 3 weapon,,,,,,,
+bladeRing,bladed_ring,Blade Ring,0,Common,armor,0,ring,,ForOnBoard 3 SpawnTile 1 shortSword,,,,,,,,
+focusBlades,focus_blades,Focus Blades,5,Uncommon,spell,10,,ConsumeClearedAnd 1 sword Damage,,,,,df84a5,,,,
+,,,,,,,,,,,,,,,,,
+shield,basic_shield,Round Shield,3,Basic,armor,0,shield,Defense,,,,,e8c170,,,,
+trapShield,trap_dis_shield,Snarebound Shield,2,Common,armor,0,shield,Defense,,AddPowerForEachOnBoard 2 trap,,,,,,,
+resilentShield,shield1,Resilent Shield,3,Uncommon,armor,0,shield,Defense,,,OnPlayerDamage 0 AddPower 2,,,,,,
+guardShield,shield2,Guarding Shield,1,Common,armor,0,shield,BuffPowerTag Biggest 2 shield,,,,,,,,,
+shieldBash,shield_bash,Shield Bash,0,Uncommon,spell,1,,ConvertPowerTo Damage Biggest shield,,,,,,,,,
+mentalBarrier,mental_barrier,Mental Barrier,0,Uncommon,spell,1,,ConvertPowerTo Defense Biggest shield,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+axe,axe,Rampant Axe,2,Uncommon,weapon,0,axe,Damage,AddPower 2,,,,,,,,
+cursedAxe,axe1,Nightmare Axe,1,Uncommon,weapon,0,axe,Damage,,SuckOutPower around axe spikeTrap,,,,,,,
+recklessAxe,axe2,Reckless Axe,15,Common,weapon,0,axe,DamageBoth,,,,,,,,,
+extraStrike,final_blow,Extra Strike,0,Uncommon,spell,-20,,CopyHighestDamage,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+ring,ring,Golden Ring,1,Common,armor,0,ring,,Defense,,,,,,,,
+,,,,,,,,,,,,,,,,,
+goo,goo,Copying Goo,0,Rare,spell,0,,,,TransformInto biggest any,,,,,,,
+,,,,,,,,,,,,,,,,,
+trap,basic_trap,Explosive Trap,0,None,trap,-5,,TransformAround nonempty empty 0,,,,,,,,,
+batTrap,bat_trap,Bat Trap,10,None,trap,-5,,HealEnemy,,,,,,,,,
+spikeTrap,spikes,Spike Trap,3,None,trap,-5,,DamagePlayer,,,,,,,,,
+snakeTrap,snake_trap,Snake Trap,20,None,trap,-5,,RemoveArmor,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+axeCurse,cursed_axe,Cursed Axe,2,None,curse,-10,axe,DamagePlayer,SuckOutPower biggest any empty,,,,,,,,
+cursedRing,cursed_ring,Cursed Ring,2,None,curse,-10,ring,,EnemyDefense,,,,,,,,
+batCurse,bat_curse,Bat Curse,2,None,curse,-10,,,HealEnemy,,,,,,,,
+snakeCurse,snake,Snake Curse,0,None,curse,-10,,,,,AddPowerPassiveTo shield -2,,,,,,
+boarCurse,boar,Boar Curse,0,None,curse,-10,,,,,AddPowerPassiveTo weapon -2,,,,,,
+mushroomCurse,mushroom,Mushroom Curse,2,None,curse,-10,,DamagePlayer,TransformAround empty mushroomCurse 2,,,,,,,,
+dragonFire,cursed_fire,Dragon Fire,0,None,curse,-10,fire,,,,AddUnitAttackPassive +1,,,,,,
+,,,,,,,,,,,,,,,,,
+fireball,fire,Fireball,1,None,weapon,0,fire,Damage,,,,,,,,,
+fireBook,fire_book,Book of Fire,2,Uncommon,spell,0,,ConsumeClearedAnd 1 fire Damage,SpawnTile 2 fireball,,,,cf573c	,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,

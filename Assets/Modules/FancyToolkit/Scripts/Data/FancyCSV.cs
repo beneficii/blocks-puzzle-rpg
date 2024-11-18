@@ -52,7 +52,7 @@ namespace FancyToolkit
 
             CsvSettings Settings => new CsvSettings()
             {
-                FieldDelimiter = '|',
+                FieldDelimiter = ',',
                 RowDelimiter = "\n",
             };
 
