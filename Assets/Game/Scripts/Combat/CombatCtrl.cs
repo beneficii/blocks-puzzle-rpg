@@ -225,7 +225,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         AddRarity(Rarity.Common, 3);
         AddRarity(Rarity.Uncommon, 2);
-        list.Add(TileCtrl.current.GetTile<MyTileData>("health"));
+        list.Add(TileCtrl.current.Get<MyTileData>("health"));
 
         UIHudSelectTile.current.ShowShop(list, rng);
     }

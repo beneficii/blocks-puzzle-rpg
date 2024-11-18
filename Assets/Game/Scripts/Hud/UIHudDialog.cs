@@ -22,7 +22,6 @@ public class UIHudDialog : UIHudBase
         }
     }
 
-    [SerializeField] TextAsset tableDialogs;
     [SerializeField] UITemplateItem templateOption;
 
     Dictionary<string, List<DialogData>> dict;
@@ -33,7 +32,7 @@ public class UIHudDialog : UIHudBase
     {
         dict = new();
         List<DialogData> sublist = new();
-        foreach (var item in FancyCSV.FromText<DialogData>(tableDialogs.text))
+        foreach (var item in FancyCSV.FromCSV<DialogData>("Dialogs"))
         {
             if(!string.IsNullOrWhiteSpace(item.id))
             {

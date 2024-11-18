@@ -49,21 +49,20 @@ public class Game : MonoBehaviour
     {
         //return TileCtrl.current.GetAllTiles().Select(x => x.id).ToList();
 
-        return FancyCSV.FromText<TileEntry>(gameData.tableStartingTiles.text)
+        return FancyCSV.FromCSV<TileEntry>("StartingTiles")
             .SelectMany(x => Enumerable.Repeat(x.id, x.amount))
             .ToList();
     }
 
     void Init()
     {
-        StageCtrl.current.AddData(gameData.tableStages, true);
+        StageCtrl.current.AddCSV("Stages");
 
-        TileCtrl.current.AddData<MyTileData>(gameData.tableTiles);
-        UnitCtrl.current.AddData<UnitData>(gameData.tableUnits);
-        SkillCtrl.current.AddData<SkillData>(gameData.tableSkills);
+        TileCtrl.current.AddCSV<MyTileData>("Tiles");
+        UnitCtrl.current.AddCSV<UnitData>("Units");
+        SkillCtrl.current.AddCSV<SkillData>("Skills");
 
         unitActionPrefabs = Resources.LoadAll<GameObject>("ActionVisuals").ToDictionary(x => x.name);
-        print($"Game::Init / act: {unitActionPrefabs.Count()}");
         fxDict = Resources.LoadAll<FxData>("FxData").ToDictionary(x => x.name);
         bgDict = Resources.LoadAll<Sprite>("Backgrounds").ToDictionary(x => x.name);
     }
@@ -143,7 +142,7 @@ public class Game : MonoBehaviour
     public List<TileData> GetDeck()
     {
         return state.deck
-            .Select(TileCtrl.current.GetTile)
+            .Select(TileCtrl.current.Get)
             .ToList();
     }
 

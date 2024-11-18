@@ -10,23 +10,34 @@ using System.Globalization;
 using FixedMath;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace FancyToolkit
 {
 
     public static class FancyCSV
     {
+        public static List<T> FromCSV<T>(string fileName, bool debug = false) where T : new()
+        {
+            var content = CSVManager.current.GetContent(fileName);
+            if (content == null)
+            {
+                UnityEngine.Debug.LogError($"Could not find csv: {fileName}");
+            }
+            return new FancySheet(content, debug).Convert<T>();
+        }
+
         public static List<T> FromText<T>(string text, bool debug = false) where T : new()
         {
             return new FancySheet(text, debug).Convert<T>();
         }
 
-        public static List<T> FromFile<T>(string filePath) where T : new()
+        public static List<T> FromFile<T>(string filePath, bool debug = false) where T : new()
         {
             FancySheet result = null;
             using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
             {
-                result = new FancySheet(sr);
+                result = new FancySheet(sr, debug);
             }
 
             return result?.Convert<T>();
@@ -37,10 +48,23 @@ namespace FancyToolkit
             string[][] keys;
             string[][] values;
 
-            CsvSettings Settings => new CsvSettings() { FieldDelimiter = '|' };
+            bool debug;
 
-            public FancySheet(StreamReader streamReader)
+            CsvSettings Settings => new CsvSettings()
             {
+                FieldDelimiter = '|',
+                RowDelimiter = "\n",
+            };
+
+            void QLog(string msg)
+            {
+                if (debug) UnityEngine.Debug.Log(msg);
+            }
+
+            public FancySheet(StreamReader streamReader, bool debug = false)
+            {
+                this.debug = debug;
+
                 using (var parser = new CsvParser(streamReader, Settings))
                 {
                     var vals = new List<string[]>();
@@ -62,34 +86,17 @@ namespace FancyToolkit
                     .ToArray();
             }
 
-            bool debug;
-
-            void QLog(string msg)
-            {
-                if (debug) UnityEngine.Debug.Log(msg);
-            }
             public FancySheet(string content, bool debug = false)
-{
-    this.debug = debug;
+            {
 
-    // Normalize line endings to Windows-style (\r\n)
-    string normalizedContent = content.Replace("\r\n", "\n").Replace("\r", "").Replace("\n", "\r\n");
+                values = CsvParser.Parse(content.Replace("\r",""), Settings);
 
-    // Log the content with visible line endings
-    QLog($"{normalizedContent.Replace("\r", "\\r").Replace("\n", "\\n")}");
-
-    // Parse the normalized content
-    values = CsvParser.Parse(normalizedContent, Settings);
-
-    // Extract keys from the parsed content
-    keys = values[0]
-        .Where(x => !string.IsNullOrWhiteSpace(x))
-        .Select(x => x.Split('.'))
-        .ToArray();
-
-    // Log key and value counts
-    QLog($"keys: {keys.Count()} values: {values.Count()}");
-}
+                // Extract keys from the parsed content
+                keys = values[0]
+                    .Where(x => !string.IsNullOrWhiteSpace(x))
+                    .Select(x => x.Split('.'))
+                    .ToArray();
+            }
 
             public static System.Reflection.MethodInfo GetStingConvertMethod(Type t)
             {

@@ -6,14 +6,13 @@ using UnityEngine;
 
 namespace GridBoard
 {
-    public class TileData
+    public class TileData : DataWithId
     {
         public const string anyTag = "any";
         public const string nonEmpty = "nonempty";
 
         public Sprite sprite;
         public string idVisuals;
-        public string id;
         public string title;
         public string description;
         public bool isEmpty;

@@ -421,7 +421,7 @@ namespace GridBoard
             {
                 if (scanner.TryGet(out string id))
                 {
-                    data = TileCtrl.current.GetTile(id);
+                    data = TileCtrl.current.Get(id);
                 }
 
                 if (data == null)

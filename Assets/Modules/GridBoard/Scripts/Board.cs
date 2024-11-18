@@ -268,7 +268,7 @@ namespace GridBoard
 
         public void LoadRandomLayout(string specialTileId)
         {
-            var tile = TileCtrl.current.GetTile(specialTileId);
+            var tile = TileCtrl.current.Get(specialTileId);
             LoadRandomLayout(tile);
         }
 
@@ -709,7 +709,7 @@ namespace GridBoard
 
         public Tile PlaceAtRandom(string id, int level)
         {
-            var data = TileCtrl.current.GetTile(id);
+            var data = TileCtrl.current.Get(id);
             if (data == null)
             {
                 Debug.Log($"No Data by id {id}");
@@ -727,7 +727,7 @@ namespace GridBoard
 
         public Tile PlaceAround(string id, Vector2Int position, int level = 0)
         {
-            var data = TileCtrl.current.GetTile(id);
+            var data = TileCtrl.current.Get(id);
             if (data == null)
             {
                 Debug.Log($"No Data by id {id}");

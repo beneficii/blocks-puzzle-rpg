@@ -47,12 +47,12 @@ public class CombatArena : MonoBehaviour
     }
 
     public Unit SpawnEnemy(string id)
-        => SpawnEnemy(UnitCtrl.current.GetUnit(id));
+        => SpawnEnemy(UnitCtrl.current.Get(id));
 
     public Unit SpawnPlayer()
     {
         var unit = Instantiate(prefabUnit, spotPlayer);
-        unit.Init(UnitCtrl.current.GetUnit("mage"), Team.Ally);
+        unit.Init(UnitCtrl.current.Get("mage"), Team.Ally);
         if (startingPlayerHealth > 0)
         {
             unit.SetHp(startingPlayerHealth);

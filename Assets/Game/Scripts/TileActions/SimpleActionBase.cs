@@ -404,7 +404,7 @@ namespace TileActions
         string id;
         int count;
 
-        TileData GetData() => TileCtrl.current.GetTile(id);
+        TileData GetData() => TileCtrl.current.Get(id);
 
         public override string GetDescription()
         {
@@ -463,7 +463,7 @@ namespace TileActions
         string tag;
         string id;
 
-        TileData GetData() => TileCtrl.current.GetTile(id);
+        TileData GetData() => TileCtrl.current.Get(id);
 
         public override string GetDescription()
             => $"Transform {GetTargetingTypeName(targetType, tag)} into '{GetData().title}'";
@@ -504,7 +504,7 @@ namespace TileActions
         string tag;
         string id;
 
-        TileData GetData() => TileCtrl.current.GetTile(id);
+        TileData GetData() => TileCtrl.current.Get(id);
 
         public override string GetDescription()
         {

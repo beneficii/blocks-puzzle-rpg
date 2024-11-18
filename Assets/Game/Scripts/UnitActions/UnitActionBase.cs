@@ -142,7 +142,7 @@ namespace UnitAction
         int count;
         string tileId;
 
-        TileData GetData() => TileCtrl.current.GetTile(tileId ?? parent.data.specialTile);
+        TileData GetData() => TileCtrl.current.Get(tileId ?? parent.data.specialTile);
 
         public SpawnTile(int count, string tileId)
         {

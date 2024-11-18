@@ -7,35 +7,53 @@ namespace FancyToolkit
 {
     public class GenericDataCtrl<TData> where TData : DataWithId, new()
     {
-        public Dictionary<string, TData> dict { get; private set; } = new Dictionary<string, TData>();
-        public List<TData> list { get; private set; } = new();
+        Dictionary<string, TData> dict = new();
+        List<TData> list = new();
 
         public TData Get(string id) => dict.Get(id);
+        public TClass Get<TClass>(string id) where TClass: TData => dict.Get(id) as TClass;
         public List<TData> GetAll() => list;
 
-        public virtual void Add(TData data)
+        public TData Add(TData data)
         {
             dict.Add(data.id, data);
             list.Add(data);
+            PostInitSingle(data);
+            return data;
         }
 
-        public void AddData<TClass>(TextAsset csv, bool debug = false) where TClass : TData, new()
+        public virtual void PostInitSingle(TData data)
         {
-            var list = FancyCSV.FromText<TClass>(csv.text, debug);
-            Debug.Log($"GenericDataCtrl<{typeof(TData)}>::Add cnt: {list.Count}");
-            foreach (var item in list)
+
+        }
+
+        public void AddData<TClass>(List<TClass> entries) where TClass : TData, new()
+        {
+            foreach (var item in entries)
             {
                 Add(item);
             }
             PostInit();
         }
 
+        public void AddData(TextAsset csv, bool debug = false) => AddData<TData>(csv, debug);
+        public void AddData<TClass>(TextAsset csv, bool debug = false) where TClass : TData, new()
+        {
+            var list = FancyCSV.FromText<TClass>(csv.text, debug);
+            AddData(list);
+        }
+
+        public void AddCSV(string csvName, bool debug = false) => AddCSV<TData>(csvName, debug);
+        public void AddCSV<TClass>(string csvName, bool debug = false) where TClass : TData, new()
+        {
+            var list = FancyCSV.FromCSV<TClass>(csvName, debug);
+            AddData(list);
+        }
+
         public virtual void PostInit()
         {
 
         }
-
-        public void AddData(TextAsset csv, bool debug = false) => AddData<TData>(csv, debug);
     }
 
     public class DataWithId

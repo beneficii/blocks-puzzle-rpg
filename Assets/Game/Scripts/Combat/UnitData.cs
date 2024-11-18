@@ -5,9 +5,8 @@ using FancyToolkit;
 using Assets.Scripts.Combat;
 
 [System.Serializable]
-public class UnitData
+public class UnitData : DataWithId
 {
-    public string id;
     public UnitVisualData visuals;
     public string name;
     public string description;

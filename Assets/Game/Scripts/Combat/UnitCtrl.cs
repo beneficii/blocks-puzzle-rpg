@@ -1,11 +1,10 @@
 ﻿using Assets.Scripts.Combat;
 using FancyToolkit;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 
-public class UnitCtrl
+public class UnitCtrl : GenericDataCtrl<UnitData>
 {
     public const string visualsFolder = "UnitVisualData";
 
@@ -16,51 +15,26 @@ public class UnitCtrl
         {
             if (_current == null)
             {
-                var cur = new UnitCtrl();
-                _current = cur;
+                _current = new UnitCtrl();
             }
 
             return _current;
         }
     }
 
-    public Dictionary<string, UnitData> unitDict { get; private set; }
-
-    public UnitData GetUnit(string id) => unitDict.Get(id);
-    public List<UnitData> GetAllUnits() => unitDict.Values.ToList();
-
-    public TClass GetUnit<TClass>(string id) where TClass : UnitData, new()
-        => unitDict.Get(id) as TClass;
-
-
-    public UnitCtrl()
+    public override void PostInit()
     {
-        unitDict = new();
-    }
-
-    public void AddData<TClass>(TextAsset csv) where TClass : UnitData, new()
-    {
-        var visuals = Resources.LoadAll<UnitVisualData>(visualsFolder)
-            .ToDictionary(x => x.name);
-
-        var list = FancyCSV.FromText<TClass>(csv.text);
-        foreach (var item in list)
+        var visuals = Resources.LoadAll<UnitVisualData>(visualsFolder).ToDictionary(x => x.name);
+        foreach (var unit in GetAll())
         {
-            var visualId = item.id;
-
-            if (string.IsNullOrWhiteSpace(visualId)) continue;
-
-            if (!visuals.TryGetValue(visualId, out UnitVisualData visual))
+            if (!visuals.TryGetValue(unit.id, out var visual))
             {
-                Debug.LogError($"No visual data for unit '{visualId}'");
+                Debug.LogError($"No visual data for unit '{unit.id}'");
             }
-
-            item.visuals = visual;
-        }
-
-        foreach (var item in list)
-        {
-            unitDict.Add(item.id, item);
+            else
+            {
+                unit.visuals = visual;
+            }
         }
     }
 }

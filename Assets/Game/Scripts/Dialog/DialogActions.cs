@@ -91,7 +91,7 @@ namespace DialogActions
     {
         public string id;
 
-        public override string GetDescription() => $"Get '{TileCtrl.current.GetTile(id).title}' tile";
+        public override string GetDescription() => $"Get '{TileCtrl.current.Get(id).title}' tile";
 
         public GetTile(StringScanner scanner)
         {

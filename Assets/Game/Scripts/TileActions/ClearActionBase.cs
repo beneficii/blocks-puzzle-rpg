@@ -381,7 +381,7 @@ namespace TileActions
         int count;
         string tileId;
 
-        TileData GetData() => TileCtrl.current.GetTile(tileId);
+        TileData GetData() => TileCtrl.current.Get(tileId);
 
         public SpawnTile(int count, string tileId)
         {

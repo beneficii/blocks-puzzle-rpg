@@ -1,12 +1,11 @@
 using FancyToolkit;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 
 namespace GridBoard
 {
-    public class TileCtrl
+    public class TileCtrl : GenericDataCtrl<TileData>
     {
         const string visualsFolder = "TileIcons";
 
@@ -17,59 +16,57 @@ namespace GridBoard
             {
                 if (_current == null)
                 {
-                    var cur = new TileCtrl();
-                    _current = cur;
+                    _current = new TileCtrl();
                 }
 
                 return _current;
             }
         }
 
+        public Dictionary<string, TileData> colorDict { get; private set; }
+
         public TileData emptyTile { get; private set; }
         public TileData placeholderTile { get; private set; }
 
-        public Dictionary<string, TileData> tileDict { get; private set; }
-        public Dictionary<string, TileData> colorDict { get; private set; }
-
-        public TileData GetTile(string id) => tileDict.Get(id);
-        public List<TileData> GetAllTiles() => tileDict.Values.Where(x=>x.rarity != Rarity.None).ToList();
-        public List<TileData> GetAllTiles(Rarity rarity) => tileDict.Values.Where(x=>x.rarity == rarity).ToList();
-
-        public TClass GetTile<TClass>(string id) where TClass : TileData, new ()
-            => tileDict.Get(id) as TClass;
-
-        void InitBaseTiles()
+        public TileCtrl()
         {
-            tileDict = new();
             colorDict = new();
-            emptyTile = new TileData
+
+            emptyTile = Add(new TileData
             {
                 id = "empty",
                 isEmpty = true,
+                idVisuals = null,
                 colorCode = "FFFFFF",
                 rarity = Rarity.None,
                 type = Tile.Type.Empty,
-            };
-            placeholderTile = new TileData
+            });
+
+            placeholderTile = Add(new TileData
             {
                 id = "placeholder",
                 isEmpty = true,
+                idVisuals = null,
                 colorCode = "C65197",
                 rarity = Rarity.None,
                 type = Tile.Type.Empty,
-            };
-            AddTile(emptyTile);
-            AddTile(placeholderTile);
+            });
         }
 
-        public TileCtrl()
+        public override void PostInitSingle(TileData data)
         {
-            InitBaseTiles();
-        }
+            if (data.idVisuals != null)
+            {
+                var visual = Resources.Load<Sprite>($"{visualsFolder}/{data.idVisuals}");
+                if (!visual)
+                {
+                    Debug.LogError($"No sprite for {data.id} ({data.idVisuals})");
+                    return;
+                }
 
-        void AddTile(TileData data)
-        {
-            tileDict.Add(data.id, data);
+                data.sprite = visual;
+            }
+            
             var cc = data.colorCode?.ToUpper();
             if (!string.IsNullOrWhiteSpace(cc) && cc != "000000")
             {
@@ -77,29 +74,7 @@ namespace GridBoard
             }
         }
 
-        public void AddData<TClass>(TextAsset csv) where TClass : TileData, new()
-        {
-            var visuals = Resources.LoadAll<Sprite>(visualsFolder)
-                .ToDictionary(x => x.name);
-
-            var list = FancyCSV.FromText<TClass>(csv.text);
-            foreach (var item in list)
-            {
-                var visualId = item.idVisuals;
-
-                if (string.IsNullOrWhiteSpace(visualId)) continue;
-
-                item.sprite = visuals.Get(visualId);
-                if (item.sprite == null)
-                {
-                    Debug.LogError($"No sprite for {item.id} ({visualId})");
-                }
-            }
-
-            foreach (var item in list)
-            {
-                AddTile(item);
-            }
-        }
+        public List<TileData> GetAllTiles() => GetAll().Where(x => x.rarity != Rarity.None).ToList();
+        public List<TileData> GetAllTiles(Rarity rarity) => GetAll().Where(x => x.rarity == rarity).ToList();
     }
 }

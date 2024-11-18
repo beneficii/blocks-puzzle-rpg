@@ -29,7 +29,7 @@ public class CheatCtrl : MonoBehaviour
 
             if (hit.transform?.TryGetComponent<MyTile>(out var tile)??false)
             {
-                var data = TileCtrl.current.GetTile(id);
+                var data = TileCtrl.current.Get(id);
                 if (data != null)
                 {
                     tile.Init(data);

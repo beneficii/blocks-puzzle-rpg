@@ -50,7 +50,7 @@ public class StageCtrl : GenericDataCtrl<StageData>
 
     public StageData GetRandom(int difficulty, System.Random rng = null)
     {
-        var filtered = list
+        var filtered = GetAll()
             .Where(x => x.difficulty == difficulty)
             .ToList();
 
@@ -70,7 +70,6 @@ public class StageCtrl : GenericDataCtrl<StageData>
     public override void PostInit()
     {
         var sprites = Resources.LoadAll<Sprite>("StageIcons").ToDictionary(x => x.name);
-        Debug.Log($"StageCtrl::PostInit sprites: {sprites.Count}");
         foreach (var item in GetAll())
         {
             item.sprite = sprites.Get(item.type.ToString());
