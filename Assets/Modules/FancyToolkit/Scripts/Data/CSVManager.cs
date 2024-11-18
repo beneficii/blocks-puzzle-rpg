@@ -22,9 +22,9 @@ namespace FancyToolkit
 
         private CSVManager()
         {
-#if !UNITY_WEBGL
-
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_WEBGL
+        return;
+#elif UNITY_ANDROID && !UNITY_EDITOR
             csvDirectory = Path.Combine("/storage/emulated/0/Documents", Application.productName, csvSubDirectory);
 #else
             csvDirectory = Path.Combine(Application.persistentDataPath, csvSubDirectory);
@@ -37,7 +37,6 @@ namespace FancyToolkit
 
             CopyDefaultCSVFiles();
             usePersistentStorage = true;
-#endif
         }
 
         private void CopyDefaultCSVFiles()
@@ -84,4 +83,4 @@ namespace FancyToolkit
             return csvFile.text;
         }
     }
-}.
+}
