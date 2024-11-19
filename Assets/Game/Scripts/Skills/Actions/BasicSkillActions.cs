@@ -128,13 +128,13 @@ namespace SkillActions
 
     public class MultiplyPowerTag : SkillActionBase
     {
-        ActionTargetType targetType;
+        TileTargetingType targetType;
         int value;
         string tag;
         public override string GetDescription()
-            => $"Multiply Power of {GetTargetingTypeName(targetType, tag)} by {value}";
+            => $"Multiply Power of {MyTile.GetTargetingTypeName(targetType, tag)} by {value}";
 
-        public MultiplyPowerTag(ActionTargetType targetType, int value, string tag)
+        public MultiplyPowerTag(TileTargetingType targetType, int value, string tag)
         {
             this.targetType = targetType;
             this.value = value;
@@ -143,7 +143,7 @@ namespace SkillActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            foreach (var tile in FindTileTargets(targetType, tag))
+            foreach (var tile in MyTile.FindTileTargets(targetType, tag))
             {
 
                 MakeBullet()
@@ -156,7 +156,7 @@ namespace SkillActions
             }
         }
 
-        public class Builder : FactoryBuilder<SkillActionBase, ActionTargetType, int, string>
+        public class Builder : FactoryBuilder<SkillActionBase, TileTargetingType, int, string>
         {
             public override SkillActionBase Build() => new MultiplyPowerTag(value, value2, value3);
         }

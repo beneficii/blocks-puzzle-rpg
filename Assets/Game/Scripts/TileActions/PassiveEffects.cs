@@ -147,7 +147,7 @@ namespace TileActions
         {
             if (parent.board.GetIdTileCount(parent.data.id) < amount) yield break;
 
-            foreach (var item in FindTileTargets(parent, ActionTargetType.All, (x)=>x.data.id == parent.data.id))
+            foreach (var item in MyTile.FindTileTargets(parent, TileTargetingType.All, (x)=>x.data.id == parent.data.id))
             {
                 item.isActionLocked = true;
             }

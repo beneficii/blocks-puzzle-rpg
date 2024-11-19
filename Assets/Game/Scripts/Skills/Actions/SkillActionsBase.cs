@@ -60,13 +60,13 @@ public abstract class SkillActionBase
 
     protected GenericBullet MakeBullet() => MakeBullet(parent.transform.position);
 
-    protected string GetTargetingTypeName(ActionTargetType targetType, string tag = TileData.anyTag)
-        => TileActionBase.GetTargetingTypeName(targetType, tag);
+    protected string MyTile.GetTargetingTypeName(TileTargetingType targetType, string tag = TileData.anyTag)
+        => TileActionBase.MyTile.GetTargetingTypeName(targetType, tag);
 
 
-    protected IEnumerable<MyTile> FindTileTargets(ActionTargetType targetType, System.Predicate<MyTile> filter = null)
+    protected IEnumerable<MyTile> MyTile.FindTileTargets(TileTargetingType targetType, System.Predicate<MyTile> filter = null)
     {
-        if (targetType == ActionTargetType.Biggest)
+        if (targetType == TileTargetingType.Biggest)
         {
             MyTile biggest = null;
             int maxPower = -1;
@@ -74,7 +74,7 @@ public abstract class SkillActionBase
             {
 
                 if (item is not MyTile tile || tile.isBeingPlaced) continue;
-                if (tile.StatType == TileStatType.None) continue;
+                if (tile.StatType == ActionStatType.None) continue;
                 if (filter != null && !filter(tile)) continue;
 
                 if (tile.Power > maxPower)
@@ -87,7 +87,7 @@ public abstract class SkillActionBase
             yield break;
         }
 
-        if (targetType == ActionTargetType.Random)
+        if (targetType == TileTargetingType.Random)
         {
             var list = new List<MyTile>();
             foreach (var item in parent.board.GetAllTiles())
@@ -102,7 +102,7 @@ public abstract class SkillActionBase
             yield break;
         }
 
-        if (targetType == ActionTargetType.All)
+        if (targetType == TileTargetingType.All)
         {
             foreach (var item in parent.board.GetAllTiles())
             {
@@ -115,8 +115,8 @@ public abstract class SkillActionBase
         }
     }
 
-    protected IEnumerable<MyTile> FindTileTargets(ActionTargetType targetType, string tag)
-        => FindTileTargets(targetType, (x) => x.HasTag(tag));
+    protected IEnumerable<MyTile> MyTile.FindTileTargets(TileTargetingType targetType, string tag)
+        => MyTile.FindTileTargets(targetType, (x) => x.HasTag(tag));
 
 
     public void SetCombatState(bool value)

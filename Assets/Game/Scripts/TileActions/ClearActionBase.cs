@@ -20,15 +20,16 @@ namespace TileActions
     public class Defense : TileActionBase
     {
         public override string GetDescription()
-            => $"Gain {Power} armor";
+            => $"Gain {parent.Defense} armor";
 
-        public override TileStatType StatType => TileStatType.Defense;
+        public override ActionStatType StatType => ActionStatType.Defense;
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            var bullet = MakeDefBullet(parent, Power * multiplier)
+            SetBulletDefense(MakeBullet(parent)
                             .SetTarget(CombatArena.current.player)
-                            .SetLaunchDelay(0.09f);
+                            .SetLaunchDelay(0.05f)
+                            , parent.Defense * multiplier);
             yield return new WaitForSeconds(.07f);
         }
 
@@ -45,11 +46,12 @@ namespace TileActions
 
         public override IEnumerator Run(LineClearData match)
         {
-            MakeDmgBullet(parent, match.GetValueMax(keyDamage))
+            SetBulletDamage(MakeBullet(parent)
                 .SetTarget(CombatArena.current.enemy)
-                .SetLaunchDelay(0.2f);
+                .SetLaunchDelay(0.2f)
+                , match.GetValueMax(keyDamage));
 
-            yield return parent.FadeOut(10f);
+            yield return tileParent.FadeOut(10f);
         }
 
         public class Builder : FactoryBuilder<TileActionBase>
@@ -88,7 +90,7 @@ namespace TileActions
         public override string GetDescription()
             => $"Enemy gains {Power} armor";
 
-        public override TileStatType StatType => TileStatType.Defense;
+        public override ActionStatType StatType => ActionStatType.Defense;
 
         public EnemyDefense()
         {
@@ -96,9 +98,10 @@ namespace TileActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            MakeDefBullet(parent, Power * multiplier)
-                        .SetTarget(CombatArena.current.enemy)
-                        .SetLaunchDelay(0.05f);
+            SetBulletDefense(MakeBullet(parent)
+                            .SetTarget(CombatArena.current.enemy)
+                            .SetLaunchDelay(0.05f)
+                            , parent.Defense * multiplier);
             yield return new WaitForSeconds(.1f);
         }
 
@@ -175,18 +178,18 @@ namespace TileActions
     {
         int amount;
         string tag;
-        ActionTargetType targetType;
+        TileTargetingType targetType;
         TileActionBase nestedAction;
 
         public override string GetDescription()
         {
-            var descr = $"Clean {GetTargetingTypeName(targetType, tag)} and {nestedAction.GetDescription()} for each";
+            var descr = $"Clean {MyTile.GetTargetingTypeName(targetType, tag)} and {nestedAction.GetDescription()} for each";
             if (amount > 1) descr += $" {amount}";
 
             return descr;
         }
 
-        public ConsumeTagAnd(int amount, string tag, ActionTargetType targetType, TileActionBase nestedAction)
+        public ConsumeTagAnd(int amount, string tag, TileTargetingType targetType, TileActionBase nestedAction)
         {
             this.amount = amount;
             this.tag = tag;
@@ -203,7 +206,7 @@ namespace TileActions
         public override IEnumerator Run(int multiplier = 1)
         {
             int count = 0;
-            foreach (var target in FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
+            foreach (var target in MyTile.FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
             {
                 count++;
                 MakeBullet(target)
@@ -219,7 +222,7 @@ namespace TileActions
             yield return new WaitForSeconds(.1f);
         }
 
-        public class Builder : FactoryBuilder<TileActionBase, int, string, ActionTargetType, FactoryBuilder<TileActionBase>>
+        public class Builder : FactoryBuilder<TileActionBase, int, string, TileTargetingType, FactoryBuilder<TileActionBase>>
         {
             public override void Init(StringScanner scanner)
             {
@@ -235,15 +238,15 @@ namespace TileActions
     public class ConsumePower : TileActionBase
     {
         string tag;
-        ActionTargetType targetType;
+        TileTargetingType targetType;
 
         public override string GetDescription()
         {
-            var descr = $"Clean {GetTargetingTypeName(targetType, tag)} and gain their power";
+            var descr = $"Clean {MyTile.GetTargetingTypeName(targetType, tag)} and gain their power";
             return descr;
         }
 
-        public ConsumePower(string tag, ActionTargetType targetType)
+        public ConsumePower(string tag, TileTargetingType targetType)
         {
             this.tag = tag;
             this.targetType = targetType;
@@ -251,8 +254,8 @@ namespace TileActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            //foreach (var target in FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
-            foreach (var target in FindTileTargets(parent, targetType, (x) => {
+            //foreach (var target in MyTile.FindTileTargets(parent, targetType, (x) => x.HasTag(tag) && x.Power > 0))
+            foreach (var target in MyTile.FindTileTargets(parent, targetType, (x) => {
                 return x.HasTag(tag) && x.Power > 0;
             }))
             {
@@ -268,7 +271,7 @@ namespace TileActions
             }
         }
 
-        public class Builder : FactoryBuilder<TileActionBase, string, ActionTargetType>
+        public class Builder : FactoryBuilder<TileActionBase, string, TileTargetingType>
         {
             public override TileActionBase Build() => new ConsumePower(value, value2);
         }

@@ -6,8 +6,10 @@ using GridBoard;
 using TMPro;
 using DG.Tweening;
 using FancyTweens;
+using FancyToolkit;
+using TileActions;
 
-public class MyTile : Tile
+public class MyTile : Tile, IActionParent
 {
     public MyTileData myData => data as MyTileData;
 
@@ -30,7 +32,10 @@ public class MyTile : Tile
         }
     }
 
-    public TileStatType StatType => clearAction?.StatType ?? TileStatType.None;
+    public ActionStatType StatType => clearAction?.StatType ?? ActionStatType.None;
+
+    public int Damage { get => Power; set => Power = value; }
+    public int Defense { get => Power; set => Power = value; }
 
     IEnumerable<TileActionBase> AllActions()
     {
@@ -86,7 +91,7 @@ public class MyTile : Tile
 
     void RefreshNumber(bool skipAnimation = false)
     {
-        if (StatType == TileStatType.None)
+        if (StatType == ActionStatType.None)
         {
             txtPower.text = "";
             return;
@@ -172,13 +177,158 @@ public class MyTile : Tile
         }
     }
 
+    public static string GetTargetingTypeName(TileTargetingType targetType, string tag = TileData.anyTag)
+    {
+        if (tag == TileData.anyTag)
+        {
+            return targetType switch
+            {
+                TileTargetingType.Self => "this tile",
+                TileTargetingType.Around => "surrounding tiles",
+                TileTargetingType.Biggest => "strongest tile",
+                TileTargetingType.Closest => "closest tile",
+                TileTargetingType.Random => $"random tile",
+                TileTargetingType.All => $"all tiles",
+                _ => "unknown",
+            };
+        }
+        else
+        {
+            return targetType switch
+            {
+                TileTargetingType.Self => "this tile",
+                TileTargetingType.Around => $"surrounding {tag} tiles",
+                TileTargetingType.Biggest => $"strongest {tag} tile",
+                TileTargetingType.Closest => $"closest {tag} tile",
+                TileTargetingType.Random => $"random {tag} tile",
+                TileTargetingType.All => $"all {tag} tiles",
+                _ => "unknown",
+            };
+        }
+    }
+
+    protected static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, System.Predicate<MyTile> filter = null)
+    {
+        var parentTile = parent as MyTile;
+
+        if (targetType == TileTargetingType.Self)
+        {
+            yield return parentTile;
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Around)
+        {
+            if (!parentTile)
+            {
+                Debug.LogError("parent not tile!");
+                yield break;
+            }
+            foreach (var item in parent.board.GetTilesAround(parentTile.position.x, parentTile.position.y))
+            {
+                if (item is not MyTile tile || tile.isBeingPlaced) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                yield return tile;
+
+            }
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Biggest)
+        {
+            MyTile biggest = null;
+            int maxPower = -1;
+            foreach (var item in parent.board.GetAllTiles())
+            {
+
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (tile.StatType == ActionStatType.None) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                if (tile.Power > maxPower)
+                {
+                    biggest = tile;
+                    maxPower = tile.Power;
+                }
+
+
+            }
+            if (biggest) yield return biggest;
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Closest)
+        {
+            MyTile closest = null;
+            int minDistanceSqr = int.MaxValue;
+            foreach (var item in parent.board.GetAllTiles())
+            {
+                if (!parentTile)
+                {
+                    Debug.LogError("parent not tile!");
+                    yield break;
+                }
+
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (filter != null && !filter(tile)) continue;
+
+
+                int distanceSqr = VectorUtil.DistanceSqr(parentTile.position, tile.position);
+                if (distanceSqr < minDistanceSqr)
+                {
+                    closest = tile;
+                    minDistanceSqr = distanceSqr;
+                }
+
+
+            }
+            if (closest) yield return closest;
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Random)
+        {
+            var list = new List<MyTile>();
+            foreach (var item in parent.board.GetAllTiles())
+            {
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                list.Add(tile);
+
+            }
+            yield return list.Rand();
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.All)
+        {
+            foreach (var item in parent.board.GetAllTiles())
+            {
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                yield return tile;
+
+
+            }
+            yield break;
+        }
+    }
+
+    protected static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, string tag)
+        => FindTileTargets(parent, targetType, (x) => x.HasTag(tag));
+
 }
 
-
-public enum TileStatType
+public enum TileTargetingType
 {
     None,
-    Damage,
-    Defense,
-    Power,  // other
+    Self,
+    Around,
+    Biggest, // most power
+    Closest,
+    Random,
+    All,
 }
