@@ -10,8 +10,25 @@ using DG.Tweening;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
+    static CombatCtrl _current;
+
+    public static CombatCtrl current
+    {
+        get
+        {
+            if (_current == null)
+            {
+                _current = FindAnyObjectByType<CombatCtrl>();
+            }
+            return _current;
+        }
+    }
+
     [SerializeField] List<SpriteRenderer> bgRenders;
     [SerializeField] Button btnEndTurn;
+
+
+    System.Random endLevelRandom;
 
     Board board;
     ShapePanel shapePanel;
@@ -23,6 +40,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     PoolQueue<TileData> tileQueue;
 
+    Queue<CombatState> stateQueue = new();
+
     public int tilesPerTurn = 5;
 
     private void Awake()
@@ -33,26 +52,57 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     private void OnEnable()
     {
         LineClearer.AddHandler(this);
-        //BtGrid.OnBoardChanged += HandleBoardChanged;
         Unit.OnKilled += HandleUnitKilled;
-        UISelectTileCard.OnSelectTile += HandleTileAddToSet;
-        UISelectTileCard.OnBuyTile += HandleTileAddToSet;
+        UISelectTileCard.OnSelectCard += HandleAddCardToSet;
     }
 
     private void OnDisable()
     {
         LineClearer.RemoveHandler(this);
-        //BtGrid.OnBoardChanged -= HandleBoardChanged;
         Unit.OnKilled -= HandleUnitKilled;
-        UISelectTileCard.OnSelectTile -= HandleTileAddToSet;
-        UISelectTileCard.OnBuyTile -= HandleTileAddToSet;
+        UISelectTileCard.OnSelectCard -= HandleAddCardToSet;
         animSequence?.Kill();
     }
 
-    void HandleTileAddToSet(UISelectTileCard card)
+    public void CheckQueue()
     {
-        tileQueue.Add(card.data);
-        Game.current.AddTileToDeck(card.data.id);
+        if (stateQueue.Count == 0)
+        {
+            int? playerHp = null;
+            var player = CombatArena.current.player;
+            if (player) playerHp = player.health.Value;
+
+            Game.current.FinishLevel(playerHp);
+            return;
+        }
+
+        var state = stateQueue.Dequeue();
+        state.Run();
+    }
+
+    public void AddState(CombatState state)
+    {
+        stateQueue.Enqueue(state);
+    }
+
+    void HandleAddCardToSet(UISelectTileCard card, SelectTileType type)
+    {
+        var data = card.data;
+
+        if (data is TileData tileData)
+        {
+            tileQueue.Add(tileData);
+            Game.current.AddTileToDeck(tileData.id);
+        }
+        else if (data is SkillData skillData)
+        {
+            // ToDo: maybe init skill
+            Game.current.AddSkill(skillData.id);
+        }
+        else
+        {
+            Debug.LogError("Unrecognized card type");
+        }
     }
 
     void HandleUnitKilled(Unit unit)
@@ -69,10 +119,29 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
     }
 
+    public void ShowTileChoise(Rarity rarity)
+    {
+        var list = TileCtrl.current.GetAll()
+                .Where(x => x.rarity == rarity)
+                .OfType<MyTileData>()
+                .ToList();
+
+        UIHudSelectTile.current.ShowChoise(list.RandN(3, endLevelRandom));
+    }
+
+    public void ShowSkillChoise(Rarity rarity)
+    {
+        var list = SkillCtrl.current.GetAll()
+                .Where(x => x.rarity == rarity)
+                .ToList();
+        UIHudSelectTile.current.ShowChoise(list.RandN(3, endLevelRandom));
+    }
+
     List<UICombatReward.Data> GenerateCombatRewards()
     {
-        var rng = Game.current.CreateStageRng();
-        var rarity = StageCtrl.current.Data.reward;
+        var rng = endLevelRandom;
+        var stageData = StageCtrl.current.Data;
+        var rarity = stageData.reward;
 
         int gold = rarity switch
         {
@@ -80,13 +149,20 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             Rarity.Uncommon => rng.Next(60, 100),
             Rarity.Rare => rng.Next(130, 180),
             Rarity.Legendary => rng.Next(300, 400),
-            _ => Random.Range(45, 60),
+            _ => rng.Next(45, 60),
         };
 
-        return new List<UICombatReward.Data> {
+        var result = new List<UICombatReward.Data> {
             new UICombatReward.DataGold(gold),
-            new UICombatReward.DataTile(rarity)
+            new UICombatReward.DataTile(rarity),
         };
+
+        if (stageData.type == StageData.Type.Elite || stageData.type == StageData.Type.Boss)
+        {
+            result.Add(new UICombatReward.DataSkill(Rarity.Common));
+        }
+
+        return result;
     }
 
     void HandleDeadEnd()
@@ -121,12 +197,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             UIHudGameOver.current.Show(false);
         }
 
-    }
-
-
-    public IEnumerator NewTurna()
-    {
-        yield break;
     }
 
     public void NewTurn() => NewTurn(0.1f);
@@ -211,14 +281,14 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     public void InitShop()
     {
         var stageData = StageCtrl.current.Data;
-        var rng = Game.current.CreateStageRng();
+        var rng = endLevelRandom;
         var list = new List<MyTileData>();
 
         void AddRarity(Rarity rarity, int count)
         {
             var items = TileCtrl.current.GetAllTiles()
-                .Cast<MyTileData>()
                 .Where(x => x.rarity == rarity)
+                .OfType<MyTileData>()
                 .ToList();
             list.AddRange(items.RandN(count, rng));
         }
@@ -253,7 +323,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
                 UIHudGameOver.current.Show(true);
                 break;
             default:
-                Game.current.FinishLevel();
+                CheckQueue();
                 break;
         }
     }
@@ -261,6 +331,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     IEnumerator Start()
     {
         var stageData = StageCtrl.current.Data;
+        endLevelRandom = Game.current.CreateStageRng();
         if (Game.current.bgDict.TryGetValue(stageData.background, out var bgSprite))
         {
             foreach (var item in bgRenders) item.sprite = bgSprite;
@@ -270,7 +341,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var enemy = arena.SpawnEnemy(stageData.units[0]);
         var player = arena.SpawnPlayer();
         enemy.SetCombatVisible(false);
-        //player.SetCombatVisible(false);
         var hp = Game.current.GetPlayerHealth();
         player.SetHp(hp.x);
 

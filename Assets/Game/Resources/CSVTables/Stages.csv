@@ -1,5 +1,5 @@
 id,units,difficulty,type,reward,specialTile,background,dialog,
-0,slime,0,Enemy,common,sword,bg6,,
+0,slime,0,Enemy,common,sword,bg6,test1,
 1,bat,2,Enemy,common,batCurse,bg5,,
 2,snake,3,Enemy,common,snakeTrap,bg3,,
 3,boar,4,Elite,uncommon,boarCurse,bg5,,

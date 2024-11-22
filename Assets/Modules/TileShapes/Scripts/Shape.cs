@@ -12,7 +12,11 @@ namespace TileShapes
         public static System.Action<Shape, bool> OnDragState;
 
         public System.Action<Shape, Vector2Int> OnDropped;
+#if UNITY_ANDROID && !UNITY_EDITOR                               
         public const float offsetDrag = 3;
+#else
+        public const float offsetDrag = 0;
+#endif
 
         public ShapeData data { get; private set; }
         public int rotation { get; private set; }
@@ -74,12 +78,19 @@ namespace TileShapes
 
         void CalculateMouseSpeed()
         {
+
             float height = Helpers.Camera.orthographicSize * 2.0f;
             float width = height * Helpers.Camera.aspect;
 
             float moveSpeedX = width / Screen.width;
             float moveSpeedY = height / Screen.height;
+#if UNITY_ANDROID && !UNITY_EDITOR
             moveSpeed = new Vector2(moveSpeedX, moveSpeedY) * 1.32f;
+#else
+            moveSpeed = new Vector2(moveSpeedX, moveSpeedY);
+#endif
+
+
         }
 
         void SetDragState(bool value)
@@ -115,10 +126,6 @@ namespace TileShapes
 
             SetDragState(true);
         }
-
-        public Vector2 DragPosition()
-            //=> Helpers.MouseToWorldPosition() + Vector2.up * offsetDrag;
-            => transform.position + Vector3.up * offsetDrag;
 
         public void MouseUp()
         {

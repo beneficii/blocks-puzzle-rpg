@@ -15,8 +15,7 @@ public class UIHoverInfo : MonoBehaviour
     [SerializeField] TextMeshProUGUI txtDescription;
     [SerializeField] TextMeshProUGUI txtTags;
     [SerializeField] TextMeshProUGUI txtCost;
-    [SerializeField] List<TooltipPanel> hints;
-
+    [SerializeField] List<TooltipPanel> hints = new();
 
     public void Hide()
     {
@@ -31,43 +30,27 @@ public class UIHoverInfo : MonoBehaviour
             return;
         }
 
-        txtTitle.text = info.GetTitle();
-        txtDescription.text = info.GetDescription();
-
-        var tooltips = info.GetTooltips()
-            .Take(hints.Count)
-            .ToList();
-
-        int idx = 0;
-        foreach (var item in hints)
-        {
-            if (idx < tooltips.Count)
-            {
-                item.Show(tooltips[idx]);
-            }
-            else
-            {
-                item.Hide();
-            }
-            idx++;
-        }
+        Init(info);
     }
 
     public void HideCost() { txtCost.text = ""; }
 
-    public void Init(TileData data)
+    public void Init(IHasInfo info)
     {
-        if (imgIcon) imgIcon.sprite = data.sprite;
-        if (txtTitle) txtTitle.text = data.title;
-        if (txtCost) txtCost.text = $"Cost: {data.cost}";
-        if (txtTags) txtTags.text = string.Join(", ", data.tags);
-        if (txtDescription) txtDescription.text = data.GetDescription();
-    }
-
-    public void Init(Tile info)
-    {
-        Init(info.data);
+        if (imgIcon) imgIcon.sprite = info.GetIcon();
+        if (txtTitle) txtTitle.text = info.GetTitle();
+        if (txtTags) txtTags.text = string.Join(", ", info.GetTags());
         if (txtDescription) txtDescription.text = info.GetDescription();
+
+        foreach (var item in hints) item.Hide();
+
+        var hintData = info.GetTooltips()
+            .Take(hints.Count)
+            .ToList();
+        for (var i = 0; i < hintData.Count; i++)
+        {
+            hints[i].Show(hintData[i]);
+        }
     }
 
     public void SetCost(int price)
@@ -84,13 +67,6 @@ public class UIHoverInfo : MonoBehaviour
         }
         Init(info.data);
         if (txtDescription) txtDescription.text = info.GetDescription();
-    }
-
-    void Show(UISkillButton button)
-    {
-        Show((IHasInfo)button);
-
-        if (imgIcon) imgIcon.sprite = button.data.sprite;
     }
 
     void Show(Unit unit)
@@ -117,18 +93,6 @@ public class UIHoverInfo : MonoBehaviour
         if (collider.TryGetComponent<Unit>(out var unit))
         {
             Show(unit);
-            return;
-        }
-
-        if (collider.TryGetComponent<Tile>(out var tile))
-        {
-            Show(tile);
-            return;
-        }
-
-        if (collider.TryGetComponent<UISkillButton>(out var skill))
-        {
-            Show(skill);
             return;
         }
 

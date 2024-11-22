@@ -386,6 +386,8 @@ namespace GridBoard
 
         public bool ShouldShowInfo() => !data.isEmpty;
 
+        public List<string> GetTags() => data.GetTags();
+
         public enum RenderLayer
         {
             Bg,

@@ -1,14 +1,13 @@
 ﻿using FancyToolkit;
 using System.Collections;
-using UnityEngine;
-using GridBoard;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using GridBoard;
 
-namespace TileActions
+namespace GameActions
 {
-    public abstract class PassiveEffect : TileActionBase
+    public abstract class PassiveEffect : ActionBase
     {
         public override IEnumerator Run(int multiplier = 1)
         {
@@ -19,7 +18,7 @@ namespace TileActions
     public class OnPlayerDamage : PassiveEffect
     {
         int amount;
-        TileActionBase nestedAction;
+        ActionBase nestedAction;
         public override string GetDescription()
         {
             if (amount == 0)
@@ -36,16 +35,16 @@ namespace TileActions
             }
         }
 
-        public OnPlayerDamage(int amount, TileActionBase nestedAction)
+        public OnPlayerDamage(int amount, ActionBase nestedAction)
         {
             this.amount = amount;
             this.nestedAction = nestedAction;
         }
 
-        public override void Init(MyTile tile)
+        public override void Init(IActionParent parent)
         {
-            base.Init(tile);
-            nestedAction.Init(tile);
+            base.Init(parent);
+            nestedAction.Init(parent);
         }
 
         void HandlePlayerDamage(Unit unit, int damage)
@@ -61,9 +60,9 @@ namespace TileActions
         }
 
 
-        public class Builder : FactoryBuilder<TileActionBase, int, FactoryBuilder<TileActionBase>>
+        public class Builder : FactoryBuilder<ActionBase, int, FactoryBuilder<ActionBase>>
         {
-            public override TileActionBase Build() => new OnPlayerDamage(value, value2.Build());
+            public override ActionBase Build() => new OnPlayerDamage(value, value2.Build());
         }
 
         protected override void Add()
@@ -80,22 +79,22 @@ namespace TileActions
     public class OnTilePlaced : PassiveEffect
     {
         string tag;
-        TileActionBase nestedAction;
+        ActionBase nestedAction;
         public override string GetDescription()
         {
             return $"When {tag} tile is placed, {nestedAction.GetDescription()}";
         }
 
-        public OnTilePlaced(string tag, TileActionBase nestedAction)
+        public OnTilePlaced(string tag, ActionBase nestedAction)
         {
             this.tag = tag;
             this.nestedAction = nestedAction;
         }
 
-        public override void Init(MyTile tile)
+        public override void Init(IActionParent parent)
         {
-            base.Init(tile);
-            nestedAction.Init(tile);
+            base.Init(parent);
+            nestedAction.Init(parent);
         }
 
         void HandleTilePlaced(Tile tile)
@@ -106,9 +105,9 @@ namespace TileActions
         }
 
 
-        public class Builder : FactoryBuilder<TileActionBase, string, FactoryBuilder<TileActionBase>>
+        public class Builder : FactoryBuilder<ActionBase, string, FactoryBuilder<ActionBase>>
         {
-            public override TileActionBase Build() => new OnTilePlaced(value, value2.Build());
+            public override ActionBase Build() => new OnTilePlaced(value, value2.Build());
         }
 
         protected override void Add()
@@ -122,42 +121,47 @@ namespace TileActions
         }
     }
 
-    public class IfEnoughOnBoard : TileActionBase
+    public class IfEnoughOnBoard : ActionBase
     {
         int amount;
-        TileActionBase nestedAction;
+        ActionBase nestedAction;
+        string id;
         public override string GetDescription()
         {
-            return $"{nestedAction.GetDescription()} if there are at least {amount} '{parent.data.title}' on board";
+            return $"{nestedAction.GetDescription()} if there are at least {amount} '{TileCtrl.current.Get(id).title}' on board";
         }
 
-        public IfEnoughOnBoard(int amount, TileActionBase nestedAction)
+        public IfEnoughOnBoard(string id, int amount, ActionBase nestedAction)
         {
+            this.id = id;
             this.amount = amount;
             this.nestedAction = nestedAction;
         }
 
-        public override void Init(MyTile tile)
+        public override void Init(IActionParent parent)
         {
-            base.Init(tile);
-            nestedAction.Init(tile);
+            base.Init(parent);
+            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            if (parent.board.GetIdTileCount(parent.data.id) < amount) yield break;
+            if (parent.board.GetIdTileCount(id) < amount) yield break;
 
-            foreach (var item in MyTile.FindTileTargets(parent, TileTargetingType.All, (x)=>x.data.id == parent.data.id))
+            if (parent is MyTile tile && tile.data.id == id)
             {
-                item.isActionLocked = true;
+                foreach (var item in MyTile.FindTileTargets(parent, TileTargetingType.All, (x) => x.data.id == id))
+                {
+                    item.isActionLocked = true;
+                }
             }
 
             yield return nestedAction.Run(multiplier);
         }
 
-        public class Builder : FactoryBuilder<TileActionBase, int, FactoryBuilder<TileActionBase>>
+        public class Builder : FactoryBuilder<ActionBase, string, int, FactoryBuilder<ActionBase>>
         {
-            public override TileActionBase Build() => new IfEnoughOnBoard(value, value2.Build());
+            public override ActionBase Build() => new IfEnoughOnBoard(value, value2, value3.Build());
         }
     }
 
@@ -180,7 +184,7 @@ namespace TileActions
 
         IEnumerable<MyTile> GetTargets()
         {
-            foreach (var item in parent.board.GetAllTiles().Where(x=>IsMatching(x)))
+            foreach (var item in parent.board.GetAllTiles().Where(x => IsMatching(x)))
             {
                 yield return (MyTile)item;
             }
@@ -195,7 +199,7 @@ namespace TileActions
         {
             if (!state) return;
             if (IsMatching(item)) Apply(item, amount);
-        } 
+        }
 
         protected override void Add()
         {
@@ -215,20 +219,20 @@ namespace TileActions
             }
         }
 
-        public class Builder : FactoryBuilder<TileActionBase, string, int>
+        public class Builder : FactoryBuilder<ActionBase, string, int>
         {
-            public override TileActionBase Build() => new AddPowerPassiveTo(value, value2);
+            public override ActionBase Build() => new AddPowerPassiveTo(value, value2);
         }
     }
 
-    public class AddUnitAttackPassive : PassiveEffect
+    public class AddEnemyAttackPassive : PassiveEffect
     {
         int amount;
 
         public override string GetDescription()
             => $"Enemies have {amount.SignedStr()} damage";
 
-        public AddUnitAttackPassive(int amount)
+        public AddEnemyAttackPassive(int amount)
         {
             this.amount = amount;
         }
@@ -250,20 +254,20 @@ namespace TileActions
         }
 
 
-        public class Builder : FactoryBuilder<TileActionBase, int>
+        public class Builder : FactoryBuilder<ActionBase, int>
         {
-            public override TileActionBase Build() => new AddUnitAttackPassive(value);
+            public override ActionBase Build() => new AddEnemyAttackPassive(value);
         }
     }
 
-    public class AddUnitDefensePassive : PassiveEffect
+    public class AddEnemyDefensePassive : PassiveEffect
     {
         int amount;
 
         public override string GetDescription()
             => $"Enemies have {amount.SignedStr()} defense";
 
-        public AddUnitDefensePassive(int amount)
+        public AddEnemyDefensePassive(int amount)
         {
             this.amount = amount;
         }
@@ -284,9 +288,9 @@ namespace TileActions
             enemy.RefreshAction();
         }
 
-        public class Builder : FactoryBuilder<TileActionBase, int>
+        public class Builder : FactoryBuilder<ActionBase, int>
         {
-            public override TileActionBase Build() => new AddUnitDefensePassive(value);
+            public override ActionBase Build() => new AddEnemyDefensePassive(value);
         }
     }
 }

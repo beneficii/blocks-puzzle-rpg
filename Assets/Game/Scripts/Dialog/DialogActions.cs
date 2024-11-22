@@ -2,6 +2,7 @@
 using UnityEngine;
 using FancyToolkit;
 using GridBoard;
+using System.Collections.Generic;
 
 
 public abstract class DialogAction
@@ -113,6 +114,104 @@ namespace DialogActions
         public override void Execute()
         {
             UIHudDialog.current.SetNext(StageData.Type.Victory);
+        }
+    }
+
+    public class SelectSkill : DialogAction
+    {
+        public Rarity rarity;
+
+        public override string GetDescription() => $"Choose {rarity} skill";
+
+        public SelectSkill(StringScanner scanner)
+        {
+            rarity = scanner.NextEnum<Rarity>();
+        }
+
+        public override void Execute()
+        {
+            CombatCtrl.current.AddState(new CombatStates.SelectSkill(rarity));
+        }
+    }
+
+    public class DemoSelectTiles : DialogAction
+    {
+        int amountCommon;
+        int amountUncommon;
+        int amountRare;
+
+        public DemoSelectTiles(StringScanner scanner)
+        {
+            this.amountCommon = scanner.NextInt();
+            scanner.TryGetGeneric(out amountUncommon);
+            scanner.TryGetGeneric(out amountRare);
+        }
+
+        public override string GetDescription() => $"Choose multiple tiles";
+
+
+        public override void Execute()
+        {
+            for (int i = 0; i < amountCommon; i++)
+            {
+                CombatCtrl.current.AddState(new CombatStates.SelectTile(Rarity.Common));
+            }
+
+            for (int i = 0; i < amountUncommon; i++)
+            {
+                CombatCtrl.current.AddState(new CombatStates.SelectTile(Rarity.Uncommon));
+            }
+
+            for (int i = 0; i < amountRare; i++)
+            {
+                CombatCtrl.current.AddState(new CombatStates.SelectTile(Rarity.Rare));
+            }
+        }
+    }
+
+    public class DemoRewards : DialogAction
+    {
+        int amountCommon;
+        int amountUncommon;
+        int amountRare;
+        int amountSkills;
+
+        public DemoRewards(StringScanner scanner)
+        {
+            this.amountCommon = scanner.NextInt();
+            scanner.TryGetGeneric(out amountUncommon);
+            scanner.TryGetGeneric(out amountRare);
+            scanner.TryGetGeneric(out amountSkills);
+        }
+
+        public override string GetDescription() => $"Get many rewards";
+
+
+        public override void Execute()
+        {
+            var rewards = new List<UICombatReward.Data>();
+
+            for (int i = 0; i < amountCommon; i++)
+            {
+                rewards.Add(new UICombatReward.DataTile(Rarity.Common));
+            }
+
+            for (int i = 0; i < amountUncommon; i++)
+            {
+                rewards.Add(new UICombatReward.DataTile(Rarity.Uncommon));
+            }
+
+            for (int i = 0; i < amountRare; i++)
+            {
+                rewards.Add(new UICombatReward.DataTile(Rarity.Rare));
+            }
+
+            for (int i = 0; i < amountSkills; i++)
+            {
+                rewards.Add(new UICombatReward.DataSkill(Rarity.Common));
+            }
+
+            CombatCtrl.current.AddState(new CombatStates.RewardScreen(rewards));
         }
     }
 

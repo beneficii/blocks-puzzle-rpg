@@ -6,6 +6,7 @@ using FancyToolkit;
 
 public abstract class ActionBase
 {
+    protected Board board;
     protected IActionParent parent;
 
     public virtual ActionStatType StatType => ActionStatType.None;
@@ -39,12 +40,39 @@ public abstract class ActionBase
 
     public virtual void SetBulletDamage(GenericBullet bullet, int value)
     {
+        LineClearData.current?.RegisterValue(MyTile.keyDamage, value);
         bullet.SetDamage(value);
     }
 
     public virtual void SetBulletDefense(GenericBullet bullet, int value)
     {
+        LineClearData.current?.RegisterValue(MyTile.keyArmor, value);
         bullet.SetUnitAction((x) => x.AddArmor(value));
+    }
+
+    public void SetBoard(Board board)
+    {
+        if (this.board == board) return;
+        this.board = board;
+
+        if (board)
+        {
+            Add();
+        }
+        else
+        {
+            Remove();
+        }
+    }
+
+    protected virtual void Add()
+    {
+
+    }
+
+    protected virtual void Remove()
+    {
+
     }
 }
 
@@ -83,6 +111,8 @@ public interface IActionParent
     int Defense { get; set; }
     Transform transform { get; }
     Board board { get; }
+
+    Component AsComponent();
 }
 
 public enum ActionStatType

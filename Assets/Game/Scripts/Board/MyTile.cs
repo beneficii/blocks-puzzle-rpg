@@ -7,18 +7,17 @@ using TMPro;
 using DG.Tweening;
 using FancyTweens;
 using FancyToolkit;
-using TileActions;
 
 public class MyTile : Tile, IActionParent
 {
+    public const string keyDamage = "damage";
+    public const string keyArmor = "armor";
+
     public MyTileData myData => data as MyTileData;
 
     [SerializeField] TextMeshPro txtPower;
-
-    TileActionBase clearAction;
-    TileActionBase endOfTurnAction;
-    TileActionBase enterAction;
-    TileActionBase passiveEffect;
+    
+    TileActionContainer actionContainer;
 
     int power;
     public int Power
@@ -32,58 +31,22 @@ public class MyTile : Tile, IActionParent
         }
     }
 
-    public ActionStatType StatType => clearAction?.StatType ?? ActionStatType.None;
+    public ActionStatType StatType => actionContainer?.clearAction?.StatType ?? ActionStatType.None;
 
     public int Damage { get => Power; set => Power = value; }
     public int Defense { get => Power; set => Power = value; }
 
-    IEnumerable<TileActionBase> AllActions()
-    {
-        if (clearAction != null) yield return clearAction;
-        if (endOfTurnAction != null) yield return endOfTurnAction;
-        if (enterAction != null) yield return enterAction;
-        if (passiveEffect != null) yield return passiveEffect;
-    }
-
     public override string GetDescription()
     {
-        if (myData == null) return "";
-
-        var baseDescription = data.description;
-        if (!string.IsNullOrWhiteSpace(baseDescription))
-        {
-            return baseDescription;
-        }
-
         var lines = new List<string>();
-
         if (!string.IsNullOrWhiteSpace(data.description))
         {
             lines.Add(data.description);
         }
 
-        var buyAction = myData.buyAction?.Build();
-        buyAction?.Init(this);
-
-        var pairs = new List<System.Tuple<TileActionBase, string>>
+        if (actionContainer != null)
         {
-            new(enterAction, "Enter"),
-            new(clearAction, "Clear"),
-            new(endOfTurnAction, "Turn end"),
-            new(passiveEffect, ""),
-            new(buyAction, ""),
-        };
-
-        foreach (var item in pairs)
-        {
-            var descr = item.Item1?.GetDescription();
-            if (string.IsNullOrWhiteSpace(descr)) continue;
-
-            var sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(item.Item2)) sb.Append($"<b>{item.Item2}: </b>");
-
-            sb.Append(descr);
-            lines.Add(sb.ToString());
+            lines.AddRange(actionContainer.GetDescriptions());
         }
 
         return string.Join(". ", lines);
@@ -114,21 +77,13 @@ public class MyTile : Tile, IActionParent
 
         this.power = myData.power;
 
-
-        clearAction = myData.clearAction?.Build();
-        endOfTurnAction = myData.endTurnAction?.Build();
-        enterAction = myData.enterAction?.Build();
-        passiveEffect = myData.passive?.Build();
-        foreach (var item in AllActions())
-        {
-            item.Init(this);
-        }
+        actionContainer = new TileActionContainer(myData, this);
 
         if (board)
         {
-            foreach (var item in AllActions())
+            foreach (var item in actionContainer.AllActions())
             {
-                item.SetOnBoard(true);
+                item.SetBoard(board);
             }
         }
 
@@ -137,24 +92,22 @@ public class MyTile : Tile, IActionParent
 
     public override IEnumerator Place()
     {
-        if (!isActionLocked && enterAction != null)
+        if (!isActionLocked && actionContainer?.enterAction != null)
         {
-            yield return enterAction.Run();
+            yield return actionContainer.enterAction.Run();
         }
         yield return base.Place();
     }
 
     protected override void Clean()
     {
-        foreach (var item in AllActions())
+        if (actionContainer == null) return;
+        foreach (var item in actionContainer.AllActions())
         {
-            item.SetOnBoard(false);
+            item.SetBoard(null);
         }
 
-        clearAction = null;
-        endOfTurnAction = null;
-        enterAction = null;
-        passiveEffect = null;
+        actionContainer = null;
 
         txtPower.text = $"";
 
@@ -163,17 +116,18 @@ public class MyTile : Tile, IActionParent
 
     public IEnumerator OnCleared(LineClearData clearInfo)
     {
-        if (!isActionLocked && clearAction != null)
+        if (!isActionLocked && actionContainer?.clearAction != null)
         {
-            yield return clearAction.Run(clearInfo);
+            yield return actionContainer.clearAction.Run();
+            yield return FadeOut(10);
         }
     }
 
     public IEnumerator EndOfTurn()
     {
-        if (!isActionLocked && endOfTurnAction != null)
+        if (!isActionLocked && actionContainer?.endOfTurnAction != null)
         {
-            yield return endOfTurnAction.Run();
+            yield return actionContainer.endOfTurnAction.Run();
         }
     }
 
@@ -207,7 +161,7 @@ public class MyTile : Tile, IActionParent
         }
     }
 
-    protected static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, System.Predicate<MyTile> filter = null)
+    public static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, System.Predicate<MyTile> filter = null)
     {
         var parentTile = parent as MyTile;
 
@@ -317,9 +271,10 @@ public class MyTile : Tile, IActionParent
         }
     }
 
-    protected static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, string tag)
+    public static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, string tag)
         => FindTileTargets(parent, targetType, (x) => x.HasTag(tag));
 
+    public Component AsComponent() => this;
 }
 
 public enum TileTargetingType

@@ -43,19 +43,37 @@ public partial class UICombatReward
 
         public override void Click()
         {
-            var stageData = StageCtrl.current.Data;
-
-            List<MyTileData> list = TileCtrl.current.GetAllTiles()
-                    .Cast<MyTileData>()
-                    .Where(x => x.rarity == rarity)
-                    .ToList();
-            UIHudSelectTile.current.ShowChoise(list.RandN(3, Game.current.CreateStageRng()));
+            CombatCtrl.current.ShowTileChoise(rarity);
+            UIHudSelectTile.current.SetHasParentWindow();
         }
 
         public override void InitUI(UICombatReward ui)
         {
             ui.imgIcon.sprite = ui.iconTile;
             ui.txtCaption.text = "Pick a tile";
+        }
+    }
+
+    public class DataSkill : Data
+    {
+        public Rarity rarity;
+
+        public DataSkill(Rarity rarity)
+        {
+            this.rarity = rarity;
+        }
+
+        public override void Click()
+        {
+
+            CombatCtrl.current.ShowSkillChoise(rarity);
+            UIHudSelectTile.current.SetHasParentWindow();
+        }
+
+        public override void InitUI(UICombatReward ui)
+        {
+            ui.imgIcon.sprite = ui.iconSkill;
+            ui.txtCaption.text = "Pick a skill";
         }
     }
 }

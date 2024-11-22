@@ -103,8 +103,7 @@ public class UIHudDialog : UIHudBase
 
         Clear();
         Closed();
-
-        FindAnyObjectByType<CombatCtrl>().Init(nextStageType);
+        CombatCtrl.current.CheckQueue();
     }
 
 }
