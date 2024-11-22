@@ -6,9 +6,8 @@ using FancyToolkit;
 using GridBoard;
 using FancyTweens;
 using System.Text;
-using TileActions;
 
-public class UISkillButton : MonoBehaviour, IHasInfo
+public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
 {
     [SerializeField] Button button;
     [SerializeField] Image imgIcon;
@@ -19,6 +18,20 @@ public class UISkillButton : MonoBehaviour, IHasInfo
     SkillActionContainer actionContainer;
 
     public Board board { get; private set; }
+    int power;
+    public int Power
+    {
+        get => Mathf.Max(power, 0);
+        set
+        {
+            if (power == value) return;
+            power = value;
+            //RefreshNumber();
+        }
+    }
+
+    public int Damage { get => Power; set => Power = value; }
+    public int Defense { get => Power; set => Power = value; }
 
     public void Init(SkillData data, Board board)
     {
@@ -39,6 +52,10 @@ public class UISkillButton : MonoBehaviour, IHasInfo
         if (board)
         {
             button.interactable = (actionContainer.clickCondition != null && actionContainer.onClick != null);
+            foreach (var item in actionContainer.AllActions())
+            {
+                item.SetBoard(board);
+            }
         }
     }
 
@@ -71,6 +88,14 @@ public class UISkillButton : MonoBehaviour, IHasInfo
         }
     }
 
+    private void OnDestroy()
+    {
+        foreach (var item in actionContainer.AllActions())
+        {
+            item.SetBoard(null);
+        }
+    }
+
     public void RefreshUse()
     {
         if (actionContainer.clickCondition == null) return;
@@ -85,4 +110,7 @@ public class UISkillButton : MonoBehaviour, IHasInfo
     public string GetTitle() => data.GetTitle();
     public string GetDescription() => data.GetDescription(actionContainer);
 
+    public Component AsComponent() => this;
+
+    public List<string> GetTags() => data.GetTags();
 }

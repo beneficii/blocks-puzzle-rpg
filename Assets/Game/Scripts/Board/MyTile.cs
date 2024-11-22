@@ -6,17 +6,18 @@ using GridBoard;
 using TMPro;
 using DG.Tweening;
 using FancyTweens;
+using FancyToolkit;
 
-public class MyTile : Tile
+public class MyTile : Tile, IActionParent
 {
+    public const string keyDamage = "damage";
+    public const string keyArmor = "armor";
+
     public MyTileData myData => data as MyTileData;
 
     [SerializeField] TextMeshPro txtPower;
-
-    TileActionBase clearAction;
-    TileActionBase endOfTurnAction;
-    TileActionBase enterAction;
-    TileActionBase passiveEffect;
+    
+    TileActionContainer actionContainer;
 
     int power;
     public int Power
@@ -30,55 +31,22 @@ public class MyTile : Tile
         }
     }
 
-    public TileStatType StatType => clearAction?.StatType ?? TileStatType.None;
+    public ActionStatType StatType => actionContainer?.clearAction?.StatType ?? ActionStatType.None;
 
-    IEnumerable<TileActionBase> AllActions()
-    {
-        if (clearAction != null) yield return clearAction;
-        if (endOfTurnAction != null) yield return endOfTurnAction;
-        if (enterAction != null) yield return enterAction;
-        if (passiveEffect != null) yield return passiveEffect;
-    }
+    public int Damage { get => Power; set => Power = value; }
+    public int Defense { get => Power; set => Power = value; }
 
     public override string GetDescription()
     {
-        if (myData == null) return "";
-
-        var baseDescription = data.description;
-        if (!string.IsNullOrWhiteSpace(baseDescription))
-        {
-            return baseDescription;
-        }
-
         var lines = new List<string>();
-
         if (!string.IsNullOrWhiteSpace(data.description))
         {
             lines.Add(data.description);
         }
 
-        var buyAction = myData.buyAction?.Build();
-        buyAction?.Init(this);
-
-        var pairs = new List<System.Tuple<TileActionBase, string>>
+        if (actionContainer != null)
         {
-            new(enterAction, "Enter"),
-            new(clearAction, "Clear"),
-            new(endOfTurnAction, "Turn end"),
-            new(passiveEffect, ""),
-            new(buyAction, ""),
-        };
-
-        foreach (var item in pairs)
-        {
-            var descr = item.Item1?.GetDescription();
-            if (string.IsNullOrWhiteSpace(descr)) continue;
-
-            var sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(item.Item2)) sb.Append($"<b>{item.Item2}: </b>");
-
-            sb.Append(descr);
-            lines.Add(sb.ToString());
+            lines.AddRange(actionContainer.GetDescriptions());
         }
 
         return string.Join(". ", lines);
@@ -86,7 +54,7 @@ public class MyTile : Tile
 
     void RefreshNumber(bool skipAnimation = false)
     {
-        if (StatType == TileStatType.None)
+        if (StatType == ActionStatType.None)
         {
             txtPower.text = "";
             return;
@@ -109,21 +77,13 @@ public class MyTile : Tile
 
         this.power = myData.power;
 
-
-        clearAction = myData.clearAction?.Build();
-        endOfTurnAction = myData.endTurnAction?.Build();
-        enterAction = myData.enterAction?.Build();
-        passiveEffect = myData.passive?.Build();
-        foreach (var item in AllActions())
-        {
-            item.Init(this);
-        }
+        actionContainer = new TileActionContainer(myData, this);
 
         if (board)
         {
-            foreach (var item in AllActions())
+            foreach (var item in actionContainer.AllActions())
             {
-                item.SetOnBoard(true);
+                item.SetBoard(board);
             }
         }
 
@@ -132,24 +92,22 @@ public class MyTile : Tile
 
     public override IEnumerator Place()
     {
-        if (!isActionLocked && enterAction != null)
+        if (!isActionLocked && actionContainer?.enterAction != null)
         {
-            yield return enterAction.Run();
+            yield return actionContainer.enterAction.Run();
         }
         yield return base.Place();
     }
 
     protected override void Clean()
     {
-        foreach (var item in AllActions())
+        if (actionContainer == null) return;
+        foreach (var item in actionContainer.AllActions())
         {
-            item.SetOnBoard(false);
+            item.SetBoard(null);
         }
 
-        clearAction = null;
-        endOfTurnAction = null;
-        enterAction = null;
-        passiveEffect = null;
+        actionContainer = null;
 
         txtPower.text = $"";
 
@@ -158,27 +116,174 @@ public class MyTile : Tile
 
     public IEnumerator OnCleared(LineClearData clearInfo)
     {
-        if (!isActionLocked && clearAction != null)
+        if (!isActionLocked && actionContainer?.clearAction != null)
         {
-            yield return clearAction.Run(clearInfo);
+            yield return actionContainer.clearAction.Run();
+            yield return FadeOut(10);
         }
     }
 
     public IEnumerator EndOfTurn()
     {
-        if (!isActionLocked && endOfTurnAction != null)
+        if (!isActionLocked && actionContainer?.endOfTurnAction != null)
         {
-            yield return endOfTurnAction.Run();
+            yield return actionContainer.endOfTurnAction.Run();
         }
     }
 
+    public static string GetTargetingTypeName(TileTargetingType targetType, string tag = TileData.anyTag)
+    {
+        if (tag == TileData.anyTag)
+        {
+            return targetType switch
+            {
+                TileTargetingType.Self => "this tile",
+                TileTargetingType.Around => "surrounding tiles",
+                TileTargetingType.Biggest => "strongest tile",
+                TileTargetingType.Closest => "closest tile",
+                TileTargetingType.Random => $"random tile",
+                TileTargetingType.All => $"all tiles",
+                _ => "unknown",
+            };
+        }
+        else
+        {
+            return targetType switch
+            {
+                TileTargetingType.Self => "this tile",
+                TileTargetingType.Around => $"surrounding {tag} tiles",
+                TileTargetingType.Biggest => $"strongest {tag} tile",
+                TileTargetingType.Closest => $"closest {tag} tile",
+                TileTargetingType.Random => $"random {tag} tile",
+                TileTargetingType.All => $"all {tag} tiles",
+                _ => "unknown",
+            };
+        }
+    }
+
+    public static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, System.Predicate<MyTile> filter = null)
+    {
+        var parentTile = parent as MyTile;
+
+        if (targetType == TileTargetingType.Self)
+        {
+            yield return parentTile;
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Around)
+        {
+            if (!parentTile)
+            {
+                Debug.LogError("parent not tile!");
+                yield break;
+            }
+            foreach (var item in parent.board.GetTilesAround(parentTile.position.x, parentTile.position.y))
+            {
+                if (item is not MyTile tile || tile.isBeingPlaced) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                yield return tile;
+
+            }
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Biggest)
+        {
+            MyTile biggest = null;
+            int maxPower = -1;
+            foreach (var item in parent.board.GetAllTiles())
+            {
+
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (tile.StatType == ActionStatType.None) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                if (tile.Power > maxPower)
+                {
+                    biggest = tile;
+                    maxPower = tile.Power;
+                }
+
+
+            }
+            if (biggest) yield return biggest;
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Closest)
+        {
+            MyTile closest = null;
+            int minDistanceSqr = int.MaxValue;
+            foreach (var item in parent.board.GetAllTiles())
+            {
+                if (!parentTile)
+                {
+                    Debug.LogError("parent not tile!");
+                    yield break;
+                }
+
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (filter != null && !filter(tile)) continue;
+
+
+                int distanceSqr = VectorUtil.DistanceSqr(parentTile.position, tile.position);
+                if (distanceSqr < minDistanceSqr)
+                {
+                    closest = tile;
+                    minDistanceSqr = distanceSqr;
+                }
+
+
+            }
+            if (closest) yield return closest;
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.Random)
+        {
+            var list = new List<MyTile>();
+            foreach (var item in parent.board.GetAllTiles())
+            {
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                list.Add(tile);
+
+            }
+            yield return list.Rand();
+            yield break;
+        }
+
+        if (targetType == TileTargetingType.All)
+        {
+            foreach (var item in parent.board.GetAllTiles())
+            {
+                if (item is not MyTile tile || tile.isBeingPlaced || tile == parentTile) continue;
+                if (filter != null && !filter(tile)) continue;
+
+                yield return tile;
+
+
+            }
+            yield break;
+        }
+    }
+
+    public static IEnumerable<MyTile> FindTileTargets(IActionParent parent, TileTargetingType targetType, string tag)
+        => FindTileTargets(parent, targetType, (x) => x.HasTag(tag));
+
+    public Component AsComponent() => this;
 }
 
-
-public enum TileStatType
+public enum TileTargetingType
 {
     None,
-    Damage,
-    Defense,
-    Power,  // other
+    Self,
+    Around,
+    Biggest, // most power
+    Closest,
+    Random,
+    All,
 }

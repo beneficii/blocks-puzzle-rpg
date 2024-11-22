@@ -19,6 +19,7 @@ public partial class UICombatReward : MonoBehaviour
     [Header("Icons")]
     [SerializeField] Sprite iconGold;
     [SerializeField] Sprite iconTile;
+    [SerializeField] Sprite iconSkill;
 
     Data data;
 

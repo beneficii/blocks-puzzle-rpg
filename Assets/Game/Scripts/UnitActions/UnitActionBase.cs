@@ -4,8 +4,6 @@ using UnityEngine;
 using GridBoard;
 using FancyToolkit;
 using System.Linq;
-using GridBoard.TileActions;
-using TileActions;
 
 namespace UnitAction
 {

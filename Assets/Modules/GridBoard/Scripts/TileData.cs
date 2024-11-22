@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GridBoard
 {
-    public class TileData : DataWithId
+    public class TileData : DataWithId, IHasInfo
     {
         public const string anyTag = "any";
         public const string nonEmpty = "nonempty";
@@ -33,10 +33,18 @@ namespace GridBoard
 
         public string colorCode;
 
-        public virtual string GetDescription(Tile tile = null)
+        public virtual string GetDescription(Tile tile)
         {
             return description;
         }
+
+        public virtual string GetDescription() => GetDescription(null);
+        public Sprite GetIcon() => sprite;
+
+        public List<string> GetTags() => tags;
+
+        public string GetTitle() => title;
+        public List<string> GetTooltips() => new();
 
         public bool HasTag(string tag)
             => tag == anyTag
@@ -45,6 +53,7 @@ namespace GridBoard
             || type.ToString().ToLower() == tag
             || tags.Contains(tag);
 
+        public bool ShouldShowInfo() => !isEmpty;
     }
 
     public abstract class TileAction

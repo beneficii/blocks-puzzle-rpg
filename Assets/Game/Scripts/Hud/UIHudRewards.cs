@@ -66,10 +66,7 @@ public class UIHudRewards : UIHudBase
             }
         }
 
-        int? playerHp = null;
-        var player = CombatArena.current.player;
-        if (player) playerHp = player.health.Value;
-
-        Game.current.FinishLevel(playerHp);
+        Close();
+        CombatCtrl.current.CheckQueue();
     }
 }

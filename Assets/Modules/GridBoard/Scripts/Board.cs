@@ -648,7 +648,7 @@ namespace GridBoard
         }
 
         public IEnumerable<TTile> GetNonEmptyTiles<TTile>() where TTile : Tile
-            => GetNonEmptyTiles().Cast<TTile>();
+            => GetNonEmptyTiles().OfType<TTile>();
 
         public IEnumerable<Tile.Info> GetTileInfos()
         {

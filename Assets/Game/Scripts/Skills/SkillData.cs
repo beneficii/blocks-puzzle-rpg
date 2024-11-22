@@ -5,23 +5,33 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class SkillData : DataWithId, IHasInfo
+public class SkillData : DataWithId, IHasInfo, IActionParent
 {
     public string idVisual;
     public string name;
     public Sprite sprite;
+    public int power;
+    public Rarity rarity;
 
     public FactoryBuilder<SkillClickCondition> clickCondition;
-    public FactoryBuilder<SkillActionBase> onClick;
+    public FactoryBuilder<ActionBase> onClick;
 
-    public FactoryBuilder<SkillActionBase> onEndTurn;
-    public FactoryBuilder<SkillActionBase> onStartCombat;
+    public FactoryBuilder<ActionBase> onEndTurn;
+    public FactoryBuilder<ActionBase> onStartCombat;
+
+    public int Damage { get => power; set { } }
+    public int Defense { get => power; set { } }
+
+    public Transform transform => null;
+    public Board board => null;
+    public Component AsComponent() => null;
+
 
     public string GetDescription(SkillActionContainer container)
     {
         var lines = new List<string>();
 
-        var pairs = new List<System.Tuple<SkillActionBase, string>>
+        var pairs = new List<System.Tuple<ActionBase, string>>
         {
             new(container.onStartCombat, "Start of combat"),
             new(container.onEndTurn, "Turn end"),
@@ -74,16 +84,18 @@ public class SkillData : DataWithId, IHasInfo
         // Return an empty list for now; UISkillButton can add more context if needed
         return new List<string>();
     }
+
+    public List<string> GetTags() => new();
 }
 
 public class SkillActionContainer
 {
     public SkillClickCondition clickCondition;
-    public SkillActionBase onClick;
-    public SkillActionBase onEndTurn;
-    public SkillActionBase onStartCombat;
+    public ActionBase onClick;
+    public ActionBase onEndTurn;
+    public ActionBase onStartCombat;
 
-    public IEnumerable<SkillActionBase> AllActions()
+    public IEnumerable<ActionBase> AllActions()
     {
         if (onClick != null) yield return onClick;
         if (onEndTurn != null) yield return onEndTurn;

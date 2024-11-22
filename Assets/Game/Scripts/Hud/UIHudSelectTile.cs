@@ -1,5 +1,6 @@
 ﻿using GridBoard;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
@@ -21,7 +22,12 @@ public class UIHudSelectTile : UIHudBase
 
     List<UISelectTileCard> cards = new();
 
-    SelectTileType type;
+    bool backToCombatAfterClose = true;
+
+    public void SetHasParentWindow()
+    {
+        backToCombatAfterClose = false;
+    }
 
     int GetPrice(Rarity rarity, System.Random rng)
     {
@@ -37,7 +43,7 @@ public class UIHudSelectTile : UIHudBase
 
     public void ShowShop(List<MyTileData> list, System.Random rng)
     {
-        type = SelectTileType.Shop;
+        backToCombatAfterClose = true;
         Opened();
         Clear();
         foreach (var data in list)
@@ -49,9 +55,11 @@ public class UIHudSelectTile : UIHudBase
         bg.SetActive(false);
     }
 
-    public void ShowChoise(List<MyTileData> list)
+    public UIHudSelectTile ShowChoise(List<MyTileData> list) => ShowChoise(list.Cast<IHasInfo>().ToList());
+    public UIHudSelectTile ShowChoise(List<SkillData> list) => ShowChoise(list.Cast<IHasInfo>().ToList());
+    public UIHudSelectTile ShowChoise(List<IHasInfo> list)
     {
-        type = SelectTileType.Choise;
+        backToCombatAfterClose = true;
         Opened();
         Clear();
         foreach (var data in list)
@@ -61,16 +69,17 @@ public class UIHudSelectTile : UIHudBase
             cards.Add(instance);
         }
         bg.SetActive(true);
+        return this;
     }
 
     private void OnEnable()
     {
-        UISelectTileCard.OnSelectTile += HandleTileSelected;
+        UISelectTileCard.OnSelectCard += HandleCardSelected;
     }
 
     private void OnDisable()
     {
-        UISelectTileCard.OnSelectTile -= HandleTileSelected;
+        UISelectTileCard.OnSelectCard -= HandleCardSelected;
     }
 
     void Clear()
@@ -86,12 +95,18 @@ public class UIHudSelectTile : UIHudBase
     {
         Clear();
         Closed();
-        if (type == SelectTileType.Shop) Game.current.FinishLevel();
+        if (backToCombatAfterClose)
+        {
+            CombatCtrl.current.CheckQueue();
+        }
     }
 
-    void HandleTileSelected(UISelectTileCard card)
+    void HandleCardSelected(UISelectTileCard card, SelectTileType type)
     {
-        Close();
+        if (type == SelectTileType.Choise)
+        {
+            Close();
+        }
     }
 }
 
