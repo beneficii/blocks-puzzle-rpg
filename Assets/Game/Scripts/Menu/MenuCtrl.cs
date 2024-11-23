@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 public class MenuCtrl : MonoBehaviour
 {
-    [SerializeField] Button templateButton;
+    [SerializeField] UIGenericButton templateButton;
     [SerializeField] GameObject panelCredits;
     [SerializeField] GameObject panelSettings;
 
@@ -17,8 +17,8 @@ public class MenuCtrl : MonoBehaviour
     void AddButton(string caption, UnityAction action)
     {
         var button = UIUtils.CreateFromTemplate(templateButton);
-        button.GetComponentInChildren<TextMeshProUGUI>().text = caption;
-        button.onClick.AddListener(action);
+        button.SetText(caption);
+        button.AddOnClick(action);
     }
 
     private void Start()
@@ -37,7 +37,7 @@ public class MenuCtrl : MonoBehaviour
     {
         foreach (var item in allPanels)
         {
-            item.gameObject.SetActive(false);
+            item.SetActive(false);
         }
     }
 

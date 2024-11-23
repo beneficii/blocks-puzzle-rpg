@@ -25,7 +25,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     }
 
     [SerializeField] List<SpriteRenderer> bgRenders;
-    [SerializeField] Button btnEndTurn;
+    [SerializeField] UIGenericButton btnEndTurn;
 
 
     System.Random endLevelRandom;
@@ -73,6 +73,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             if (player) playerHp = player.health.Value;
 
             Game.current.FinishLevel(playerHp);
+            UIHudMap.current.Show();
             return;
         }
 
@@ -167,13 +168,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     void HandleDeadEnd()
     {
-        animSequence?.Kill();
-        btnEndTurn.transform.localScale = Vector3.one;
-        // Sequence to pulse the button up and down
-        animSequence = DOTween.Sequence();
-        animSequence.Append(btnEndTurn.transform.DOScale(1.2f, .2f).SetEase(Ease.OutQuad))
-                .Append(btnEndTurn.transform.DOScale(0.9f, .2f).SetEase(Ease.InQuad))
-                .SetLoops(2, LoopType.Yoyo);
+        btnEndTurn.SetNeedsAttention(true);;
     }
 
     IEnumerator CombatFinished(bool victory)
@@ -330,6 +325,12 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     IEnumerator Start()
     {
+        if (Game.current.GetStateType() == Game.StateType.Map)
+        {
+            UIHudMap.current.Show();
+            yield break;
+        }
+
         var stageData = StageCtrl.current.Data;
         endLevelRandom = Game.current.CreateStageRng();
         if (Game.current.bgDict.TryGetValue(stageData.background, out var bgSprite))

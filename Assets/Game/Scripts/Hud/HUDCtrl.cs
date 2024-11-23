@@ -14,6 +14,7 @@ public class HUDCtrl : MonoBehaviour
         }
     }
 
+
     Stack<UIHudBase> stack = new();
 
     public void HandleHudOpened(UIHudBase hud)

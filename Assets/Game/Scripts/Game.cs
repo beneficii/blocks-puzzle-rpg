@@ -80,7 +80,7 @@ public class Game : MonoBehaviour
 
         current = this;
         DontDestroyOnLoad(gameObject);
-        MapScene.OnReady += HandleMapSceneReady;
+        //MapScene.OnReady += HandleMapSceneReady;
 
         Init();
 
@@ -98,7 +98,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    void HandleMapSceneReady(MapScene scene)
+    public void HandleMapSceneReady(MapScene scene)
     {
         if (state == null) NewGame();
 
@@ -159,13 +159,21 @@ public class Game : MonoBehaviour
         {
             return sceneMenu;
         }
-        else if (state.currentNode < 0)
-        {
-            return sceneMap;
-        }
         else
         {
             return sceneCombat;
+        }
+    }
+
+    public StateType GetStateType()
+    {
+        if (state.HasCurrentNode)
+        {
+            return StateType.Combat;
+        }
+        else
+        {
+            return StateType.Map;
         }
     }
 
@@ -195,9 +203,9 @@ public class Game : MonoBehaviour
             state.playerHealth.x = playerHealth.Value;
         }
         state.visitedNodes.Add(state.currentNode);
-        state.currentNode = -1;
+        state.HasCurrentNode = false;
         state.Save();
-        LoadScene();
+        //LoadScene();
     }
 
     public void GameOver()
@@ -233,5 +241,12 @@ public class Game : MonoBehaviour
     {
         public string id;
         public int amount;
+    }
+
+    public enum StateType
+    {
+        None,
+        Combat,
+        Map,
     }
 }

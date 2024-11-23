@@ -23,10 +23,15 @@ namespace RogueLikeMap
 
         public void CreateMap(MapLayout layout, System.Random rng = null)
         {
-            if (mapInstance) Destroy(mapInstance.gameObject);
+            Clear();
             mapInstance = Instantiate(prefabMapInstance, mapParent);
 
             mapInstance.Init(layout, rng);
+        }
+
+        public void Clear()
+        {
+            if (mapInstance) Destroy(mapInstance.gameObject);
         }
 
         private void Update()

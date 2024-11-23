@@ -7,6 +7,9 @@ namespace FancyToolkit
     [DefaultExecutionOrder(-14)]
     public class AudioCtrl : MonoBehaviour
     {
+        const string prefsKeyMusicVolume = "audio_musicVolume";
+        const string prefsKeySoundVolume = "audio_soundVolume";
+
         public static AudioCtrl current;
 
         public AudioSource music;
@@ -22,6 +25,18 @@ namespace FancyToolkit
         public AudioClip clipGameOver;
         public AudioClip clipVictory;
 
+        public float VolumeMusic
+        {
+            get => music.volume;
+            set => music.volume = value;
+        }
+
+        public float VolumeSound
+        {
+            get => effects.volume;
+            set => effects.volume = value;
+        }
+
         private void Awake()
         {
             /*
@@ -34,6 +49,20 @@ namespace FancyToolkit
             */
             current = this;
             //DontDestroyOnLoad(gameObject);
+
+            VolumeMusic = PlayerPrefs.GetFloat(prefsKeyMusicVolume, 1f);
+            VolumeSound = PlayerPrefs.GetFloat(prefsKeySoundVolume, 1f);
+        }
+
+        void SavePrefsOnClose()
+        {
+            PlayerPrefs.SetFloat(prefsKeyMusicVolume, VolumeMusic);
+            PlayerPrefs.SetFloat(prefsKeySoundVolume, VolumeSound);
+        }
+
+        private void OnDestroy()
+        {
+            SavePrefsOnClose();
         }
 
         public void Play(AudioClip clip, float volumeScale = 1f)
@@ -74,8 +103,6 @@ namespace FancyToolkit
             music.loop = true;
         }
     }
-
-    
 
     public static class AudioExtensions
     {

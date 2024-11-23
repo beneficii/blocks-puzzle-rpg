@@ -19,6 +19,11 @@ public class StageData : NodeType
         Game.current.EnterLevel(info.index);
     }
 
+    public override void RunCurrent(NodeInfo info)
+    {
+        UIHudMap.current.Close();
+    }
+
     [System.Serializable]
     public enum Type
     {

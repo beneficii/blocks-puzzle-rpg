@@ -34,4 +34,19 @@ public class MainUI : MonoBehaviour
         lastMessage = UIUtils.CreateFromTemplate(templateMessage);
         lastMessage.Init(message);
     }
+
+    public void BtnMap()
+    {
+        UIHudMap.current.Toggle();
+    }
+
+    public void BtnSettings()
+    {
+        UIHudSettings.current.Show();
+    }
+
+    public void BtnTiles()
+    {
+
+    }
 }

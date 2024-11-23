@@ -14,13 +14,12 @@ namespace RogueLikeMap
             if (state == NodeState.Available)
             {
                 Run(info);
-                //Debug.Log("Clicked new node");
                 return;
             }
 
             if (state == NodeState.Current)
             {
-                Debug.Log("Clicked on current node");
+                RunCurrent(info);
                 return;
             }
 
@@ -31,5 +30,12 @@ namespace RogueLikeMap
         {
             Debug.Log("Node::Run");
         }
+
+        public virtual void RunCurrent(NodeInfo info)
+        {
+            Debug.Log("Node::RunCurrent");
+        }
+
+        
     }
 }

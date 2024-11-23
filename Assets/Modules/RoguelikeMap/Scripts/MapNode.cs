@@ -12,6 +12,7 @@ namespace RogueLikeMap
 
         [SerializeField] SpriteRenderer render;
         [SerializeField] SpriteRenderer circle;
+        [SerializeField] SpriteRenderer cross;
 
         [SerializeField] public NodeInfo info;// { get; private set; }
 
@@ -32,22 +33,29 @@ namespace RogueLikeMap
 
         public void Click()
         {
-            if (info.state != NodeState.Available) return;
-            if (isClickInProgress) return;
-            isClickInProgress = true;
+            if (info.state == NodeState.Available)
+            {
+                if (isClickInProgress) return;
+                isClickInProgress = true;
 
-            Sequence sequence = DOTween.Sequence();
+                Sequence sequence = DOTween.Sequence();
 
-            RotateCircle();
-            sequence.Join(circle.transform.DOScale(2f, .6f).From(4f));
-            sequence.Join(circle.DOFade(1f, 0.2f).From(0.2f));
-            sequence.OnComplete(() =>
+                RotateCircle();
+                sequence.Join(circle.transform.DOScale(1f, .6f).From(2f));
+                sequence.Join(circle.DOFade(1f, 0.2f).From(0.2f));
+                sequence.OnComplete(() =>
+                {
+                    info.type.Clicked(info);
+                    OnClicked?.Invoke(this);
+                    isClickInProgress = false;
+                });
+                sequence.Play();
+            }
+            else if (info.state == NodeState.Current)
             {
                 info.type.Clicked(info);
-                OnClicked?.Invoke(this);
-                isClickInProgress = false;
-            });
-            sequence.Play();
+            }
+
         }
 
         private void OnMouseDown()
@@ -77,6 +85,7 @@ namespace RogueLikeMap
             {
                 case NodeState.Available:
                     circle.SetAlpha(0);
+                    cross.SetAlpha(0);
                     
                     attentionSequence = DOTween.Sequence()
                         .Append(render.transform.DOScale(1.2f, 0.5f).SetEase(Ease.InOutSine))
@@ -89,9 +98,13 @@ namespace RogueLikeMap
                     break;
 
                 case NodeState.Visited:
-                    RotateCircle();
+                    //RotateCircle();
+                    cross.SetAlpha(1f);
+                    //circle.transform.localScale = Vector2.one * 2;
+                    break;
+                case NodeState.Current:
                     circle.SetAlpha(1f);
-                    circle.transform.localScale = Vector2.one * 2;
+                    //circle.transform.localScale = Vector2.one * 2;
                     break;
 
                 default:

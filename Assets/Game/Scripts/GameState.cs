@@ -2,6 +2,7 @@
 using RogueLikeMap;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 [System.Serializable]
@@ -17,6 +18,18 @@ public class GameState
     public List<string> deck;
     public List<string> skills;
     public int gold;
+
+    public bool HasCurrentNode
+    {
+        get => currentNode != -1;
+        set
+        {
+            if (!value)
+            {
+                currentNode = -1;
+            }
+        }
+    }
 
     public static bool HasSave()
         => PlayerPrefs.HasKey(prefsKey);
@@ -54,15 +67,17 @@ public class GameState
         //var typeGenerator = new NodeProbability.Generator(randomNodes);
 
         var stageCtrl = StageCtrl.current;
+
         foreach (var item in mapLayout.nodes)
         {
             var x = item.pos.x;
-            if (x == 0 && visitedNodes.Count == 0)    // starting node
+            var difficulty = x;
+            if (!HasCurrentNode && x == 0 && visitedNodes.Count == 0 )    // starting node
             {
                 item.state = NodeState.Available;
             }
 
-            item.type = StageCtrl.current.GetRandom(x, rng);
+            item.type = StageCtrl.current.GetRandom(difficulty, rng);
             if (item.type == null)
             {
                 Debug.LogError($"Node with difficulty {x} not found");
@@ -70,35 +85,34 @@ public class GameState
             }
         }
 
+        if (HasCurrentNode)
+        {
+            var cur =  mapLayout.nodes[currentNode];
+            cur.state = NodeState.Current;
+        }
+
         if (visitedNodes.Count > 0)
         {
-            NodeInfo cur;
-            if (currentNode >= 0)
-            {
-
-                cur = mapLayout.nodes[currentNode];
-                cur.state = NodeState.Current;
-            }
-            else
-            {
-                cur = mapLayout.nodes[visitedNodes.Last()];
-            }
-
             foreach (var idx in visitedNodes)
             {
                 mapLayout.nodes[idx].state = NodeState.Visited;
             }
 
-            var aviable = new HashSet<Vector2Int>();
-            foreach(var item in mapLayout.edges)
+            if (!HasCurrentNode)
             {
-                if (item.a == cur.pos) aviable.Add(item.b);
-            }
+                var cur = mapLayout.nodes[visitedNodes.Last()];
+                // Unlock aviable nodes
+                var aviable = new HashSet<Vector2Int>();
+                foreach (var item in mapLayout.edges)
+                {
+                    if (item.a == cur.pos) aviable.Add(item.b);
+                }
 
-            foreach(var item in mapLayout.nodes)
-            {
-                if (aviable.Contains(item.pos)) item.state = NodeState.Available;
-            } 
+                foreach (var item in mapLayout.nodes)
+                {
+                    if (aviable.Contains(item.pos)) item.state = NodeState.Available;
+                }
+            }
         }
 
         return mapLayout;
@@ -109,7 +123,7 @@ public class GameState
     {
         this.seed = seed;
         this.visitedNodes = new();
-        this.currentNode = -1;
+        HasCurrentNode = false;
         this.playerHealth = new(100, 100);
         this.deck = Game.current.GetStartingDeck();
         this.skills = new List<string>();

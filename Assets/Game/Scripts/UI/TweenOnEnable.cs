@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class TweenOnEnable : MonoBehaviour
@@ -7,6 +8,18 @@ public class TweenOnEnable : MonoBehaviour
     [SerializeField] Type type = Type.Attention;
     [SerializeField] float animationTime = 0.7f;
 
+    Sequence tweenSequence;
+
+    public void TweenHighlight()
+    {
+        var render = GetComponent<Image>();
+        if (!render) return;
+
+        tweenSequence = DOTween.Sequence()
+            .Append(render.DOFade(0.3f, animationTime).SetEase(Ease.InOutSine))
+            .Append(render.DOFade(1f, animationTime).SetEase(Ease.InOutSine))
+            .SetLoops(-1, LoopType.Yoyo);
+    }
 
     public void TweenAttention()
     {
@@ -38,6 +51,9 @@ public class TweenOnEnable : MonoBehaviour
             case Type.GrowIn:
                 TweenGrowIn();
                 break;
+            case Type.Highlight:
+                TweenHighlight();
+                break;
             default:
                 break;
         }
@@ -46,6 +62,7 @@ public class TweenOnEnable : MonoBehaviour
     private void OnDisable()
     {
         transform.DOKill();
+        tweenSequence?.Kill();
     }
 
     public enum Type
@@ -53,5 +70,6 @@ public class TweenOnEnable : MonoBehaviour
         None,
         Attention,
         GrowIn,
+        Highlight,
     }
 }
