@@ -149,14 +149,26 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             Rarity.Common => rng.Next(20, 40),
             Rarity.Uncommon => rng.Next(60, 100),
             Rarity.Rare => rng.Next(130, 180),
-            Rarity.Legendary => rng.Next(300, 400),
+            Rarity.Legendary => rng.Next(150, 220),
             _ => rng.Next(45, 60),
         };
 
         var result = new List<UICombatReward.Data> {
             new UICombatReward.DataGold(gold),
-            new UICombatReward.DataTile(rarity),
         };
+
+        if (rarity == Rarity.Legendary)
+        {
+            result.Add(new UICombatReward.DataTile(Rarity.Common));
+            result.Add(new UICombatReward.DataTile(Rarity.Common));
+            result.Add(new UICombatReward.DataTile(Rarity.Common));
+            result.Add(new UICombatReward.DataTile(Rarity.Uncommon));
+            result.Add(new UICombatReward.DataTile(Rarity.Uncommon));
+        }
+        else
+        {
+            result.Add(new UICombatReward.DataTile(rarity));
+        }
 
         if (stageData.type == StageData.Type.Elite || stageData.type == StageData.Type.Boss)
         {
