@@ -9,8 +9,6 @@ using UnityEngine.Events;
 public class MenuCtrl : MonoBehaviour
 {
     [SerializeField] UIGenericButton templateButton;
-    [SerializeField] GameObject panelCredits;
-    [SerializeField] GameObject panelSettings;
 
     List<GameObject> allPanels = new();
 
@@ -23,9 +21,6 @@ public class MenuCtrl : MonoBehaviour
 
     private void Start()
     {
-        allPanels.Add(panelCredits);
-        allPanels.Add(panelSettings);
-
         if (GameState.HasSave()) AddButton("Continue", BtnContinue);
         AddButton("New Game", BtnPlay);
         AddButton("Credits", BtnCredits);
@@ -33,24 +28,28 @@ public class MenuCtrl : MonoBehaviour
         AddButton("Exit", BtnExit);
     }
 
-    void ClosePanels()
+    public void ClosePanels()
     {
-        foreach (var item in allPanels)
+        if (UIHudGenericInfo.current.IsOpen)
         {
-            item.SetActive(false);
+            UIHudGenericInfo.current.Close();
+        }
+        if (UIHudSettings.current.IsOpen)
+        {
+            UIHudSettings.current.Close();
         }
     }
 
     void BtnCredits()
     {
         ClosePanels();
-        panelCredits.SetActive(true);
+        UIHudGenericInfo.current.Show();
     }
 
     void BtnSettings()
     {
         ClosePanels();
-        panelSettings.SetActive(true);
+        UIHudSettings.current.Show();
     }
 
     void BtnPlay()

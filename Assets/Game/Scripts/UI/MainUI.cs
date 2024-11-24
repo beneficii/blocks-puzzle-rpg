@@ -47,6 +47,6 @@ public class MainUI : MonoBehaviour
 
     public void BtnTiles()
     {
-
+        UIHudDeck.current.Toggle();
     }
 }

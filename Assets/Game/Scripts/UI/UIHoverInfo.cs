@@ -39,7 +39,18 @@ public class UIHoverInfo : MonoBehaviour
     {
         if (imgIcon) imgIcon.sprite = info.GetIcon();
         if (txtTitle) txtTitle.text = info.GetTitle();
-        if (txtTags) txtTags.text = string.Join(", ", info.GetTags());
+        if (txtTags)
+        {
+            var tags = info.GetTags();
+            if (tags.Count > 0)
+            {
+                txtTags.text = $"Tags: {string.Join(", ", info.GetTags())}";
+            }
+            else
+            {
+                txtTags.text = "";
+            }
+        }
         if (txtDescription) txtDescription.text = info.GetDescription();
 
         foreach (var item in hints) item.Hide();

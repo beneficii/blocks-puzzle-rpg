@@ -37,6 +37,10 @@ public class UIHudMap : UIHudBase
 
     public void Close()
     {
+        if (Game.current.GetStateType() == Game.StateType.Map)
+        {
+            return;
+        }
         Closed();
         scene.Clear();
     }
