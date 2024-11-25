@@ -2,4 +2,4 @@ id,idVisual,name,power,rarity,clickCondition,onClick,onEndTurn,onStartCombat
 test,fellowship,ArmorDown,0,None,Once,MultiplyPowerTag Biggest 2 axe,,
 swordRush,overwhelm,Sword Dance,0,Common,Once,SpawnTile 4 sword,,
 axeRush,rush,Echoing Axe,0,Common,Once,MultiplyPowerTag Biggest 2 axe,,
-shieldRush,backup,Guard Formation,0,Common,Once,ConsumeArmorAnd 5 SpawnTile 1 guardShield,,
+shieldRush,backup,Guard Formation,0,Common,Once, SpawnTile 4 guardShield,,

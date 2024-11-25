@@ -10,7 +10,7 @@ public class ScreenLogger : MonoBehaviour
     private Queue myLogQueue = new Queue();
     void Start()
     {
-        Debug.Log("Screen logger started");
+        //Debug.Log("Screen logger started");
     }
 
     void OnEnable()
