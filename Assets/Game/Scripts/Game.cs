@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
 
     int stageSeed;
 
+
     public GenericBullet MakeBullet(Vector2 position)
     {
         return Instantiate(gameData.prefabBullet, position, Quaternion.identity);

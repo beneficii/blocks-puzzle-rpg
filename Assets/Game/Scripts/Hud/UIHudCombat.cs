@@ -22,6 +22,7 @@ public class UIHudCombat : UIHudBase
 
     [SerializeField] UISkillButton templateButton;
 
+
     public List<UISkillButton> skillButtons { get; private set; } = new();
 
     void Clear()
@@ -32,7 +33,6 @@ public class UIHudCombat : UIHudBase
         }
         skillButtons.Clear();
     }
-
 
     public IEnumerator InitSkills(Board board)
     {
@@ -53,5 +53,11 @@ public class UIHudCombat : UIHudBase
     public void Show()
     {
         Opened();
+    }
+
+
+    public void Close()
+    {
+        Closed();
     }
 }

@@ -14,6 +14,7 @@ public class HUDCtrl : MonoBehaviour
         }
     }
 
+    public event System.Action OnAllClosed;
 
     Stack<UIHudBase> stack = new();
 
@@ -32,7 +33,13 @@ public class HUDCtrl : MonoBehaviour
     {
         stack.Pop();
         hud.SetContentVisible(false);
-        if (stack.TryPeek(out var top)) top.SetContentVisible(true);
+        if (stack.TryPeek(out var top))
+        {
+            top.SetContentVisible(true);
+        } else
+        {
+            OnAllClosed?.Invoke();
+        }
     }
 }
 

@@ -44,7 +44,6 @@ public partial class UICombatReward
         public override void Click()
         {
             CombatCtrl.current.ShowTileChoise(rarity);
-            UIHudSelectTile.current.SetHasParentWindow();
         }
 
         public override void InitUI(UICombatReward ui)
@@ -65,9 +64,7 @@ public partial class UICombatReward
 
         public override void Click()
         {
-
             CombatCtrl.current.ShowSkillChoise(rarity);
-            UIHudSelectTile.current.SetHasParentWindow();
         }
 
         public override void InitUI(UICombatReward ui)

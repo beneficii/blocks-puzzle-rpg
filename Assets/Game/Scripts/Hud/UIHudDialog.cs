@@ -42,7 +42,7 @@ public class UIHudDialog : UIHudBase
             sublist.Add(item);
         }
 
-        nextStageType = StageCtrl.current.Data.type;
+        SetNext(StageCtrl.current.Data.type);
     }
 
     public void Show(string id)
@@ -100,10 +100,13 @@ public class UIHudDialog : UIHudBase
         }
 
         if (CombatArena.current.enemy) CombatArena.current.enemy.SetDialog(null);
-
+        if (nextStageType != StageData.Type.None && nextStageType != StageData.Type.Dialog)
+        {
+            CombatCtrl.current.AddState(new CombatStates.InitStageType(nextStageType));
+        }
         Clear();
         Closed();
-        CombatCtrl.current.CheckQueue();
+        
     }
 
 }

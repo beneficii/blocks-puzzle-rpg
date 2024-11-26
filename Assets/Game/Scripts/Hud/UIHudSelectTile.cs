@@ -22,13 +22,6 @@ public class UIHudSelectTile : UIHudBase
 
     List<UISelectTileCard> cards = new();
 
-    bool backToCombatAfterClose = true;
-
-    public void SetHasParentWindow()
-    {
-        backToCombatAfterClose = false;
-    }
-
     int GetPrice(Rarity rarity, System.Random rng)
     {
         switch (rarity)
@@ -43,7 +36,6 @@ public class UIHudSelectTile : UIHudBase
 
     public void ShowShop(List<MyTileData> list, System.Random rng)
     {
-        backToCombatAfterClose = true;
         Opened();
         Clear();
         foreach (var data in list)
@@ -59,7 +51,6 @@ public class UIHudSelectTile : UIHudBase
     public UIHudSelectTile ShowChoise(List<SkillData> list) => ShowChoise(list.Cast<IHasInfo>().ToList());
     public UIHudSelectTile ShowChoise(List<IHasInfo> list)
     {
-        backToCombatAfterClose = true;
         Opened();
         Clear();
         foreach (var data in list)
@@ -95,10 +86,6 @@ public class UIHudSelectTile : UIHudBase
     {
         Clear();
         Closed();
-        if (backToCombatAfterClose)
-        {
-            CombatCtrl.current.CheckQueue();
-        }
     }
 
     void HandleCardSelected(UISelectTileCard card, SelectTileType type)

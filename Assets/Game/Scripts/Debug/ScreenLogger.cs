@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScreenLogger : MonoBehaviour
 {
 
-    private string log;
+    private string log = "";
     private const int MAXCHARS = 10000;
     private Queue myLogQueue = new Queue();
     void Start()

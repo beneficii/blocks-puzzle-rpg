@@ -27,7 +27,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     [SerializeField] List<SpriteRenderer> bgRenders;
     [SerializeField] UIGenericButton btnEndTurn;
 
-
     System.Random endLevelRandom;
 
     Board board;
@@ -44,9 +43,12 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     public int tilesPerTurn = 5;
 
+    bool dontCheckQueue;
+
     private void Awake()
     {
         tileQueue = new(Game.current.GetDeck());
+        HUDCtrl.current.OnAllClosed += HandleAllHudsClosed;
     }
 
     private void OnEnable()
@@ -62,6 +64,12 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         Unit.OnKilled -= HandleUnitKilled;
         UISelectTileCard.OnSelectCard -= HandleAddCardToSet;
         animSequence?.Kill();
+    }
+
+    void HandleAllHudsClosed()
+    {
+        if (dontCheckQueue) return;
+        CheckQueue();
     }
 
     public void CheckQueue()
@@ -180,7 +188,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     void HandleDeadEnd()
     {
-        btnEndTurn.SetNeedsAttention(true);;
+        btnEndTurn.SetNeedsAttention(true);
     }
 
     IEnumerator CombatFinished(bool victory)
@@ -189,14 +197,10 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         if (victory)
         {
-            //if (StageCtrl.current.Data.type == StageData.Type.Boss)
-            //{
-            //    UIHudGameOver.current.Show(true);
-            //}
-            //else
-            {
-                UIHudRewards.current.Show(GenerateCombatRewards());
-            }
+            dontCheckQueue = true;
+            UIHudCombat.current.Close();
+            UIHudRewards.current.Show(GenerateCombatRewards());
+            dontCheckQueue = false;
         }
         else
         {
@@ -216,6 +220,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     public IEnumerator TurnRoutine() => TurnRoutine(0.4f);
     public IEnumerator TurnRoutine(float delay)
     {
+        btnEndTurn.SetNeedsAttention(false);
         if (EndTurnInProgress)
         {
             yield break; // ToDo: maybe soome warning
@@ -330,6 +335,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
                 UIHudGameOver.current.Show(true);
                 break;
             default:
+                Debug.LogError($"Unknown Combat type init ({type})");
                 CheckQueue();
                 break;
         }

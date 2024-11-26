@@ -12,7 +12,7 @@ namespace GameActions
         string tag;
         ActionStatType statType;
         public override string GetDescription()
-            => $"Add {value} {statType} to {MyTile.GetTargetingTypeName(targetType)}";
+            => $"Add {value} {statType} to {MyTile.GetTargetingTypeName(targetType, tag)}";
 
         public BuffPower(TileTargetingType targetType, int value, string tag, ActionStatType statType)
         {
@@ -55,7 +55,7 @@ namespace GameActions
 
     public class BuffDefense : BuffPower
     {
-        public BuffDefense(TileTargetingType targetType, int value, string tag) : base(targetType, value, tag, ActionStatType.Damage)
+        public BuffDefense(TileTargetingType targetType, int value, string tag) : base(targetType, value, tag, ActionStatType.Defense)
         {
         }
 

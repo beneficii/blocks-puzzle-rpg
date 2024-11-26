@@ -67,6 +67,5 @@ public class UIHudRewards : UIHudBase
         }
 
         Close();
-        CombatCtrl.current.CheckQueue();
     }
 }

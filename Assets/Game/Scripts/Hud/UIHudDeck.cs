@@ -24,11 +24,9 @@ public class UIHudDeck : UIHudBase
     {
         Opened();
         Clear();
-        Debug.Log($"Deck show");
 
         foreach (var item in Game.current.GetDeck())
         {
-            Debug.Log($"Deck iter: {item.title}");
             var card = UIUtils.CreateFromTemplate(templateInfoCard);
             card.Init(item);
             cards.Add(card);
