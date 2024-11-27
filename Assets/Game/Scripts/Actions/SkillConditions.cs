@@ -1,7 +1,7 @@
 ﻿using FancyToolkit;
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using GridBoard;
 
 public abstract class SkillClickCondition
 {
@@ -30,6 +30,11 @@ public abstract class SkillClickCondition
         }
     }
 
+    public virtual void Destroy()
+    {
+
+    }
+
     public abstract void OnClicked();
 }
 
@@ -53,5 +58,83 @@ namespace SkillConditions
             public override SkillClickCondition Build() => new Once();
         }
 
+    }
+
+    public class Charge : SkillClickCondition, ILineClearHandler
+    {
+        int maxCharge;
+        int currentCharge;
+
+        public Charge(int maxCharge)
+        {
+            this.maxCharge = maxCharge;
+        }
+
+        int CurrentCharge
+        {
+            get => currentCharge;
+            set
+            {
+                currentCharge = Mathf.Min(value, maxCharge);
+                var full = currentCharge == maxCharge;
+                CanUse = full;
+                parent.CooldownFill = full ? 0f : 1f - (currentCharge / (float)maxCharge);
+            }
+        }
+
+        public override string GetDescription()
+        {
+            if (parent)
+            {
+                return $"Clear lines to charge ({currentCharge}/{maxCharge})";
+            }
+            else
+            {
+                return $"Clear {maxCharge} lines to charge";
+            }
+        }
+
+        public override bool StartingValue => true;
+        public override string GetErrorUnusable() => "Clear tiles to charge";
+
+        void AddCharge(int value)
+        {
+            if (CanUse) return; // is already charged
+            CurrentCharge = Mathf.Min(currentCharge + value, maxCharge);
+        }
+
+        public override void Init(UISkillButton parent)
+        {
+            base.Init(parent);
+            CurrentCharge = 0;
+
+            LineClearer.AddHandler(this);
+        }
+
+        public override void Destroy()
+        {
+            LineClearer.RemoveHandler(this);
+        }
+
+        public override void OnClicked()
+        {
+            CurrentCharge = 0;
+        }
+
+        public IEnumerator HandleLinesCleared(LineClearData clearData)
+        {
+            var totalCharge = clearData.rowsMatched + clearData.columnsMatched;
+            var goalCharge = Mathf.Min(maxCharge, currentCharge + totalCharge);
+            while (currentCharge < goalCharge)
+            {
+                AddCharge(1);
+                yield return null;
+            }
+        }
+
+        public class Builder : FactoryBuilder<SkillClickCondition, int>
+        {
+            public override SkillClickCondition Build() => new Charge(value);
+        }
     }
 }

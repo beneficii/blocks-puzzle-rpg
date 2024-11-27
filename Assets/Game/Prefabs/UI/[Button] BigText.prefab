@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3255533586180288200}
   - component: {fileID: 5371983160235292213}
   - component: {fileID: 6525828726993860323}
+  - component: {fileID: 6978485736482042821}
   m_Layer: 0
   m_Name: '[Button] BigText'
   m_TagString: Untagged
@@ -59,10 +60,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75909a8819987d4458a388844f805c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorHlAttention: {r: 0.5568628, g: 0.9921569, b: 0.79215693, a: 1}
+  clrTextGray: {r: 0.78823537, g: 0.7568628, b: 0.6, a: 1}
   txtCaption: {fileID: 5617831012511286351}
   imgHighlight: {fileID: 4802800404792060884}
   button: {fileID: 2821302244741104412}
+  shaderComponent: {fileID: 6978485736482042821}
+--- !u!114 &6978485736482042821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712053856983265067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6823cfd496a454db3f51ff08875386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1538566862738874738
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 9ecbada2a8dbc0e46b2f107388b6e052, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

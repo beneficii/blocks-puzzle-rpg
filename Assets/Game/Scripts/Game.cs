@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//#define TEST_SKILLS
+//#define TEST_TILES
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FancyToolkit;
@@ -6,6 +9,7 @@ using UnityEngine.SceneManagement;
 using RogueLikeMap;
 using GridBoard;
 using System.Linq;
+
 
 [DefaultExecutionOrder(-20)]
 public class Game : MonoBehaviour
@@ -28,7 +32,6 @@ public class Game : MonoBehaviour
     public Dictionary<string, Sprite> bgDict;
 
     int stageSeed;
-
 
     public GenericBullet MakeBullet(Vector2 position)
     {
@@ -142,16 +145,24 @@ public class Game : MonoBehaviour
 
     public List<TileData> GetDeck()
     {
+#if UNITY_EDITOR && TEST_TILES
+        return TileCtrl.current.GetAll().ToList();
+#else
         return state.deck
             .Select(TileCtrl.current.Get)
             .ToList();
+#endif
     }
 
     public List<SkillData> GetSkills()
     {
+#if UNITY_EDITOR && TEST_SKILLS
+        return SkillCtrl.current.GetAll().Take(maxSkills).ToList();
+#else
         return state.skills.Take(maxSkills)
             .Select(SkillCtrl.current.Get)
             .ToList();
+#endif
     }
 
     public string GetSceneToLoad()

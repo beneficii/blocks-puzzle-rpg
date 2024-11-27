@@ -12,6 +12,8 @@ namespace GridBoard
         [SerializeField] AudioClip soundMatchOne;
         [SerializeField] AudioClip soundMatchMultiple;
 
+        public static event System.Action<LineClearData> OnCleared;
+
         int[] rows;
         int[] columns;
 
@@ -132,6 +134,7 @@ namespace GridBoard
             }
 
             var clearData = new LineClearData(tileSet, rowsCount, columnsCount);
+            OnCleared?.Invoke(clearData);
 
             foreach (var handler in lineClearHandlers)
             {

@@ -10,8 +10,10 @@ using System.Text;
 public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
 {
     [SerializeField] Button button;
-    [SerializeField] Image imgIcon;
+    [SerializeField] UIMultiImage imgIcon;
     [SerializeField] Image imgBg;
+    [SerializeField] Image imgCdFill;
+    [SerializeField] UIShaderComponent shaderCtrl;
 
     public SkillData data { get; private set; }
 
@@ -28,6 +30,12 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
             power = value;
             //RefreshNumber();
         }
+    }
+
+    public float CooldownFill
+    {
+        get => imgCdFill.fillAmount;
+        set => imgCdFill.fillAmount = value;
     }
 
     public int Damage { get => Power; set => Power = value; }
@@ -94,6 +102,13 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
         {
             item.SetBoard(null);
         }
+        actionContainer.clickCondition.Destroy();
+    }
+
+    void SetUsableVisual(bool value)
+    {
+        shaderCtrl.SetGrayscale(!value);
+        //imgIcon.SetAlpha(value ? 1 : 0.2f);
     }
 
     public void RefreshUse()
@@ -101,7 +116,7 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
         if (actionContainer.clickCondition == null) return;
         bool canUse = actionContainer.clickCondition.CanUse;
 
-        imgIcon.SetAlpha(canUse ? 1 : 0.2f);
+        SetUsableVisual(canUse);
     }
 
     public Sprite GetIcon() => data.GetIcon();

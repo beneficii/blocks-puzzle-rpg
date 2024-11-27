@@ -3,18 +3,34 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using FancyToolkit;
 
 namespace FancyToolkit
 {
     public class UIGenericButton : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] Color colorHlAttention = Color.blue;
+        [SerializeField] Color clrTextGray = Color.gray;
 
         [Header("References")]
         [SerializeField] TextMeshProUGUI txtCaption;
         [SerializeField] Image imgHighlight;
         [SerializeField] Button button;
+        [SerializeField] UIShaderComponent shaderComponent;
+
+
+        Color clrTextNormal;
+
+        bool initDone;
+
+
+        public void EnsureInit()
+        {
+            if (initDone) return;
+            initDone = true;
+
+            clrTextNormal = txtCaption.color;
+        }
 
         public void SetNeedsAttention(bool value)
         {
@@ -23,11 +39,9 @@ namespace FancyToolkit
 
         public void SetInteractable(bool value)
         {
-            var cg = GetComponent<CanvasGroup>();
-            if (cg)
-            {
-                cg.alpha = value ? 1 : 0.3f;
-            }
+            EnsureInit();
+            txtCaption.color = value ? clrTextNormal : clrTextGray;
+            shaderComponent.SetGrayscale(!value);
         }
 
         public void SetText(string text)

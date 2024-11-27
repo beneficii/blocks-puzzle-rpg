@@ -225,7 +225,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         {
             yield break; // ToDo: maybe soome warning
         }
-        btnEndTurn.GetComponent<CanvasGroup>().alpha = 0.3f;
+        btnEndTurn.SetInteractable(false);
         EndTurnInProgress = true;   // ToDo: maybe lock button
         if (!arena.enemy) yield break;   // Let's wait end of combat
 
@@ -260,7 +260,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
 
         shapePanel.GenerateNew(false, tileQueue, tilesPerTurn);
-        btnEndTurn.GetComponent<CanvasGroup>().alpha = 1f;
+        btnEndTurn.SetInteractable(true);
         EndTurnInProgress = false;
     }
 
