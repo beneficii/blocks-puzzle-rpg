@@ -78,7 +78,8 @@ namespace SkillConditions
                 currentCharge = Mathf.Min(value, maxCharge);
                 var full = currentCharge == maxCharge;
                 CanUse = full;
-                parent.CooldownFill = full ? 0f : 1f - (currentCharge / (float)maxCharge);
+                var fill = full ? 0f : 1f - (currentCharge / (float)maxCharge);
+                parent.CooldownFill = fill; 
             }
         }
 

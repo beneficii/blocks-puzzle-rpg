@@ -85,11 +85,16 @@ public class TileActionContainer
 
         foreach (var item in pairs)
         {
-            var descr = item.Item1?.GetDescription();
+            var action = item.Item1;
+            if (action == null) continue;
+            var descr = action.GetDescription();
             if (string.IsNullOrWhiteSpace(descr)) continue;
 
             var sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(item.Item2)) sb.Append($"<b>{item.Item2}: </b>");
+            if (!action.OverrideDescriptionKey && !string.IsNullOrEmpty(item.Item2))
+            {
+                sb.Append($"<b>{item.Item2}: </b>");
+            }
 
             sb.Append(descr);
             lines.Add(sb.ToString());

@@ -121,6 +121,46 @@ namespace GameActions
         }
     }
 
+    public class ChangeSummon : PassiveEffect
+    {
+        string tag;
+        TileData data;
+
+        public override string GetDescription()
+        {
+            return $"Whenever you spawn {tag}, change it to '{data.title}'";
+        }
+
+        public ChangeSummon(string tag, string id)
+        {
+            this.tag = tag;
+            this.data = TileCtrl.current.Get(id);
+        }
+
+        void HandleSummon(SummonTileInfo summonInfo, MyTile target)
+        {
+            if (summonInfo.data.HasTag(tag))
+            {
+                summonInfo.data = data;
+            }
+        }
+
+        public class Builder : FactoryBuilder<ActionBase, string, string>
+        {
+            public override ActionBase Build() => new ChangeSummon(value, value2);
+        }
+
+        protected override void Add()
+        {
+            SummonTileInfo.OnApplied += HandleSummon;
+        }
+
+        protected override void Remove()
+        {
+            SummonTileInfo.OnApplied += HandleSummon;
+        }
+    }
+
     public class IfEnoughOnBoard : ActionBase
     {
         int amount;

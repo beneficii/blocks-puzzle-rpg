@@ -2,7 +2,6 @@
 using GridBoard;
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace GameActions
 {
@@ -34,7 +33,8 @@ namespace GameActions
         void Spawn(MyTile tile)
         {
             tile.SetBoard(parent.board);
-            tile.Init(GetData());
+            var summonInfo = new SummonTileInfo(GetData(), parent);
+            summonInfo.Apply(tile);
             tile.isActionLocked = true;
         }
 
@@ -66,6 +66,26 @@ namespace GameActions
         public class Builder : FactoryBuilder<ActionBase, int, string>
         {
             public override ActionBase Build() => new SpawnTile(value, value2);
+        }
+    }
+
+    public class SummonTileInfo
+    {
+        public static event System.Action<SummonTileInfo, MyTile> OnApplied;
+        
+        public TileData data;
+        public IActionParent source;
+
+        public SummonTileInfo(TileData data, IActionParent source = null)
+        {
+            this.data = data;
+            this.source = source;
+        }
+
+        public void Apply(MyTile target)
+        {
+            OnApplied?.Invoke(this, target);
+            target.Init(data);
         }
     }
 }
