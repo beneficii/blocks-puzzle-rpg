@@ -157,7 +157,7 @@ namespace GameActions
 
         protected override void Remove()
         {
-            SummonTileInfo.OnApplied += HandleSummon;
+            SummonTileInfo.OnApplied -= HandleSummon;
         }
     }
 

@@ -59,7 +59,7 @@ public class UIHudSelectTile : UIHudBase
             instance.Init(SelectTileType.Choise, data);
             cards.Add(instance);
         }
-        bg.SetActive(true);
+        bg.SetActive(false);
         return this;
     }
 

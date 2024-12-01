@@ -381,14 +381,6 @@ public class Unit : MonoBehaviour, IDamagable
     }
 }
 
-public enum Buffs
-{
-    None,
-    NoBlockRemove,
-    Vulnerable
-}
-
-
 public enum Team
 {
     Enemy,

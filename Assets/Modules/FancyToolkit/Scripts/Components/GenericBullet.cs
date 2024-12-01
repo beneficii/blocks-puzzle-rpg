@@ -96,6 +96,11 @@ namespace FancyToolkit
             return this;
         }
 
+        public IEnumerator Wait()
+        {
+            return new WaitWhile(() => this);
+        }
+
         void TargetReached()
         {
             if (!target)

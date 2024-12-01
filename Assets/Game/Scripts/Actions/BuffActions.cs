@@ -12,7 +12,7 @@ namespace GameActions
         string tag;
         ActionStatType statType;
         public override string GetDescription()
-            => $"Add {value} {statType} to {MyTile.GetTargetingTypeName(targetType, tag)}";
+            => $"{value.SignedStr()} {statType} to {MyTile.GetTargetingTypeName(targetType, tag)}";
 
         public BuffPower(TileTargetingType targetType, int value, string tag, ActionStatType statType)
         {
@@ -87,7 +87,7 @@ namespace GameActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            parent.Defense += value;
+            parent.Defense += value * multiplier;
             yield return new WaitForSeconds(.15f);
         }
 
@@ -106,7 +106,7 @@ namespace GameActions
 
         public override IEnumerator Run(int multiplier = 1)
         {
-            parent.Damage += value;
+            parent.Damage += value * multiplier;
             yield return new WaitForSeconds(.15f);
         }
 
@@ -183,6 +183,35 @@ namespace GameActions
         public class Builder : FactoryBuilder<ActionBase, TileTargetingType, int, string>
         {
             public override ActionBase Build() => new MultiplyPowerTag(value, value2, value3);
+        }
+    }
+
+    public class AddBuff : ActionBase
+    {
+        BuffBase nestedBuff;
+
+        public AddBuff(BuffBase nestedBuff)
+        {
+            this.nestedBuff = nestedBuff;
+        }
+
+        public override string GetDescription()
+            => $"\"{nestedBuff.GetDescription()}\" for the rest of the combat";
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            var player = CombatArena.current.player;
+            if (!player) yield break;
+            yield return MakeBullet(parent)
+                .SetTarget(player)
+                .Wait();
+
+            CombatCtrl.current.AddBuff(nestedBuff);
+        }
+
+        public class Builder : FactoryBuilder<ActionBase, FactoryBuilder<BuffBase>>
+        {
+            public override ActionBase Build() => new AddBuff(value.Build());
         }
     }
 }

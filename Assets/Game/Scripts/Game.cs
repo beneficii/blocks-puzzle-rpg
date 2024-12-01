@@ -1,5 +1,5 @@
-﻿//#define TEST_SKILLS
-//#define TEST_TILES
+﻿#define TEST_SKILLS
+#define TEST_TILES
 
 using System.Collections;
 using System.Collections.Generic;
@@ -210,6 +210,11 @@ public class Game : MonoBehaviour
 
     public void FinishLevel(int? playerHealth = null)
     {
+        if (state == null)
+        {
+            LoadScene();
+            return;
+        }
         if (playerHealth.HasValue)
         {
             state.playerHealth.x = playerHealth.Value;
@@ -218,6 +223,7 @@ public class Game : MonoBehaviour
         state.HasCurrentNode = false;
         state.Save();
         //LoadScene();
+        UIHudMap.current.Show();
     }
 
     public void GameOver()

@@ -49,13 +49,8 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
 
         button.interactable = false;
 
-        actionContainer = new SkillActionContainer(data);
-
-        foreach (var item in actionContainer.AllActions())
-        {
-            item.Init(this);
-        }
-        actionContainer.clickCondition.Init(this);
+        actionContainer = new SkillActionContainer(data, this);
+        actionContainer.clickCondition?.Init(this);
 
         if (board)
         {

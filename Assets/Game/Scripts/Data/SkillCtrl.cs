@@ -28,4 +28,14 @@ public class SkillCtrl : GenericDataCtrl<SkillData>
             item.sprite = sprites.Get(item.idVisual);
         }
     }
+
+    public void DebugAll()
+    {
+        var sb = new System.Text.StringBuilder();
+        foreach (var data in GetAll())
+        {
+            sb.AppendLine($"{data.name} : {data.GetDescription()}");
+        }
+        Debug.Log(sb.ToString());
+    }
 }

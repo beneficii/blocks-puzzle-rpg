@@ -35,6 +35,7 @@ namespace GridBoard
             emptyTile = Add(new TileData
             {
                 id = "empty",
+                title = "empty",
                 isEmpty = true,
                 idVisuals = null,
                 colorCode = "FFFFFF",
@@ -45,6 +46,7 @@ namespace GridBoard
             placeholderTile = Add(new TileData
             {
                 id = "placeholder",
+                title = "empty",
                 isEmpty = true,
                 idVisuals = null,
                 colorCode = "C65197",
@@ -76,5 +78,15 @@ namespace GridBoard
 
         public List<TileData> GetAllTiles() => GetAll().Where(x => x.rarity != Rarity.None).ToList();
         public List<TileData> GetAllTiles(Rarity rarity) => GetAll().Where(x => x.rarity == rarity).ToList();
+
+        public void DebugAll()
+        {
+            var sb = new System.Text.StringBuilder();
+            foreach (var data in GetAll())
+            {
+                sb.AppendLine($"{data.title} ({data.type}, {string.Join(", ", data.tags)}): {data.GetDescription()}");
+            }
+            Debug.Log(sb.ToString());
+        }
     }
 }

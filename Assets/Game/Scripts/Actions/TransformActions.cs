@@ -153,4 +153,59 @@ namespace GameActions
             public override ActionBase Build() => new TransformIn(value, value2, value3);
         }
     }
+
+
+    public class EraseAnd : ActionBase
+    {
+        TileTargetingType targeting;
+        string tag;
+        ActionBase nestedAction;
+
+        public EraseAnd(TileTargetingType targeting, string tag, ActionBase nestedAction)
+        {
+            this.targeting = targeting;
+            this.tag = tag;
+            this.nestedAction = nestedAction;
+        }
+
+        public override string GetDescription()
+        {
+            return $"Erase {MyTile.GetTargetingTypeName(targeting, tag)} and {nestedAction.GetDescription()} for each erased";
+        }
+
+        public override void Init(IActionParent parent)
+        {
+            base.Init(parent);
+            nestedAction.Init(parent);
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            var data = TileCtrl.current.emptyTile;
+            int count = 0;
+            foreach (var item in MyTile.FindTileTargets(parent, targeting, tag))
+            {
+                if (item.data.isEmpty) continue;
+                MakeBullet(parent)
+                        .SetTarget(item)
+                        .SetSpleen(default)
+                        .SetTileAction(x =>
+                        {
+                            x.Init(data);
+                            x.isActionLocked = true;
+                            count++;
+                        });
+
+                yield return new WaitForSeconds(.1f);
+            }
+            if (count == 0) yield break;
+
+            yield return nestedAction.Run(multiplier * count);
+        }
+
+        public class Builder : FactoryBuilder<ActionBase, TileTargetingType, string, FactoryBuilder<ActionBase>>
+        {
+            public override ActionBase Build() => new EraseAnd(value, value2, value3.Build());
+        }
+    }
 }

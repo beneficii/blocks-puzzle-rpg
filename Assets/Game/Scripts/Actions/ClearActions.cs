@@ -17,7 +17,7 @@ namespace GameActions
                 yield break;
             }
 
-            Run(match, multiplier);
+            yield return Run(match, multiplier);
         }
 
         protected abstract IEnumerator Run(LineClearData match, int multiplier = 1);
@@ -61,12 +61,12 @@ namespace GameActions
                 var tile = item as MyTile;
                 match.tiles.Remove(tile);
 
-                yield return tile.FadeOut(8f);
                 MakeBullet(tile)
                     .SetSpleen(default)
                     .SetSpeed(15)
                     .SetSprite(tile.data.sprite)
                     .SetTarget(parent.transform);
+                yield return tile.FadeOut(8f);
                 yield return new WaitForSeconds(.05f);
             }
             yield return new WaitForSeconds(.1f);

@@ -31,11 +31,12 @@ public class SkillData : DataWithId, IHasInfo, IActionParent
     {
         var lines = new List<string>();
 
+        bool autoActivate = container.clickCondition?.AutoActivate ?? false;
         var pairs = new List<System.Tuple<ActionBase, string>>
         {
             new(container.onStartCombat, "Start of combat"),
             new(container.onEndTurn, "Turn end"),
-            new(container.onClick, "Use"),
+            new(container.onClick, autoActivate?"Activate":"Use"),
         };
 
         foreach (var item in pairs)
@@ -77,7 +78,7 @@ public class SkillData : DataWithId, IHasInfo, IActionParent
         return name;
     }
 
-    public string GetDescription() => GetDescription(new SkillActionContainer(this));
+    public string GetDescription() => GetDescription(new SkillActionContainer(this, this));
 
     public List<string> GetTooltips()
     {
@@ -102,12 +103,17 @@ public class SkillActionContainer
         if (onStartCombat != null) yield return onStartCombat;
     }
 
-    public SkillActionContainer(SkillData data)
+    public SkillActionContainer(SkillData data, IActionParent parent)
     {
         onClick = data.onClick?.Build();
         onEndTurn = data.onEndTurn?.Build();
         onStartCombat = data.onStartCombat?.Build();
 
         clickCondition = data.clickCondition?.Build();
+
+        foreach (var item in AllActions())
+        {
+            item.Init(parent);
+        }
     }
 }

@@ -16,8 +16,8 @@ public class MyTile : Tile, IActionParent
     public MyTileData myData => data as MyTileData;
 
     [SerializeField] TextMeshPro txtPower;
-    
-    TileActionContainer actionContainer;
+
+    public TileActionContainer actionContainer { get; private set; }
 
     int power;
     public int Power

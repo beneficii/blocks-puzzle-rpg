@@ -4,6 +4,7 @@ using System.Collections;
 using System.Globalization;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace GameActions
 {
@@ -61,6 +62,54 @@ namespace GameActions
             {
                 return new ConsumeTagAnd(value, value2, value3, value4.Build());
             }
+        }
+    }
+
+    public class TriggerPlace : ActionBase
+    {
+        string tag;
+        TileTargetingType targetType;
+
+        public override string GetDescription()
+        {
+            return $"Trigger \"Enter\" effects of {MyTile.GetTargetingTypeName(targetType, tag)}";
+        }
+
+        public TriggerPlace(string tag, TileTargetingType targetType)
+        {
+            this.tag = tag;
+            this.targetType = targetType;
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            var targets = MyTile.FindTileTargets(parent, targetType, (x) =>
+            {
+                if (x.actionContainer?.enterAction == null) return false;
+                if (!x.HasTag(tag)) return false;
+
+                return true;
+            });
+            foreach (var target in targets)
+            {
+                yield return MakeBullet(parent)
+                    .SetTarget(target)
+                    .SetSpleen(default)
+                    .Wait();
+
+                if (!target) continue;
+                var enterAction = target.actionContainer?.enterAction;
+                if (enterAction == null) continue;
+                yield return enterAction.Run(multiplier);
+            }
+
+            yield return new WaitForSeconds(.1f);
+        }
+
+        public class Builder : FactoryBuilder<ActionBase, string, TileTargetingType>
+        {
+            public override ActionBase Build()
+                => new TriggerPlace(value, value2);
         }
     }
 
@@ -173,11 +222,11 @@ namespace GameActions
         {
             if (statType == ActionStatType.Damage)
             {
-                return $"Power from {MyTile.GetTargetingTypeName(targetType, tag)} is dealt as damage";
+                return $"{statType} from {MyTile.GetTargetingTypeName(targetType, tag)} is dealt as damage";
             }
             else if (statType == ActionStatType.Defense)
             {
-                return $"Power from {MyTile.GetTargetingTypeName(targetType, tag)} is added to your armor";
+                return $"{statType} from {MyTile.GetTargetingTypeName(targetType, tag)} is added to your armor";
             }
             else
             {
@@ -199,12 +248,7 @@ namespace GameActions
             {
                 total += target.Power;
                 var bullet = MakeBullet(target)
-                    .SetTarget(parent.AsComponent())
-                    .SetTileAction(x => {
-                        if (!target) return;
-                        x.Init(target.data);
-                        x.Power = target.Power;
-                    });
+                    .SetTarget(parent.AsComponent());
 
                 yield return new WaitForSeconds(.2f);
                 yield return new WaitWhile(() => bullet);

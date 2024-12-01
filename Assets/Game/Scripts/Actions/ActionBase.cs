@@ -25,7 +25,7 @@ public abstract class ActionBase
     {
         if (position == null)
         {
-            position = parent.transform.position;
+            position = source.transform.position;
         }
         var rand = Random.Range(0, 2) == 0;
         var bullet = Game.current.MakeBullet(position.Value)

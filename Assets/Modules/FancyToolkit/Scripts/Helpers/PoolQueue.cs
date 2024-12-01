@@ -9,6 +9,8 @@ namespace FancyToolkit
         List<T> initialList;
         Queue<T> queue;
 
+        public int Count => initialList.Count;
+
         public PoolQueue(IEnumerable<T> list)
         {
             Assert.IsTrue(list.Count() > 0);

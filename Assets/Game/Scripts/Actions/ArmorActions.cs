@@ -26,6 +26,43 @@ namespace GameActions
         }
     }
 
+    public class DefenseAnd : ActionBase
+    {
+        ActionBase nestedAction;
+
+        public override string GetDescription()
+            => $"Gain {parent.Defense} armor and {nestedAction.GetDescription()}";
+
+        public override ActionStatType StatType => ActionStatType.Defense;
+
+        public DefenseAnd(ActionBase nestedAction)
+        {
+            this.nestedAction = nestedAction;
+        }
+
+        public override void Init(IActionParent parent)
+        {
+            base.Init(parent);
+            nestedAction.Init(parent);
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            SetBulletDefense(MakeBullet(parent)
+                        .SetTarget(CombatArena.current.player)
+                        .SetLaunchDelay(0.2f)
+                        , parent.Defense * multiplier);
+
+            yield return new WaitForSeconds(.1f);
+            yield return nestedAction.Run(multiplier);
+        }
+
+        public class Builder : FactoryBuilder<ActionBase, FactoryBuilder<ActionBase>>
+        {
+            public override ActionBase Build() => new DefenseAnd(value.Build());
+        }
+    }
+
     public class EnemyDefense : ActionBase
     {
         public override string GetDescription()

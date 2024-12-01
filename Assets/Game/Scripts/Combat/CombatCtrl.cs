@@ -45,9 +45,18 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     bool dontCheckQueue;
 
+    List<BuffBase> buffs = new();
+
+    public void AddBuff(BuffBase buff)
+    {
+        buff.SetBoard(board);
+        buffs.Add(buff);
+    }
+
     private void Awake()
     {
         tileQueue = new(Game.current.GetDeck());
+        tilesPerTurn = 4;// + tileQueue.Count / 8;
         HUDCtrl.current.OnAllClosed += HandleAllHudsClosed;
     }
 
@@ -66,6 +75,14 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         animSequence?.Kill();
     }
 
+    private void OnDestroy()
+    {
+        foreach (var item in buffs)
+        {
+            item.SetBoard(null);
+        }
+    }
+
     void HandleAllHudsClosed()
     {
         if (dontCheckQueue) return;
@@ -81,7 +98,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             if (player) playerHp = player.health.Value;
 
             Game.current.FinishLevel(playerHp);
-            UIHudMap.current.Show();
             return;
         }
 
@@ -341,6 +357,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
     }
 
+
     IEnumerator Start()
     {
         if (Game.current.GetStateType() == Game.StateType.Map)
@@ -394,7 +411,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            MainUI.current.ShowMessage("Some test message!");
+            TileCtrl.current.DebugAll();
+            SkillCtrl.current.DebugAll();
         }
 
 #endif
