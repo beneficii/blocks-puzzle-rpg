@@ -1,5 +1,5 @@
-﻿#define TEST_SKILLS
-#define TEST_TILES
+﻿//#define TEST_SKILLS
+//#define TEST_TILES
 
 using System.Collections;
 using System.Collections.Generic;
@@ -154,6 +154,14 @@ public class Game : MonoBehaviour
 #endif
     }
 
+    public CombatSettings GetCombatSettings()
+    {
+        return new CombatSettings()
+        {
+            tilesPerTurn = state.tilesPerTurn
+        };
+    }
+
     public List<SkillData> GetSkills()
     {
 #if UNITY_EDITOR && TEST_SKILLS
@@ -208,7 +216,7 @@ public class Game : MonoBehaviour
         LoadScene();
     }
 
-    public void FinishLevel(int? playerHealth = null)
+    public void FinishLevel(CombatSettings combatSettings, int? playerHealth = null)
     {
         if (state == null)
         {

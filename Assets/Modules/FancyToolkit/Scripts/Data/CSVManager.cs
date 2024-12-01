@@ -26,7 +26,7 @@ namespace FancyToolkit
         return;
 #elif UNITY_ANDROID && !UNITY_EDITOR
             csvDirectory = Path.Combine("/storage/emulated/0/Documents", Application.productName, csvSubDirectory);
-            usePersistentStorage = true;
+            //usePersistentStorage = true;
 #else
             csvDirectory = Path.Combine(Application.persistentDataPath, csvSubDirectory);
 #endif

@@ -41,7 +41,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     Queue<CombatState> stateQueue = new();
 
-    public int tilesPerTurn = 5;
+    int tilesPerTurn;
 
     bool dontCheckQueue;
 
@@ -56,7 +56,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     private void Awake()
     {
         tileQueue = new(Game.current.GetDeck());
-        tilesPerTurn = 4;// + tileQueue.Count / 8;
+        var settings = Game.current.GetCombatSettings();
+        tilesPerTurn = settings.tilesPerTurn;
         HUDCtrl.current.OnAllClosed += HandleAllHudsClosed;
     }
 
@@ -97,7 +98,10 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             var player = CombatArena.current.player;
             if (player) playerHp = player.health.Value;
 
-            Game.current.FinishLevel(playerHp);
+            Game.current.FinishLevel(new()
+            {
+                tilesPerTurn = tilesPerTurn,
+            }, playerHp);
             return;
         }
 
@@ -448,6 +452,11 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             yield return tile.OnCleared(clearData);
         }
     }
+}
+
+public class CombatSettings
+{
+    public int tilesPerTurn;
 }
 
 public enum MatchStat

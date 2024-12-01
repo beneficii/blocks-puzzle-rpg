@@ -14,6 +14,7 @@ public class GameState
     public int seed;
     public List<int> visitedNodes;
     public int currentNode;
+    public int tilesPerTurn;
     public Vector2Int playerHealth;
     public List<string> deck;
     public List<string> skills;
@@ -128,6 +129,7 @@ public class GameState
         this.deck = Game.current.GetStartingDeck();
         this.skills = new List<string>();
         this.gold = 200;
+        this.tilesPerTurn = 4;
         GenerateMapLayout();
     }
 }
