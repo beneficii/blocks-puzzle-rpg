@@ -45,6 +45,7 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
     {
         this.data = data;
         this.board = board;
+        this.power = data.power;
         imgIcon.sprite = data.sprite;
 
         button.interactable = false;
