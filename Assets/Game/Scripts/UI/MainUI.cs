@@ -21,14 +21,19 @@ public class MainUI : MonoBehaviour
     }
 
     [SerializeField] UITooltipMessage templateMessage;
+    [SerializeField] AudioClip soundReject;
 
     UITooltipMessage lastMessage;
 
-    public void ShowMessage(string message)
+    public void ShowMessage(string message, bool rejectSound = true)
     {
         if (lastMessage)
         {
             lastMessage.Fade();
+        }
+        if (rejectSound)
+        {
+            soundReject?.PlayWithRandomPitch(.1f);
         }
 
         lastMessage = UIUtils.CreateFromTemplate(templateMessage);

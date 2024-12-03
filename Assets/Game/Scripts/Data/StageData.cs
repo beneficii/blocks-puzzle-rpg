@@ -13,6 +13,8 @@ public class StageData : NodeType
     public string specialTile;
     public string background;
     public string dialog;
+    public string gameOverText;
+    
 
     public override void Run(NodeInfo info)
     {

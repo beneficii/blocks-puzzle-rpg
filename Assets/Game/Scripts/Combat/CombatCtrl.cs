@@ -224,8 +224,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
         else
         {
+            UIHudGameOver.current.Show(false, StageCtrl.current.Data.gameOverText);
             Game.current.GameOver();
-            UIHudGameOver.current.Show(false);
         }
 
     }

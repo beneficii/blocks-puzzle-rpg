@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using UnityEngine;
 
 namespace GridBoard
@@ -41,7 +42,13 @@ namespace GridBoard
         public virtual string GetDescription() => GetDescription(null);
         public Sprite GetIcon() => sprite;
 
-        public List<string> GetTags() => tags;
+        public List<string> GetTags()
+        {
+            var result = tags.ToList();
+            result.Add(type.ToString().ToLower());
+
+            return result;
+        }
 
         public string GetTitle() => title;
         public List<string> GetTooltips() => new();

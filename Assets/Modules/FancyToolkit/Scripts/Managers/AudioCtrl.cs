@@ -15,6 +15,8 @@ namespace FancyToolkit
         public AudioSource music;
         public AudioSource effects;
 
+        public List<AudioClip> randomMusic = new();
+
         public AudioClip clipTakeCard;
         public AudioClip clipDrawPile;
         public AudioClip clipUseCard;
@@ -52,6 +54,12 @@ namespace FancyToolkit
 
             VolumeMusic = PlayerPrefs.GetFloat(prefsKeyMusicVolume, 1f);
             VolumeSound = PlayerPrefs.GetFloat(prefsKeySoundVolume, 1f);
+            var randClip = randomMusic.Rand();
+            if (randClip != null)
+            {
+                music.clip = randClip;
+                music.Play();
+            }
         }
 
         void SavePrefsOnClose()

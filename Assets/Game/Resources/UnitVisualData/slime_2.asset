@@ -47,6 +47,6 @@ MonoBehaviour:
   actionPos: {x: 1.61, y: 2.524}
   fxAttack: {fileID: 11400000, guid: 85e93547b6986fa42871fa4d63a9682f, type: 2}
   fxDeath: {fileID: 11400000, guid: 6e320275708c4ca4083e128bf7904fa5, type: 2}
-  soundAttack: {fileID: 0}
-  soundAbility: {fileID: 0}
-  soundDeath: {fileID: 0}
+  soundAttack: {fileID: 8300000, guid: 435683fc6125a224dab28bf7490bebde, type: 3}
+  soundAbility: {fileID: 8300000, guid: 0535ebc6b925e7141a362e2b31a22b63, type: 3}
+  soundDeath: {fileID: 8300000, guid: 3f4105aacff8dab4898c07edd5a95b08, type: 3}

@@ -1,0 +1,1917 @@
+fileFormatVersion: 2
+guid: ae30e970bdef5e14381065f23f3d934b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6616118173957626515
+    second: map_treelayer_0
+  - first:
+      213: -2192042381025318763
+    second: map_treelayer_1
+  - first:
+      213: 3426915053605399849
+    second: map_treelayer_2
+  - first:
+      213: -3016890861279564164
+    second: map_treelayer_3
+  - first:
+      213: 8169932065838446430
+    second: map_treelayer_4
+  - first:
+      213: -2739289859734603711
+    second: map_treelayer_5
+  - first:
+      213: -8649362733664807527
+    second: map_treelayer_6
+  - first:
+      213: 5477652032106630669
+    second: map_treelayer_7
+  - first:
+      213: -5042532454150351129
+    second: map_treelayer_8
+  - first:
+      213: 980340419030225306
+    second: map_treelayer_9
+  - first:
+      213: -4030199850404023082
+    second: map_treelayer_10
+  - first:
+      213: 8485759900709766263
+    second: map_treelayer_11
+  - first:
+      213: -3947102551580389383
+    second: map_treelayer_12
+  - first:
+      213: -3960398559343199121
+    second: map_treelayer_13
+  - first:
+      213: -61049103773454501
+    second: map_treelayer_14
+  - first:
+      213: -8277650247777726198
+    second: map_treelayer_15
+  - first:
+      213: -7104821336743615511
+    second: map_treelayer_16
+  - first:
+      213: 5559773546004494731
+    second: map_treelayer_17
+  - first:
+      213: -8848162602720066649
+    second: map_treelayer_18
+  - first:
+      213: -2342390056257154920
+    second: map_treelayer_19
+  - first:
+      213: 7971334920035880318
+    second: map_treelayer_20
+  - first:
+      213: 3863089927253020640
+    second: map_treelayer_21
+  - first:
+      213: 6611905442091221933
+    second: map_treelayer_22
+  - first:
+      213: 5336950231907348974
+    second: map_treelayer_23
+  - first:
+      213: -506857752842030364
+    second: map_treelayer_24
+  - first:
+      213: -4587082992750819551
+    second: map_treelayer_25
+  - first:
+      213: -4627418292560333468
+    second: map_treelayer_26
+  - first:
+      213: -5117158855600968515
+    second: map_treelayer_27
+  - first:
+      213: 1082911633821226862
+    second: map_treelayer_28
+  - first:
+      213: 7784933629271101640
+    second: map_treelayer_29
+  - first:
+      213: 7447181938506855559
+    second: map_treelayer_30
+  - first:
+      213: 1332851429902337531
+    second: map_treelayer_31
+  - first:
+      213: -6750443385020500193
+    second: map_treelayer_32
+  - first:
+      213: -3056672355410555481
+    second: map_treelayer_33
+  - first:
+      213: 4266868459271511565
+    second: map_treelayer_34
+  - first:
+      213: 2949554890474251196
+    second: map_treelayer_35
+  - first:
+      213: 4709868761778257291
+    second: map_treelayer_36
+  - first:
+      213: 5849372594686179652
+    second: map_treelayer_37
+  - first:
+      213: -5939936697506226023
+    second: map_treelayer_38
+  - first:
+      213: -3649236257005023903
+    second: map_treelayer_39
+  - first:
+      213: 5296174812239385252
+    second: map_treelayer_40
+  - first:
+      213: 7888124036519529781
+    second: map_treelayer_41
+  - first:
+      213: 1633832150152944037
+    second: map_treelayer_42
+  - first:
+      213: 4330237090736540873
+    second: map_treelayer_43
+  - first:
+      213: -3579918064792139834
+    second: map_treelayer_44
+  - first:
+      213: -3564462017558665997
+    second: map_treelayer_45
+  - first:
+      213: 6480736500565782476
+    second: map_treelayer_46
+  - first:
+      213: -2174698181176722265
+    second: map_treelayer_47
+  - first:
+      213: 2298883042855404692
+    second: map_treelayer_48
+  - first:
+      213: -1789446146180464471
+    second: map_treelayer_49
+  - first:
+      213: 5797071814754978878
+    second: map_treelayer_50
+  - first:
+      213: 5057641556877411128
+    second: map_treelayer_51
+  - first:
+      213: -8525823940603645151
+    second: map_treelayer_52
+  - first:
+      213: -5211886935488295905
+    second: map_treelayer_53
+  - first:
+      213: -6805782949778970191
+    second: map_treelayer_54
+  - first:
+      213: 2394338423978037571
+    second: map_treelayer_55
+  - first:
+      213: -3501495344993402283
+    second: map_treelayer_56
+  - first:
+      213: 5184477138183921069
+    second: map_treelayer_57
+  - first:
+      213: -8542167826927544714
+    second: map_treelayer_58
+  - first:
+      213: 722596711621199594
+    second: map_treelayer_59
+  - first:
+      213: -681003467740909213
+    second: map_treelayer_60
+  - first:
+      213: 4678627921088722808
+    second: map_treelayer_61
+  - first:
+      213: 9088542656686733376
+    second: map_treelayer_62
+  - first:
+      213: -7621405721149051457
+    second: map_treelayer_63
+  - first:
+      213: -1528326612785590662
+    second: map_treelayer_64
+  - first:
+      213: -286048736848396517
+    second: map_treelayer_65
+  - first:
+      213: 2820439834571818142
+    second: map_treelayer_66
+  - first:
+      213: 3714093757870860708
+    second: map_treelayer_67
+  - first:
+      213: -1888054909482315954
+    second: map_treelayer_68
+  - first:
+      213: 8053319263506919091
+    second: map_treelayer_69
+  - first:
+      213: -4737765142511003187
+    second: map_treelayer_70
+  - first:
+      213: -1315579404548291710
+    second: map_treelayer_71
+  - first:
+      213: 6850449065561052297
+    second: map_treelayer_72
+  - first:
+      213: 8677150195784581359
+    second: map_treelayer_73
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: map_treelayer_0
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 509
+        width: 13
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39a10ceec6c21db50800000000000000
+      internalID: 6616118173957626515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_1
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 499
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5986262811d4491e0800000000000000
+      internalID: -2192042381025318763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_2
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 462
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92da69da519de8f20800000000000000
+      internalID: 3426915053605399849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_3
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 482
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e2f4feeb9d126d0800000000000000
+      internalID: -3016890861279564164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_4
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 474
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57bf5f7ded616170800000000000000
+      internalID: 8169932065838446430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_5
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 476
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14870bdc2661cf9d0800000000000000
+      internalID: -2739289859734603711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_6
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 469
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99558668b6a47f780800000000000000
+      internalID: -8649362733664807527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_7
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 436
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0e89e85087840c40800000000000000
+      internalID: 5477652032106630669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_8
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 446
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e65dfd0373550ab0800000000000000
+      internalID: -5042532454150351129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_9
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 447
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a911143ca6eda9d00800000000000000
+      internalID: 980340419030225306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_10
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 442
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d4f5d6c69ad118c0800000000000000
+      internalID: -4030199850404023082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_11
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 453
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7744f039ba973c570800000000000000
+      internalID: 8485759900709766263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_12
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 418
+        width: 37
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff430954231939c0800000000000000
+      internalID: -3947102551580389383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_13
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 432
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6c316d4e76d909c0800000000000000
+      internalID: -3960398559343199121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_14
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 386
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5f2abfd92c172ff0800000000000000
+      internalID: -61049103773454501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_15
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 400
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01d84ed4f0ef1d80800000000000000
+      internalID: -8277650247777726198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_16
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 391
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3e7ce13aa966d90800000000000000
+      internalID: -7104821336743615511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_17
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 375
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8936394598482d40800000000000000
+      internalID: 5559773546004494731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_18
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 358
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a389fd0ef2053580800000000000000
+      internalID: -8848162602720066649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_19
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 374
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 890926387a82e7fd0800000000000000
+      internalID: -2342390056257154920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_20
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 358
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7dc76630eedf9e60800000000000000
+      internalID: 7971334920035880318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_21
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 350
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef4e4142d37c9530800000000000000
+      internalID: 3863089927253020640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_22
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 330
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3c15cd7f432cb50800000000000000
+      internalID: 6611905442091221933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_23
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 296
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee1b6c4a5f7a01a40800000000000000
+      internalID: 5336950231907348974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_24
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 315
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e2b23a2f8747f8f0800000000000000
+      internalID: -506857752842030364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_25
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 299
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1270add42586750c0800000000000000
+      internalID: -4587082992750819551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_26
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 312
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 465fbcc749b18cfb0800000000000000
+      internalID: -4627418292560333468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_27
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 305
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbce8a8f1233cf8b0800000000000000
+      internalID: -5117158855600968515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_28
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 320
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e675d09b466470f00800000000000000
+      internalID: 1082911633821226862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_29
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 284
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c052b4b3e3a90c60800000000000000
+      internalID: 7784933629271101640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_30
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 295
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784f7662484b95760800000000000000
+      internalID: 7447181938506855559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_31
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 295
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf543b1505d3f7210800000000000000
+      internalID: 1332851429902337531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_32
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 263
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f17b777b18b9152a0800000000000000
+      internalID: -6750443385020500193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_33
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 269
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad4ffc00b48495d0800000000000000
+      internalID: -3056672355410555481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_34
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 214
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0e5232c146f63b30800000000000000
+      internalID: 4266868459271511565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_35
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 222
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3eb34ab8ceee820800000000000000
+      internalID: 2949554890474251196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_36
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 226
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d70845fa0dc5140800000000000000
+      internalID: 4709868761778257291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_37
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 214
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449bc2132652d2150800000000000000
+      internalID: 5849372594686179652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_38
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 174
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990a5d47b0b119da0800000000000000
+      internalID: -5939936697506226023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_39
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 190
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d4dbf65fe4b5dc0800000000000000
+      internalID: -3649236257005023903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_40
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 191
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a256ef6eeacf7940800000000000000
+      internalID: 5296174812239385252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_41
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 186
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53d87f4a40f387d60800000000000000
+      internalID: 7888124036519529781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_42
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 182
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a99a742fa98ca610800000000000000
+      internalID: 1633832150152944037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_43
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 196
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc829201b7181c30800000000000000
+      internalID: 4330237090736540873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_44
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 186
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c78f0fbc73915ec0800000000000000
+      internalID: -3579918064792139834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_45
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 141
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f42b0c2eac788ec0800000000000000
+      internalID: -3564462017558665997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_46
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 152
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccfa127c28330f950800000000000000
+      internalID: 6480736500565782476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_47
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 148
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7acf549b68be1d1e0800000000000000
+      internalID: -2174698181176722265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_48
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 143
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 494c09d82f547ef10800000000000000
+      internalID: 2298883042855404692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_49
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 125
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a0c830063c9a27e0800000000000000
+      internalID: -1789446146180464471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_50
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 126
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3c46efe916537050800000000000000
+      internalID: 5797071814754978878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_51
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 110
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8338eee033a503640800000000000000
+      internalID: 5057641556877411128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_52
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 108
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1237cca3c403ea980800000000000000
+      internalID: -8525823940603645151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_53
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 111
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c88b82278aba7b0800000000000000
+      internalID: -5211886935488295905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_54
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 102
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b9a30c37700d81a0800000000000000
+      internalID: -6805782949778970191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_55
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 78
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34197416c166a3120800000000000000
+      internalID: 2394338423978037571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_56
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 85
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5520cf21980386fc0800000000000000
+      internalID: -3501495344993402283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_57
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 97
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dad16971d76f2f740800000000000000
+      internalID: 5184477138183921069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_58
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 84
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6769638ae9f147980800000000000000
+      internalID: -8542167826927544714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_59
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 88
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae60c0871ed270a00800000000000000
+      internalID: 722596711621199594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_60
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 96
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3617e7644f69c86f0800000000000000
+      internalID: -681003467740909213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_61
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 104
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 877b7b84e43dde040800000000000000
+      internalID: 4678627921088722808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_62
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 85
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0483cc1a46df02e70800000000000000
+      internalID: 9088542656686733376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_63
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 70
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbde7c560e35b3690800000000000000
+      internalID: -7621405721149051457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_64
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 81
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7e83280b0b4acae0800000000000000
+      internalID: -1528326612785590662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_65
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 42
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1fb3bb7030c70cf0800000000000000
+      internalID: -286048736848396517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_66
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 42
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e94c3021617342720800000000000000
+      internalID: 2820439834571818142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_67
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 61
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a9636c389c1b8330800000000000000
+      internalID: 3714093757870860708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_68
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 46
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4fcfdb20184cc5e0800000000000000
+      internalID: -1888054909482315954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_69
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 60
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bee32ca33323cf60800000000000000
+      internalID: 8053319263506919091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_70
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 36
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc9576364b3104eb0800000000000000
+      internalID: -4737765142511003187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_71
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 18
+        width: 18
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2834416708f1ebde0800000000000000
+      internalID: -1315579404548291710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_72
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 4
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9845ca0412fa11f50800000000000000
+      internalID: 6850449065561052297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: map_treelayer_73
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 16
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe0837a212e6b6870800000000000000
+      internalID: 8677150195784581359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprites_0: 6128299156075563123
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

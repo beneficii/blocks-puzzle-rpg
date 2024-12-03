@@ -17,10 +17,30 @@ public class UIHudGameOver : UIHudBase
     }
 
     [SerializeField] TextMeshProUGUI txtTitle;
+    [SerializeField] TextMeshProUGUI txtDescription;
 
-    public void Show(bool victory)
+    [SerializeField] GameObject ornamentVictory;
+    [SerializeField] GameObject ornamentDefeat;
+
+    public void Show(bool victory, string description = null)
     {
         txtTitle.text = victory ? "Victory!" : "Defeat";
+        ornamentVictory.SetActive(victory);
+        ornamentDefeat.SetActive(!victory);
+        if (string.IsNullOrWhiteSpace(description))
+        {
+            txtDescription.text = "";
+        }
+        else
+        {
+            txtDescription.text = description;
+        }
+
+        if (victory)
+        {
+            txtDescription.text = "You’ve conquered the Arcane Board demo! Wishlist the full game on Steam to continue your journey and face even greater challenges!";
+        }
+
         Opened();
     }
 

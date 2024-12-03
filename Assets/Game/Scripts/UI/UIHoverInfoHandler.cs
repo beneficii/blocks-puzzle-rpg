@@ -13,11 +13,11 @@ public class UIHoverInfoHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        hoverInfoCtrl.LockOnUIElement(transform);
+        //hoverInfoCtrl.LockOnUIElement(transform);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        hoverInfoCtrl.LockOnUIElement(null);
+        //hoverInfoCtrl.LockOnUIElement(null);
     }
 }

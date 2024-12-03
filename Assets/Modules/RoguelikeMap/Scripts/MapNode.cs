@@ -13,6 +13,7 @@ namespace RogueLikeMap
         [SerializeField] SpriteRenderer render;
         [SerializeField] SpriteRenderer circle;
         [SerializeField] SpriteRenderer cross;
+        [SerializeField] SpriteShaderComponent shaderCtrl;
 
         [SerializeField] public NodeInfo info;// { get; private set; }
 
@@ -71,6 +72,7 @@ namespace RogueLikeMap
             render.transform.localScale = Vector3.one;
             attentionSequence?.Kill();
             attentionSequence = null;
+            shaderCtrl.SetGrayscale(false);
         }
 
         public void SetState(NodeState state)
@@ -100,6 +102,7 @@ namespace RogueLikeMap
                 case NodeState.Visited:
                     //RotateCircle();
                     cross.SetAlpha(1f);
+                    shaderCtrl.SetGrayscale(true);
                     //circle.transform.localScale = Vector2.one * 2;
                     break;
                 case NodeState.Current:
