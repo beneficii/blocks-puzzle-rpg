@@ -42,6 +42,7 @@ namespace FancyToolkit
             EnsureInit();
             txtCaption.color = value ? clrTextNormal : clrTextGray;
             shaderComponent.SetGrayscale(!value);
+            button.interactable = value;
         }
 
         public void SetText(string text)

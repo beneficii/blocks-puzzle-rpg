@@ -20,6 +20,7 @@ public class UIHoverInfo : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+        foreach (var item in hints) item.Hide();
     }
 
     void Show(IHasInfo info)

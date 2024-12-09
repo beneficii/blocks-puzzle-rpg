@@ -24,5 +24,8 @@ public class UnitVisualData : ScriptableObject
 
     public AudioClip soundAttack;
     public AudioClip soundAbility;
+    public AudioClip soundGetHitArmor;
+    public AudioClip soundGetHit;
+    public AudioClip soundGetHitHard;
     public AudioClip soundDeath;
 }

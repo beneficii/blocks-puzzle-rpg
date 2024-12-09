@@ -66,4 +66,7 @@ MonoBehaviour:
   fxDeath: {fileID: 11400000, guid: 6e320275708c4ca4083e128bf7904fa5, type: 2}
   soundAttack: {fileID: 8300000, guid: 33f6bedab64efcc44a8d09932935336e, type: 3}
   soundAbility: {fileID: 8300000, guid: 0535ebc6b925e7141a362e2b31a22b63, type: 3}
+  soundGetHitArmor: {fileID: 8300000, guid: 5893aa26102804d4895434bd73072ec3, type: 3}
+  soundGetHit: {fileID: 8300000, guid: f3065a28363ca4f4a886a768aa58ca50, type: 3}
+  soundGetHitHard: {fileID: 8300000, guid: 536581d7438c31740b851879cf5db3d0, type: 3}
   soundDeath: {fileID: 8300000, guid: 3f4105aacff8dab4898c07edd5a95b08, type: 3}

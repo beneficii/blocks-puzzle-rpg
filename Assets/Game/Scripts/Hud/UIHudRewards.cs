@@ -33,7 +33,6 @@ public class UIHudRewards : UIHudBase
 
     public void Show(List<UICombatReward.Data> rewards)
     {
-        Opened();
         Clear();
         foreach (var item in rewards)
         {
@@ -41,11 +40,22 @@ public class UIHudRewards : UIHudBase
             instance.Init(item);
             instantiatedItems.Add(instance);
         }
+        Opened();
     }
 
     private void OnDisable()
     {
         warningSkip.gameObject.SetActive(false);
+    }
+
+    protected override void OnConectentVisible()
+    {
+        // close this if there are no items left
+        foreach (var item in instantiatedItems)
+        {
+            if (item) return;
+        }
+        Close();
     }
 
     public void Close()

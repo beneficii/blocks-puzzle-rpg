@@ -6,4 +6,4 @@ shieldRush,backup,Guard Formation,0,Common,Charge 5,ConvertPowerTo Damage Bigges
 doubleLantern,double_lantern,Echoing Lantern,0,Common,Charge 8,TriggerPlace any all,,
 swordsmanship,swordsmanship,Swordsmanship,0,Common,AutoCharge 9,AddBuff AddPower Damage 1 sword,,
 last_stand,last_stand,Spare Helmet,30,Common,Once,Defense,,
-pathchwork,pathchwork,Patchwork,0,Common,AutoCharge 5,BuffDefense Biggest 2 shield,,
+pathchwork,pathchwork,Patchwork,0,Common,AutoCharge 5,BuffDefense Biggest 3 shield,,

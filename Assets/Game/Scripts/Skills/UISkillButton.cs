@@ -9,6 +9,9 @@ using System.Text;
 
 public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
 {
+    public static event System.Action<UISkillButton> OnUsed;
+    public static event System.Action<UISkillButton> OnAviableToUse;
+
     [SerializeField] Button button;
     [SerializeField] UIMultiImage imgIcon;
     [SerializeField] Image imgBg;
@@ -31,6 +34,8 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
             //RefreshNumber();
         }
     }
+
+    public bool HasManualUse => !(actionContainer.clickCondition?.AutoActivate??true);
 
     public float CooldownFill
     {
@@ -82,6 +87,7 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
 
         actionContainer.clickCondition.OnClicked();
         StartCoroutine(actionContainer.onClick.Run());
+        OnUsed?.Invoke(this);
     }
 
     public IEnumerator EndTurn()
@@ -103,8 +109,11 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
 
     void SetUsableVisual(bool value)
     {
+        if (value)
+        {
+            OnAviableToUse?.Invoke(this);
+        }
         shaderCtrl.SetGrayscale(!value);
-        //imgIcon.SetAlpha(value ? 1 : 0.2f);
     }
 
     public void RefreshUse()

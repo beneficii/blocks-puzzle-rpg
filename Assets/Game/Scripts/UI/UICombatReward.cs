@@ -37,8 +37,8 @@ public partial class UICombatReward : MonoBehaviour
 
     public void Click()
     {
-        data.Click();
         OnClicked?.Invoke(this);
+        data.Click();
 
         Remove();
     }

@@ -382,7 +382,7 @@ namespace GridBoard
         }
 
         public string GetTitle() => data?.title ?? string.Empty;
-        public List<string> GetTooltips() => new();
+        public List<string> GetTooltips() => data.GetTooltips();
 
         public bool ShouldShowInfo() => !data.isEmpty;
 

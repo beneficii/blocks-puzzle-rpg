@@ -73,10 +73,10 @@ namespace FancyToolkit
             SavePrefsOnClose();
         }
 
-        public void Play(AudioClip clip, float volumeScale = 1f)
+        public void Play(AudioClip clip)
         {
             if (!clip) return;
-            effects.PlayOneShot(clip, volumeScale);
+            effects.PlayOneShot(clip, VolumeSound);
         }
 
         public void PlayRandomPitch(AudioClip clip, float range)
@@ -85,7 +85,7 @@ namespace FancyToolkit
 
             var newSource = gameObject.AddComponent<AudioSource>();
             newSource.pitch = 1f + Random.Range(-range, range);
-            newSource.PlayOneShot(clip);
+            newSource.PlayOneShot(clip, VolumeSound);
             Destroy(newSource, clip.length + 0.1f);
         }
 
@@ -114,7 +114,7 @@ namespace FancyToolkit
 
     public static class AudioExtensions
     {
-        public static void PlayNow(this AudioClip clip, float volume = 1f)
+        public static void PlayNow(this AudioClip clip)
         {
             AudioCtrl.current?.Play(clip);
         }

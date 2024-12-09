@@ -12,6 +12,7 @@ namespace TileShapes
         public static System.Action<Shape, bool> OnDragState;
 
         public System.Action<Shape, Vector2Int> OnDropped;
+        public static System.Action<Shape, Vector2Int> OnDroppedStatic;
 #if UNITY_ANDROID && !UNITY_EDITOR                               
         public const float offsetDrag = 3;
 #else
@@ -188,6 +189,7 @@ namespace TileShapes
                 board.GenerateEmptyTileQueue();
                 //foreach (var block in placed) block.SetBg(data.spriteIdx);
                 OnDropped?.Invoke(this, pos);
+                OnDroppedStatic?.Invoke(this, pos);
                 soundPlace?.PlayWithRandomPitch(0.2f);
                 transform.localScale = Vector3.zero;
                 shouldDestroy = true;

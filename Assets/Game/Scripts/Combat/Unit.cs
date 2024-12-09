@@ -238,9 +238,22 @@ public class Unit : MonoBehaviour, IDamagable
         refArmor.Value -= damage;
         damage -= defense;
 
-        if (damage <= 0) return;
+        if (damage <= 0)
+        {
+            data.visuals.soundGetHitArmor?.PlayWithRandomPitch(.2f);
+
+            return;
+        }
 
         OnReceiveDamage?.Invoke(this, damage);
+        if (damage > 20)
+        {
+            data.visuals.soundGetHitHard?.PlayWithRandomPitch(.2f);
+        }
+        else
+        {
+            data.visuals.soundGetHit?.PlayWithRandomPitch(.2f);
+        }
 
         AnimGetHit();
         health.Remove(damage);

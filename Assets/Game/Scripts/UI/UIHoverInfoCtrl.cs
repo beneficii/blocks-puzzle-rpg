@@ -7,6 +7,21 @@ using FancyToolkit;
 
 public class UIHoverInfoCtrl : MonoBehaviour
 {
+    public static UIHoverInfoCtrl _current;
+    public static UIHoverInfoCtrl current
+    {
+        get
+        {
+            if (!_current)
+            {
+                _current = FindFirstObjectByType<UIHoverInfoCtrl>();
+            }
+
+            return _current;
+        }
+    }
+
+
     [SerializeField] LayerMask layerMask;
     [SerializeField] UIHoverInfo infoPanel;
 

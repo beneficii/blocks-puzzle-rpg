@@ -40,6 +40,22 @@ public class MyTileData : TileData, IActionParent
 
     public override string GetDescription()
         => GetDescription(new(this, this));
+
+    public override List<string> GetTooltips()
+    {
+        var result = new List<string>();
+
+        if (clearAction != null)
+            result.Add("Clear: Triggered when this tile is cleared by filling a line.");
+        if (enterAction != null)
+            result.Add("Enter: Triggered when the tile is placed on the board.");
+
+
+        return new List<string>
+            {
+                string.Join("\n", result)
+            };
+    }
 }
 
 public class TileActionContainer

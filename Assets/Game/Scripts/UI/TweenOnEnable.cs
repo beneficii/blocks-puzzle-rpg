@@ -7,6 +7,7 @@ public class TweenOnEnable : MonoBehaviour
 {
     [SerializeField] Type type = Type.Attention;
     [SerializeField] float animationTime = 0.7f;
+    [SerializeField] float distance = .4f;
 
     Sequence tweenSequence;
 
@@ -29,6 +30,17 @@ public class TweenOnEnable : MonoBehaviour
 
         transform.DOScale(scale, animationTime)
             .SetEase(Ease.InOutBack);
+    }
+
+    public void TweenJumpTopDown()
+    {
+        float moveDistance = distance;
+        Vector3 jumpDirection = transform.up * moveDistance;
+
+        tweenSequence = DOTween.Sequence()
+            .Append(transform.DOLocalMove(transform.localPosition + jumpDirection, animationTime / 2).SetEase(Ease.InOutSine))
+            .Append(transform.DOLocalMove(transform.localPosition, animationTime / 2).SetEase(Ease.InOutSine))
+            .SetLoops(-1, LoopType.Yoyo);
     }
 
     public void TweenGrowIn()
@@ -54,6 +66,9 @@ public class TweenOnEnable : MonoBehaviour
             case Type.Highlight:
                 TweenHighlight();
                 break;
+            case Type.JumpTopDown:
+                TweenJumpTopDown();
+                break;
             default:
                 break;
         }
@@ -71,5 +86,6 @@ public class TweenOnEnable : MonoBehaviour
         Attention,
         GrowIn,
         Highlight,
+        JumpTopDown,
     }
 }

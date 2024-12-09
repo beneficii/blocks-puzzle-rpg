@@ -97,7 +97,6 @@ namespace SkillConditions
             }
         }
 
-        public override bool StartingValue => true;
         public override string GetErrorUnusable() => "Clear lines to charge";
 
         protected virtual void Unlocked()

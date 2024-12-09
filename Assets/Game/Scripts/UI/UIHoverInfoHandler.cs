@@ -4,20 +4,15 @@ using UnityEngine.EventSystems;
 
 public class UIHoverInfoHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    UIHoverInfoCtrl hoverInfoCtrl;
-
-    private void Start()
-    {
-        hoverInfoCtrl = FindAnyObjectByType<UIHoverInfoCtrl>();
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //hoverInfoCtrl.LockOnUIElement(transform);
+        var hoverCtrl = UIHoverInfoCtrl.current;
+        if (hoverCtrl) hoverCtrl.LockOnUIElement(transform);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //hoverInfoCtrl.LockOnUIElement(null);
+        var hoverCtrl = UIHoverInfoCtrl.current;
+        if (hoverCtrl) hoverCtrl.LockOnUIElement(null);
     }
 }

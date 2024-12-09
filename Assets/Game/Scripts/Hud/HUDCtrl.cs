@@ -36,7 +36,8 @@ public class HUDCtrl : MonoBehaviour
         if (stack.TryPeek(out var top))
         {
             top.SetContentVisible(true);
-        } else
+        }
+        else
         {
             OnAllClosed?.Invoke();
         }
@@ -58,8 +59,14 @@ public abstract class UIHudBase : MonoBehaviour
         HUDCtrl.current.HandleHudClosed(this);
     }
 
+    protected virtual void OnConectentVisible()
+    {
+
+    }
+
     public void SetContentVisible(bool value)
     {
         content.SetActive(value);
+        if (value) OnConectentVisible();
     }
 }

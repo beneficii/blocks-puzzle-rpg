@@ -51,7 +51,7 @@ namespace GridBoard
         }
 
         public string GetTitle() => title;
-        public List<string> GetTooltips() => new();
+        public virtual List<string> GetTooltips() => new();
 
         public bool HasTag(string tag)
             => tag == anyTag
