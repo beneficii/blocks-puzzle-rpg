@@ -3,16 +3,19 @@ guid: 77a7dd15f87f74a43bd16295090ef849
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
+  fontSize: 32
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
   - Philosopher
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1a102bc0530915a47b52fa45eefa0573, type: 3}
+  - {fileID: 12800000, guid: e1c868f781f7a6548a19aae35d400ad9, type: 3}
+  - {fileID: 12800000, guid: 45d085dc8c88cdb41ad225b42d160bdc, type: 3}
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

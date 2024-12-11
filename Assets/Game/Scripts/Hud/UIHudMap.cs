@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using RogueLikeMap;
+using FancyToolkit;
 
 public class UIHudMap : UIHudBase
 {
@@ -16,11 +17,14 @@ public class UIHudMap : UIHudBase
     }
 
     [SerializeField] MapScene scene;
+    [SerializeField] UIGenericButton backButton;
 
     public void Show()
     {
         Opened();
         Game.current.HandleMapSceneReady(scene);
+        bool canClose = Game.current.GetStateType() == Game.StateType.Combat;
+        backButton.gameObject.SetActive(canClose);
     }
 
     public void Toggle()

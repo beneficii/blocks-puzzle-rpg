@@ -92,6 +92,7 @@ public class UIHoverInfo : MonoBehaviour
         var tip = unit.GetTooltip();
 
         if (!string.IsNullOrEmpty(tip) && hints.Count > 0) hints[0].Show(tip);
+        if (txtTags) txtTags.text = "";
     }
 
     public void Show(Transform collider)
