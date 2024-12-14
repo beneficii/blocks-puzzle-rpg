@@ -34,6 +34,12 @@ public class TweenOnEnable : MonoBehaviour
 
     public void TweenJumpTopDown()
     {
+        StartCoroutine(JumpDownRoutine());
+    }
+
+    IEnumerator JumpDownRoutine()
+    {
+        yield return new WaitForSeconds(.2f);
         float moveDistance = distance;
         Vector3 jumpDirection = transform.up * moveDistance;
 

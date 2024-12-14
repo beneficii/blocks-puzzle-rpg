@@ -32,7 +32,9 @@ public class MenuCtrl : MonoBehaviour
         AddButton("New Game", BtnPlay);
         AddButton("Credits", BtnCredits);
         AddButton("Settings", BtnSettings);
+#if !UNITY_WEBGL
         AddButton("Exit", BtnExit);
+#endif
     }
 
     public void ClosePanels()

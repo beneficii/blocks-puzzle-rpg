@@ -34,7 +34,6 @@ public class UIConsentForDataCollection : MonoBehaviour
 
     void StartCollection()
     {
-        UnityServices.InitializeAsync();
         AnalyticsService.Instance.StartDataCollection();
     }
 

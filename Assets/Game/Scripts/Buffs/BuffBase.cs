@@ -14,7 +14,6 @@ public abstract class BuffBase
     public void SetBoard(Board board)
     {
         if (this.board == board) return;
-        this.board = board;
 
         if (board)
         {
@@ -24,6 +23,7 @@ public abstract class BuffBase
         {
             Remove();
         }
+        this.board = board;
     }
 
     protected virtual void Add()
@@ -58,6 +58,7 @@ namespace Buffs
 
         IEnumerable<MyTile> GetTargets()
         {
+            if (!board) yield break;
             foreach (var item in board.GetAllTiles().Where(x => IsMatching(x)))
             {
                 yield return (MyTile)item;

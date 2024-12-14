@@ -391,6 +391,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Z))
         {
             arena.player.AnimAttack(1);
@@ -411,7 +412,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         {
             arena.player.AddHp(5);
         }
-#if UNITY_EDITOR
 
         if (Input.GetKeyDown(KeyCode.M))
         {

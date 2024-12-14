@@ -10,6 +10,7 @@ using RogueLikeMap;
 using GridBoard;
 using System.Linq;
 using Unity.Services.Analytics;
+using Unity.Services.Core;
 
 
 [DefaultExecutionOrder(-20)]
@@ -33,6 +34,7 @@ public class Game : MonoBehaviour
     public Dictionary<string, Sprite> bgDict;
 
     int stageSeed;
+
 
     public GenericBullet MakeBullet(Vector2 position)
     {
@@ -99,6 +101,8 @@ public class Game : MonoBehaviour
 
         current = this;
         DontDestroyOnLoad(gameObject);
+        UnityServices.InitializeAsync();
+
         //MapScene.OnReady += HandleMapSceneReady;
 
         Init();

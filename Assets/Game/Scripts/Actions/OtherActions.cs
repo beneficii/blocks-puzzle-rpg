@@ -87,6 +87,7 @@ namespace GameActions
             {
                 if (x.actionContainer?.enterAction == null) return false;
                 if (!x.HasTag(tag)) return false;
+                if (x.actionContainer.enterAction is TriggerPlace) return false;
 
                 return true;
             });
