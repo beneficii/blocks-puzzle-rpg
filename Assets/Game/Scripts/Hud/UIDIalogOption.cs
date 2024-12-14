@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using FancyToolkit;
 using TMPro;
+using Unity.Services.Analytics;
 using UnityEngine;
 
 public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
@@ -55,6 +56,14 @@ public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
             item.Execute();
         }
         UIHudDialog.current.Close();
+
+        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.DialogSelected
+        {
+            answer = data.text,
+            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
+            seed = Game.current.GetStageSeed(),
+            leveId = Game.current.GetStageNode(),
+        });
     }
 
 }

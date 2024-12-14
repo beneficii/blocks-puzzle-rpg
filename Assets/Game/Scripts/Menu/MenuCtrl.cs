@@ -9,8 +9,15 @@ using UnityEngine.Events;
 public class MenuCtrl : MonoBehaviour
 {
     [SerializeField] UIGenericButton templateButton;
-
     List<GameObject> allPanels = new();
+
+
+    public string steamAppUrl = "https://store.steampowered.com/app/3126090";
+
+    public void OpenWishlistPage()
+    {
+        Application.OpenURL(steamAppUrl);
+    }
 
     void AddButton(string caption, UnityAction action)
     {

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using RogueLikeMap;
 using GridBoard;
 using System.Linq;
+using Unity.Services.Analytics;
 
 
 [DefaultExecutionOrder(-20)]
@@ -40,12 +41,26 @@ public class Game : MonoBehaviour
 
     public void AddTileToDeck(string id)
     {
+        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.TileSelected
+        {
+            TileId = id,
+            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
+            seed = stageSeed,
+            leveId = state?.currentNode ?? -1,
+        });
         state.deck.Add(id);
         //state.Save(); // don't save to prevent shop abuse
     }
 
     public void AddSkill(string id)
     {
+        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.SkillSelected
+        {
+            skillId = id,
+            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
+            seed = stageSeed,
+            leveId = state?.currentNode ?? -1,
+        });
         state.skills.Add(id);
     }
 
@@ -197,6 +212,9 @@ public class Game : MonoBehaviour
         }
     }
 
+    public int GetStageSeed() => stageSeed;
+    public int GetStageNode() => state?.currentNode ?? -1;
+
     void SetCurrentStage()
     {
         var idx = state.currentNode;
@@ -218,11 +236,23 @@ public class Game : MonoBehaviour
 
     public void FinishLevel(CombatSettings combatSettings, int? playerHealth = null)
     {
+        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.LevelCompletion
+        {
+            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
+            health = playerHealth.HasValue ? playerHealth.Value : 0,
+            seed = stageSeed,
+            leveId = state?.currentNode??-1,
+        });
+
+
         if (state == null)
         {
             LoadScene();
             return;
         }
+
+        
+
         if (playerHealth.HasValue)
         {
             state.playerHealth.x = playerHealth.Value;
