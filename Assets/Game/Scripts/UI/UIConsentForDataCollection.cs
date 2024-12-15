@@ -5,31 +5,37 @@ using UnityEngine;
 
 public class UIConsentForDataCollection : MonoBehaviour
 {
+    [SerializeField] GameObject panelParent;
     const string ConsentKey = "ConsentKey";
 
-    private void Start()
+    IEnumerator Start()
     {
+        panelParent.SetActive(false);
+        yield return new WaitUntil(()=>Game.current.initDone);
         if (PlayerPrefs.HasKey(ConsentKey))
         {
             bool consentGiven = PlayerPrefs.GetInt(ConsentKey) == 1;
-            gameObject.SetActive(false);
             if (consentGiven)
             {
                 StartCollection();
             }
+        }
+        else
+        {
+            panelParent.SetActive(true);
         }
     }
 
     public void Yes()
     {
         HandleConsentAnswer(true);
-        gameObject.SetActive(false);
+        panelParent.SetActive(false);
     }
 
     public void No()
     {
         HandleConsentAnswer(false);
-        gameObject.SetActive(false);
+        panelParent.SetActive(false);
     }
 
     void StartCollection()

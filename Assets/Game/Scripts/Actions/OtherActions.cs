@@ -223,11 +223,11 @@ namespace GameActions
         {
             if (statType == ActionStatType.Damage)
             {
-                return $"{statType} from {MyTile.GetTargetingTypeName(targetType, tag)} is dealt as damage";
+                return $"Power from {MyTile.GetTargetingTypeName(targetType, tag)} is dealt as damage";
             }
             else if (statType == ActionStatType.Defense)
             {
-                return $"{statType} from {MyTile.GetTargetingTypeName(targetType, tag)} is added to your armor";
+                return $"Power from {MyTile.GetTargetingTypeName(targetType, tag)} is added to your armor";
             }
             else
             {

@@ -160,7 +160,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.RecklessDev.ArcaneBoard2
-    Standalone: com.RecklessDev.ArcaneBoard
+    Standalone: com.RecklessDev.ArcaneBoard2
   buildNumber:
     Bratwurst: 0
     Standalone: 0

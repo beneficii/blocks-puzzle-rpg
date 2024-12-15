@@ -35,6 +35,7 @@ public class Game : MonoBehaviour
 
     int stageSeed;
 
+    public bool initDone { get; private set; }
 
     public GenericBullet MakeBullet(Vector2 position)
     {
@@ -91,7 +92,7 @@ public class Game : MonoBehaviour
     public System.Random CreateStageRng()
         => new System.Random(stageSeed);
 
-    private void Awake()
+    async void Awake()
     {
         if (current)
         {
@@ -101,7 +102,6 @@ public class Game : MonoBehaviour
 
         current = this;
         DontDestroyOnLoad(gameObject);
-        UnityServices.InitializeAsync();
 
         //MapScene.OnReady += HandleMapSceneReady;
 
@@ -119,6 +119,9 @@ public class Game : MonoBehaviour
                 NewGame();
             }
         }
+
+        await UnityServices.InitializeAsync();
+        initDone = true;
     }
 
     public void HandleMapSceneReady(MapScene scene)
@@ -158,6 +161,12 @@ public class Game : MonoBehaviour
     {
         SceneManager.LoadScene("Loading");
     }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 
     public Vector2Int GetPlayerHealth()
         => state.playerHealth;

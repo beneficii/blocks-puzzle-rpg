@@ -30,19 +30,12 @@ public class ScreenLogger : MonoBehaviour
             myLogQueue.Enqueue("\n" + stackTrace);
     }
 
-    public int zero = 0;
     void Update()
     {
         while (myLogQueue.Count > 0)
             log = myLogQueue.Dequeue() + log;
         if (log.Length > MAXCHARS)
             log = log.Substring(0, MAXCHARS);
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.LogError("test Error");
-            Debug.LogError(10/zero);
-        }
     }
 
     void OnGUI()

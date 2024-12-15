@@ -69,4 +69,9 @@ public class UIHudSettings : UIHudBase
         AudioCtrl.current.VolumeMusic = cachedMusic;
         Close();
     }
+
+    public void BtnMainMenu()
+    {
+        Game.current.LoadMainMenu();
+    }
 }

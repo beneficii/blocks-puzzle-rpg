@@ -36,11 +36,11 @@ namespace RogueLikeMap
 
         private void Update()
         {
+#if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.U))
             {
                 FindAnyObjectByType<MapInstance>().UnlockAllNodes();
             }
-#if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Game.current.GameOver();
