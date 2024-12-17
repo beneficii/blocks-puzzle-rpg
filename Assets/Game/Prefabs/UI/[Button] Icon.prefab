@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5928941177531652447}
   - component: {fileID: 2474421081479036429}
   - component: {fileID: 9134491598642031120}
+  - component: {fileID: 1351487780707879765}
   m_Layer: 0
   m_Name: '[Button] Icon'
   m_TagString: Untagged
@@ -224,3 +225,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1351487780707879765}
+        m_TargetAssemblyTypeName: FancyToolkit.UIGenericButton, Project.FancyToolkit
+        m_MethodName: OnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1351487780707879765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750822363009072106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75909a8819987d4458a388844f805c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clrTextGray: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  txtCaption: {fileID: 0}
+  imgHighlight: {fileID: 0}
+  button: {fileID: 9134491598642031120}
+  shaderComponent: {fileID: 0}
+  sound: {fileID: 8300000, guid: c0d4a49e6c9ca9442806bd1fd294300f, type: 3}

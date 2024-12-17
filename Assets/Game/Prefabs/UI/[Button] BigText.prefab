@@ -65,6 +65,7 @@ MonoBehaviour:
   imgHighlight: {fileID: 4802800404792060884}
   button: {fileID: 2821302244741104412}
   shaderComponent: {fileID: 6978485736482042821}
+  sound: {fileID: 8300000, guid: 5893aa26102804d4895434bd73072ec3, type: 3}
 --- !u!114 &6978485736482042821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +184,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 30df75301399956418fc130bb1e8caa4, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 2e44190fe6f66824f941cc82d521cb1b, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -202,6 +203,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: CombatCtrl, Assembly-CSharp
         m_MethodName: NewTurn
         m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6525828726993860323}
+        m_TargetAssemblyTypeName: FancyToolkit.UIGenericButton, Project.FancyToolkit
+        m_MethodName: OnClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -436,3 +449,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   animationTime: 0.7
+  distance: 0.4

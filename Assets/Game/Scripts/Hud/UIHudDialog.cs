@@ -24,6 +24,9 @@ public class UIHudDialog : UIHudBase
 
     [SerializeField] UITemplateItem templateOption;
 
+
+    [SerializeField] GameObject objSmallBoard;
+
     Dictionary<string, List<DialogData>> dict;
     string nextDialogID;
     StageData.Type nextStageType;
@@ -65,14 +68,14 @@ public class UIHudDialog : UIHudBase
                 .Init(DialogData.OptContinue);
             return;
         }
-
-        for (int i = 1; i < list.Count; i++)
+        else for (int i = 1; i < list.Count; i++)
         {
             var data = list[i];
             templateOption.Create<UIDIalogOption>()
                 .Init(data);
         }
 
+        SpecialStagePreparation(id);
         Opened();
     }
 
@@ -106,7 +109,19 @@ public class UIHudDialog : UIHudBase
         }
         Clear();
         Closed();
-        
+    }
+
+    void SpecialStagePreparation(string dialogId)
+    {
+        if (dialogId == "tutorial")
+        {
+            objSmallBoard.SetActive(true);
+        }
+
+        if (dialogId == "tutorial_3" || dialogId == "tutorial_4")
+        {
+            objSmallBoard.SetActive(false);
+        }
     }
 
 }

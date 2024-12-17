@@ -14,7 +14,8 @@ public partial class UICombatReward : MonoBehaviour
 
     [SerializeField] Image imgIcon;
     [SerializeField] TextMeshProUGUI txtCaption;
-    
+    [SerializeField] AudioClip sound;
+
 
     [Header("Icons")]
     [SerializeField] Sprite iconGold;
@@ -41,6 +42,7 @@ public partial class UICombatReward : MonoBehaviour
         data.Click();
 
         Remove();
+        sound?.PlayWithRandomPitch();
     }
 
     

@@ -17,6 +17,7 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
     [SerializeField] Image imgBg;
     [SerializeField] Image imgCdFill;
     [SerializeField] UIShaderComponent shaderCtrl;
+    [SerializeField] AudioClip sound;
 
     public SkillData data { get; private set; }
 
@@ -88,6 +89,7 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
         actionContainer.clickCondition.OnClicked();
         StartCoroutine(actionContainer.onClick.Run());
         OnUsed?.Invoke(this);
+        sound?.PlayNow();
     }
 
     public IEnumerator EndTurn()

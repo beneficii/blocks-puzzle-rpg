@@ -14,6 +14,8 @@ public class UISelectTileCard : MonoBehaviour
     [SerializeField] Image imgBg;
 
     [SerializeField] Sprite spriteBgSpecial;
+    [SerializeField] AudioClip soundSelect;
+    [SerializeField] AudioClip soundBuy;
 
     SelectTileType type;
     int price;
@@ -45,6 +47,7 @@ public class UISelectTileCard : MonoBehaviour
 
     public void Select()
     {
+        (type == SelectTileType.Shop ? soundBuy : soundSelect)?.PlayNow();
         if (data is MyTileData tileData && tileData.buyAction != null)
         {
             var action = tileData.buyAction.Build();

@@ -22,6 +22,7 @@ namespace FancyToolkit
 
         private CSVManager()
         {
+            /*
 #if UNITY_WEBGL
         return;
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -57,7 +58,7 @@ namespace FancyToolkit
                 {
                     File.WriteAllText(destinationPath, csvFile.text);
                 }
-            }
+            }*/
         }
 
         public string GetContent(string fileName)

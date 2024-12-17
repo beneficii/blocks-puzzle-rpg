@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 30df75301399956418fc130bb1e8caa4
+guid: bc984a5e2a23cce4ab80e4e3dc95ea23
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3527490810808200658
-    second: top_button_hl_0
+      213: 4186563779489088322
+    second: ability_button_hl_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
-  spriteBorder: {x: 23, y: 23, z: 23, w: 23}
+  spriteBorder: {x: 25, y: 25, z: 25, w: 25}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: top_button_hl_0
+      name: ability_button_hl_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 46
-        height: 46
+        width: 62
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2dd6da6f33a24f030800000000000000
-      internalID: 3527490810808200658
+      spriteID: 243c6f97399a91a30800000000000000
+      internalID: 4186563779489088322
       vertices: []
       indices: 
       edges: []

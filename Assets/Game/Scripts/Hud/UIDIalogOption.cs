@@ -7,6 +7,7 @@ using UnityEngine;
 public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
 {
     [SerializeField] TextMeshProUGUI txtMessage;
+    [SerializeField] AudioClip sound;
 
     DialogData data;
 
@@ -57,12 +58,10 @@ public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
         }
         UIHudDialog.current.Close();
 
-        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.DialogSelected
+        sound?.PlayNow();
+        Game.current.RecordEvent(new AnalyticsEvents.DialogSelected
         {
             answer = data.text,
-            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
-            seed = Game.current.GetStageSeed(),
-            leveId = Game.current.GetStageNode(),
         });
     }
 

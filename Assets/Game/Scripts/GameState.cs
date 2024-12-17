@@ -2,12 +2,14 @@
 using RogueLikeMap;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 [System.Serializable]
 public class GameState
 {
+    public const int emptyNodeId = -1;
+    public const int tutorialNodeId = -2;
+
     public const string prefsKey = "gamesave_beta0.1";
 
     // serializeable stuff
@@ -20,9 +22,9 @@ public class GameState
     public List<string> skills;
     public int gold;
 
-    public bool HasCurrentNode
+    public bool IsMapNode
     {
-        get => currentNode != -1;
+        get => currentNode >= 0;
         set
         {
             if (!value)
@@ -31,7 +33,17 @@ public class GameState
             }
         }
     }
-
+    public bool IsTutorialNode
+    {
+        get => currentNode == tutorialNodeId;
+        set
+        {
+            if (value)
+            {
+                currentNode = tutorialNodeId;
+            }
+        }
+    }
     public static bool HasSave()
         => PlayerPrefs.HasKey(prefsKey);
 
@@ -73,7 +85,7 @@ public class GameState
         {
             var x = item.pos.x;
             var difficulty = x;
-            if (!HasCurrentNode && x == 0 && visitedNodes.Count == 0 )    // starting node
+            if (!IsMapNode && x == 0 && visitedNodes.Count == 0 )    // starting node
             {
                 item.state = NodeState.Available;
             }
@@ -86,7 +98,7 @@ public class GameState
             }
         }
 
-        if (HasCurrentNode)
+        if (IsMapNode)
         {
             var cur =  mapLayout.nodes[currentNode];
             cur.state = NodeState.Current;
@@ -99,7 +111,7 @@ public class GameState
                 mapLayout.nodes[idx].state = NodeState.Visited;
             }
 
-            if (!HasCurrentNode)
+            if (!IsMapNode)
             {
                 var cur = mapLayout.nodes[visitedNodes.Last()];
                 // Unlock aviable nodes
@@ -124,7 +136,8 @@ public class GameState
     {
         this.seed = seed;
         this.visitedNodes = new();
-        HasCurrentNode = false;
+        //HasCurrentNode = false;
+        IsTutorialNode = true;
         this.playerHealth = new(100, 100);
         this.deck = Game.current.GetStartingDeck();
         this.skills = new List<string>();

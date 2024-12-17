@@ -29,6 +29,24 @@ namespace DialogActions
         }
     }
 
+    public class Punch : DialogAction
+    {
+        public Punch(StringScanner scanner)
+        {
+        }
+
+        public override void Execute()
+        {
+            var enemy = CombatArena.current.enemy;
+            if (!enemy) return;
+
+            enemy.SetCombatVisible(true);
+            enemy.gameObject.GetComponentInChildren<NumberFloatingAnimator>(true)
+                .SpawnCustom("-0", false);
+            enemy.FakeDamage();
+        }
+    }
+
     public class AddGold : DialogAction
     {
         public int amount;

@@ -17,7 +17,7 @@ namespace FancyToolkit
         [SerializeField] Image imgHighlight;
         [SerializeField] Button button;
         [SerializeField] UIShaderComponent shaderComponent;
-
+        [SerializeField] AudioClip sound;
 
         Color clrTextNormal;
 
@@ -29,19 +29,20 @@ namespace FancyToolkit
             if (initDone) return;
             initDone = true;
 
-            clrTextNormal = txtCaption.color;
+            if (txtCaption) clrTextNormal = txtCaption.color;
         }
 
         public void SetNeedsAttention(bool value)
         {
+            if (!imgHighlight) return;
             imgHighlight.gameObject.SetActive(value);
         }
 
         public void SetInteractable(bool value)
         {
             EnsureInit();
-            txtCaption.color = value ? clrTextNormal : clrTextGray;
-            shaderComponent.SetGrayscale(!value);
+            if (txtCaption) txtCaption.color = value ? clrTextNormal : clrTextGray;
+            if (shaderComponent) shaderComponent.SetGrayscale(!value);
             button.interactable = value;
         }
 
@@ -53,6 +54,11 @@ namespace FancyToolkit
         public void AddOnClick(UnityAction call)
         {
             button.onClick.AddListener(call);
+        }
+
+        public void OnClicked()
+        {
+            sound?.PlayNow();
         }
     }
 

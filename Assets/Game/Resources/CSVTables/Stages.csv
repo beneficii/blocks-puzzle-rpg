@@ -1,5 +1,5 @@
 id,units,difficulty,type,reward,specialTile,background,dialog,gameOverText
-0,slime,0,Enemy,common,sword,bg6,,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
+0,ghost,0,Enemy,common,brokenSword,bg6,,"You began your journey, but the monstrous presence stopped you before you could learn."
 1,bat,2,Enemy,common,batCurse,bg5,,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
 2,snake,2,Enemy,common,snakeTrap,bg3,,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
 3,boar,4,Elite,uncommon,boarCurse,bg5,,You glimpsed the challenges that lay ahead but were undone by the first great trial.
@@ -19,3 +19,5 @@ enemy1,mimic,3,Dialog,Legendary,empty,bg6,mimic,"You fell for the mimic's trap, 
 enemy2,reptile,7,Dialog,Rare,empty,bg6,reptile1,You challenged the reptile vendor for its magic but couldn't claim victory.
 ,,,,,,,,
 aaaa,dragon,11,Boss,uncommon,dragonFire,bg4,dragon1,
+,,,,,,,,
+tutorial,slime,-2,Enemy,common,empty,bg1,tutorial,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."

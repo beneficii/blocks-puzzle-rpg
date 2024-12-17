@@ -66,6 +66,7 @@ namespace FancyToolkit
         {
             PlayerPrefs.SetFloat(prefsKeyMusicVolume, VolumeMusic);
             PlayerPrefs.SetFloat(prefsKeySoundVolume, VolumeSound);
+            //PlayerPrefs.Save();
         }
 
         private void OnDestroy()

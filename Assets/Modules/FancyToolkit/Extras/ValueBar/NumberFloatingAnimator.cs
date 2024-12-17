@@ -11,6 +11,12 @@ namespace FancyToolkit
 
         [SerializeField] FloatingText prefabFloater;
 
+        public void SpawnCustom(string value, bool positive)
+        {
+            prefabFloater.Create(value, transform.position, transform)
+                .SetColor(positive ? clrPositive : clrNegative);
+        }
+
         public void Spawn(int value)
         {
             if (value == 0) return;

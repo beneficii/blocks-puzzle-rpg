@@ -230,6 +230,11 @@ public class Unit : MonoBehaviour, IDamagable
         refArmor.Value = value;
     }
 
+    public void FakeDamage()
+    {
+        data.visuals.soundGetHit?.PlayWithRandomPitch(.2f);
+    }
+
     public void RemoveHp(int damage)
     {
         if (damage <= 0) return;
@@ -241,7 +246,6 @@ public class Unit : MonoBehaviour, IDamagable
         if (damage <= 0)
         {
             data.visuals.soundGetHitArmor?.PlayWithRandomPitch(.2f);
-
             return;
         }
 
@@ -258,7 +262,6 @@ public class Unit : MonoBehaviour, IDamagable
         AnimGetHit();
         health.Remove(damage);
         refHealth.Remove(damage);
-
     }
 
     public void SetHp(int value)

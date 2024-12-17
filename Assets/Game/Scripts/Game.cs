@@ -44,27 +44,21 @@ public class Game : MonoBehaviour
 
     public void AddTileToDeck(string id)
     {
-        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.TileSelected
-        {
-            TileId = id,
-            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
-            seed = stageSeed,
-            leveId = state?.currentNode ?? -1,
-        });
         state.deck.Add(id);
         //state.Save(); // don't save to prevent shop abuse
+        RecordEvent(new AnalyticsEvents.TileSelected
+        {
+            TileId = id,
+        });
     }
 
     public void AddSkill(string id)
     {
-        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.SkillSelected
+        state.skills.Add(id);
+        RecordEvent(new AnalyticsEvents.SkillSelected
         {
             skillId = id,
-            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
-            seed = stageSeed,
-            leveId = state?.currentNode ?? -1,
         });
-        state.skills.Add(id);
     }
 
     public List<string> GetStartingDeck()
@@ -135,6 +129,7 @@ public class Game : MonoBehaviour
     {
         GameState.ClearSave();
         state = new GameState(Random.Range(0, int.MaxValue));
+        SetCurrentStage();
     }
 
     public void Continue()
@@ -215,7 +210,7 @@ public class Game : MonoBehaviour
 
     public StateType GetStateType()
     {
-        if (state.HasCurrentNode)
+        if (state.IsMapNode || state.IsTutorialNode)
         {
             return StateType.Combat;
         }
@@ -225,18 +220,24 @@ public class Game : MonoBehaviour
         }
     }
 
-    public int GetStageSeed() => stageSeed;
-    public int GetStageNode() => state?.currentNode ?? -1;
-
     void SetCurrentStage()
     {
         var idx = state.currentNode;
-        if (idx < 0) return;
-        var layout = state.GenerateMapLayout();
-        var node = layout.nodes[idx];
-        StageCtrl.current.SetStage((StageData)node.type);
-        ResCtrl<ResourceType>.current.Set(ResourceType.Level, node.pos.x);
-        stageSeed = node.random;
+        if (idx > GameState.emptyNodeId)
+        {
+            var layout = state.GenerateMapLayout();
+            var node = layout.nodes[idx];
+            StageCtrl.current.SetStage((StageData)node.type);
+            ResCtrl<ResourceType>.current.Set(ResourceType.Level, node.pos.x);
+            stageSeed = node.random;
+        }
+        else if (idx < GameState.emptyNodeId)   // special levels
+        {
+            stageSeed = state.seed * -idx;
+            var stage = StageCtrl.current.GetRandom(idx, CreateStageRng());
+            StageCtrl.current.SetStage(stage);
+            ResCtrl<ResourceType>.current.Set(ResourceType.Level, 0);
+        }
     }
 
     public void EnterLevel(int idx)
@@ -249,32 +250,38 @@ public class Game : MonoBehaviour
 
     public void FinishLevel(CombatSettings combatSettings, int? playerHealth = null)
     {
-        AnalyticsService.Instance.RecordEvent(new AnalyticsEvents.LevelCompletion
-        {
-            userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level),
-            health = playerHealth.HasValue ? playerHealth.Value : 0,
-            seed = stageSeed,
-            leveId = state?.currentNode??-1,
-        });
-
-
         if (state == null)
         {
             LoadScene();
             return;
         }
 
-        
-
         if (playerHealth.HasValue)
         {
             state.playerHealth.x = playerHealth.Value;
         }
-        state.visitedNodes.Add(state.currentNode);
-        state.HasCurrentNode = false;
+        if (state.IsMapNode)
+        {
+            state.visitedNodes.Add(state.currentNode);
+        }
+        state.IsMapNode = false;
         state.Save();
         //LoadScene();
         UIHudMap.current.Show();
+
+        RecordEvent(new AnalyticsEvents.LevelCompletion
+        {
+            health = playerHealth.HasValue ? playerHealth.Value : 0,
+        });
+        AnalyticsService.Instance.Flush();
+    }
+
+    public void RecordEvent(AnalyticsEvents.Base ev)
+    {
+        ev.userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level);
+        ev.seed = stageSeed;
+        ev.leveId = state?.currentNode ?? -1;
+        AnalyticsService.Instance.RecordEvent(ev);
     }
 
     public void GameOver()
