@@ -12,7 +12,7 @@ namespace GridBoard
         [SerializeField] AudioClip soundMatchOne;
         [SerializeField] AudioClip soundMatchMultiple;
 
-        public static event System.Action<LineClearData> OnCleared;
+        public static System.Action<LineClearData> OnCleared;
 
         int[] rows;
         int[] columns;
@@ -43,12 +43,20 @@ namespace GridBoard
 
             board.OnTilePlaced += HandleTilePlaced;
             board.OnTileRemoved += HandleTileRemoved;
+            board.OnCleared += HandleWholeBoardErased;
         }
 
         private void OnDisable()
         {
             board.OnTilePlaced -= HandleTilePlaced;
             board.OnTileRemoved -= HandleTileRemoved;
+            board.OnCleared -= HandleWholeBoardErased;
+        }
+
+        void HandleWholeBoardErased()
+        {
+            //StopAllCoroutines();
+            //InitBoard(board);
         }
 
         public static void AddHandler(ILineClearHandler handler)
@@ -134,7 +142,6 @@ namespace GridBoard
             }
 
             var clearData = new LineClearData(tileSet, rowsCount, columnsCount);
-            OnCleared?.Invoke(clearData);
 
             foreach (var handler in lineClearHandlers)
             {
@@ -149,6 +156,7 @@ namespace GridBoard
                 Destroy(item.gameObject);
             }
 
+            OnCleared?.Invoke(clearData);
             clearData.Destroy();
         }
 

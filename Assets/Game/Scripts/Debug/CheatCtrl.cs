@@ -11,12 +11,19 @@ public class CheatCtrl : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     
     public string id;
+    public string boardLayout;
 
     void Spawn(MyTile tile, TileData data)
     {
         tile.SetBoard(FindAnyObjectByType<Board>());
         tile.Init(data);
         tile.isActionLocked = true;
+    }
+
+    [EasyButtons.Button]
+    void LoadBoardLayout()
+    {
+        FindAnyObjectByType<Board>().LoadLayoutByName(boardLayout);
     }
 
     private void Update()

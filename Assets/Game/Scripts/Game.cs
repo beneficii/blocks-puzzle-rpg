@@ -11,6 +11,7 @@ using GridBoard;
 using System.Linq;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
+using Unity.Services.Core.Environments;
 
 
 [DefaultExecutionOrder(-20)]
@@ -114,7 +115,11 @@ public class Game : MonoBehaviour
             }
         }
 
-        await UnityServices.InitializeAsync();
+        var serviceOptions = new InitializationOptions();
+#if !UNITY_EDITOR
+        serviceOptions.SetEnvironmentName("production");
+#endif
+        await UnityServices.InitializeAsync(serviceOptions);
         initDone = true;
     }
 
@@ -183,6 +188,11 @@ public class Game : MonoBehaviour
         {
             tilesPerTurn = state.tilesPerTurn
         };
+    }
+
+    public void AddTilesPerTurn()
+    {
+        state.tilesPerTurn++;
     }
 
     public List<SkillData> GetSkills()

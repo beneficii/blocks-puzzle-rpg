@@ -37,6 +37,12 @@ namespace GridBoard
             };
         }
 
+        public PredefinedLayout FromTexture(Texture2D source)
+        {
+            var pixels = source.Get2DColors32();
+            return GetBoard(0,0, pixels);
+        }
+
         public List<PredefinedLayout> GenerateBoards()
         {
             var result = new List<PredefinedLayout>();

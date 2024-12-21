@@ -11,6 +11,8 @@ namespace GridBoard
 {
     public class Board : MonoBehaviour
     {
+        const string layoutResourceFolder = "BoardLayouts";
+
         public int width = 8;
         public int height = 8;
 
@@ -47,6 +49,7 @@ namespace GridBoard
         Dictionary<string, int> dictTagCounter = new();
 
         public int StateVersion { get; private set; }
+        public bool InitDone { get; private set; }
 
         Queue<Tile> emptyTileQueue = new();
 
@@ -70,9 +73,9 @@ namespace GridBoard
             new (-1, -1), // Bottom-left
         };
 
+
         Color GetBgColor(int x, int y)
             => (x % 2 != y % 2) ? colorTile1 : colorTile2;
-
 
         public bool IsOcupied(int x, int y) => (bool)tiles[x, y];
 
@@ -114,6 +117,7 @@ namespace GridBoard
             }
             StateVersion++;
             Tile.OnChangedBoardState += HandleTileChangedBoardState;
+            InitDone = true;
         }
 
         void Awake()
@@ -235,8 +239,10 @@ namespace GridBoard
             {
                 for (int x = 0; x < width; x++)
                 {
-                    var oldBlock = tiles[x, y];
-                    if (oldBlock) Destroy(oldBlock.gameObject);
+                    var oldTile = tiles[x, y];
+                    if (!oldTile) continue;
+                    OnTileRemoved?.Invoke(oldTile);
+                    Destroy(oldTile.gameObject);
                 }
             }
 
@@ -253,6 +259,25 @@ namespace GridBoard
                 tiles[pos.x, pos.y] = PlaceTileInstant(info);
             }
             StateVersion++;
+        }
+
+        public void LoadLayoutByName(string name)
+        {
+            var png = Resources.Load<Texture2D>($"{layoutResourceFolder}/{name}");
+            if (png == null)
+            {
+                Debug.LogError($"Could not find layout by name ({name})");
+                return;
+            }
+
+            var layout = dbBoardPresets.FromTexture(png);
+            if (layout == null)
+            {
+                Debug.LogError($"Could not get layout from texture ({name})");
+                return;
+            }
+
+            LoadLayout(layout);
         }
 
         public void LoadRandomLayout(TileData specialTile = null)
@@ -762,7 +787,7 @@ namespace GridBoard
         }
     }
 
-    public class PredefinedLayout
+    public class PredefinedLayout : DataWithId
     {
         public int level;
         public List<Tile.Info> tiles;

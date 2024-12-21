@@ -8,9 +8,15 @@ public class ScreenLogger : MonoBehaviour
     private string log = "";
     private const int MAXCHARS = 10000;
     private Queue myLogQueue = new Queue();
+    GUIStyle myStyle;
     void Start()
     {
         //Debug.Log("Screen logger started");
+        myStyle = new GUIStyle
+        {
+            fontSize = 20
+        };
+        myStyle.normal.textColor = Color.black;
     }
 
     void OnEnable()
@@ -40,6 +46,6 @@ public class ScreenLogger : MonoBehaviour
 
     void OnGUI()
     {
-        GUILayout.Label(log);
+        GUILayout.Label(log, myStyle);
     }
 }

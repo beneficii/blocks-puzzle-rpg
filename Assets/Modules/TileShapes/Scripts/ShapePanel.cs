@@ -166,7 +166,44 @@ namespace TileShapes
             }
 
             OnShapesGenerated?.Invoke(initial);
-            //BtSave.Create();
+        }
+
+        public void GenerateCustom(List<Shape.Info> shapes)
+        {
+            Clear();
+
+            OnHintsAviable?.Invoke(false);
+            var nextShapes = new Queue<Shape.Info>(shapes);
+
+            var solution = testGrid.Solve(nextShapes.ToList());
+            if (solution != null)
+            {
+                for (int i = 0; i < solution.Count; i++)
+                {
+                    slots[i].transform.position = AnchoredPosition(solution[i]);
+                }
+            }
+            else
+            {
+                Debug.LogError("Could not find solution. ToDo: handle this");
+            }
+
+            foreach (var slot in slots)
+            {
+                if (!nextShapes.TryDequeue(out var shape)) break;
+                SetSlotShape(slot, shape);
+            }
+
+            OnShapesGenerated?.Invoke(false);
+        }
+
+        public void GenerateFromBytes(List<byte[,]> shapes)
+        {
+            var list = shapes
+                .Select(x=>TetrisShapes.GetShape(x))
+                .ToList();
+
+            GenerateCustom(list);
         }
 
         public void GeneratePool()

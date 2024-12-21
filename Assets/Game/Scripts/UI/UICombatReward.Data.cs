@@ -32,6 +32,24 @@ public partial class UICombatReward
         }
     }
 
+    public class DataTilesPerTurn : Data
+    {
+        public DataTilesPerTurn()
+        {
+        }
+
+        public override void Click()
+        {
+            Game.current.AddTilesPerTurn();
+        }
+
+        public override void InitUI(UICombatReward ui)
+        {
+            ui.imgIcon.sprite = ui.iconGold;
+            ui.txtCaption.text = $"+1 tile draw";
+        }
+    }
+
     public class DataTile : Data
     {
         public Rarity rarity;

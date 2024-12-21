@@ -14,7 +14,7 @@ public class StageData : NodeType
     public string background;
     public string dialog;
     public string gameOverText;
-    
+    public string scenario;
 
     public override void Run(NodeInfo info)
     {

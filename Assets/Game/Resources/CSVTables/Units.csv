@@ -1,7 +1,7 @@
 id,name,description,hp,specialTile,damage,defense,actions,,
 mage,Apprentice Mage,,80,,0,0,,,
 ,,,,,,,,,
-slime,Slime,,15,trap,2,1,Attack; Armor; Armor; Attack; Armor,,
+slime,Slime,,80,trap,2,1,Attack; Armor; Armor; Attack; Armor,,
 ghost,Ghost,,20,brokenSword,0,3,Armor; SpawnTile; SpawnTile; Armor; Armor; Armor; SpawnTile 2,,
 bat,Bat,,30,batTrap,4,2,Attack; Armor; Armor; SpawnTile; Attack; Armor,,
 snake,Snake,,30,snakeTrap,5,1,Attack; Attack; Attack; SpawnTile; Armor,,

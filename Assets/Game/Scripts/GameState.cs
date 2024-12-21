@@ -142,7 +142,7 @@ public class GameState
         this.deck = Game.current.GetStartingDeck();
         this.skills = new List<string>();
         this.gold = 200;
-        this.tilesPerTurn = 4;
+        this.tilesPerTurn = 3;
         GenerateMapLayout();
     }
 }

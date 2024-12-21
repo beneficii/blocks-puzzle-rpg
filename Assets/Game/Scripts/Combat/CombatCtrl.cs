@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using GridBoard;
 using TileShapes;
 using FancyToolkit;
@@ -44,6 +45,18 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     int tilesPerTurn;
 
     bool dontCheckQueue;
+
+    int preventEndTurn;
+    public int PreventEndTurn
+    {
+        get => preventEndTurn;
+        set {
+            Assert.IsTrue(value >= 0);
+            preventEndTurn = value;
+
+            btnEndTurn.SetInteractable(preventEndTurn == 0);
+        }
+    }
 
     List<BuffBase> buffs = new();
 
@@ -201,6 +214,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         if (stageData.type == StageData.Type.Elite || stageData.type == StageData.Type.Boss)
         {
             result.Add(new UICombatReward.DataSkill(Rarity.Common));
+            result.Add(new UICombatReward.DataTilesPerTurn());
         }
 
         return result;
@@ -240,6 +254,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     public IEnumerator TurnRoutine() => TurnRoutine(0.4f);
     public IEnumerator TurnRoutine(float delay)
     {
+        if (PreventEndTurn > 0) yield break;
         btnEndTurn.SetNeedsAttention(false);
         if (EndTurnInProgress)
         {
@@ -294,7 +309,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         shapePanel = FindAnyObjectByType<ShapePanel>();
 
-        board.LoadRandomLayout(stageData.specialTile);
         shapePanel.OnOutOfShapes.Add(TurnRoutine);
         shapePanel.OnDeadEnd += HandleDeadEnd;
         arena.player.board = board;
@@ -308,6 +322,16 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var clearer = FindAnyObjectByType<LineClearer>();
         if (clearer) WorldUpdateCtrl.current.AddSubscriber(clearer);
         WorldUpdateCtrl.current.AddSubscriber(shapePanel);
+
+        var scenario = Factory<CombatScenario>.Create(stageData.scenario);
+        if (scenario != null)
+        {
+            StartCoroutine(scenario.Start());
+        }
+        else
+        {
+            board.LoadRandomLayout(stageData.specialTile);
+        }
     }
 
     public void InitShop()

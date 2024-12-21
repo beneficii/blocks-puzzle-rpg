@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_AssetsPPU: 40
   m_RefResolutionX: 960
   m_RefResolutionY: 540
-  m_CropFrame: 0
+  m_CropFrame: 3
   m_GridSnapping: 0
   m_FilterMode: 0
   m_UpscaleRT: 0
@@ -9076,6 +9076,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   id: sword
+  boardLayout: 
 --- !u!114 &1390126878
 MonoBehaviour:
   m_ObjectHideFlags: 0
