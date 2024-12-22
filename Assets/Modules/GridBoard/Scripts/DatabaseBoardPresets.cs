@@ -9,21 +9,31 @@ namespace GridBoard
     [CreateAssetMenu(menuName = "Game/GridBoard/BoardPresets")]
     public class DatabaseBoardPresets : ScriptableObject
     {
+        const string allowedTileColor = "00FF00";
+
         [SerializeField] Texture2D textureBoards;
         [SerializeField] Vector2Int size = new Vector2Int(8,8); // individual board size
 
         PredefinedLayout GetBoard(int x, int y, Color32[,] pixels)
         {
             var tiles = new List<Tile.Info>();
+            var allowed = new List<Vector2Int>();
             for (int cellY = 0; cellY < size.y; cellY++)
             {
                 for (int cellX = 0; cellX < size.x; cellX++)
                 {
+                    var pos = new Vector2Int(cellX, cellY);
                     var colorCode = ColorUtility.ToHtmlStringRGB(pixels[x + cellX, y + cellY]).ToUpper();
+                    if (colorCode == allowedTileColor)
+                    {
+                        allowed.Add(pos);
+                        continue;
+                    }
+
                     var data = TileCtrl.current.colorDict.Get(colorCode);
                     if (data != null)
                     {
-                        tiles.Add(new Tile.Info(data, new Vector2Int(cellX, cellY)));
+                        tiles.Add(new Tile.Info(data, pos));
                     }
                 }
             }
@@ -33,6 +43,7 @@ namespace GridBoard
             return new PredefinedLayout()
             {
                 tiles = tiles,
+                allowedTiles = allowed,
                 level = y / size.y
             };
         }

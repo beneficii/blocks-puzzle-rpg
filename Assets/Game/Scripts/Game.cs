@@ -8,10 +8,12 @@ using FancyToolkit;
 using UnityEngine.SceneManagement;
 using RogueLikeMap;
 using GridBoard;
+using TileShapes;
 using System.Linq;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
+using DG.Tweening;
 
 
 [DefaultExecutionOrder(-20)]
@@ -37,6 +39,8 @@ public class Game : MonoBehaviour
     int stageSeed;
 
     public bool initDone { get; private set; }
+
+    GameObject ghostCursor;
 
     public GenericBullet MakeBullet(Vector2 position)
     {
@@ -69,6 +73,24 @@ public class Game : MonoBehaviour
         return FancyCSV.FromCSV<TileEntry>("StartingTiles")
             .SelectMany(x => Enumerable.Repeat(x.id, x.amount))
             .ToList();
+    }
+
+    public void CreateGhostCursor(Vector2 start, Vector2 end)
+    {
+        RemoveGhostCursor();
+        var instance = Instantiate(gameData.prefabGhostCursor, start, Quaternion.identity);
+        instance.transform.DOMove(end, 2f)
+            .SetLoops(-1, LoopType.Restart);
+
+        ghostCursor = instance;
+    }
+
+    public void RemoveGhostCursor()
+    {
+        if (!ghostCursor) return;
+
+        ghostCursor.transform.DOKill();
+        Destroy(ghostCursor);
     }
 
     void Init()
@@ -119,8 +141,16 @@ public class Game : MonoBehaviour
 #if !UNITY_EDITOR
         serviceOptions.SetEnvironmentName("production");
 #endif
+        Shape.OnDroppedStatic += HandleShapeDropped;
+
         await UnityServices.InitializeAsync(serviceOptions);
+
         initDone = true;
+    }
+
+    void HandleShapeDropped(Shape shape, Vector2Int pos)
+    {
+        RemoveGhostCursor();
     }
 
     public void HandleMapSceneReady(MapScene scene)

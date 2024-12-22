@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
 using FancyToolkit;
 using System.Linq;
 using TMPro;
@@ -34,11 +35,15 @@ namespace GridBoard
         [SerializeField] bool shouldHighlightTiles;
         [SerializeField] bool drawGizmos;
 
+        [SerializeField] GameObject prefabGhostTile;
+
         [SerializeField] DatabaseBoardPresets dbBoardPresets;
         List<PredefinedLayout> predefinedBoards;
 
         Tile[,] tiles;
         SpriteRenderer[,] bgTiles;
+
+        HashSet<Vector2Int> allowedTiles = null;
 
         [SerializeField] public Tile mouseTile { get; private set; }
         [SerializeField] public Vector2Int? mousePos { get; private set; }
@@ -52,6 +57,7 @@ namespace GridBoard
         public bool InitDone { get; private set; }
 
         Queue<Tile> emptyTileQueue = new();
+        List<GameObject> toClearAllowedTiles = new();
 
         List<Vector2Int> adjDeltas = new()
         {
@@ -125,6 +131,25 @@ namespace GridBoard
             Init();
         }
 
+        public Vector2 GetAllowedMidPos()
+        {
+            Assert.IsTrue(allowedTiles != null);
+            Assert.IsTrue(allowedTiles.Count > 0);
+
+            Vector2 totalPos = Vector2.zero;
+            foreach (var item in allowedTiles)
+            {
+                var pos = bgTiles[item.x, item.y].transform.position;
+                totalPos.x += pos.x;
+                totalPos.y += pos.y;
+            }
+
+            return new Vector2(
+                totalPos.x / allowedTiles.Count,
+                totalPos.y / allowedTiles.Count
+            );
+        }
+
         void HandleTileChangedBoardState(Tile tile, bool state)
         {
             var id = tile.data.id;
@@ -142,6 +167,8 @@ namespace GridBoard
         {
             if (!InBounds(x, y)) return false;
             if (tiles[x, y]) return false;
+
+            if (allowedTiles != null && !allowedTiles.Contains(new(x,y))) return false;
 
             return true;
         }
@@ -247,7 +274,18 @@ namespace GridBoard
             }
 
             tiles = new Tile[width, height];
+            ClearAllowed();
             OnCleared?.Invoke();
+        }
+
+        void ClearAllowed()
+        {
+            allowedTiles = null;
+            foreach (var obj in toClearAllowedTiles)
+            {
+                Destroy(obj);
+            }
+            toClearAllowedTiles.Clear();
         }
 
         public void LoadLayout(PredefinedLayout layout)
@@ -257,6 +295,16 @@ namespace GridBoard
             {
                 var pos = info.pos;
                 tiles[pos.x, pos.y] = PlaceTileInstant(info);
+            }
+            var allowed = layout.allowedTiles;
+            if (allowed != null && allowed.Count > 0)
+            {
+                allowedTiles = new (allowed);
+                foreach (var tile in allowed)
+                {
+                    var obj = Instantiate(prefabGhostTile, bgTiles[tile.x, tile.y].transform);
+                    toClearAllowedTiles.Add(obj);
+                }
             }
             StateVersion++;
         }
@@ -387,10 +435,7 @@ namespace GridBoard
             foreach (var item in deltaInfos)
             {
                 var pos = item.pos + origin;
-                if (!InBounds(pos.x, pos.y)) return false;
-
-                var other = GetItem(pos.x, pos.y);
-                if (other) return false;
+                if(!CanPlace(pos.x, pos.y)) return false;
             }
 
             return true;
@@ -409,6 +454,7 @@ namespace GridBoard
                 result.Add(block);
             }
 
+            ClearAllowed();
             return result;
         }
 
@@ -791,6 +837,7 @@ namespace GridBoard
     {
         public int level;
         public List<Tile.Info> tiles;
+        public List<Vector2Int> allowedTiles;
 
         public PredefinedLayout Replace(TileData from, TileData to)
         {

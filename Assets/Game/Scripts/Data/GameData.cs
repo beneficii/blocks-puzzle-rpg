@@ -15,12 +15,7 @@ public class GameData : ScriptableObject
     public Sprite spriteBlock;
     public GenericBullet prefabBullet;
     public FxAnimator fxPrefab;
-
-    public TextAsset tableTiles;
-    public TextAsset tableStartingTiles;
-    public TextAsset tableUnits;
-    public TextAsset tableStages;
-    public TextAsset tableSkills;
+    public GameObject prefabGhostCursor;
 
     public class TileColors
     {

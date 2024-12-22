@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using FancyToolkit;
 
 public class TweenOnEnable : MonoBehaviour
 {
@@ -59,6 +60,17 @@ public class TweenOnEnable : MonoBehaviour
             .SetEase(Ease.InOutBack);
     }
 
+    void TweenFadeInOut()
+    {
+        if (TryGetComponent<SpriteRenderer>(out var render))
+        {
+            render.SetAlpha(1f);
+            tweenSequence = DOTween.Sequence()
+                .Append(render.DOFade(1f - distance, animationTime))
+                .SetLoops(-1, LoopType.Yoyo);
+        }
+    }
+
     private void OnEnable()
     {
         switch (type)
@@ -74,6 +86,9 @@ public class TweenOnEnable : MonoBehaviour
                 break;
             case Type.JumpTopDown:
                 TweenJumpTopDown();
+                break;
+            case Type.FadeInOut:
+                TweenFadeInOut();
                 break;
             default:
                 break;
@@ -93,5 +108,6 @@ public class TweenOnEnable : MonoBehaviour
         GrowIn,
         Highlight,
         JumpTopDown,
+        FadeInOut,
     }
 }

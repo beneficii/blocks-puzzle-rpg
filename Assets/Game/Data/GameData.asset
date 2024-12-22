@@ -15,6 +15,7 @@ MonoBehaviour:
   spriteBlock: {fileID: 21300000, guid: b6db98bf82e3456408aa8d2e3a07e3d0, type: 3}
   prefabBullet: {fileID: 7667046944190593093, guid: 1876af816686cf94d80eae434ee347c4, type: 3}
   fxPrefab: {fileID: 9081837997925683738, guid: 1bfffaae75667834baef60651d95285a, type: 3}
+  prefabGhostCursor: {fileID: 8426596192134479049, guid: 66d7b96082502304ba1a2570b3491f21, type: 3}
   tableTiles: {fileID: 4900000, guid: 74fb23fd077da464c97197158a3d257d, type: 3}
   tableStartingTiles: {fileID: 4900000, guid: e21e077e224f2ea409bbc4d43af5146a, type: 3}
   tableUnits: {fileID: 4900000, guid: 0d87e4e20afdc224f9beec775e290359, type: 3}

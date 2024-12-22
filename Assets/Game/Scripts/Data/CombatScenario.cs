@@ -4,6 +4,9 @@ using UnityEngine;
 using GridBoard;
 using TileShapes;
 using FancyToolkit;
+using NUnit.Framework;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEngine.UIElements.Experimental;
 
 public abstract class CombatScenario
 {
@@ -24,6 +27,7 @@ namespace Scenarios
 {
     public class Tutorial : CombatScenario
     {
+        public GameObject ghostCursor;
         protected override IEnumerator StartRoutine()
         {
             CombatCtrl.current.PreventEndTurn++;
@@ -34,6 +38,8 @@ namespace Scenarios
                     {1,1,1}
                 }
             });
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Guide the shapes to their destined place; complete a line to unleash its power.");
+            Game.current.CreateGhostCursor(shapePanel.GetShapeMidPos(), board.GetAllowedMidPos());
             yield return new EventWaiter<LineClearData>(ref LineClearer.OnCleared);
             
 
@@ -46,10 +52,10 @@ namespace Scenarios
                     {1 },
                 }
             });
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Unleashed swords deal damage to your foes.");
+            Game.current.CreateGhostCursor(shapePanel.GetShapeMidPos(), board.GetAllowedMidPos());
             yield return new EventWaiter<LineClearData>(ref LineClearer.OnCleared);
             
-
-
             board.LoadLayoutByName("tutorial3");
             shapePanel.GenerateFromBytes(new()
             {
@@ -58,8 +64,14 @@ namespace Scenarios
                     {1,1 },
                 }
             });
+            
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Enemy is about to attack, unleash shields to grant you armor");
+            Game.current.CreateGhostCursor(shapePanel.GetShapeMidPos(), board.GetAllowedMidPos());
+            yield return new EventWaiter<Shape, Vector2Int>(ref Shape.OnDroppedStatic);
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Your armor will fade at the start of each turn. Now finish the beast!");
+            //TutorialCtrl.current.HideAll();
             CombatCtrl.current.PreventEndTurn--;
-            yield return new EventWaiter<LineClearData>(ref LineClearer.OnCleared);
+            Game.current.RemoveGhostCursor();
             
             Debug.Log("Tutorial finished!");
         }

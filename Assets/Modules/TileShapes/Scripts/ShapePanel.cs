@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 using GridBoard;
 using System.Linq;
@@ -48,6 +49,11 @@ namespace TileShapes
         Vector2 AnchoredPosition(Vector2Int pos)
         {
             return (Vector2)anchor.transform.position + new Vector2(pos.x * Tile.rScale, pos.y * Tile.rScale);
+        }
+
+        public Vector2 GetShapeMidPos(int index = 0)
+        {
+            return slots[index].transform.position;
         }
 
         public ShapeData GetShapeFromPool()
