@@ -74,4 +74,12 @@ public class UIHudSettings : UIHudBase
     {
         Game.current.LoadMainMenu();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Toggle();
+        }
+    }
 }

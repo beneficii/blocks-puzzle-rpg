@@ -20,6 +20,10 @@ public class MainUI : MonoBehaviour
         }
     }
 
+    public UIGenericButton uiBtnSettings;
+    public UIGenericButton uiBtnTiles;
+    public UIGenericButton uiBtnMap;
+
     [SerializeField] UITooltipMessage templateMessage;
     [SerializeField] AudioClip soundReject;
 

@@ -116,7 +116,9 @@ public class UIHudDialog : UIHudBase
         if (dialogId == "tutorial")
         {
             objSmallBoard.SetActive(true);
+            MainUI.current.uiBtnMap.gameObject.SetActive(false);
         }
+
 
         if (dialogId == "tutorial_3" || dialogId == "tutorial_4")
         {
