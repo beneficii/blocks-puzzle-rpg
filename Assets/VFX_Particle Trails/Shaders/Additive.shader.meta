@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: a4e5acd33e58ae54699754601a8236c1
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298362
+  packageName: Game VFX - Particle Trails Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/VFX_Particle Trails/Shaders/Additive.shader
+  uploadId: 698090

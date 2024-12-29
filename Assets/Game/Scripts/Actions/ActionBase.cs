@@ -21,14 +21,20 @@ public abstract class ActionBase
 
     public abstract IEnumerator Run(int multiplier = 1);
 
-    protected GenericBullet MakeBullet(IActionParent source, Vector2? position = null)
+    protected GenericBullet MakeBullet(IActionParent source, Vector2? position = null, string vfxId = null)
     {
         if (position == null)
         {
             position = source.transform.position;
         }
+
+        if (vfxId == null)
+        {
+            vfxId = source.VfxId;
+        }
+
         var rand = Random.Range(0, 2) == 0;
-        var bullet = Game.current.MakeBullet(position.Value)
+        var bullet = Game.current.MakeBullet(position.Value, vfxId)
             .SetSpleen(rand ? Vector2.left : Vector2.right);
 
         if (source is IHasInfo info)
@@ -112,6 +118,7 @@ public interface IActionParent
     int Defense { get; set; }
     Transform transform { get; }
     Board board { get; }
+    string VfxId { get; }
 
     Component AsComponent();
 }

@@ -113,7 +113,7 @@ public class UIHudDialog : UIHudBase
 
     void SpecialStagePreparation(string dialogId)
     {
-        if (dialogId == "tutorial")
+        if (dialogId == "tutorial_1")
         {
             objSmallBoard.SetActive(true);
             MainUI.current.uiBtnMap.gameObject.SetActive(false);

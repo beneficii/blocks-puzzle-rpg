@@ -22,6 +22,9 @@ public class MyTileData : TileData, IActionParent
     public Board board => null;
     public Component AsComponent() => null;
 
+    public string VfxId => type.ToString();
+
+
     public string GetDescription(TileActionContainer actionContainer)
     {
         var lines = new List<string>();

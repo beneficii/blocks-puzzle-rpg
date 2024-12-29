@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6b34df4a59c22514e8186698b96c7698
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298362
+  packageName: Game VFX - Particle Trails Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/VFX_Particle Trails/Scene/PostProcessing Profile.asset
+  uploadId: 698090

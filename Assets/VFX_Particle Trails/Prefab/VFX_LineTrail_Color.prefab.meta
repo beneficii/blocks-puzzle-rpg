@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 43206d1ec8ebdfd4f9104c35abf68d51
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298362
+  packageName: Game VFX - Particle Trails Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/VFX_Particle Trails/Prefab/VFX_LineTrail_Color.prefab
+  uploadId: 698090

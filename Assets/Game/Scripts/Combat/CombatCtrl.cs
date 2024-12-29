@@ -318,11 +318,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         //arena.player.SetCombatVisible(true);
 
         yield return UIHudCombat.current.InitSkills(board);
-        shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
-        var clearer = FindAnyObjectByType<LineClearer>();
-        if (clearer) WorldUpdateCtrl.current.AddSubscriber(clearer);
-        WorldUpdateCtrl.current.AddSubscriber(shapePanel);
-
         var scenario = Factory<CombatScenario>.Create(stageData.scenario);
         if (scenario != null)
         {
@@ -332,6 +327,13 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         {
             board.LoadRandomLayout(stageData.specialTile);
         }
+        if (PreventEndTurn == 0)
+        {
+            shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);
+        }
+        var clearer = FindAnyObjectByType<LineClearer>();
+        if (clearer) WorldUpdateCtrl.current.AddSubscriber(clearer);
+        WorldUpdateCtrl.current.AddSubscriber(shapePanel);
     }
 
     public void InitShop()

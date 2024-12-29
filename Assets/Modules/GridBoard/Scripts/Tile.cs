@@ -32,6 +32,7 @@ namespace GridBoard
 
         [SerializeField] List<Sprite> bgSprites;
         [SerializeField] Sprite bgSprite2;
+        [SerializeField] ParticleSystem particleBreak;
 
         [SerializeField] protected bool debug;
 
@@ -89,6 +90,12 @@ namespace GridBoard
         public virtual void InitVirtual(TileData data)
         {
 
+        }
+
+        public void Break()
+        {
+            var instance = Instantiate(particleBreak, transform.position, Quaternion.identity);
+            Destroy(instance, .4f);
         }
 
         public void Init(TileData data, int level = -1)

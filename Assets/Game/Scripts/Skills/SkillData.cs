@@ -26,6 +26,7 @@ public class SkillData : DataWithId, IHasInfo, IActionParent
     public Board board => null;
     public Component AsComponent() => null;
 
+    public string VfxId => null;
 
     public string GetDescription(SkillActionContainer container)
     {

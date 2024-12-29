@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b4a749e737da1fd4299b278bdd95e98f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298362
+  packageName: Game VFX - Particle Trails Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/VFX_Particle Trails/Prefab/FX_ParticleTrail_Foot.prefab
+  uploadId: 698090

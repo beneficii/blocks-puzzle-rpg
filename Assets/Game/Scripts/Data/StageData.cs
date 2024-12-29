@@ -34,6 +34,7 @@ public class StageData : NodeType
         Elite,
         Shop,
         Dialog,
+        Camp,
         Boss,
         Victory,
     }

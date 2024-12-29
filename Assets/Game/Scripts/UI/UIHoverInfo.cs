@@ -34,6 +34,12 @@ public class UIHoverInfo : MonoBehaviour
         Init(info);
     }
 
+    public GenericBullet CreateBullet(string vfxId = null)
+    {
+        return Game.current.MakeBullet(imgIcon.transform.position, vfxId)
+            .SetSprite(imgIcon.sprite);
+    }
+
     public void HideCost() { txtCost.text = ""; }
 
     public void Init(IHasInfo info)

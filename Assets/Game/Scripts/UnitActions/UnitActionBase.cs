@@ -25,10 +25,10 @@ namespace UnitAction
             this.parent = parent;
         }
 
-        protected GenericBullet MakeBullet()
+        protected GenericBullet MakeBullet(string vfxId = null)
         {
             var rand = Random.Range(0, 2) == 0;
-            var bullet = Game.current.MakeBullet(parent.transform.position)
+            var bullet = Game.current.MakeBullet(parent.transform.position, vfxId)
                 .SetSpleen(rand ? Vector2.left : Vector2.right);
 
             return bullet;

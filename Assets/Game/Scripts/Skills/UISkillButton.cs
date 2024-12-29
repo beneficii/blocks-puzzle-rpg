@@ -36,6 +36,9 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
         }
     }
 
+    public string VfxId => data.VfxId;
+
+
     public bool HasManualUse => !(actionContainer.clickCondition?.AutoActivate??true);
 
     public float CooldownFill

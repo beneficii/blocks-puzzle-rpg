@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Description
   m_EditorClassIdentifier: 
   normalFont: {fileID: 11400000, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
-  pixelFont: {fileID: 11400000, guid: c8050468c4768d64cb3a006db522bb03, type: 2}
+  pixelFont: {fileID: 11400000, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}

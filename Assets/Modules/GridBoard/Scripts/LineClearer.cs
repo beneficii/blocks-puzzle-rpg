@@ -152,12 +152,26 @@ namespace GridBoard
             tileSet = new HashSet<Tile>(tilesRemoved);
             foreach (var item in tileSet)
             {
-                yield return item.FadeOut(20f);
+                //yield return item.FadeOut(50f);
+                //Destroy(item.gameObject);
+                //StartCoroutine(FadeTile(item, 2f));
+                if (item.data.isEmpty)
+                {
+                    item.Break();
+                }
                 Destroy(item.gameObject);
             }
 
+            yield return new WaitForSeconds(.4f);
+
             OnCleared?.Invoke(clearData);
             clearData.Destroy();
+        }
+
+        IEnumerator FadeTile(Tile item, float speed)
+        {
+            yield return item.FadeOut(speed);
+            Destroy(item.gameObject);
         }
 
         void HandleTilePlaced(Tile tile)

@@ -31,6 +31,8 @@ public class MyTile : Tile, IActionParent
         }
     }
 
+    public string VfxId => myData?.VfxId;
+
     public ActionStatType StatType => actionContainer?.clearAction?.StatType ?? ActionStatType.None;
 
     public int Damage { get => Power; set => Power = value; }

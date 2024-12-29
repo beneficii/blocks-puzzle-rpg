@@ -32,9 +32,11 @@ public class Game : MonoBehaviour
 
     public Dictionary<string, AnimCompanion> vfxDict;
     public Dictionary<string, FxData> fxDict;
+    public Dictionary<string, GenericBullet> bulletDict;
 
     public Dictionary<string, GameObject> unitActionPrefabs;
     public Dictionary<string, Sprite> bgDict;
+
 
     int stageSeed;
 
@@ -42,9 +44,17 @@ public class Game : MonoBehaviour
 
     GameObject ghostCursor;
 
-    public GenericBullet MakeBullet(Vector2 position)
+    public GenericBullet MakeBullet(Vector2 position, string vfxId = null)
     {
-        return Instantiate(gameData.prefabBullet, position, Quaternion.identity);
+        var prefab = gameData.prefabBullet;
+
+        if (!string.IsNullOrWhiteSpace(vfxId) && bulletDict.TryGetValue(vfxId, out var vfx))
+        {
+            prefab = vfx;
+        }
+
+
+        return Instantiate(prefab, position, Quaternion.identity);
     }
 
     public void AddTileToDeck(string id)
@@ -104,6 +114,7 @@ public class Game : MonoBehaviour
         unitActionPrefabs = Resources.LoadAll<GameObject>("ActionVisuals").ToDictionary(x => x.name);
         fxDict = Resources.LoadAll<FxData>("FxData").ToDictionary(x => x.name);
         bgDict = Resources.LoadAll<Sprite>("Backgrounds").ToDictionary(x => x.name);
+        bulletDict = Resources.LoadAll<GenericBullet>("Bullets").ToDictionary(x => x.name);
     }
 
     public System.Random CreateStageRng()

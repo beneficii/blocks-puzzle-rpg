@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b12f4fff5700b7244887ce55e80a2d26
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298362
+  packageName: Game VFX - Particle Trails Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/VFX_Particle Trails/Prefab/FX_ParticleTrail_Fire.prefab
+  uploadId: 698090

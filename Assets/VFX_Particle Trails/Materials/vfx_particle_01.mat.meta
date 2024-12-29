@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3060b1d9a3f58614483137ea473a56e3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: fx_textures_particle_materials.unity3d
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298362
+  packageName: Game VFX - Particle Trails Collection(URP)
+  packageVersion: 1.0
+  assetPath: Assets/VFX_Particle Trails/Materials/vfx_particle_01.mat
+  uploadId: 698090

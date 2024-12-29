@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using FancyToolkit;
+using UnityEngine.XR;
+using DG.Tweening;
+using static DG.Tweening.DOTweenAnimation;
 
 public class UISelectTileCard : MonoBehaviour
 {
@@ -48,13 +51,27 @@ public class UISelectTileCard : MonoBehaviour
     public void Select()
     {
         (type == SelectTileType.Shop ? soundBuy : soundSelect)?.PlayNow();
-        if (data is MyTileData tileData && tileData.buyAction != null)
+        var tileData = data as MyTileData;
+        if (tileData != null && tileData.buyAction != null)
         {
             var action = tileData.buyAction.Build();
             action.Init(tileData);
             Game.current.StartCoroutine(action.Run());
             return;
         }
+
+        var vfxId = tileData?.type.ToString();
+
+        infoPanel.CreateBullet(vfxId)
+                .SetSpleen(Random.Range(0, 1) == 1 ? Vector2.left : Vector2.right)
+                .SetTarget(MainUI.current.uiBtnTiles)
+                .SetAction(x =>
+                {
+                    x.transform.localScale = Vector3.one * 0.9f;
+
+                    x.transform.DOScale(Vector3.one, .25f)
+                        .SetEase(Ease.InOutBack);
+                });
 
         OnSelectCard?.Invoke(this, type);
     }
