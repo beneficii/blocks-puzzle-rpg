@@ -5,6 +5,7 @@ using FancyToolkit;
 using UnityEngine.XR;
 using DG.Tweening;
 using static DG.Tweening.DOTweenAnimation;
+using System;
 
 public class UISelectTileCard : MonoBehaviour
 {
@@ -46,13 +47,16 @@ public class UISelectTileCard : MonoBehaviour
         {
             if (tileData.buyAction != null) imgBg.sprite = spriteBgSpecial;
         }
+        else if (data is SkillData skillData)
+        {
+            infoPanel.imgIcon.transform.localScale = Vector3.one * 2;
+            infoPanel.imgFrame.gameObject.SetActive(false);
+        }
     }
 
-    public void Select()
+    void SelectedTile(MyTileData tileData)
     {
-        (type == SelectTileType.Shop ? soundBuy : soundSelect)?.PlayNow();
-        var tileData = data as MyTileData;
-        if (tileData != null && tileData.buyAction != null)
+        if (tileData.buyAction != null)
         {
             var action = tileData.buyAction.Build();
             action.Init(tileData);
@@ -60,10 +64,12 @@ public class UISelectTileCard : MonoBehaviour
             return;
         }
 
+        CombatCtrl.current.AddTileToSet(tileData);
+
         var vfxId = tileData?.type.ToString();
 
         infoPanel.CreateBullet(vfxId)
-                .SetSpleen(Random.Range(0, 1) == 1 ? Vector2.left : Vector2.right)
+                .SetSpleen(UnityEngine.Random.Range(0, 1) == 1 ? Vector2.left : Vector2.right)
                 .SetTarget(MainUI.current.uiBtnTiles)
                 .SetAction(x =>
                 {
@@ -72,8 +78,43 @@ public class UISelectTileCard : MonoBehaviour
                     x.transform.DOScale(Vector3.one, .25f)
                         .SetEase(Ease.InOutBack);
                 });
+    }
+
+    void SelectedSkill(SkillData skillData)
+    {
+        Game.current.AddSkill(skillData.id);
+        var player = CombatArena.current.player;
+        if (player)
+        {
+            infoPanel.CreateBullet("Spell")
+                .SetSpleen(UnityEngine.Random.Range(0, 1) == 1 ? Vector2.left : Vector2.right)
+                .SetTarget(player)
+                .SetAction(x =>
+                {
+                    // ToDo: maybe learning animation
+                });
+        }
+    }
+
+    public void Select()
+    {
+        (type == SelectTileType.Shop ? soundBuy : soundSelect)?.PlayNow();
+
+        if (data is MyTileData tileData)
+        {
+            SelectedTile(tileData);
+        }
+        else if (data is SkillData skillData)
+        {
+            SelectedSkill(skillData);
+        }
 
         OnSelectCard?.Invoke(this, type);
+
+        if (type == SelectTileType.Choise)
+        {
+            UIHudSelectTile.current.Close();
+        }
     }
 
     public void Buy()

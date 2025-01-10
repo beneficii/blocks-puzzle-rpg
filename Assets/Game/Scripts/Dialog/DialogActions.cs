@@ -66,20 +66,20 @@ namespace DialogActions
 
     public class SwitchType : DialogAction
     {
-        StageData.Type type;
+        StageType type;
         public override string GetDescription()
         {
             return type switch
             {
-                StageData.Type.Enemy or StageData.Type.Elite or StageData.Type.Boss => "Fight",
-                StageData.Type.Shop => "Shop",
+                StageType.Enemy or StageType.Elite or StageType.Boss => "Fight",
+                StageType.Shop => "Shop",
                 _ => null,
             };
         }
 
         public SwitchType(StringScanner scanner)
         {
-            type = scanner.NextEnum<StageData.Type>();
+            type = scanner.NextEnum<StageType>();
         }
 
         public override void Execute()
@@ -131,7 +131,7 @@ namespace DialogActions
 
         public override void Execute()
         {
-            UIHudDialog.current.SetNext(StageData.Type.Victory);
+            UIHudDialog.current.SetNext(StageType.Victory);
         }
     }
 

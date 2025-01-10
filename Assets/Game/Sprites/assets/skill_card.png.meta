@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c4666bd165a868f42bd58cf82b7ebe7a
+guid: 357560bb12ed6c648b35aab5b610244f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1838176261520250112
-    second: health_card_0
+      213: 6350062435786667414
+    second: skill_card_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
-  spriteBorder: {x: 64, y: 101, z: 64, w: 101}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: health_card_0
+      name: skill_card_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,14 +134,14 @@ TextureImporter:
         width: 129
         height: 202
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00ba781ed6c7d76e0800000000000000
-      internalID: -1838176261520250112
+      spriteID: 695bd9a2424ff1850800000000000000
+      internalID: 6350062435786667414
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []

@@ -29,7 +29,7 @@ public class UIHudDialog : UIHudBase
 
     Dictionary<string, List<DialogData>> dict;
     string nextDialogID;
-    StageData.Type nextStageType;
+    StageType nextStageType;
 
     void Init()
     {
@@ -48,7 +48,12 @@ public class UIHudDialog : UIHudBase
         SetNext(StageCtrl.current.Data.type);
     }
 
-    public void Show(string id)
+    public void MainInitDone()
+    {
+        SetNext(StageType.None);
+    }
+
+    public void Show(string id, bool atEnd = false)
     {
         nextDialogID = null;
         Clear();
@@ -66,7 +71,6 @@ public class UIHudDialog : UIHudBase
         {
             templateOption.Create<UIDIalogOption>()
                 .Init(DialogData.OptContinue);
-            return;
         }
         else for (int i = 1; i < list.Count; i++)
         {
@@ -79,12 +83,27 @@ public class UIHudDialog : UIHudBase
         Opened();
     }
 
+    public void ShowCustom(string message)
+    {
+        nextDialogID = null;
+        Clear();
+
+        Assert.IsNotNull(CombatArena.current.enemy);
+        CombatArena.current.enemy.SetDialog(message);
+
+        // ToDo: maybe custom options
+        templateOption.Create<UIDIalogOption>()
+                .Init(DialogData.OptContinue);
+
+        Opened();
+    }
+
     public void SetNext(string id = null)
     {
         nextDialogID = id;
     }
 
-    public void SetNext(StageData.Type type)
+    public void SetNext(StageType type)
     {
         nextStageType = type;
     }
@@ -103,9 +122,10 @@ public class UIHudDialog : UIHudBase
         }
 
         if (CombatArena.current.enemy) CombatArena.current.enemy.SetDialog(null);
-        if (nextStageType != StageData.Type.None && nextStageType != StageData.Type.Dialog)
+        if (nextStageType != StageType.None && nextStageType != StageType.Dialog)
         {
             CombatCtrl.current.AddState(new CombatStates.InitStageType(nextStageType));
+            SetNext(StageType.None);
         }
         Clear();
         Closed();

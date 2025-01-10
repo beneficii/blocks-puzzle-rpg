@@ -1,5 +1,5 @@
 id,idVisuals,title,power,rarity,type,priority,tags,clearAction,endTurnAction,enterAction,passive,buyAction,colorCode,,,,
-health,health,Potion,0,None,none,0,,,,,,HealPlayerBuy 50,,,,,
+health,health,Heal,0,None,none,0,,,,,,HealPlayerBuy 50,,,,,
 ,,,,,,,,,,,,,,,,,
 sword,basic_sword,Cheap Sword,4,Basic,weapon,0,sword,Damage,,,,,a4dddb,,,,
 shortSword,sword1,ShortSword,2,None,weapon,0,sword,Damage,,,,,,,,,

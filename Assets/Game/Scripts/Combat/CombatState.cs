@@ -12,9 +12,9 @@ namespace CombatStates
 {
     public class InitStageType : CombatState
     {
-        StageData.Type type;
+        StageType type;
 
-        public InitStageType(StageData.Type type)
+        public InitStageType(StageType type)
         {
             this.type = type;
         }
@@ -52,6 +52,21 @@ namespace CombatStates
         public override void Run()
         {
             CombatCtrl.current.ShowTileChoise(rarity);
+        }
+    }
+
+    public class Dialog : CombatState
+    {
+        string id;
+
+        public Dialog(string id)
+        {
+            this.id = id;
+        }
+
+        public override void Run()
+        {
+            UIHudDialog.current.Show(id);
         }
     }
 

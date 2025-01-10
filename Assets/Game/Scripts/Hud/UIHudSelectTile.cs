@@ -19,6 +19,7 @@ public class UIHudSelectTile : UIHudBase
 
     [SerializeField] UISelectTileCard templateCard;
     [SerializeField] GameObject bg;
+    [SerializeField] UIGenericButton btnSkip;
 
     List<UISelectTileCard> cards = new();
 
@@ -34,7 +35,7 @@ public class UIHudSelectTile : UIHudBase
         }
     }
 
-    public void ShowShop(List<MyTileData> list, System.Random rng)
+    public UIHudSelectTile ShowShop(List<MyTileData> list, System.Random rng)
     {
         Opened();
         Clear();
@@ -45,6 +46,8 @@ public class UIHudSelectTile : UIHudBase
             cards.Add(instance);
         }
         bg.SetActive(false);
+        btnSkip.gameObject.SetActive(true);
+        return this;
     }
 
     public UIHudSelectTile ShowChoise(List<MyTileData> list) => ShowChoise(list.Cast<IHasInfo>().ToList());
@@ -60,17 +63,14 @@ public class UIHudSelectTile : UIHudBase
             cards.Add(instance);
         }
         bg.SetActive(false);
+        btnSkip.gameObject.SetActive(true);
         return this;
     }
 
-    private void OnEnable()
+    public UIHudSelectTile SetCanSkip(bool value)
     {
-        UISelectTileCard.OnSelectCard += HandleCardSelected;
-    }
-
-    private void OnDisable()
-    {
-        UISelectTileCard.OnSelectCard -= HandleCardSelected;
+        btnSkip.gameObject.SetActive(value);
+        return this;
     }
 
     void Clear()
@@ -86,14 +86,6 @@ public class UIHudSelectTile : UIHudBase
     {
         Clear();
         Closed();
-    }
-
-    void HandleCardSelected(UISelectTileCard card, SelectTileType type)
-    {
-        if (type == SelectTileType.Choise)
-        {
-            Close();
-        }
     }
 }
 

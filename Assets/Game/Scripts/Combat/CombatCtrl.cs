@@ -8,6 +8,7 @@ using FancyToolkit;
 using System.Linq;
 using UnityEngine.UI;
 using DG.Tweening;
+using Unity.Android.Gradle.Manifest;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
@@ -27,6 +28,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     [SerializeField] List<SpriteRenderer> bgRenders;
     [SerializeField] UIGenericButton btnEndTurn;
+    [SerializeField] UIHudCombat hud;
 
     System.Random endLevelRandom;
 
@@ -43,8 +45,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     Queue<CombatState> stateQueue = new();
 
     int tilesPerTurn;
-
-    bool dontCheckQueue;
 
     int preventEndTurn;
     public int PreventEndTurn
@@ -68,9 +68,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     private void Awake()
     {
-        tileQueue = new(Game.current.GetDeck());
-        var settings = Game.current.GetCombatSettings();
-        tilesPerTurn = settings.tilesPerTurn;
         HUDCtrl.current.OnAllClosed += HandleAllHudsClosed;
     }
 
@@ -78,14 +75,14 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     {
         LineClearer.AddHandler(this);
         Unit.OnKilled += HandleUnitKilled;
-        UISelectTileCard.OnSelectCard += HandleAddCardToSet;
+        UISelectTileCard.OnSelectCard += HandleCardSelected;
     }
 
     private void OnDisable()
     {
         LineClearer.RemoveHandler(this);
         Unit.OnKilled -= HandleUnitKilled;
-        UISelectTileCard.OnSelectCard -= HandleAddCardToSet;
+        UISelectTileCard.OnSelectCard -= HandleCardSelected;
         animSequence?.Kill();
     }
 
@@ -99,7 +96,9 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     void HandleAllHudsClosed()
     {
-        if (dontCheckQueue) return;
+        //if (dontCheckQueue) return;
+
+        if (hud.IsOpen) return;
         CheckQueue();
     }
 
@@ -127,24 +126,10 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         stateQueue.Enqueue(state);
     }
 
-    void HandleAddCardToSet(UISelectTileCard card, SelectTileType type)
+    public void AddTileToSet(TileData tileData)
     {
-        var data = card.data;
-
-        if (data is TileData tileData)
-        {
-            tileQueue.Add(tileData);
-            Game.current.AddTileToDeck(tileData.id);
-        }
-        else if (data is SkillData skillData)
-        {
-            // ToDo: maybe init skill
-            Game.current.AddSkill(skillData.id);
-        }
-        else
-        {
-            Debug.LogError("Unrecognized card type");
-        }
+        tileQueue.Add(tileData);
+        Game.current.AddTileToDeck(tileData.id);
     }
 
     void HandleUnitKilled(Unit unit)
@@ -211,7 +196,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             result.Add(new UICombatReward.DataTile(rarity));
         }
 
-        if (stageData.type == StageData.Type.Elite || stageData.type == StageData.Type.Boss)
+        if (stageData.type == StageType.Elite || stageData.type == StageType.Boss)
         {
             result.Add(new UICombatReward.DataSkill(Rarity.Common));
             result.Add(new UICombatReward.DataTilesPerTurn());
@@ -231,10 +216,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         if (victory)
         {
-            dontCheckQueue = true;
-            UIHudCombat.current.Close();
+            hud.Close();
             UIHudRewards.current.Show(GenerateCombatRewards());
-            dontCheckQueue = false;
         }
         else
         {
@@ -303,7 +286,11 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     {
         var stageData = StageCtrl.current.Data;
 
-        UIHudCombat.current.Show();
+        tileQueue = new(Game.current.GetDeck());
+        var settings = Game.current.GetCombatSettings();
+        tilesPerTurn = settings.tilesPerTurn;
+
+        hud.Show();
         board = FindAnyObjectByType<Board>();
         board.Init();
 
@@ -317,7 +304,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         arena.enemy.SetCombatVisible(true);
         //arena.player.SetCombatVisible(true);
 
-        yield return UIHudCombat.current.InitSkills(board);
+        yield return hud.InitSkills(board);
         var scenario = Factory<CombatScenario>.Create(stageData.scenario);
         if (scenario != null)
         {
@@ -353,12 +340,70 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         AddRarity(Rarity.Common, 3);
         AddRarity(Rarity.Uncommon, 2);
-        list.Add(TileCtrl.current.Get<MyTileData>("health"));
+        //list.Add(TileCtrl.current.Get<MyTileData>("health"));
 
+        CombatArena.current.enemy?.SetDialog("Take a look at the tiles I offer");
         UIHudSelectTile.current.ShowShop(list, rng);
     }
 
-    public void Init(StageData.Type type, string dialogId = null)
+
+    // Select skill or healing
+    public void InitCamp()
+    {
+        var stageData = StageCtrl.current.Data;
+        var rng = endLevelRandom;
+
+        var rarity = Rarity.Common; //ToDo: stageData.reward rarity
+        var list = SkillCtrl.current.GetAll()
+                .Where(x => x.rarity == rarity)
+                .Cast<IHasInfo>()
+                .ToList()
+                .RandN(3, endLevelRandom);
+
+        string dialog;
+        bool noSkills = Game.current.IsFirstEncounter(); //Game.current.GetSkills().Count == 0;
+        if (noSkills)
+        {
+            dialog = "Arcane board? I thought they no longer worked.. Never mind, let me teach you an arcane skill";
+        }
+        else
+        {
+            dialog = "Want to learn more skills? Or perhaps you want to heal wounds. Choose one!";
+            list.Add(TileCtrl.current.Get<MyTileData>("health"));
+        }
+
+        CombatArena.current.enemy.SetDialog(dialog);
+
+        UIHudSelectTile.current.ShowChoise(list)
+            .SetCanSkip(false);
+            //.SetCanSkip(!noSkills);
+    }
+
+    void HandleCardSelected(UISelectTileCard card, SelectTileType type)
+    {
+        var stageData = StageCtrl.current.Data;
+        if (stageData.type == StageType.Camp)
+        {
+            if (Game.current.IsFirstEncounter())
+            {
+                AddState(new CombatStates.Dialog("teacher0"));
+            }
+            else
+            {
+                if (card.data is TileData)
+                {
+                    AddState(new CombatStates.Dialog("camp_healing"));
+                }
+                else if (card.data is SkillData)
+                {
+                    AddState(new CombatStates.Dialog("camp_skill"));
+                }
+            }
+        }
+
+    }
+
+    public void Init(StageType type, string dialogId = null)
     {
         if (!string.IsNullOrEmpty(dialogId))
         {
@@ -368,15 +413,18 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         switch (type)
         {
-            case StageData.Type.Enemy:
-            case StageData.Type.Elite:
-            case StageData.Type.Boss:
+            case StageType.Enemy:
+            case StageType.Elite:
+            case StageType.Boss:
                 StartCoroutine(InitCombat());
                 break;
-            case StageData.Type.Shop:
+            case StageType.Shop:
                 InitShop();
                 break;
-            case StageData.Type.Victory:
+            case StageType.Camp:
+                InitCamp();
+                break;
+            case StageType.Victory:
                 Game.current.GameOver();
                 UIHudGameOver.current.Show(true);
                 break;
@@ -385,6 +433,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
                 CheckQueue();
                 break;
         }
+        UIHudDialog.current.MainInitDone();
     }
 
 

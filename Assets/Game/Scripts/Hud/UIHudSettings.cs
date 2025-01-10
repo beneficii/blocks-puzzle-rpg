@@ -19,6 +19,8 @@ public class UIHudSettings : UIHudBase
     [SerializeField] Slider sliderSound;
     [SerializeField] Slider sliderMusic;
 
+    float prevTimescale = 1f;
+
     float cachedSound;
     float cachedMusic;
 
@@ -41,6 +43,8 @@ public class UIHudSettings : UIHudBase
     public void Show()
     {
         Opened();
+        prevTimescale = Time.timeScale;
+        //Time.timeScale = 0f;
 
         cachedSound = sliderSound.value = AudioCtrl.current.VolumeSound;
         cachedMusic = sliderMusic.value = AudioCtrl.current.VolumeMusic;
@@ -61,6 +65,7 @@ public class UIHudSettings : UIHudBase
     public void Close()
     {
         Closed();
+        Time.timeScale = prevTimescale;
     }
 
     public void Cancel()

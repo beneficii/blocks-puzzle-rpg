@@ -72,8 +72,6 @@ namespace Scenarios
             //TutorialCtrl.current.HideAll();
             CombatCtrl.current.PreventEndTurn--;
             Game.current.RemoveGhostCursor();
-            
-            Debug.Log("Tutorial finished!");
         }
     }
 }

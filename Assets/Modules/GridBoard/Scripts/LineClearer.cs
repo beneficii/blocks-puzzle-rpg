@@ -143,7 +143,9 @@ namespace GridBoard
 
             var clearData = new LineClearData(tileSet, rowsCount, columnsCount);
 
-            foreach (var handler in lineClearHandlers)
+            var handlers = lineClearHandlers.ToList();
+
+            foreach (var handler in handlers)
             {
                 yield return handler.HandleLinesCleared(clearData);
             }
@@ -152,13 +154,13 @@ namespace GridBoard
             tileSet = new HashSet<Tile>(tilesRemoved);
             foreach (var item in tileSet)
             {
-                //yield return item.FadeOut(50f);
+                item.Break();
                 //Destroy(item.gameObject);
                 //StartCoroutine(FadeTile(item, 2f));
-                if (item.data.isEmpty)
+                /*if (item.data.isEmpty)
                 {
                     item.Break();
-                }
+                }*/
                 Destroy(item.gameObject);
             }
 

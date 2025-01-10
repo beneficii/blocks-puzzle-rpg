@@ -15,11 +15,13 @@ public class GameState
     // serializeable stuff
     public int seed;
     public List<int> visitedNodes;
+    public int currentAct;
     public int currentNode;
     public int tilesPerTurn;
     public Vector2Int playerHealth;
     public List<string> deck;
     public List<string> skills;
+    public List<string> encounteredStages;
     public int gold;
 
     public bool IsMapNode
@@ -73,28 +75,19 @@ public class GameState
     {
         var mapSize = new Vector2Int(9, 6);
         var rng = new System.Random(seed);
-        var mapLayout = MapGenerator.GenerateLayout(mapSize, 6, rng, 1);
-
-        // ToDo: adjust difficulty       0, 1, 2, 3, 4, 5, 6
-        //var difficulty = new List<int> { 1, 3, 1, 1, 3 };
-        //var typeGenerator = new NodeProbability.Generator(randomNodes);
+        var mapLayout = MapGenerator.GenerateLayout(mapSize, 8, rng, 1);
 
         var stageCtrl = StageCtrl.current;
+
+        new MapNodeAssigner()
+            .Setup(mapLayout, rng);
 
         foreach (var item in mapLayout.nodes)
         {
             var x = item.pos.x;
-            var difficulty = x;
             if (!IsMapNode && x == 0 && visitedNodes.Count == 0 )    // starting node
             {
                 item.state = NodeState.Available;
-            }
-
-            item.type = StageCtrl.current.GetRandom(difficulty, rng);
-            if (item.type == null)
-            {
-                Debug.LogError($"Node with difficulty {x} not found");
-                return null;
             }
         }
 
@@ -136,6 +129,7 @@ public class GameState
     {
         this.seed = seed;
         this.visitedNodes = new();
+        this.encounteredStages = new();
         //HasCurrentNode = false;
         IsTutorialNode = true;
         this.playerHealth = new(100, 100);
@@ -143,6 +137,7 @@ public class GameState
         this.skills = new List<string>();
         this.gold = 200;
         this.tilesPerTurn = 3;
+        this.currentAct = 1;
         GenerateMapLayout();
     }
 }

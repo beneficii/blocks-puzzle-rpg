@@ -58,8 +58,9 @@ namespace FancyToolkit
             if (randClip != null)
             {
                 music.clip = randClip;
-                music.Play();
             }
+
+            music.Play();
         }
 
         void SavePrefsOnClose()

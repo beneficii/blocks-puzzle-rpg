@@ -10,7 +10,8 @@ using GridBoard;
 
 public class UIHoverInfo : MonoBehaviour
 {
-    [SerializeField] Image imgIcon;
+    public Image imgIcon;
+    public Image imgFrame;
     [SerializeField] TextMeshProUGUI txtTitle;
     [SerializeField] TextMeshProUGUI txtDescription;
     [SerializeField] TextMeshProUGUI txtTags;

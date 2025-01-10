@@ -122,6 +122,7 @@ public class Game : MonoBehaviour
 
     async void Awake()
     {
+
         if (current)
         {
             Destroy(gameObject);
@@ -278,14 +279,15 @@ public class Game : MonoBehaviour
         {
             var layout = state.GenerateMapLayout();
             var node = layout.nodes[idx];
-            StageCtrl.current.SetStage((StageData)node.type);
+            var nodeType = (NodeTypeStage)node.type;
+            StageCtrl.current.SetStage(nodeType.GetData(node, state.currentAct));
             ResCtrl<ResourceType>.current.Set(ResourceType.Level, node.pos.x);
             stageSeed = node.random;
         }
         else if (idx < GameState.emptyNodeId)   // special levels
         {
             stageSeed = state.seed * -idx;
-            var stage = StageCtrl.current.GetRandom(idx, CreateStageRng());
+            var stage = StageCtrl.current.GetSpecial(state.currentAct, idx, CreateStageRng());
             StageCtrl.current.SetStage(stage);
             ResCtrl<ResourceType>.current.Set(ResourceType.Level, 0);
         }
@@ -297,6 +299,19 @@ public class Game : MonoBehaviour
         SetCurrentStage();
         state.Save();
         LoadScene();
+    }
+
+    public bool IsFirstEncounter()
+    {
+        if (state == null) return false;
+
+        var stageData = StageCtrl.current.Data;
+        return !state.encounteredStages.Contains(stageData.id);
+    }
+
+    public List<string> GetEncounteredStages()
+    {
+        return state.encounteredStages;
     }
 
     public void FinishLevel(CombatSettings combatSettings, int? playerHealth = null)
@@ -315,7 +330,10 @@ public class Game : MonoBehaviour
         {
             state.visitedNodes.Add(state.currentNode);
         }
+        var stageData = StageCtrl.current.Data;
+        state.encounteredStages.Add(stageData.id);
         state.IsMapNode = false;
+        state.tilesPerTurn = combatSettings.tilesPerTurn;
         state.Save();
         //LoadScene();
         UIHudMap.current.Show();

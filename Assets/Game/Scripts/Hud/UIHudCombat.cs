@@ -4,26 +4,14 @@ using UnityEngine;
 using FancyToolkit;
 using GridBoard;
 
-public class UIHudCombat : UIHudBase
+public class UIHudCombat : MonoBehaviour
 {
-    public static UIHudCombat _current;
-    public static UIHudCombat current
-    {
-        get
-        {
-            if (!_current)
-            {
-                _current = FindFirstObjectByType<UIHudCombat>();
-            }
-
-            return _current;
-        }
-    }
 
     [SerializeField] UISkillButton templateButton;
-
+    [SerializeField] GameObject content;
 
     public List<UISkillButton> skillButtons { get; private set; } = new();
+    public bool IsOpen { get; private set; }
 
     void Clear()
     {
@@ -52,12 +40,14 @@ public class UIHudCombat : UIHudBase
 
     public void Show()
     {
-        Opened();
+        IsOpen = true;
+        content.SetActive(true);
     }
 
 
     public void Close()
     {
-        Closed();
+        IsOpen = false;
+        content.SetActive(false);
     }
 }

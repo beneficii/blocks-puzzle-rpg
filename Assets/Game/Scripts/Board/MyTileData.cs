@@ -75,6 +75,7 @@ public class TileActionContainer
         endOfTurnAction = data.endTurnAction?.Build();
         enterAction = data.enterAction?.Build();
         passiveEffect = data.passive?.Build();
+        passiveEffect = data.buyAction?.Build();
         foreach (var item in AllActions())
         {
             item.Init(parent);

@@ -1,23 +1,32 @@
-id,units,difficulty,type,reward,specialTile,background,dialog,scenario,gameOverText
-0,ghost,0,Enemy,common,brokenSword,bg6,,,"You began your journey, but the monstrous presence stopped you before you could learn."
-1,bat,2,Enemy,common,batCurse,bg5,,,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
-2,snake,2,Enemy,common,snakeTrap,bg3,,,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
-3,boar,4,Elite,uncommon,boarCurse,bg5,,,You glimpsed the challenges that lay ahead but were undone by the first great trial.
-4,dino,6,Enemy,common,spikeTrap,bg2,,,"You showed promise, but the path of mastery proved too much to bear."
-5,mushroom,7,Enemy,common,mushroomCurse,bg3,,,"So close to discovery, but the weight of your journey caught up to you."
-6,bat_2,7,Enemy,common,batCurse,bg2,,,"Your arcane skills were growing, yet the trials proved too steep a climb."
-7,dragon,9,Boss,uncommon,dragonFire,bg4,dragon1,,"You stood before the brink of greatness, but the dragon’s shadow loomed too large."
-demo_ending,warrior,10,Dialog,uncommon,empty,bg4,demo_ending,,
-,,,,,,,,,
-shop1,Wizard,5,Shop,common,empty,bg2,shop_welcome,,
-shop3,Wizard,8,Shop,common,empty,bg2,,,
-,,,,,,,,,
-teacher,warrior_b,1,Dialog,common,empty,bg2,teacher1,,
-teacher2,warrior_b,6,Dialog,common,empty,bg2,teacher2,,
-,,,,,,,,,
-enemy1,mimic,3,Dialog,Legendary,empty,bg6,mimic,,"You fell for the mimic's trap, lost to greed and deception."
-enemy2,reptile,7,Dialog,Rare,empty,bg6,reptile1,,You challenged the reptile vendor for its magic but couldn't claim victory.
-,,,,,,,,,
-aaaa,dragon,11,Boss,uncommon,dragonFire,bg4,dragon1,,
-,,,,,,,,,
-tutorial,slime,-2,Enemy,common,empty,bg1,tutorial,Tutorial,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
+id,act,units,minLevel,type,reward,specialTile,background,dialog,scenario,gameOverText
+0,1,ghost,0,Enemy,common,brokenSword,bg6,,,"You began your journey, but the monstrous presence stopped you before you could learn."
+1,1,bat,0,Enemy,common,batCurse,bg5,,,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
+2,1,snake,0,Enemy,common,snakeTrap,bg3,,,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
+3,1,boar,1,Elite,uncommon,boarCurse,bg5,,,You glimpsed the challenges that lay ahead but were undone by the first great trial.
+4,1,dino,3,Enemy,common,spikeTrap,bg2,,,"You showed promise, but the path of mastery proved too much to bear."
+5,1,mushroom,3,Enemy,common,mushroomCurse,bg3,,,"So close to discovery, but the weight of your journey caught up to you."
+6,1,bat_2,3,Enemy,common,batCurse,bg2,,,"Your arcane skills were growing, yet the trials proved too steep a climb."
+boss_dragon,1,dragon,0,Boss,uncommon,dragonFire,bg4,dragon1,,"You stood before the brink of greatness, but the dragon’s shadow loomed too large."
+,,,,,,,,,,
+ending_demo,-1,warrior,0,Dialog,uncommon,empty,bg4,demo_ending,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+enemy1,1,mimic,0,Dialog,Legendary,empty,bg6,mimic,,"You fell for the mimic's trap, lost to greed and deception."
+enemy2,1,reptile,0,Dialog,Rare,empty,bg6,reptile1,,You challenged the reptile vendor for its magic but couldn't claim victory.
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+tutorial,1,slime,-2,Enemy,common,empty,bg1,tutorial,Tutorial,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
+Camp,0,Wizard_b,0,Camp,common,empty,bg1,,,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
+Shop,0,Wizard,0,Shop,common,empty,bg2,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+error,-1,mage,0,Dialog,common,empty,bg1,error,,
+test,-1,mage,0,Dialog,common,empty,bg2,error,,

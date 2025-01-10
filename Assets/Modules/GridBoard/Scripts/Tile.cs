@@ -94,6 +94,7 @@ namespace GridBoard
 
         public void Break()
         {
+            if (isFadedOut) return;
             var instance = Instantiate(particleBreak, transform.position, Quaternion.identity);
             Destroy(instance, .4f);
         }
@@ -241,6 +242,7 @@ namespace GridBoard
             isTaken = true;
         }
 
+        
         public virtual IEnumerator FadeOut(float fadeSpeed)
         {
             if (isFadedOut) yield break;

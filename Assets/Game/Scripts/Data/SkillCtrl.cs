@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using FancyToolkit;
@@ -20,12 +21,18 @@ public class SkillCtrl : GenericDataCtrl<SkillData>
         }
     }
 
-    public override void PostInit()
+    public override void PostInitSingle(SkillData data)
     {
-        var sprites = Resources.LoadAll<Sprite>("SkillIcons").ToDictionary(x => x.name);
-        foreach (var item in GetAll())
+        if (data.idVisual != null)
         {
-            item.sprite = sprites.Get(item.idVisual);
+            var visual = Resources.Load<Sprite>($"SkillIcons/{data.idVisual}");
+            if (!visual)
+            {
+                Debug.LogError($"No sprite for {data.id} ({data.idVisual})");
+                return;
+            }
+
+            data.sprite = visual;
         }
     }
 

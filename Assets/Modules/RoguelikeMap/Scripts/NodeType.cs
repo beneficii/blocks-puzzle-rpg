@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RogueLikeMap
 {
-    public class NodeType : DataWithId
+    public class NodeType
     {
         public Sprite sprite;
 
