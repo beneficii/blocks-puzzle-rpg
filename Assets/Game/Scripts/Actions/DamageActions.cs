@@ -8,7 +8,7 @@ namespace GameActions
     public class Damage : ActionBase
     {
         public override string GetDescription()
-            => $"Deal {parent.Damage} damage";
+            => $"Deal X ({parent.Power}) damage";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 
@@ -21,7 +21,7 @@ namespace GameActions
             SetBulletDamage(MakeBullet(parent)
                         .SetTarget(CombatArena.current.enemy)
                         .SetLaunchDelay(0.2f)
-                        , parent.Damage * multiplier);
+                        , parent.Power * multiplier);
 
             yield return new WaitForSeconds(.2f);
         }
@@ -37,7 +37,7 @@ namespace GameActions
         ActionBase nestedAction;
 
         public override string GetDescription()
-            => $"Deal {parent.Damage} damage and {nestedAction.GetDescription()}";
+            => $"Deal X ({parent.Power}) damage and {nestedAction.GetDescription()}";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 
@@ -57,7 +57,7 @@ namespace GameActions
             SetBulletDamage(MakeBullet(parent)
                         .SetTarget(CombatArena.current.enemy)
                         .SetLaunchDelay(0.2f)
-                        , parent.Damage * multiplier);
+                        , parent.Power * multiplier);
 
             yield return new WaitForSeconds(.1f);
             yield return nestedAction.Run(multiplier);
@@ -72,7 +72,7 @@ namespace GameActions
     public class DamagePlayer : ActionBase
     {
         public override string GetDescription()
-            => $"Deal {parent.Damage} damage to the player";
+            => $"Deal X ({parent.Power}) damage to the player";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 
@@ -81,7 +81,7 @@ namespace GameActions
             SetBulletDamage(MakeBullet(parent)
                         .SetTarget(CombatArena.current.player)
                         .SetLaunchDelay(0.2f)
-                        , parent.Damage * multiplier);
+                        , parent.Power * multiplier);
 
             yield return new WaitForSeconds(.2f);
         }
@@ -95,7 +95,7 @@ namespace GameActions
     public class DamageBoth : ActionBase
     {
         public override string GetDescription()
-            => $"Deal {parent.Damage} damage to both player and enemy";
+            => $"Deal X ({parent.Power}) damage to both player and enemy";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 
@@ -104,12 +104,12 @@ namespace GameActions
             SetBulletDamage(MakeBullet(parent)
                         .SetTarget(CombatArena.current.player)
                         .SetLaunchDelay(0.2f)
-                        , parent.Damage * multiplier);
+                        , parent.Power * multiplier);
 
             SetBulletDamage(MakeBullet(parent)
                         .SetTarget(CombatArena.current.enemy)
                         .SetLaunchDelay(0.2f)
-                        , parent.Damage * multiplier);
+                        , parent.Power * multiplier);
 
             yield return new WaitForSeconds(.2f);
         }

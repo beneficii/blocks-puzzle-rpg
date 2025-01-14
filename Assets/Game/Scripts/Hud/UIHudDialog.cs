@@ -53,7 +53,7 @@ public class UIHudDialog : UIHudBase
         SetNext(StageType.None);
     }
 
-    public void Show(string id, bool atEnd = false)
+    public void Show(string id)
     {
         nextDialogID = null;
         Clear();
@@ -136,7 +136,6 @@ public class UIHudDialog : UIHudBase
         if (dialogId == "tutorial_1")
         {
             objSmallBoard.SetActive(true);
-            MainUI.current.uiBtnMap.gameObject.SetActive(false);
         }
 
 

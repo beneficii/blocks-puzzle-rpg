@@ -210,6 +210,12 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         btnEndTurn.SetNeedsAttention(true);
     }
 
+    public void ShowCombatDialog(string dialogId)
+    {
+        hud.Close();
+        UIHudDialog.current.Show(dialogId);
+    }
+
     IEnumerator CombatFinished(bool victory)
     {
         yield return new WaitForSeconds(2f);
@@ -424,10 +430,11 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             case StageType.Camp:
                 InitCamp();
                 break;
+               /* 
             case StageType.Victory:
                 Game.current.GameOver();
                 UIHudGameOver.current.Show(true);
-                break;
+                break;*/
             default:
                 Debug.LogError($"Unknown Combat type init ({type})");
                 CheckQueue();

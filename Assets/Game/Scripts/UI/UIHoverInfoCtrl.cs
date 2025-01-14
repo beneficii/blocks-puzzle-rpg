@@ -7,6 +7,8 @@ using FancyToolkit;
 
 public class UIHoverInfoCtrl : MonoBehaviour
 {
+    public static System.Action<Transform> OnHovered;
+
     public static UIHoverInfoCtrl _current;
     public static UIHoverInfoCtrl current
     {
@@ -20,6 +22,7 @@ public class UIHoverInfoCtrl : MonoBehaviour
             return _current;
         }
     }
+
 
 
     [SerializeField] LayerMask layerMask;
@@ -62,6 +65,7 @@ public class UIHoverInfoCtrl : MonoBehaviour
 
         infoPanel.gameObject.SetActive(true);
         infoPanel.Show(collider);
+        OnHovered?.Invoke(collider);
     }
 
     private void Update()

@@ -8,13 +8,72 @@ using FancyToolkit;
 
 public class MapNodeAssigner
 {
-    public virtual void Setup(MapLayout layout, System.Random rng)
+    System.Random rng;
+    List<List<Node>> nodes;
+
+    public MapLayout layout;
+    public Vector2Int mapSize;
+    public int maxLevelX;
+
+    public MapNodeAssigner(System.Random rng)
     {
-        List<List<Node>> nodes;
+        this.rng = rng;
+    }
+
+    public void ActTutorial()
+    {
+        InitLayout(2, 1, 1, 0);
+
+        void SetNode(int row, StageType type, string id)
+        {
+            var node = nodes[row][0];
+            node.type = type;
+            node.definedId = id;
+        }
+
+
+        SetNode(0, StageType.Enemy, "tutorial1");
+        SetNode(1, StageType.Dialog, "tutorial2");
+        SetNode(2, StageType.Camp, "tutorial3");
+        Finish();
+    }
+
+    public void Act1()
+    {
+        InitLayout(9, 6, 8, 1);
+
+        // first row is enemy
+        foreach (var node in nodes[0]) node.type = StageType.Enemy;
+
+        int bossRow = 9;
+        // boss row
+        foreach (var node in nodes[bossRow])
+        {
+            node.type = StageType.Boss;
+            node.definedId = "boss_dragon";
+        }
+
+        // camp before boss
+        foreach (var node in nodes[bossRow - 1]) node.type = StageType.Camp;
+
+        // last row
+        foreach (var node in nodes[bossRow + 1])
+        {
+            node.type = StageType.Dialog;
+            node.definedId = "ending_demo";
+        }
+
+        Finish();
+    }
+
+    void InitLayout(int x, int y, int paths, int endNodes)
+    {
+        mapSize = new Vector2Int(x,y);
+        layout = MapGenerator.GenerateLayout(mapSize, paths, rng, endNodes);
 
         nodes = new();
-        int levels = layout.nodes.Max(x=>x.pos.x);
-        for(int i = 0; i <= levels; i++) nodes.Add(new());
+        maxLevelX = layout.nodes.Max(x => x.pos.x);
+        for (int i = 0; i <= maxLevelX; i++) nodes.Add(new());
         var ordered = new List<Node>();
         Dictionary<Vector2Int, int> idxMap = new();
 
@@ -38,29 +97,11 @@ public class MapNodeAssigner
             ordered[b].prev.Add(ordered[a]);
         }
 
+    }
+
+    void Finish()
+    {
         int dbgFilterMiss = 0;
-
-        // first row is enemy
-        foreach (var node in nodes[0]) node.type = StageType.Enemy;
-
-        int bossRow = 9;
-        // boss row
-        foreach (var node in nodes[bossRow])
-        {
-            node.type = StageType.Boss;
-            node.definedId = "boss_dragon";
-        }
-
-        // camp before boss
-        foreach (var node in nodes[bossRow - 1]) node.type = StageType.Camp;
-
-        // last row
-        foreach (var node in nodes[bossRow + 1])
-        {
-            node.type = StageType.Dialog;
-            node.definedId = "ending_demo";
-        }
-
         int totalUnasignedNodes = nodes
            .SelectMany(x => x)
            .Count(x => x.type == StageType.None);
@@ -100,7 +141,7 @@ public class MapNodeAssigner
             }
         }
 
-        Debug.Log($"Finished Setup. missed: {dbgFilterMiss}. totalFilled: {totalUnasignedNodes}");
+        //Debug.Log($"Finished Setup. missed: {dbgFilterMiss}. totalFilled: {totalUnasignedNodes}");
     }
 
     protected virtual List<StageType> GetFilter(Node node)

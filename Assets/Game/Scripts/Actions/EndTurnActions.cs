@@ -30,8 +30,6 @@ namespace GameActions
             return descr;
         }
 
-        public override ActionStatType StatType => ActionStatType.Damage;
-
         public EveryNTurns(int turns, ActionBase nestedAction)
         {
             this.turns = turns;

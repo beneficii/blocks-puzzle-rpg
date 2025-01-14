@@ -177,7 +177,7 @@ namespace GameActions
 
         public override string GetDescription()
         {
-            var descr = $"Empty {MyTile.GetTargetingTypeName(targetType, tag)} and gain their power";
+            var descr = $"Empty {MyTile.GetTargetingTypeName(targetType, tag)} and gain their Power";
             return descr;
         }
 
@@ -199,7 +199,7 @@ namespace GameActions
                     .SetTarget(parent.AsComponent())
                     .SetSpleen(default)
                     .SetTileAction(x => {
-                        parent.Damage += pwr;
+                        parent.Power += pwr;
                     });
                 target.Init(TileCtrl.current.emptyTile);
                 yield return new WaitForSeconds(.15f);

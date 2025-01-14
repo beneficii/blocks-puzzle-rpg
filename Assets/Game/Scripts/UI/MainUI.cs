@@ -44,6 +44,11 @@ public class MainUI : MonoBehaviour
         lastMessage.Init(message);
     }
 
+    private void Start()
+    {
+        uiBtnMap.gameObject.SetActive(Game.current.ShouldShowMap());
+    }
+
     public void BtnMap()
     {
         UIHudMap.current.Toggle();

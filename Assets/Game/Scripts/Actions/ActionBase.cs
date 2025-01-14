@@ -114,8 +114,7 @@ public static class ActionExtensions
 
 public interface IActionParent
 {
-    int Damage { get; set; }
-    int Defense { get; set; }
+    int Power { get; set; }
     Transform transform { get; }
     Board board { get; }
     string VfxId { get; }

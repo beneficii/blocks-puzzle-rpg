@@ -35,9 +35,6 @@ public class MyTile : Tile, IActionParent
 
     public ActionStatType StatType => actionContainer?.clearAction?.StatType ?? ActionStatType.None;
 
-    public int Damage { get => Power; set => Power = value; }
-    public int Defense { get => Power; set => Power = value; }
-
     public override string GetDescription()
     {
         var lines = new List<string>();

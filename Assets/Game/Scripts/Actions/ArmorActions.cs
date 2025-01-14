@@ -7,7 +7,7 @@ namespace GameActions
     public class Defense : ActionBase
     {
         public override string GetDescription()
-            => $"Gain {parent.Defense} armor";
+            => $"Gain X ({parent.Power}) armor";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
@@ -16,7 +16,7 @@ namespace GameActions
             SetBulletDefense(MakeBullet(parent)
                             .SetTarget(CombatArena.current.player)
                             .SetLaunchDelay(0.05f)
-                            , parent.Defense * multiplier);
+                            , parent.Power * multiplier);
             yield return new WaitForSeconds(.07f);
         }
 
@@ -31,7 +31,7 @@ namespace GameActions
         ActionBase nestedAction;
 
         public override string GetDescription()
-            => $"Gain {parent.Defense} armor and {nestedAction.GetDescription()}";
+            => $"Gain X ({parent.Power}) armor and {nestedAction.GetDescription()}";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
@@ -51,7 +51,7 @@ namespace GameActions
             SetBulletDefense(MakeBullet(parent)
                         .SetTarget(CombatArena.current.player)
                         .SetLaunchDelay(0.2f)
-                        , parent.Defense * multiplier);
+                        , parent.Power * multiplier);
 
             yield return new WaitForSeconds(.1f);
             yield return nestedAction.Run(multiplier);
@@ -66,7 +66,7 @@ namespace GameActions
     public class EnemyDefense : ActionBase
     {
         public override string GetDescription()
-            => $"Enemy gains {parent.Defense} armor";
+            => $"Enemy gains X ({parent.Power}) armor";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
@@ -79,7 +79,7 @@ namespace GameActions
             SetBulletDefense(MakeBullet(parent)
                             .SetTarget(CombatArena.current.enemy)
                             .SetLaunchDelay(0.05f)
-                            , parent.Defense * multiplier);
+                            , parent.Power * multiplier);
             yield return new WaitForSeconds(.1f);
         }
 
@@ -92,7 +92,7 @@ namespace GameActions
     public class DefenseBoth : ActionBase
     {
         public override string GetDescription()
-            => $"You and enemy gain {parent.Defense} armor";
+            => $"You and enemy gain X ({parent.Power}) armor";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
@@ -101,12 +101,12 @@ namespace GameActions
             SetBulletDefense(MakeBullet(parent)
                             .SetTarget(CombatArena.current.player)
                             .SetLaunchDelay(0.05f)
-                            , parent.Defense * multiplier);
+                            , parent.Power * multiplier);
 
             SetBulletDefense(MakeBullet(parent)
                             .SetTarget(CombatArena.current.enemy)
                             .SetLaunchDelay(0.05f)
-                            , parent.Defense * multiplier);
+                            , parent.Power * multiplier);
             yield return new WaitForSeconds(.07f);
         }
 

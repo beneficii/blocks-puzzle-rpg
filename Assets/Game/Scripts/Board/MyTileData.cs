@@ -15,8 +15,7 @@ public class MyTileData : TileData, IActionParent
     public FactoryBuilder<ActionBase> passive;
     public FactoryBuilder<ActionBase> buyAction;
 
-    public int Damage { get => power; set { } }
-    public int Defense { get => power; set { } }
+    public int Power { get => power; set { } }
 
     public Transform transform => null;
     public Board board => null;

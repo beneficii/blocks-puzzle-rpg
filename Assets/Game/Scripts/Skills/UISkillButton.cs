@@ -47,8 +47,6 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
         set => imgCdFill.fillAmount = value;
     }
 
-    public int Damage { get => Power; set => Power = value; }
-    public int Defense { get => Power; set => Power = value; }
 
     public void Init(SkillData data, Board board)
     {

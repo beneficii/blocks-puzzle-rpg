@@ -309,7 +309,7 @@ namespace GridBoard
             StateVersion++;
         }
 
-        public void LoadLayoutByName(string name)
+        public void LoadLayoutByName(string name, TileData specialTile = null)
         {
             var png = Resources.Load<Texture2D>($"{layoutResourceFolder}/{name}");
             if (png == null)
@@ -323,6 +323,11 @@ namespace GridBoard
             {
                 Debug.LogError($"Could not get layout from texture ({name})");
                 return;
+            }
+
+            if (specialTile != null)
+            {
+                layout = layout.Replace(TileCtrl.current.placeholderTile, specialTile);
             }
 
             LoadLayout(layout);

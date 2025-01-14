@@ -3,12 +3,12 @@ using RogueLikeMap;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [System.Serializable]
 public class GameState
 {
     public const int emptyNodeId = -1;
-    public const int tutorialNodeId = -2;
 
     public const string prefsKey = "gamesave_beta0.1";
 
@@ -24,6 +24,8 @@ public class GameState
     public List<string> encounteredStages;
     public int gold;
 
+    public MapNodeAssigner nodeAssigner;
+
     public bool IsMapNode
     {
         get => currentNode >= 0;
@@ -35,17 +37,8 @@ public class GameState
             }
         }
     }
-    public bool IsTutorialNode
-    {
-        get => currentNode == tutorialNodeId;
-        set
-        {
-            if (value)
-            {
-                currentNode = tutorialNodeId;
-            }
-        }
-    }
+    public bool IsTutorialNode => currentNode < emptyNodeId;
+
     public static bool HasSave()
         => PlayerPrefs.HasKey(prefsKey);
 
@@ -71,16 +64,80 @@ public class GameState
         PlayerPrefs.DeleteKey(prefsKey);
     }
 
+    public void SwitchAct(int act)
+    {
+        currentAct = act;
+        nodeAssigner = null;
+        visitedNodes.Clear();
+    }
+
+    public LevelFinishType FinishLevel(int? playerHealth = null)
+    {
+        if (playerHealth.HasValue)
+        {
+            this.playerHealth.x = playerHealth.Value;
+        }
+
+        var stageData = StageCtrl.current.Data;
+        encounteredStages.Add(stageData.id);
+
+        if (!IsMapNode)
+        {
+            currentNode = emptyNodeId; // go to map
+            Save();
+            return LevelFinishType.Map;
+        }
+
+        visitedNodes.Add(currentNode);
+
+        Assert.IsNotNull(nodeAssigner);
+        Assert.IsTrue(currentNode < nodeAssigner.layout.nodes.Count);
+
+        var node = nodeAssigner.layout.nodes[currentNode];
+        currentNode = emptyNodeId; // go to map
+
+        // check if last node on the map
+        if (node.pos.x == nodeAssigner.maxLevelX)
+        {
+            if (currentAct == -1)
+            {
+                SwitchAct(1);
+                Save();
+                return LevelFinishType.FinishAct;
+            }
+            else if (currentAct == 1)
+            {
+                return LevelFinishType.Victory;
+            }
+        }
+
+        Save();
+        return LevelFinishType.Map;
+    }
+
     public MapLayout GenerateMapLayout()
     {
-        var mapSize = new Vector2Int(9, 6);
         var rng = new System.Random(seed);
-        var mapLayout = MapGenerator.GenerateLayout(mapSize, 8, rng, 1);
+        if (nodeAssigner == null)
+        {
+            nodeAssigner = new MapNodeAssigner(rng);
+            switch (currentAct)
+            {
+                case -1:
+                    nodeAssigner.ActTutorial();
+                    break;
+                case 0:
+                case 1:
+                    currentAct = 1;
+                    nodeAssigner.Act1();
+                    break;
+                default:
+                    Debug.Log("ToDo: go to menu?");
+                    break;
+            }
+        }
 
-        var stageCtrl = StageCtrl.current;
-
-        new MapNodeAssigner()
-            .Setup(mapLayout, rng);
+        var mapLayout = nodeAssigner.layout;
 
         foreach (var item in mapLayout.nodes)
         {
@@ -130,14 +187,20 @@ public class GameState
         this.seed = seed;
         this.visitedNodes = new();
         this.encounteredStages = new();
-        //HasCurrentNode = false;
-        IsTutorialNode = true;
+        this.IsMapNode = false;   
         this.playerHealth = new(100, 100);
         this.deck = Game.current.GetStartingDeck();
         this.skills = new List<string>();
-        this.gold = 200;
+        this.gold = 25;
         this.tilesPerTurn = 3;
-        this.currentAct = 1;
+        this.currentAct = -1;    // ToDo: skip tutorial if passed?
         GenerateMapLayout();
     }
+}
+
+public enum LevelFinishType
+{
+    Map,
+    FinishAct,
+    Victory,
 }

@@ -23,7 +23,7 @@ namespace FancyToolkit
             }
         }
 
-        private List<IWorldUpdateListener> subscribers = new List<IWorldUpdateListener>();
+        private List<IWorldUpdateListener> subscribers = new();
         
         [SerializeField] bool isUpdating;
         public bool IsUpdating

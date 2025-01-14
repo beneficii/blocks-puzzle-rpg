@@ -39,7 +39,7 @@ namespace FancyToolkit
             {
                 sb.AppendLine($"{item.Key}: {item.Value}");
             }
-            Debug.Log(sb.ToString());
+            //Debug.Log(sb.ToString());
         }
 
         public void RemoveOne(TEnum key)

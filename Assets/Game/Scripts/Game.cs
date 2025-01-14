@@ -260,6 +260,8 @@ public class Game : MonoBehaviour
         }
     }
 
+    public bool ShouldShowMap() => state.IsMapNode;
+
     public StateType GetStateType()
     {
         if (state.IsMapNode || state.IsTutorialNode)
@@ -316,33 +318,37 @@ public class Game : MonoBehaviour
 
     public void FinishLevel(CombatSettings combatSettings, int? playerHealth = null)
     {
+        // probably should not happen now
         if (state == null)
         {
+            Debug.LogError("Unexpected game state null");
             LoadScene();
             return;
         }
 
-        if (playerHealth.HasValue)
-        {
-            state.playerHealth.x = playerHealth.Value;
-        }
-        if (state.IsMapNode)
-        {
-            state.visitedNodes.Add(state.currentNode);
-        }
-        var stageData = StageCtrl.current.Data;
-        state.encounteredStages.Add(stageData.id);
-        state.IsMapNode = false;
-        state.tilesPerTurn = combatSettings.tilesPerTurn;
-        state.Save();
-        //LoadScene();
-        UIHudMap.current.Show();
-
         RecordEvent(new AnalyticsEvents.LevelCompletion
         {
-            health = playerHealth.HasValue ? playerHealth.Value : 0,
+            health = playerHealth ?? 0,
         });
         AnalyticsService.Instance.Flush();
+
+        switch (state.FinishLevel())
+        {
+            case LevelFinishType.Map:
+                UIHudMap.current.Show();
+                break;
+            case LevelFinishType.FinishAct:
+                UIHudMap.current.Show();
+                break;
+            case LevelFinishType.Victory:
+                UIHudGameOver.current.Show(true);
+                GameOver();
+                state = null;
+                break;
+            default:
+                Debug.LogError("Unexpected map finish state!");
+                break;
+        }
     }
 
     public void RecordEvent(AnalyticsEvents.Base ev)

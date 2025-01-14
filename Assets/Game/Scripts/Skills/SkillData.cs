@@ -19,8 +19,7 @@ public class SkillData : DataWithId, IHasInfo, IActionParent
     public FactoryBuilder<ActionBase> onEndTurn;
     public FactoryBuilder<ActionBase> onStartCombat;
 
-    public int Damage { get => power; set { } }
-    public int Defense { get => power; set { } }
+    public int Power { get => power; set { } }
 
     public Transform transform => null;
     public Board board => null;

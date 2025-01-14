@@ -1,9 +1,9 @@
 id,idVisual,name,power,rarity,clickCondition,onClick,onEndTurn,onStartCombat
 test,fellowship,ArmorDown,0,None,Once,TriggerPlace any all,,
-swordRush,overwhelm,Sword Dance,0,Common,Charge 7,SpawnTile 4 sword,,
+swordRush,overwhelm,Sword Dance,0,Common,Charge 7,SpawnTile 4 shortSword,,
 axeRush,rush,Double Wielding,0,Common,Once,MultiplyPowerTag Biggest 2 axe,,
 shieldRush,backup,Guard Formation,0,Common,Charge 5,ConvertPowerTo Damage Biggest shield,,
 doubleLantern,double_lantern,Echoing Lantern,0,Common,Charge 8,TriggerPlace any all,,
-swordsmanship,swordsmanship,Swordsmanship,0,Common,AutoCharge 9,AddBuff AddPower Damage 1 sword,,
+swordsmanship,swordsmanship,Swordsmanship,0,Common,AutoCharge 9,AddBuff AddPower 1 sword,,
 last_stand,last_stand,Spare Helmet,30,Common,Once,Defense,,
-pathchwork,pathchwork,Patchwork,0,Common,AutoCharge 5,BuffDefense Biggest 3 shield,,
+pathchwork,pathchwork,Patchwork,0,Common,AutoCharge 5,BuffPower Biggest 3 shield,,
