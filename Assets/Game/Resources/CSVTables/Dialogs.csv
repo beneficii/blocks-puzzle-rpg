@@ -1,4 +1,4 @@
-id,text,actions,
+id,text,actions,tag
 dragon1,Are you here to aid those humans? Have you fallen for their lies? Then there is nothing but death here for you,,
 ,Continue,,
 shop_welcome,"Welcome stranger, have a look at some of my goods!",,
@@ -14,7 +14,7 @@ teacher1_a,"There’s no room for doubt, but your skills must be sharpened. I sh
 teacher2,I'm glad you're still alive. You're getting close. Ready for another lesson?,,
 ,Let's go,SelectSkill Common,
 ,,,
-mimic,There seems to be a lot of gold and treasure inside this strange looking chest,,
+mimic,There seems to be a lot of gold and treasure inside this strange looking chest,,N
 ,Take it,SwitchType Enemy,
 ,Better walk away,,
 ,,,
@@ -35,23 +35,23 @@ test1,Something,,
 ,Select Other,SwitchType Enemy,
 ,Select Tiles,DemoRewards 2 1 0 2,
 ,,,
-tutorial,"In this land, humans wage a futile battle against monsters. You, a young survivor, have stumbled upon one... and it's ready to attack!",,
+tutorial,"In this land, humans wage a futile battle against monsters. You, a young survivor, have stumbled upon one... and it's ready to attack!",,N
 ,Punch it,Punch; Dialog tutorial_1,
 ,Spinny kick!,Punch; Dialog tutorial_1,
 ,Throw a rock,Punch; Dialog tutorial_1,
 ,,,
-tutorial_1,"Your attack does nothing. You feel powerless, but you notice an old board next to you.",,
+tutorial_1,"Your attack does nothing. You feel powerless, but you notice an old board next to you.",,N
 ,Punch monster harder,Punch; Dialog tutorial_2,
 ,Do another spinny kick,Dialog tutorial_3,
 ,Pick up the board,Dialog tutorial_4,
 ,,,
-tutorial_2,Still no use,,
+tutorial_2,Still no use,,N
 ,Punch it really hard,Dialog tutorial_3,
 ,,,
-tutorial_3,You slip and fall... accidentally grabbing the board. It glows with power.,,
+tutorial_3,You slip and fall... accidentally grabbing the board. It glows with power.,,N
 ,Stand up and face the monster,,
 ,,,
-tutorial_4,"The board begins to glow, and you feel its strength...",,
+tutorial_4,"The board begins to glow, and you feel its strength...",,N
 ,Let it guide you,,
 ,,,
 teacher0,"You know, with that power, you could help us defeat the dragon - their leader",,
