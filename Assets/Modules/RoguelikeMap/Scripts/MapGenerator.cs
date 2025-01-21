@@ -142,6 +142,14 @@ namespace RogueLikeMap
     {
         public List<Edge> edges;
         public List<NodeInfo> nodes;
+
+        public void ResetStates()
+        {
+            foreach (var item in nodes)
+            {
+                item.state = NodeState.Default;
+            }
+        }
     }
 
     public enum NodeState

@@ -1,4 +1,6 @@
-﻿using FancyToolkit;
+﻿#define SKIP_TUTORIAL
+
+using FancyToolkit;
 using RogueLikeMap;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,7 @@ public class GameState
     public Vector2Int playerHealth;
     public List<string> deck;
     public List<string> skills;
+    public List<string> glyphs;
     public List<string> encounteredStages;
     public int gold;
 
@@ -138,6 +141,7 @@ public class GameState
         }
 
         var mapLayout = nodeAssigner.layout;
+        mapLayout.ResetStates();
 
         foreach (var item in mapLayout.nodes)
         {
@@ -191,9 +195,13 @@ public class GameState
         this.playerHealth = new(100, 100);
         this.deck = Game.current.GetStartingDeck();
         this.skills = new List<string>();
+        this.glyphs = new List<string>();
         this.gold = 25;
         this.tilesPerTurn = 3;
         this.currentAct = -1;    // ToDo: skip tutorial if passed?
+#if SKIP_TUTORIAL
+        this.currentAct = 1;
+#endif
         GenerateMapLayout();
     }
 }

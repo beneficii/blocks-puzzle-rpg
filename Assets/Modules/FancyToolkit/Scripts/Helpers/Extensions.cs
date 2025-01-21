@@ -49,6 +49,13 @@ namespace FancyToolkit
             render.color = color;
         }
 
+        public static void SetSpriteAndSize(this Image render, Sprite sprite, int multiplier = 1)
+        {
+            var sRect = sprite.rect;
+            render.rectTransform.sizeDelta = new Vector2(sRect.width, sRect.height) * multiplier;
+            render.sprite = sprite;
+        }
+
         public static IEnumerator SmoothMoveRoutine(this Transform transform, Vector3 endPosition, float time)
         {
             float elapsedTime = 0;
@@ -149,11 +156,22 @@ namespace FancyToolkit
             return def;
         }
 
-        public static TValue Rand<TValue>(this IEnumerable<TValue> list)
+        public static TValue Rand<TValue>(this IEnumerable<TValue> list, System.Random rng = null)
         {
-            if (list.Count() == 0) return default;
+            int count = list.Count();
+            if (count == 0) return default;
 
-            return list.ElementAt(UnityEngine.Random.Range(0, list.Count()));
+            int idx;
+            if (rng != null)
+            {
+                idx = rng.Next(count);
+            }
+            else
+            {
+                idx = UnityEngine.Random.Range(0, count);
+            }
+
+            return list.ElementAt(idx);
         }
 
         public static void Shuffle<T>(this List<T> list)

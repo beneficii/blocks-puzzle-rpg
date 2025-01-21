@@ -54,6 +54,17 @@ public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
     {
         foreach (var item in actions)
         {
+            var error = item.CheckErrors();
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                MainUI.current.ShowMessage(error);
+                return;
+            }
+        }
+
+        foreach (var item in actions)
+        {
             item.Execute();
         }
         UIHudDialog.current.Close();

@@ -37,6 +37,8 @@ namespace TileShapes
         bool shouldCheckSlots;
 
         Queue<Hint> hints;
+        Queue<TileData> bonuseTileQueue = new();
+        
 
         public bool NeedsUpdate => shouldCheckSlots;
 
@@ -103,6 +105,7 @@ namespace TileShapes
             return new Shape.Info(shape, rotation);
         }
 
+
         void Clear()
         {
             foreach (var item in shapes)
@@ -132,6 +135,26 @@ namespace TileShapes
             }
         }
 
+        void PopulateShapesWithBonusTiles(Queue<Shape.Info> shapes)
+        {
+            var count = bonuseTileQueue.Count;
+            if (count == 0) return;
+
+            var tileslots = shapes.SelectMany(x => x.data.GetTilesRaw()).RandN(count);
+            foreach (var item in tileslots)
+            {
+                item.data = bonuseTileQueue.Dequeue();
+            }
+        }
+
+        public void AddBonusTile(TileData data, int count = 1)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                bonuseTileQueue.Enqueue(data);
+            }
+        }
+
         public void GenerateNew(bool initial = true, PoolQueue<TileData> tileQueue = null, int tilesToPopulate = 0)
         {
             Clear();
@@ -147,6 +170,7 @@ namespace TileShapes
             }
 
             PopulateShapesWithTiles(nextShapes, tileQueue, tilesToPopulate);
+            PopulateShapesWithBonusTiles(nextShapes);
 
             var solution = testGrid.Solve(nextShapes.ToList());
             //if (solution != null) { Debug.Log($"Solve: {string.Join(", ", solution)}"); }

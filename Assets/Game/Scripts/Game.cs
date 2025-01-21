@@ -1,4 +1,5 @@
 ﻿//#define TEST_SKILLS
+//#define TEST_GLYPHS
 //#define TEST_TILES
 
 using System.Collections;
@@ -21,7 +22,6 @@ public class Game : MonoBehaviour
 {
     const string sceneMenu = "MainMenu";
     const string sceneCombat = "Combat";
-    const string sceneMap = "Map";
 
     public static Game current { get; private set; }
     public const int maxSkills = 4;
@@ -30,13 +30,11 @@ public class Game : MonoBehaviour
 
     GameState state;
 
-    public Dictionary<string, AnimCompanion> vfxDict;
     public Dictionary<string, FxData> fxDict;
     public Dictionary<string, GenericBullet> bulletDict;
 
     public Dictionary<string, GameObject> unitActionPrefabs;
     public Dictionary<string, Sprite> bgDict;
-
 
     int stageSeed;
 
@@ -76,6 +74,15 @@ public class Game : MonoBehaviour
         });
     }
 
+    public void AddGlyph(string id)
+    {
+        state.glyphs.Add(id);
+        RecordEvent(new AnalyticsEvents.GlyphSelected
+        {
+            glyphId = id,
+        });
+    }
+
     public List<string> GetStartingDeck()
     {
         //return TileCtrl.current.GetAllTiles().Select(x => x.id).ToList();
@@ -110,6 +117,7 @@ public class Game : MonoBehaviour
         TileCtrl.current.AddCSV<MyTileData>("Tiles");
         UnitCtrl.current.AddCSV<UnitData>("Units");
         SkillCtrl.current.AddCSV<SkillData>("Skills");
+        GlyphCtrl.current.AddCSV<GlyphData>("Glyphs");
 
         unitActionPrefabs = Resources.LoadAll<GameObject>("ActionVisuals").ToDictionary(x => x.name);
         fxDict = Resources.LoadAll<FxData>("FxData").ToDictionary(x => x.name);
@@ -118,7 +126,7 @@ public class Game : MonoBehaviour
     }
 
     public System.Random CreateStageRng()
-        => new System.Random(stageSeed);
+        => new System.Random(stageSeed + state.currentAct);
 
     async void Awake()
     {
@@ -248,6 +256,22 @@ public class Game : MonoBehaviour
 #endif
     }
 
+    public List<string> GetVisitedStages()
+    {
+        return state.encounteredStages;
+    }
+
+    public List<GlyphData> GetGlyphs()
+    {
+#if UNITY_EDITOR && TEST_GLYPHS
+        return GlyphCtrl.current.GetAll().ToList();
+#else
+        return state.glyphs
+            .Select(GlyphCtrl.current.Get)
+            .ToList();
+#endif
+    }
+
     public string GetSceneToLoad()
     {
         if (state == null)
@@ -260,7 +284,9 @@ public class Game : MonoBehaviour
         }
     }
 
-    public bool ShouldShowMap() => state.IsMapNode;
+    public bool ShouldShowMap() => state?.IsMapNode??false;
+    public bool ShouldShowMapHint() => state != null && state.currentAct == -1 && state.visitedNodes.Count == 0;
+    
 
     public StateType GetStateType()
     {
@@ -321,7 +347,6 @@ public class Game : MonoBehaviour
         // probably should not happen now
         if (state == null)
         {
-            Debug.LogError("Unexpected game state null");
             LoadScene();
             return;
         }
@@ -356,6 +381,7 @@ public class Game : MonoBehaviour
         ev.userLevel = ResCtrl<ResourceType>.current.Get(ResourceType.Level);
         ev.seed = stageSeed;
         ev.leveId = state?.currentNode ?? -1;
+        ev.act = state?.currentAct ?? 0;
         AnalyticsService.Instance.RecordEvent(ev);
     }
 

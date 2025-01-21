@@ -94,8 +94,16 @@ PrefabInstance:
       value: FX_ParticleTrail_Fire
       objectReference: {fileID: 0}
     - target: {fileID: 4577798598799016548, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577798598799016548, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
       propertyPath: m_SortingOrder
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577798598799016548, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -706310353
       objectReference: {fileID: 0}
     - target: {fileID: 4706259936699332189, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
       propertyPath: m_LocalPosition.x
@@ -138,16 +146,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5216931680438938613, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216931680438938613, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
       propertyPath: m_SortingOrder
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216931680438938613, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -706310353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263532524760420825, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5263532524760420825, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
       propertyPath: m_SortingOrder
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 5263532524760420825, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -706310353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545219734248505745, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8545219734248505745, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
       propertyPath: m_SortingOrder
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545219734248505745, guid: b12f4fff5700b7244887ce55e80a2d26, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -706310353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

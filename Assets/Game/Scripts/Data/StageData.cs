@@ -14,8 +14,10 @@ public class StageData : DataWithId
     public string specialTile;
     public string background;
     public string dialog;
-    public string gameOverText;
     public string scenario;
+    public FactoryBuilder<GameCondition> condition;
+    public int weight;
+    public string gameOverText;
 }
 
 public class NodeTypeStage : NodeType

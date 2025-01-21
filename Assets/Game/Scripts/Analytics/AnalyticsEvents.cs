@@ -10,6 +10,7 @@ namespace AnalyticsEvents
 
         public int userLevel { set { SetParameter("userLevel", value); } }
         public int leveId { set { SetParameter("leveId", value); } }
+        public int act { set { SetParameter("act", value); } }
         public int seed { set { SetParameter("seed", value); } }
     }
 
@@ -33,6 +34,13 @@ namespace AnalyticsEvents
         public SkillSelected() : base("skillSelected") { }
 
         public string skillId { set { SetParameter("skillId", value); } }
+    }
+
+    public class GlyphSelected : Base
+    {
+        public GlyphSelected() : base("glyphSelected") { }
+
+        public string glyphId { set { SetParameter("glyphId", value); } }
     }
 
     public class LevelCompletion : Base

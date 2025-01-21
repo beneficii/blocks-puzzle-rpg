@@ -114,20 +114,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5576930488766587806, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576930488766587806, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
       propertyPath: m_SortingOrder
-      value: 250
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576930488766587806, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -706310353
       objectReference: {fileID: 0}
     - target: {fileID: 6128619584910614022, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
       propertyPath: m_Name
       value: FX_ParticleTrail_Dust
       objectReference: {fileID: 0}
     - target: {fileID: 7429101460036080884, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429101460036080884, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
       propertyPath: m_SortingOrder
-      value: 250
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429101460036080884, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -706310353
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621255489088028561, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7621255489088028561, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
       propertyPath: m_SortingOrder
-      value: 251
+      value: 201
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621255489088028561, guid: 0cc61da64e192f146b38f812cc5645b4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -706310353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

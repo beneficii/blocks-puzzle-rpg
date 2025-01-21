@@ -1318,6 +1318,9 @@ MonoBehaviour:
   iconArmor: {fileID: 8498495797603214153}
   txtDialog: {fileID: 7623127462565763615}
   contentDialog: {fileID: 6238317790878161591}
+  bgDialog: {fileID: 4820725733049447334}
+  bgDialogBubble: {fileID: 21300000, guid: 053131c4a0356b04cb889ec1d14ed8aa, type: 3}
+  bgDialogNarration: {fileID: 21300000, guid: 339d32ed8f1f40e4dae9c44231279422, type: 3}
   parentHp: {fileID: 77189621990512210}
   visuals: {fileID: 11400000, guid: 40bf35631a9ba8b499553f1194e54716, type: 2}
   damage: 0

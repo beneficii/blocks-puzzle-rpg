@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RogueLikeMap;
@@ -14,6 +15,8 @@ namespace RogueLikeMap
         [SerializeField] MapInstance prefabMapInstance;
         [SerializeField] Transform mapParent;
 
+        [SerializeField] List<PositionData> positionData;
+
         MapInstance mapInstance;
 
         private void Start()
@@ -24,8 +27,20 @@ namespace RogueLikeMap
         public void CreateMap(MapLayout layout, System.Random rng = null)
         {
             Clear();
-            mapInstance = Instantiate(prefabMapInstance, mapParent);
+            int maxHeight = layout.nodes.Max(n => n.pos.y);
+            for (int i = 0; i < positionData.Count; i++)
+            {
+                var item = positionData[i];
+                if (maxHeight < item.maxHeight || i == positionData.Count - 1)
+                {
+                    Vector3 pos = item.position;
+                    pos.z = transform.localPosition.z;
+                    transform.localPosition = pos;
+                    break;
+                }
+            }
 
+            mapInstance = Instantiate(prefabMapInstance, mapParent);
             mapInstance.Init(layout, rng);
         }
 
@@ -48,6 +63,13 @@ namespace RogueLikeMap
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 #endif
+        }
+
+        [System.Serializable]
+        public class PositionData
+        {
+            public int maxHeight;
+            public Vector2 position;
         }
     }
 }

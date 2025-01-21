@@ -8,7 +8,6 @@ using FancyToolkit;
 using System.Linq;
 using UnityEngine.UI;
 using DG.Tweening;
-using Unity.Android.Gradle.Manifest;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
@@ -44,7 +43,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     Queue<CombatState> stateQueue = new();
 
-    int tilesPerTurn;
+    public int tilesPerTurn;
 
     int preventEndTurn;
     public int PreventEndTurn
@@ -196,10 +195,17 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             result.Add(new UICombatReward.DataTile(rarity));
         }
 
-        if (stageData.type == StageType.Elite || stageData.type == StageType.Boss)
+        if (stageData.type == StageType.Elite || stageData.type == StageType.Boss || true)
         {
-            result.Add(new UICombatReward.DataSkill(Rarity.Common));
-            result.Add(new UICombatReward.DataTilesPerTurn());
+            var randomGlyph = GlyphCtrl.current.GetAll()
+                .Where(x => x.rarity == Rarity.Common)
+                .ToList()
+                .Rand(rng);
+
+            if (randomGlyph != null)
+            {
+                result.Add(new UICombatReward.DataGlyph(randomGlyph));
+            }
         }
 
         return result;
@@ -310,7 +316,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         arena.enemy.SetCombatVisible(true);
         //arena.player.SetCombatVisible(true);
 
-        yield return hud.InitSkills(board);
         var scenario = Factory<CombatScenario>.Create(stageData.scenario);
         if (scenario != null)
         {
@@ -320,6 +325,12 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         {
             board.LoadRandomLayout(stageData.specialTile);
         }
+
+        yield return null;
+        yield return hud.InitSkills(board);
+        yield return null;
+        yield return hud.InitGlyphs(board);
+
         if (PreventEndTurn == 0)
         {
             shapePanel.GenerateNew(true, tileQueue, tilesPerTurn);

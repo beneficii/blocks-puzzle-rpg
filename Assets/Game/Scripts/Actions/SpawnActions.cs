@@ -53,12 +53,13 @@ namespace GameActions
                 //if (!target) Debug.Log("no empty tiles");
                 if (!target) yield break;
 
-                MakeBullet(parent)
+                yield return MakeBullet(parent)
                     .SetTarget(target)
                     .SetSprite(data.sprite)
-                    .SetTileAction(Spawn);
+                    .SetTileAction(Spawn)
+                    .Wait();
 
-                yield return new WaitForSeconds(.05f);
+                //yield return new WaitForSeconds(.05f);
             }
             yield return new WaitForSeconds(.1f);
         }

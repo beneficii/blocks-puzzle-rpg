@@ -34,7 +34,6 @@ public abstract class SkillClickCondition
 
     public virtual void Destroy()
     {
-
     }
 
     public abstract void OnClicked();
@@ -101,7 +100,6 @@ namespace SkillConditions
 
         protected virtual void Unlocked()
         {
-
         }
 
         void AddCharge(int value)

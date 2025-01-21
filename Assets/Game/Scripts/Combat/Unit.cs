@@ -25,6 +25,11 @@ public class Unit : MonoBehaviour, IDamagable
 
     [SerializeField] TextMeshPro txtDialog;
     [SerializeField] GameObject contentDialog;
+    [SerializeField] SpriteRenderer bgDialog;
+    [SerializeField] Sprite bgDialogBubble;
+    [SerializeField] Sprite bgDialogNarration;
+
+
 
     [SerializeField] Transform parentHp;
 
@@ -128,7 +133,7 @@ public class Unit : MonoBehaviour, IDamagable
     }
 
 
-    public void SetDialog(string text = null)
+    public void SetDialog(string text = null, bool narration = false)
     {
         if (string.IsNullOrWhiteSpace(text))
         {
@@ -137,6 +142,7 @@ public class Unit : MonoBehaviour, IDamagable
         }
 
         contentDialog.SetActive(true);
+        bgDialog.sprite = narration ? bgDialogNarration : bgDialogBubble;
         txtDialog.text = text;
     }
 

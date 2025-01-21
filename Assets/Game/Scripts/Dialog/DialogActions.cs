@@ -3,12 +3,14 @@ using UnityEngine;
 using FancyToolkit;
 using GridBoard;
 using System.Collections.Generic;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public abstract class DialogAction
 {
     public virtual string GetDescription() => null;
     public abstract void Execute();
+    public virtual string CheckErrors() => null;
     public virtual IHasInfo GetInfo() => null;
 }
 
@@ -47,20 +49,77 @@ namespace DialogActions
         }
     }
 
-    public class AddGold : DialogAction
+    public class Health : DialogAction
     {
         public int amount;
-        public override string GetDescription() => $"+{amount} gold";
+        public override string GetDescription() => $"{amount.SignedStr()} hp";
 
+        public override string CheckErrors()
+        {
+            var player = CombatArena.current.player;
+            if (!player || player.health.Value + amount <= 0)
+            {
+                return "Not enough health";
+            }
 
-        public AddGold(StringScanner scanner)
+            return null;
+        }
+
+        public Health(StringScanner scanner)
         {
             amount = scanner.NextInt();
         }
 
         public override void Execute()
         {
-            ResCtrl<ResourceType>.current.Add(ResourceType.Gold, amount);
+            var player = CombatArena.current.player;
+            if (!player)
+            {
+                Debug.LogError("No player found for healing");
+                return;
+            }
+
+            if (amount > 0)
+            {
+                player.AddHp(amount);
+            }
+            else if (amount < 0)
+            {
+                player.RemoveHp(-amount);
+            }
+        }
+    }
+
+    public class Gold : DialogAction
+    {
+        public int amount;
+        public override string GetDescription() => $"{amount.SignedStr()} gold";
+
+        public override string CheckErrors()
+        {
+            if (amount < 0 && !ResourceCtrl.current.Enough(ResourceType.Gold, -amount))
+            {
+                return "Not enough gold";
+            }
+
+            return null;
+        }
+
+        public Gold(StringScanner scanner)
+        {
+            amount = scanner.NextInt();
+        }
+
+        public override void Execute()
+        {
+            if (amount > 0)
+            {
+                ResCtrl<ResourceType>.current.Add(ResourceType.Gold, amount);
+            }
+            else if (amount < 0)
+            {
+                ResCtrl<ResourceType>.current.Remove(ResourceType.Gold, amount);
+            }
         }
     }
 
@@ -103,6 +162,24 @@ namespace DialogActions
         public override void Execute()
         {
             Game.current.AddSkill(id);
+        }
+    }
+
+    public class GetGlyph : DialogAction
+    {
+        public string id;
+
+        public override string GetDescription() => $"Get '{SkillCtrl.current.Get(id).name}' glyph";
+        public override IHasInfo GetInfo() => SkillCtrl.current.Get(id);
+
+        public GetGlyph(StringScanner scanner)
+        {
+            id = scanner.NextString();
+        }
+
+        public override void Execute()
+        {
+            Game.current.AddGlyph(id);
         }
     }
 

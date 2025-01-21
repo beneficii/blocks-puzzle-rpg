@@ -18,6 +18,7 @@ public class UIHudMap : UIHudBase
 
     [SerializeField] MapScene scene;
     [SerializeField] UIGenericButton backButton;
+    [SerializeField] GameObject tutorialHint;
 
     public void Show()
     {
@@ -25,6 +26,7 @@ public class UIHudMap : UIHudBase
         Game.current.HandleMapSceneReady(scene);
         bool canClose = Game.current.GetStateType() == Game.StateType.Combat;
         backButton.gameObject.SetActive(canClose);
+        tutorialHint.gameObject.SetActive(Game.current.ShouldShowMapHint());
     }
 
     public void Toggle()

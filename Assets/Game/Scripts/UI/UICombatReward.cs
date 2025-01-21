@@ -39,13 +39,19 @@ public partial class UICombatReward : MonoBehaviour
     public void Click()
     {
         OnClicked?.Invoke(this);
-        data.Click();
+        data.Click(this);
 
         Remove();
         sound?.PlayWithRandomPitch();
     }
 
-    
+    public GenericBullet CreateBullet(string vfxId = null, Transform target = null)
+    {
+        return Game.current.MakeBullet(imgIcon.transform.position, vfxId)
+                .SetSpleen(Random.Range(0, 1) == 1 ? Vector2.left : Vector2.right)
+                .SetTarget(target)
+                .SetSprite(imgIcon.sprite);
+    }
 }
 
 public enum RewardType

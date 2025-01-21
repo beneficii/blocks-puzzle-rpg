@@ -7,13 +7,16 @@ using GridBoard;
 public class UIHudCombat : MonoBehaviour
 {
 
-    [SerializeField] UISkillButton templateButton;
+    [SerializeField] UISkillButton templateSkill;
+    [SerializeField] UIGlyph templateGlyph;
     [SerializeField] GameObject content;
 
     public List<UISkillButton> skillButtons { get; private set; } = new();
+    public List<UIGlyph> glyphs { get; private set; } = new();
     public bool IsOpen { get; private set; }
 
-    void Clear()
+
+    void ClearSkills()
     {
         foreach (var button in skillButtons)
         {
@@ -22,17 +25,42 @@ public class UIHudCombat : MonoBehaviour
         skillButtons.Clear();
     }
 
+    void ClearGlyphs()
+    {
+        foreach (var item in glyphs)
+        {
+            Destroy(item.gameObject);
+        }
+        glyphs.Clear();
+    }
+
     public IEnumerator InitSkills(Board board)
     {
-        Clear();
+        ClearSkills();
         foreach (var data in Game.current.GetSkills())
         {
-            var instance = UIUtils.CreateFromTemplate(templateButton);
+            var instance = UIUtils.CreateFromTemplate(templateSkill);
             instance.Init(data, board);
             skillButtons.Add(instance);
         }
 
         foreach (var item in skillButtons)
+        {
+            yield return item.CombatStarted();
+        }
+    }
+
+    public IEnumerator InitGlyphs(Board board)
+    {
+        ClearGlyphs();
+        foreach (var data in Game.current.GetGlyphs())
+        {
+            var instance = UIUtils.CreateFromTemplate(templateGlyph);
+            instance.Init(data, board);
+            glyphs.Add(instance);
+        }
+
+        foreach (var item in glyphs)
         {
             yield return item.CombatStarted();
         }

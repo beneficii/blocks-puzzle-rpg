@@ -4,9 +4,6 @@ using UnityEngine;
 using GridBoard;
 using TileShapes;
 using FancyToolkit;
-using NUnit.Framework;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEngine.UIElements.Experimental;
 
 public abstract class CombatScenario
 {

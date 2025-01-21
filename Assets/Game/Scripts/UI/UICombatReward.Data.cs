@@ -1,5 +1,6 @@
 ﻿using FancyToolkit;
 using GridBoard;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,8 +8,9 @@ public partial class UICombatReward
 {
     public abstract class Data
     {
+        
         public abstract void InitUI(UICombatReward ui);
-        public abstract void Click();
+        public abstract void Click(UICombatReward ui);
     }
 
     public class DataGold : Data
@@ -20,7 +22,7 @@ public partial class UICombatReward
             this.amount = amount;
         }
 
-        public override void Click()
+        public override void Click(UICombatReward ui)
         {
             ResCtrl<ResourceType>.current.Add(ResourceType.Gold, amount);
         }
@@ -38,7 +40,7 @@ public partial class UICombatReward
         {
         }
 
-        public override void Click()
+        public override void Click(UICombatReward ui)
         {
             Game.current.AddTilesPerTurn();
         }
@@ -59,7 +61,7 @@ public partial class UICombatReward
             this.rarity = rarity;
         }
 
-        public override void Click()
+        public override void Click(UICombatReward ui)
         {
             CombatCtrl.current.ShowTileChoise(rarity);
         }
@@ -80,7 +82,7 @@ public partial class UICombatReward
             this.rarity = rarity;
         }
 
-        public override void Click()
+        public override void Click(UICombatReward ui)
         {
             CombatCtrl.current.ShowSkillChoise(rarity);
         }
@@ -89,6 +91,38 @@ public partial class UICombatReward
         {
             ui.imgIcon.sprite = ui.iconSkill;
             ui.txtCaption.text = "Pick a skill";
+        }
+    }
+
+
+    public class DataGlyph : Data
+    {
+        GlyphData data;
+
+        public DataGlyph(string id)
+        {
+            this.data = GlyphCtrl.current.Get(id);
+        }
+
+        public DataGlyph(GlyphData data)
+        {
+            this.data = data;
+        }
+
+        public override void Click(UICombatReward ui)
+        {
+            Game.current.AddGlyph(data.id);
+            var player = CombatArena.current.player;
+            if (player)
+            {
+                ui.CreateBullet("Spell", player.transform);
+            }
+        }
+
+        public override void InitUI(UICombatReward ui)
+        {
+            ui.imgIcon.SetSpriteAndSize(data.sprite, 2);
+            ui.txtCaption.text = $"{data.name} Glyph";
         }
     }
 }

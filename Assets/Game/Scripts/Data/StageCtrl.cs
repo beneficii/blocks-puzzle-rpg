@@ -72,41 +72,46 @@ public class StageCtrl : GenericDataCtrl<StageData>
 
     public StageData GetRandom(int act, int level, System.Random rng = null)
     {
-        var filtered = GetAll()
-            .Where(x => x.act == act || x.act == 0 || act == 0)
-            .Where(x => x.minLevel >= 0 && level >= x.minLevel)
-            .ToList();
+        int totalWeight = 0;
+        var filtered = new List<StageData>();
+        foreach (var item in GetAll())
+        {
+            if (item.weight <= 0) continue;
+            if (item.act != act && item.act != 0 && act != 0) continue;
+            if (item.minLevel < 0 || level < item.minLevel) continue;
+            if (!item.condition.Build()) continue;
+
+            totalWeight += item.weight;
+            filtered.Add(item);
+        }
 
         if (filtered.Count == 0) return null;
+        int rand = rng?.Next(totalWeight) ?? Random.Range(0, totalWeight); 
 
-        if (rng != null)
-        {
-            return filtered[rng.Next(filtered.Count)];
-        }
-        else
-        {
-            return filtered.Rand();
-        }
+        return filtered.First(x => (rand -= x.weight) < 0);
     }
 
     public StageData GetRandom(StageType type, int act, int level, System.Random rng = null, List<string> usedIds = null)
     {
-        var filtered = GetAll()
-            .Where(x => x.act == act || x.act == 0 || act == 0)
-            .Where(x => x.minLevel >= 0 && level >= x.minLevel)
-            .Where(x => x.type == type && (usedIds == null || !usedIds.Contains(x.id)))
-            .ToList();
+        int totalWeight = 0;
+        var filtered = new List<StageData>();
+        foreach (var item in GetAll())
+        {
+            if (item.weight <= 0) continue;
+            if (item.type != type) continue;
+            if (item.act != act && item.act != 0 && act != 0) continue;
+            if (item.minLevel < 0 || level < item.minLevel) continue;
+            if (usedIds != null && usedIds.Contains(item.id)) continue;
+            if (!item.condition.Build()) continue;
+
+            totalWeight += item.weight;
+            filtered.Add(item);
+        }
 
         if (filtered.Count == 0) return null;
+        int rand = rng?.Next(totalWeight) ?? Random.Range(0, totalWeight);
 
-        if (rng != null)
-        {
-            return filtered[rng.Next(filtered.Count)];
-        }
-        else
-        {
-            return filtered.Rand();
-        }
+        return filtered.First(x => (rand -= x.weight) < 0);
     }
 
     public Sprite GetSprite(StageType stageType) => dictTypeSprites.Get(stageType);

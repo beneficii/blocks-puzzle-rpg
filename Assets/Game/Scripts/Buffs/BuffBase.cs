@@ -41,18 +41,16 @@ namespace Buffs
 {
     public class AddPower : BuffBase
     {
-        ActionStatType stat;
         int amount;
         string tag;
 
-        public AddPower(ActionStatType stat, int amount, string tag)
+        public AddPower(int amount, string tag)
         {
-            this.stat = stat;
             this.amount = amount;
             this.tag = tag;
         }
 
-        public override string GetDescription() => $"{amount.SignedStr()} {stat} to {tag} tiles";
+        public override string GetDescription() => $"{amount.SignedStr()} power to {tag} tiles";
 
         bool IsMatching(Tile tile) => tile is MyTile myTile && myTile.HasTag(tag);
 
@@ -94,9 +92,9 @@ namespace Buffs
             }
         }
 
-        public class Builder : FactoryBuilder<BuffBase, ActionStatType, int, string>
+        public class Builder : FactoryBuilder<BuffBase, int, string>
         {
-            public override BuffBase Build() => new AddPower(value, value2, value3);
+            public override BuffBase Build() => new AddPower(value, value2);
         }
     }
 }

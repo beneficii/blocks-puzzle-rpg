@@ -65,7 +65,8 @@ public class UIHudDialog : UIHudBase
 
         Assert.IsTrue(list.Count > 0);
         Assert.IsNotNull(CombatArena.current.enemy);
-        CombatArena.current.enemy.SetDialog(list[0].text);
+        var mainText = list[0];
+        CombatArena.current.enemy.SetDialog(mainText.text, mainText.IsNarration());
 
         if (list.Count == 1)
         {
@@ -153,6 +154,7 @@ public class DialogData
     // empty Id means it's answer option
     public string id;
     public string text;
+    public string tag;
     public List<string> actions = new();
 
     public DialogData() { }
@@ -160,6 +162,8 @@ public class DialogData
     {
         this.text = text;
     }
+
+    public bool IsNarration() => tag.StartsWith("N");
 
     public static DialogData OptContinue = new ("Continue");
 }
