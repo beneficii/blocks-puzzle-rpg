@@ -11,7 +11,7 @@ public abstract class GameCondition
 
     public static implicit operator bool(GameCondition obj)
     {
-        return obj is not null && obj.IsMet();
+        return obj is null || obj.IsMet();
     }
 }
 

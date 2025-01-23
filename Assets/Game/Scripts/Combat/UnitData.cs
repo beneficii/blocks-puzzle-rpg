@@ -8,6 +8,7 @@ using Assets.Scripts.Combat;
 public class UnitData : DataWithId
 {
     public UnitVisualData visuals;
+    public string idVisual;
     public string name;
     public string description;
     public int hp;

@@ -27,9 +27,9 @@ public class UnitCtrl : GenericDataCtrl<UnitData>
         var visuals = Resources.LoadAll<UnitVisualData>(visualsFolder).ToDictionary(x => x.name);
         foreach (var unit in GetAll())
         {
-            if (!visuals.TryGetValue(unit.id, out var visual))
+            if (!visuals.TryGetValue(unit.idVisual, out var visual))
             {
-                Debug.LogError($"No visual data for unit '{unit.id}'");
+                Debug.LogError($"No visual data for unit '{unit.idVisual}'");
             }
             else
             {

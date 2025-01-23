@@ -1,4 +1,5 @@
 ﻿using FancyToolkit;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour, IDamagable
 {
     public static event System.Action<Unit, int> OnReceiveDamage;
+    public static event System.Action<DeathEventArgs> OnAboutToDie;
+    public static System.Action<Unit> OnKilled;
 
     public ValueBar health;
     [SerializeField] SpriteRenderer render;
@@ -30,10 +33,8 @@ public class Unit : MonoBehaviour, IDamagable
     [SerializeField] Sprite bgDialogNarration;
 
 
-
     [SerializeField] Transform parentHp;
 
-    public static System.Action<Unit> OnKilled;
 
     UnitAnimator animator;
 
@@ -62,6 +63,7 @@ public class Unit : MonoBehaviour, IDamagable
     public bool modifierDontResetArmorOnce;
 
     bool isCombatVisible = true;
+    bool isInvulnerable = false;
 
     public string GetDescription()
     {
@@ -193,6 +195,14 @@ public class Unit : MonoBehaviour, IDamagable
 
     void HandleOutOfHealth()
     {
+        var args = new DeathEventArgs(this);
+        OnAboutToDie?.Invoke(args);
+        if (args.IsDeathPrevented)
+        {
+            isInvulnerable = true;
+            health.Set(1);
+            return;
+        }
         OnKilled?.Invoke(this);
         data.visuals.soundDeath?.PlayNow();
         Game.current.CreateFX(data.visuals.fxDeath, transform.position, Destroy);
@@ -244,6 +254,7 @@ public class Unit : MonoBehaviour, IDamagable
 
     public void RemoveHp(int damage)
     {
+        if (isInvulnerable) return;
         if (damage <= 0) return;
 
         int defense = refArmor.Value;
@@ -408,4 +419,20 @@ public enum Team
 {
     Enemy,
     Ally,
+}
+
+public class DeathEventArgs : EventArgs
+{
+    public Unit unit;
+    public bool IsDeathPrevented { get; private set; }
+
+    public DeathEventArgs(Unit unit)
+    {
+        this.unit = unit;
+    }
+
+    public void PreventDeath()
+    {
+        IsDeathPrevented = true;
+    }
 }

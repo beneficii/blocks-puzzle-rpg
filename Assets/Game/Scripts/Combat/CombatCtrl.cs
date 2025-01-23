@@ -25,6 +25,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
     }
 
+    public static event System.Action OnTurnFinished;
+
     [SerializeField] List<SpriteRenderer> bgRenders;
     [SerializeField] UIGenericButton btnEndTurn;
     [SerializeField] UIHudCombat hud;
@@ -184,9 +186,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         if (rarity == Rarity.Legendary)
         {
-            result.Add(new UICombatReward.DataTile(Rarity.Common));
-            result.Add(new UICombatReward.DataTile(Rarity.Common));
-            result.Add(new UICombatReward.DataTile(Rarity.Common));
             result.Add(new UICombatReward.DataTile(Rarity.Uncommon));
             result.Add(new UICombatReward.DataTile(Rarity.Uncommon));
         }
@@ -195,7 +194,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             result.Add(new UICombatReward.DataTile(rarity));
         }
 
-        if (stageData.type == StageType.Elite || stageData.type == StageType.Boss || true)
+        if (stageData.type == StageType.Elite || rarity == Rarity.Legendary)
         {
             var randomGlyph = GlyphCtrl.current.GetAll()
                 .Where(x => x.rarity == Rarity.Common)
@@ -292,6 +291,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         shapePanel.GenerateNew(false, tileQueue, tilesPerTurn);
         btnEndTurn.SetInteractable(true);
         EndTurnInProgress = false;
+        OnTurnFinished?.Invoke();
     }
 
     IEnumerator InitCombat()

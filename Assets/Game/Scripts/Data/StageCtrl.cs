@@ -93,20 +93,30 @@ public class StageCtrl : GenericDataCtrl<StageData>
 
     public StageData GetRandom(StageType type, int act, int level, System.Random rng = null, List<string> usedIds = null)
     {
+        int[] dbgArr = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         int totalWeight = 0;
         var filtered = new List<StageData>();
+        //Debug.Log(type);
         foreach (var item in GetAll())
         {
+            dbgArr[0]++;
             if (item.weight <= 0) continue;
+            dbgArr[1]++;
             if (item.type != type) continue;
+            dbgArr[2]++;
             if (item.act != act && item.act != 0 && act != 0) continue;
+            dbgArr[3]++;
             if (item.minLevel < 0 || level < item.minLevel) continue;
+            dbgArr[4]++;
             if (usedIds != null && usedIds.Contains(item.id)) continue;
-            if (!item.condition.Build()) continue;
+            dbgArr[5]++;
+            if (!item.condition?.Build()) continue;
+            dbgArr[6]++;
 
             totalWeight += item.weight;
             filtered.Add(item);
         }
+        //Debug.Log(string.Join(" ", dbgArr));
 
         if (filtered.Count == 0) return null;
         int rand = rng?.Next(totalWeight) ?? Random.Range(0, totalWeight);

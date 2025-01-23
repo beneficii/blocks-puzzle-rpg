@@ -207,5 +207,4 @@ namespace UnitAction
             public override Base Build() => new SpawnTile(value, value2);
         }
     }
-
 }

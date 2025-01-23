@@ -169,7 +169,7 @@ namespace DialogActions
     {
         public string id;
 
-        public override string GetDescription() => $"Get '{SkillCtrl.current.Get(id).name}' glyph";
+        public override string GetDescription() => $"Get {GlyphCtrl.current.Get(id).name} Glyph";
         public override IHasInfo GetInfo() => SkillCtrl.current.Get(id);
 
         public GetGlyph(StringScanner scanner)
