@@ -40,6 +40,9 @@ namespace GridBoard
         }
 
         public virtual string GetDescription() => GetDescription(null);
+
+        public virtual IHasInfo GetExtraInfo() => null;
+
         public Sprite GetIcon() => sprite;
 
         public List<string> GetTags()

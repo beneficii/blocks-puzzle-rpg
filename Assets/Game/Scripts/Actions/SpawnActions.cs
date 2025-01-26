@@ -10,6 +10,8 @@ namespace GameActions
         int count;
         string tileId;
 
+        public override IHasInfo GetExtraInfo() => GetData();
+
         TileData GetData() => TileCtrl.current.Get(tileId);
 
         public SpawnTile(int count, string tileId)

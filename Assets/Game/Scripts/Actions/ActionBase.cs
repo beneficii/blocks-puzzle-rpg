@@ -9,6 +9,7 @@ public abstract class ActionBase
     protected Board board;
     protected IActionParent parent;
     public virtual bool OverrideDescriptionKey => false;
+    public virtual IHasInfo GetExtraInfo() => null;
 
     public virtual ActionStatType StatType => ActionStatType.None;
 

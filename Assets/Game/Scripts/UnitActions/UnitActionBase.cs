@@ -13,6 +13,8 @@ namespace UnitAction
         public GameObject GetIndicatorPrefab()
             => Game.current.unitActionPrefabs.Get(ActionVisualId);
 
+        public virtual IHasInfo GetExtraInfo() => null;
+
         public virtual string GetShortDescription() => "";
         public virtual string GetLongDescription() => "";
         public virtual string GetTooltip() => "";
@@ -140,6 +142,7 @@ namespace UnitAction
         int count;
         string tileId;
 
+        public override IHasInfo GetExtraInfo() => GetData();
         TileData GetData() => TileCtrl.current.Get(tileId ?? parent.data.specialTile);
 
         public SpawnTile(int count, string tileId)

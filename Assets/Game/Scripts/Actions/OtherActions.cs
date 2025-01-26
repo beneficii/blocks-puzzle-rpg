@@ -290,6 +290,20 @@ namespace GameActions
         string tag;
         string id;
 
+        public override IHasInfo GetExtraInfo()
+        {
+            if (id == "empty")
+            {
+                return null;
+            }
+            else
+            {
+                return GetData();
+            }
+            
+        }
+
+
         TileData GetData() => TileCtrl.current.Get(id);
 
         public override string GetDescription()

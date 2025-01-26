@@ -23,8 +23,6 @@ public class UIHoverInfoCtrl : MonoBehaviour
         }
     }
 
-
-
     [SerializeField] LayerMask layerMask;
     [SerializeField] UIHoverInfo infoPanel;
 
@@ -70,6 +68,16 @@ public class UIHoverInfoCtrl : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            ShowCollider(null);
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            return;
+        }
+
         if (currentUIElement)
         {
             return;

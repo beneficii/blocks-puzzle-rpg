@@ -14,6 +14,8 @@ namespace FancyToolkit
         public string GetDescription();
         public List<string> GetTooltips();
         public List<string> GetTags();
+
+        public IHasInfo GetExtraInfo();
     }
 
     public interface IHasNestedInfo

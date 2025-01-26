@@ -87,10 +87,11 @@ public abstract class TutorialItemBase : MonoBehaviour
 
 public enum TutorialStep
 {
-    PlaceShape,
-    FillLine,
     ClaimRewards,
     FillSkill,
     UseSkill,
     None,
+
+    PlaceShape,
+    FillLine,
 }

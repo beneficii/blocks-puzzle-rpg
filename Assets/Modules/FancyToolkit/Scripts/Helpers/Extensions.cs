@@ -349,5 +349,60 @@ namespace FancyToolkit
                     return num + "th";
             }
         }
+
+        public static Rect GetWorldRect(this RectTransform rectTransform)
+        {
+            Vector3[] corners = new Vector3[4];
+            rectTransform.GetWorldCorners(corners);
+
+            // Initialize min/max to the first corner
+            float minX = corners[0].x;
+            float maxX = corners[0].x;
+            float minY = corners[0].y;
+            float maxY = corners[0].y;
+
+            // Find the bounding values
+            for (int i = 1; i < corners.Length; i++)
+            {
+                Vector3 corner = corners[i];
+                minX = Mathf.Min(minX, corner.x);
+                maxX = Mathf.Max(maxX, corner.x);
+                minY = Mathf.Min(minY, corner.y);
+                maxY = Mathf.Max(maxY, corner.y);
+            }
+
+            float width = maxX - minX;
+            float height = maxY - minY;
+
+            // Return a Rect with bottom-left corner and size
+            return new Rect(minX, minY, width, height);
+        }
+
+        
+        public static void ClampInsideParent(this RectTransform child, RectTransform parent)
+        {
+            var cRect = child.GetWorldRect();
+            var pRect = parent.GetWorldRect();
+            float diff;
+
+            if ((diff = pRect.xMin - cRect.xMin) > 0)
+            {
+                child.position += new Vector3(diff, 0);
+            }
+            else if ((diff = cRect.xMax - pRect.xMax) > 0)
+            {
+                child.position -= new Vector3(diff, 0);
+            }
+
+            if ((diff = pRect.yMin - cRect.yMin) > 0)
+            {
+                child.position += new Vector3(0, diff);
+            }
+            else if ((diff = cRect.yMax - pRect.yMax) > 0)
+            {
+                child.position -= new Vector3(0, diff);
+            }
+
+        }
     }
 }

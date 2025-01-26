@@ -87,6 +87,13 @@ public class SkillData : DataWithId, IHasInfo, IActionParent
     }
 
     public List<string> GetTags() => new();
+
+    public IHasInfo GetExtraInfo(SkillActionContainer container)
+    {
+        return container.onClick?.GetExtraInfo();
+    }
+
+    public IHasInfo GetExtraInfo() => GetExtraInfo(new SkillActionContainer(this, this));
 }
 
 public class SkillActionContainer

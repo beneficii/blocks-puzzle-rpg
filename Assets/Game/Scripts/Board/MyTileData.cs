@@ -58,6 +58,22 @@ public class MyTileData : TileData, IActionParent
                 string.Join("\n", result)
             };
     }
+
+    public IHasInfo GetExtraInfo(TileActionContainer actionContainer)
+    {
+        if (actionContainer == null) return null;
+
+        foreach (var item in actionContainer.AllActions())
+        {
+            var extra = item.GetExtraInfo();
+            if (extra != null) return extra;
+        }
+
+        return null;
+    }
+
+    public override IHasInfo GetExtraInfo()
+        => GetExtraInfo(new(this, this));
 }
 
 public class TileActionContainer

@@ -136,4 +136,5 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
     public Component AsComponent() => this;
 
     public List<string> GetTags() => data.GetTags();
+    public IHasInfo GetExtraInfo() => data.GetExtraInfo(actionContainer);
 }

@@ -26,6 +26,32 @@ namespace GameActions
         }
     }
 
+    public class DefenseN : ActionBase
+    {
+        int value;
+        public override string GetDescription()
+            => $"Gain {value} armor";
+
+        public DefenseN(int value)
+        {
+            this.value = value;
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            SetBulletDefense(MakeBullet(parent)
+                            .SetTarget(CombatArena.current.player)
+                            .SetLaunchDelay(0.05f)
+                            , value * multiplier);
+            yield return new WaitForSeconds(.07f);
+        }
+
+        public class Builder : FactoryBuilder<ActionBase, int>
+        {
+            public override ActionBase Build() => new DefenseN(value);
+        }
+    }
+
     public class DefenseAnd : ActionBase
     {
         ActionBase nestedAction;

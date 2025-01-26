@@ -6,11 +6,12 @@ using System.Linq;
 
 public partial class UICombatReward
 {
-    public abstract class Data
+    public abstract class Data : IHasNestedInfo
     {
-        
         public abstract void InitUI(UICombatReward ui);
         public abstract void Click(UICombatReward ui);
+
+        public virtual IHasInfo GetInfo() => null;
     }
 
     public class DataGold : Data
@@ -98,6 +99,8 @@ public partial class UICombatReward
     public class DataGlyph : Data
     {
         GlyphData data;
+
+        public override IHasInfo GetInfo() => data;
 
         public DataGlyph(string id)
         {

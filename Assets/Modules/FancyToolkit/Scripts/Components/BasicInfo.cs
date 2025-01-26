@@ -11,6 +11,8 @@ namespace FancyToolkit
 
         public string GetDescription() => description;
 
+        public IHasInfo GetExtraInfo() => null;
+
         public Sprite GetIcon() => null;
 
         public List<string> GetTags() => new();

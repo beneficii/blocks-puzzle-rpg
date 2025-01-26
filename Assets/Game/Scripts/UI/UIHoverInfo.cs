@@ -18,6 +18,8 @@ public class UIHoverInfo : MonoBehaviour
     [SerializeField] TextMeshProUGUI txtCost;
     [SerializeField] List<TooltipPanel> hints = new();
 
+    [SerializeField] UIHoverInfo extraInfo;
+
     public void Hide()
     {
         gameObject.SetActive(false);
@@ -70,22 +72,26 @@ public class UIHoverInfo : MonoBehaviour
         {
             hints[i].Show(hintData[i]);
         }
+
+
+        if (extraInfo)
+        {
+            var extra = info.GetExtraInfo();
+            if (extra != null)
+            {
+                extraInfo.gameObject.SetActive(true);
+                extraInfo.Init(extra);
+            }
+            else
+            {
+                extraInfo.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void SetCost(int price)
     {
         if (txtCost) txtCost.text = $"Cost: {price}";
-    }
-
-    void Show(Tile info)
-    {
-        if (info.data.isEmpty)
-        {
-            Hide();
-            return;
-        }
-        Init(info.data);
-        if (txtDescription) txtDescription.text = info.GetDescription();
     }
 
     void Show(Unit unit)
@@ -100,6 +106,21 @@ public class UIHoverInfo : MonoBehaviour
 
         if (!string.IsNullOrEmpty(tip) && hints.Count > 0) hints[0].Show(tip);
         if (txtTags) txtTags.text = "";
+
+        if (extraInfo)
+        {
+
+            var extra = unit.GetExtraInfo();
+            if (extra != null)
+            {
+                extraInfo.gameObject.SetActive(true);
+                extraInfo.Init(extra);
+            }
+            else
+            {
+                extraInfo.gameObject.SetActive(false);    
+            }
+        }
     }
 
     public void Show(Transform collider)

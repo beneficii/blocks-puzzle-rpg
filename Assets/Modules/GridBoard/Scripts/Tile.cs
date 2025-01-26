@@ -397,6 +397,11 @@ namespace GridBoard
 
         public List<string> GetTags() => data.GetTags();
 
+        public virtual IHasInfo GetExtraInfo()
+        {
+            return ((IHasInfo)data).GetExtraInfo();
+        }
+
         public enum RenderLayer
         {
             Bg,

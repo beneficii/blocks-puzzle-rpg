@@ -32,6 +32,32 @@ namespace GameActions
         }
     }
 
+    public class DamageN : ActionBase
+    {
+        int value;
+        public override string GetDescription()
+            => $"Deal {value} damage";
+
+        public DamageN(int value)
+        {
+            this.value = value;
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            SetBulletDamage(MakeBullet(parent)
+                        .SetTarget(CombatArena.current.enemy)
+                        .SetLaunchDelay(0.2f)
+                        , value * multiplier);
+            yield return new WaitForSeconds(.07f);
+        }
+
+        public class Builder : FactoryBuilder<ActionBase, int>
+        {
+            public override ActionBase Build() => new DamageN(value);
+        }
+    }
+
     public class DamageAnd : ActionBase
     {
         ActionBase nestedAction;

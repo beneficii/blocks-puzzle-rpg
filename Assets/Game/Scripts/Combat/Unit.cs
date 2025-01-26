@@ -55,6 +55,8 @@ public class Unit : MonoBehaviour, IDamagable
     UnitAction.Base nextAction;
     Unit target;
 
+    public IHasInfo GetExtraInfo() => nextAction?.GetExtraInfo();
+
     public GridBoard.Board board;
 
     public List<int> modifiers;

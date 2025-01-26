@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using GridBoard;
 using NUnit.Framework;
 
-public partial class UICombatReward : MonoBehaviour
+public partial class UICombatReward : MonoBehaviour, IHasNestedInfo
 {
     public static event System.Action<UICombatReward> OnClicked;
 
@@ -52,6 +52,8 @@ public partial class UICombatReward : MonoBehaviour
                 .SetTarget(target)
                 .SetSprite(imgIcon.sprite);
     }
+
+    public IHasInfo GetInfo() => data.GetInfo();
 }
 
 public enum RewardType

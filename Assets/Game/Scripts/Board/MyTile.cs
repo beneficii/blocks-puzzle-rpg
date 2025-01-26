@@ -51,6 +51,11 @@ public class MyTile : Tile, IActionParent
         return string.Join(". ", lines);
     }
 
+    public override IHasInfo GetExtraInfo()
+    {
+        return myData?.GetExtraInfo(actionContainer);
+    }
+
     void RefreshNumber(bool skipAnimation = false)
     {
         if (StatType == ActionStatType.None)

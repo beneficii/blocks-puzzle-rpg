@@ -61,6 +61,7 @@ namespace GameActions
         string id;
         int count;
 
+        public override IHasInfo GetExtraInfo() => GetData();
         TileData GetData() => TileCtrl.current.Get(id);
 
         public override string GetDescription()

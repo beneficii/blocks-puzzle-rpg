@@ -66,6 +66,11 @@ public class UIGlyph : MonoBehaviour, IHasInfo, IActionParent
             yield return item.Run();
         }
     }
+
+    public IHasInfo GetExtraInfo()
+    {
+        return data.GetExtraInfo(actions);
+    }
 }
 
 public class GlyphData : DataWithId, IHasInfo, IActionParent
@@ -113,6 +118,28 @@ public class GlyphData : DataWithId, IHasInfo, IActionParent
     public List<string> GetTooltips() => new();
 
     public bool ShouldShowInfo() => true;
+
+    public IHasInfo GetExtraInfo(List<ActionBase> actions)
+    {
+        foreach (var item in actions)
+        {
+            var extra = item.GetExtraInfo();
+            if (extra != null) return extra;
+        }
+
+        return null;
+    }
+
+    public IHasInfo GetExtraInfo()
+    {
+        var actions = this.actions
+                .Select(x => x.Build())
+                .ToList();
+
+        foreach (var item in actions) item.Init(this);
+
+        return GetExtraInfo(actions);
+    }
 }
 
 

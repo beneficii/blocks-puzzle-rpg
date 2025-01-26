@@ -162,6 +162,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var list = SkillCtrl.current.GetAll()
                 .Where(x => x.rarity == rarity)
                 .ToList();
+
         UIHudSelectTile.current.ShowChoise(list.RandN(3, endLevelRandom));
     }
 
@@ -371,14 +372,16 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var rng = endLevelRandom;
 
         var rarity = Rarity.Common; //ToDo: stageData.reward rarity
+        bool noSkills = Game.current.IsFirstEncounter();
         var list = SkillCtrl.current.GetAll()
                 .Where(x => x.rarity == rarity)
+                .Where(x => !noSkills || (x.clickCondition is not SkillConditions.Once.Builder))
                 .Cast<IHasInfo>()
                 .ToList()
                 .RandN(3, endLevelRandom);
 
         string dialog;
-        bool noSkills = Game.current.IsFirstEncounter(); //Game.current.GetSkills().Count == 0;
+
         if (noSkills)
         {
             dialog = "Arcane board? I thought they no longer worked.. Never mind, let me teach you an arcane skill";
