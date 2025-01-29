@@ -32,6 +32,7 @@ namespace GameActions
                 MakeBullet(parent)
                     .SetTarget(tile)
                     .SetSpleen(default)
+                    .SetAudio(AudioCtrl.current?.clipPop)
                     .SetTileAction(x => x.Power += value * multiplier);
 
                 yield return new WaitForSeconds(.1f);
@@ -90,6 +91,7 @@ namespace GameActions
                 hadTargets = true;
                 MakeBullet(target)
                     .SetTarget(tileParent)
+                    .SetAudio(AudioCtrl.current?.clipPop)
                     .SetTileAction(x => {
                         x.Power += value * multiplier;
                     });
@@ -126,6 +128,7 @@ namespace GameActions
             {
                 MakeBullet(parent)
                     .SetTarget(tile)
+                    .SetAudio(AudioCtrl.current?.clipPop)
                     .SetTileAction(x => x.Power *= value * multiplier);
 
                 yield return new WaitForSeconds(.1f);

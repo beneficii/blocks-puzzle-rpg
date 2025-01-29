@@ -129,7 +129,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     public void AddTileToSet(TileData tileData)
     {
-        tileQueue.Add(tileData);
+        tileQueue?.Add(tileData); // ToDo: handle cases where we want to choose tiles before battle
         Game.current.AddTileToDeck(tileData.id);
     }
 
@@ -372,7 +372,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var rng = endLevelRandom;
 
         var rarity = Rarity.Common; //ToDo: stageData.reward rarity
-        bool noSkills = Game.current.IsFirstEncounter();
+        bool noSkills = Game.current.GetSkills().Count == 0; //Game.current.IsFirstEncounter();
         var list = SkillCtrl.current.GetAll()
                 .Where(x => x.rarity == rarity)
                 .Where(x => !noSkills || (x.clickCondition is not SkillConditions.Once.Builder))
@@ -404,7 +404,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var stageData = StageCtrl.current.Data;
         if (stageData.type == StageType.Camp)
         {
-            if (Game.current.IsFirstEncounter())
+            if (Game.current.GetSkills().Count < 2)
             {
                 AddState(new CombatStates.Dialog("teacher0"));
             }
@@ -507,6 +507,11 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         if (Input.GetKeyDown(KeyCode.V))
         {
             arena.player.AddHp(5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            arena.enemy.AddHp(20);
         }
 
         if (Input.GetKeyDown(KeyCode.M))

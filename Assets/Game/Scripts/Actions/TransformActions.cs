@@ -99,6 +99,7 @@ namespace GameActions
                 MakeBullet(parent)
                         .SetTarget(item)
                         .SetSpleen(default)
+                        .SetAudio(AudioCtrl.current?.clipPop)
                         .SetTileAction(x =>
                         {
                             x.Init(data);
@@ -139,6 +140,7 @@ namespace GameActions
             {
                 MakeBullet(parent)
                         .SetTarget(item)
+                        .SetAudio(AudioCtrl.current?.clipPop)
                         .SetTileAction(x =>
                         {
                             x.Init(data);
@@ -190,6 +192,7 @@ namespace GameActions
                 MakeBullet(parent)
                         .SetTarget(item)
                         .SetSpleen(default)
+                        .SetAudio(AudioCtrl.current?.clipPop)
                         .SetTileAction(x =>
                         {
                             x.Init(data);

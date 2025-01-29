@@ -68,15 +68,15 @@ namespace Buffs
             if (tile is MyTile myTile) myTile.Power += power;
         }
 
-        void HandleTileOnBoard(Tile item, bool state)
+        void HandleTileInited(Tile item)
         {
-            if (!state) return;
+            if (!item.board) return;
             if (IsMatching(item)) Apply(item, amount);
         }
 
         protected override void Add()
         {
-            Tile.OnChangedBoardState += HandleTileOnBoard;
+            Tile.OnInited += HandleTileInited;
             foreach (var item in GetTargets())
             {
                 Apply(item, amount);
@@ -85,7 +85,7 @@ namespace Buffs
 
         protected override void Remove()
         {
-            Tile.OnChangedBoardState -= HandleTileOnBoard;
+            Tile.OnInited -= HandleTileInited;
             foreach (var item in GetTargets())
             {
                 Apply(item, -amount);

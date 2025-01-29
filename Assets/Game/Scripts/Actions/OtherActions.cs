@@ -101,6 +101,7 @@ namespace GameActions
                 if (!target) continue;
                 var enterAction = target.actionContainer?.enterAction;
                 if (enterAction == null) continue;
+                AudioCtrl.current?.clipPop.PlayWithRandomPitch(.25f);
                 yield return enterAction.Run(multiplier);
             }
 

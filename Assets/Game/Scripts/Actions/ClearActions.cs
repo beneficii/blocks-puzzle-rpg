@@ -65,6 +65,7 @@ namespace GameActions
                     .SetSpleen(default)
                     .SetSpeed(15)
                     .SetSprite(tile.data.sprite)
+                    .SetAudio(AudioCtrl.current?.clipPop)
                     .SetTarget(parent.transform);
                 yield return tile.FadeOut(8f);
                 yield return new WaitForSeconds(.05f);

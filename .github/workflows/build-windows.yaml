@@ -30,7 +30,7 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
       - name: Remove Debug Information Directories
         run: |
-          rm -rf build/${{ matrix.targetPlatform }}/*_DoNotShip
+          sudo rm -rf build/${{ matrix.targetPlatform }}/*_DoNotShip
       - uses: actions/upload-artifact@v4
         with:
           name: Build-${{ matrix.targetPlatform }}

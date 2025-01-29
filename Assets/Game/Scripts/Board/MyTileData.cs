@@ -27,10 +27,10 @@ public class MyTileData : TileData, IActionParent
     public string GetDescription(TileActionContainer actionContainer)
     {
         var lines = new List<string>();
-        if (!string.IsNullOrWhiteSpace(description))
+        /*if (!string.IsNullOrWhiteSpace(description))
         {
             lines.Add(description);
-        }
+        }*/
 
         if (actionContainer != null)
         {
@@ -90,7 +90,7 @@ public class TileActionContainer
         endOfTurnAction = data.endTurnAction?.Build();
         enterAction = data.enterAction?.Build();
         passiveEffect = data.passive?.Build();
-        passiveEffect = data.buyAction?.Build();
+        buyAction = data.buyAction?.Build();
         foreach (var item in AllActions())
         {
             item.Init(parent);

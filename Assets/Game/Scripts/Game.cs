@@ -357,7 +357,7 @@ public class Game : MonoBehaviour
         });
         AnalyticsService.Instance.Flush();
 
-        switch (state.FinishLevel())
+        switch (state.FinishLevel(playerHealth))
         {
             case LevelFinishType.Map:
                 UIHudMap.current.Show();

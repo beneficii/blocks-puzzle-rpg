@@ -55,7 +55,9 @@ public abstract class ActionBase
     public virtual void SetBulletDefense(GenericBullet bullet, int value)
     {
         LineClearData.current?.RegisterValue(MyTile.keyArmor, value);
-        bullet.SetUnitAction((x) => x.AddArmor(value));
+        bullet
+            .SetAudio(AudioCtrl.current?.clipArmor)
+            .SetUnitAction((x) => x.AddArmor(value));
     }
 
     public void SetBoard(Board board)

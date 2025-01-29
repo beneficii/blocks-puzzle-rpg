@@ -8,6 +8,8 @@ namespace FancyToolkit
     {
         [SerializeField] float speed = 10;
 
+        AudioClip sound;
+
         SpriteRenderer _render;
         public SpriteRenderer render
         {
@@ -96,6 +98,12 @@ namespace FancyToolkit
             return this;
         }
 
+        public GenericBullet SetAudio(AudioClip clip)
+        {
+            this.sound = clip;
+            return this;
+        }
+
         public IEnumerator Wait()
         {
             return new WaitWhile(() => this);
@@ -113,6 +121,8 @@ namespace FancyToolkit
             {
                 action.Invoke(target);
             }
+
+            if (sound) sound.PlayWithRandomPitch(.25f);
 
             if (target.TryGetComponent<IDamagable>(out var damagable))
             {

@@ -27,6 +27,9 @@ namespace FancyToolkit
         public AudioClip clipGameOver;
         public AudioClip clipVictory;
 
+        public AudioClip clipPop;
+        public AudioClip clipArmor;
+
         public float VolumeMusic
         {
             get => music.volume;

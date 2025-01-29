@@ -3,7 +3,6 @@ using UnityEngine;
 using FancyToolkit;
 using GridBoard;
 using System.Collections.Generic;
-using static UnityEngine.Rendering.DebugUI;
 
 
 public abstract class DialogAction
@@ -187,6 +186,7 @@ namespace DialogActions
     {
         public string id;
 
+        public override IHasInfo GetInfo() => TileCtrl.current.Get(id);
         public override string GetDescription() => $"Get '{TileCtrl.current.Get(id).title}' tile";
 
         public GetTile(StringScanner scanner)

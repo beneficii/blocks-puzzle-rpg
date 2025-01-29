@@ -59,6 +59,7 @@ namespace GameActions
                     .SetTarget(target)
                     .SetSprite(data.sprite)
                     .SetTileAction(Spawn)
+                    .SetAudio(AudioCtrl.current?.clipPop)
                     .Wait();
 
                 //yield return new WaitForSeconds(.05f);

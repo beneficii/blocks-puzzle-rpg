@@ -19,6 +19,7 @@ namespace GridBoard
         public static event System.Action<Tile> OnClickDone;
         public static event System.Action<Tile> OnPlaced;
         public static event System.Action<Tile, bool> OnChangedBoardState;
+        public static event System.Action<Tile> OnInited;
         bool boardState = false;
 
         [SerializeField] int baseRenderLayerOrder = 100;
@@ -137,6 +138,8 @@ namespace GridBoard
                 boardState = (bool)board;
                 OnChangedBoardState?.Invoke(this, boardState);
             }
+
+            OnInited?.Invoke(this);
         }
 
         public virtual void SetBoard(Board board)

@@ -107,13 +107,13 @@ bowman_stray_arrow,An arrow flies your way. Instinctively you raise your board a
 bowman_stray_arrow_1,"Sorry, I thought you were a monster. Take these coins as an apology",,
 ,"I'm fine, but thanks",Gold +15,
 ,"It's fine, just watch where you shoot",,
-scary_ghost,"You see a rather threatening ghostly monster, but it’s far enough away to escape.",,
+scary_ghost,"You see a rather threatening ghostly monster, but it’s far enough away to escape.",,N
 ,Face it,SwitchType Enemy,
 ,Run away,Dialog scary_ghost_run,
-scary_ghost_run,"The ghost notices you but isn’t quick enough to catch up. Still, an eerie aura engulfs the board.",,
+scary_ghost_run,"The ghost notices you but isn’t quick enough to catch up. Still, an eerie aura engulfs the board.",,N
 ,Continue,GetTile cowardlyAxe,
 ,,,
-agile_snake,"You face an agile snake, too quick to fight fairly. You recall your brother’s trick - let it bite, then finish it in one blow.",,
+agile_snake,"You face an agile snake, too quick to fight fairly. You recall your brother’s trick - let it bite, then finish it in one blow.",,N
 ,Use the trick,Health -20; Dialog agile_snake_2,
 ,Attempt to fight,SwitchType Enemy,
-agile_snake_2,"The snake bites deep. but before it recoils, you strike - ending it",,
+agile_snake_2,"The snake bites deep. but before it recoils, you strike - ending it",,N
