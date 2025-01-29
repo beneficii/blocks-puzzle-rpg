@@ -20,7 +20,7 @@ namespace Scenarios
                     {1,1,1}
                 }
             });
-            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Guide the shapes to their destined place; complete a line to unleash its power.");
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Guide the shapes to their destined place; complete a line to clear tiles.");
             Game.current.CreateGhostCursor(shapePanel.GetShapeMidPos(), board.GetAllowedMidPos());
             yield return new EventWaiter<LineClearData>(ref LineClearer.OnCleared);
 
@@ -34,7 +34,7 @@ namespace Scenarios
                     {1 },
                 }
             });
-            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Unleashed swords deal damage to your foes.");
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Cleared swords deal damage to your foes.");
             Game.current.CreateGhostCursor(shapePanel.GetShapeMidPos(), board.GetAllowedMidPos());
             yield return new EventWaiter<LineClearData>(ref LineClearer.OnCleared);
 
@@ -47,7 +47,7 @@ namespace Scenarios
                 }
             });
 
-            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Enemy is about to attack, unleash shields to grant you armor");
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Enemy is about to attack, clear shields to grant you armor");
             Game.current.CreateGhostCursor(shapePanel.GetShapeMidPos(), board.GetAllowedMidPos());
             yield return new EventWaiter<Shape, Vector2Int>(ref Shape.OnDroppedStatic);
             TutorialCtrl.current.ShowText(TutorialPanel.Board, "Your armor will fade at the start of each turn. Now finish the beast!");

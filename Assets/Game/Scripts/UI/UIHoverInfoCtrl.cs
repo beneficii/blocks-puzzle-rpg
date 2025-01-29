@@ -68,6 +68,7 @@ public class UIHoverInfoCtrl : MonoBehaviour
 
     private void Update()
     {
+#if !UNITY_ANDROID
         if (Input.GetMouseButtonDown(0))
         {
             ShowCollider(null);
@@ -77,6 +78,7 @@ public class UIHoverInfoCtrl : MonoBehaviour
         {
             return;
         }
+#endif
 
         if (currentUIElement)
         {

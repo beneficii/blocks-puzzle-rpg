@@ -113,7 +113,7 @@ public class GlyphData : DataWithId, IHasInfo, IActionParent
 
     public List<string> GetTags() => new();
 
-    public string GetTitle() => name;
+    public string GetTitle() => $"{name} Glyph";
 
     public List<string> GetTooltips() => new();
 

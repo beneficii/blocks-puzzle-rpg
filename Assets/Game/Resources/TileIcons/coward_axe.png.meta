@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 641983b7cca54504a8049ff7ceea1d9e
+guid: 7e7f830c0b13c5d4d8496769d83640c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8735305570516660642
-    second: options bg_0
+      213: -3938414852843595539
+    second: coward_axe_0
+  - first:
+      213: -5266748072787153527
+    second: coward_axe_1
+  - first:
+      213: 3643287199759553716
+    second: coward_axe_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +58,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
-  spriteBorder: {x: 62, y: 62, z: 62, w: 62}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,22 +132,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: options bg_0
+      name: coward_axe_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 367
-        height: 474
+        x: 6
+        y: 9
+        width: 20
+        height: 19
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a1f22f722a0a3970800000000000000
-      internalID: 8735305570516660642
+      spriteID: de89226de80f759c0800000000000000
+      internalID: -3938414852843595539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coward_axe_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 5
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98d6c004880c8e6b0800000000000000
+      internalID: -5266748072787153527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coward_axe_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 2
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b4556cb76e8f8230800000000000000
+      internalID: 3643287199759553716
       vertices: []
       indices: 
       edges: []
@@ -150,7 +198,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []

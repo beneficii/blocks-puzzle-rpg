@@ -16,6 +16,10 @@ namespace TutorialItems
 
         protected override void OnEnter()
         {
+            if (Game.current.GetSkills().Count > 1)
+            {
+                FinishStep();
+            }
             UISkillButton.OnUsed += HandleEvent;
         }
 

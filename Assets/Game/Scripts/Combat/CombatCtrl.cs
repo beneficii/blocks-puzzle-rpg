@@ -487,7 +487,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     private void Update()
     {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
         if (Input.GetKeyDown(KeyCode.Z))
         {
             arena.player.AnimAttack(1);

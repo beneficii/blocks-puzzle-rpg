@@ -11,15 +11,15 @@ namespace TutorialItems
 
         void HandleEvent(UISkillButton data)
         {
-                FinishStep();
-            /*if (data.HasManualUse)
-            {
-            }
-            */
+            FinishStep();
         }
 
         protected override void OnEnter()
         {
+            if (Game.current.GetSkills().Count > 1)
+            {
+                FinishStep();
+            }
             UISkillButton.OnAviableToUse += HandleEvent;
         }
 
