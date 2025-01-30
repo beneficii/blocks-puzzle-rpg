@@ -19,6 +19,9 @@ namespace GameActions
     {
         int amount;
         ActionBase nestedAction;
+
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
         public override string GetDescription()
         {
             if (amount == 0)
@@ -80,6 +83,9 @@ namespace GameActions
     {
         string tag;
         ActionBase nestedAction;
+
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
         public override string GetDescription()
         {
             return $"When {tag} tile is placed, {nestedAction.GetDescription()}";
@@ -166,6 +172,9 @@ namespace GameActions
         int amount;
         ActionBase nestedAction;
         string id;
+
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
         public override string GetDescription()
         {
             return $"{nestedAction.GetDescription()} if there are at least {amount} '{TileCtrl.current.Get(id).title}' on board";

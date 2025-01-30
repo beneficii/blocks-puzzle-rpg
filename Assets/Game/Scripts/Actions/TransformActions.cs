@@ -164,6 +164,8 @@ namespace GameActions
         string tag;
         ActionBase nestedAction;
 
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
         public EraseAnd(TileTargetingType targeting, string tag, ActionBase nestedAction)
         {
             this.targeting = targeting;

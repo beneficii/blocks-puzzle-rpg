@@ -2,12 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using FancyToolkit;
-using UnityEngine.XR;
 using DG.Tweening;
-using static DG.Tweening.DOTweenAnimation;
 using System;
 
-public class UISelectTileCard : MonoBehaviour
+public class UISelectTileCard : MonoBehaviour, IHasNestedInfo
 {
     public static event System.Action<UISelectTileCard, SelectTileType> OnSelectCard;
 
@@ -136,4 +134,6 @@ public class UISelectTileCard : MonoBehaviour
         cg.interactable = false;
         cg.blocksRaycasts = false;
     }
+
+    public IHasInfo GetInfo() => data?.GetExtraInfo();
 }

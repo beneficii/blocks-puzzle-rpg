@@ -29,6 +29,8 @@ namespace GameActions
         string tag;
         ActionBase nestedAction;
 
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
         public override string GetDescription()
         {
             string descr = $"Consume all {tag} matched and {nestedAction.GetDescription()} for each";
@@ -86,6 +88,9 @@ namespace GameActions
         int amount;
         string tag;
         ActionBase nestedAction;
+
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
 
         public override string GetDescription()
            => $"{nestedAction.GetDescription()} for each {amount} {tag} cleared";

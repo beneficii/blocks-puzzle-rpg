@@ -3,14 +3,14 @@ id,act,units,minLevel,type,reward,specialTile,background,dialog,scenario,conditi
 2,1,snake,0,Enemy,common,snakeTrap,bg3,,,,1,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
 3,1,boar,1,Elite,uncommon,boarCurse,bg5,,,,1,You glimpsed the challenges that lay ahead but were undone by the first great trial.
 1,1,bat,2,Enemy,common,batCurse,bg5,,,,1,You took your first steps into the unknown but stumbled before uncovering the board's secrets.
-4,1,dino,2,Enemy,common,spikeTrap,bg2,,,,1,"You showed promise, but the path of mastery proved too much to bear."
+4,1,slime,2,Enemy,common,spikeTrap,bg2,,,,1,"You showed promise, but the path of mastery proved too much to bear."
 5,1,mushroom,2,Enemy,common,mushroomCurse,bg3,,,,1,"So close to discovery, but the weight of your journey caught up to you."
 6,1,bat_2,2,Enemy,common,batCurse,bg2,,,,1,"Your arcane skills were growing, yet the trials proved too steep a climb."
 boss_dragon,1,dragon,0,Boss,uncommon,dragonFire,bg4,dragon1,,,1,"You stood before the brink of greatness, but the dragon’s shadow loomed too large."
 ,,,,,,,,,,,,
 ending_demo,1,warrior,100,Dialog,uncommon,empty,bg4,demo_ending,,,0,
 ,,,,,,,,,,,,
-,,,,,,,,,,,,
+dino_2,1,dino_2,1,Elite,uncommon,brokenSword,bg5	,,,,1,"You showed promise, but the path of mastery proved too much to bear."
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,
@@ -20,7 +20,7 @@ enemy2,1,reptile,3,Dialog,Rare,empty,bg6,reptile1,,,1,You challenged the reptile
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,
-tutorial1,-1,slime,0,Enemy,common,empty,bg1,tutorial,Tutorial1,,0,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
+tutorial1,-1,dino,0,Enemy,common,empty,bg1,tutorial,Tutorial1,,0,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
 tutorial2,-1,warrior_tut,0,Enemy,common,steelcrest,bg1,tutorial_power,TutorialPower,,0,"You wanted to know if you can, but forgot to ask yourself if you should."
 tutorial3,-1,Wizard_b,0,Camp,common,empty,bg1,,,,0,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
 ,,,,,,,,,,,,
@@ -40,9 +40,9 @@ bat_vampire,1,bat_2,0,Dialog,common,batCurse,bg2,bat_vampire,,Not HealthBelow 20
 teacher_glyphs,1,Wizard_b,0,Dialog,common,empty,bg3,teacher_glyph1,,,1,
 teacher_glyphs2,1,Wizard_b,5,Dialog,common,empty,bg6,teacher_glyph_draw,,VisitedAll teacher_glyphs,1,
 ,,,,,,,,,,,,
-bowman_stray_arrow,1,bowman,2,Dialog,common,empty,bg6,bowman_stray_arrow,,,1,
-scary_ghost,1,ghost_2,1,Dialog,common,empty,bg3,scary_ghost,,,200,
-agile_snake,1,snake_2,2,Dialog,common,empty,bg2,agile_snake,,,200,
+bowman_stray_arrow,1,bowman,2,Dialog,common,empty,bg6,bowman_stray_arrow,,,1,"Your arcane skills were growing, yet the trials proved too steep a climb."
+scary_ghost,1,ghost_2,1,Dialog,common,empty,bg3,scary_ghost,,,1,"Your arcane skills were growing, yet the trials proved too steep a climb."
+agile_snake,1,snake_2,2,Dialog,common,empty,bg2,agile_snake,,,1,"Your arcane skills were growing, yet the trials proved too steep a climb."
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,

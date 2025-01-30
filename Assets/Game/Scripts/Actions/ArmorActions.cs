@@ -56,6 +56,8 @@ namespace GameActions
     {
         ActionBase nestedAction;
 
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
         public override string GetDescription()
             => $"Gain X ({parent.Power}) armor and {nestedAction.GetDescription()}";
 

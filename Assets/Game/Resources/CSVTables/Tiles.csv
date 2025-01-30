@@ -11,7 +11,7 @@ focusBlades,focus_blades,Focus Blades,5,Uncommon,spell,10,,ConsumeClearedAnd 1 s
 shield,basic_shield,Round Shield,3,Basic,armor,0,shield,Defense,,,,,e8c170,,,,
 trapShield,trap_dis_shield,Snarebound Shield,2,Common,armor,0,shield,Defense,,AddPowerForEachOnBoard 2 trap,,,,,,,
 resilentShield,shield1,Resilent Shield,3,Uncommon,armor,0,shield,Defense,,BuffPower all -2 trap,,,,,,,
-guardShield,guard_shield,Guarding Shield,1,None,armor,1,shield,DefenseAnd BuffPower Biggest 2 shield,,,,,,,,,
+guardShield,guard_shield,Guarding Shield,1,None,armor,1,shield,DefenseAnd BuffPower Biggest 3 shield,,,,,,,,,
 mentalBarrier,mental_barrier,Mental Barrier,0,Uncommon,spell,1,,ConvertPowerTo Defense Biggest shield,,,,,,,,,
 guardianShield,shield2,The Guardian,1,Uncommon,armor,1,shield,Defense,,,ChangeSummon sword guardShield,,,,,,
 steelcrest,shield3,Steelcrest,0,None,armor,10,shield,BuffPower All 2 sword,,,,,,,,,

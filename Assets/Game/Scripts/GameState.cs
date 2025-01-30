@@ -1,4 +1,4 @@
-﻿#define SKIP_TUTORIAL
+﻿//#define SKIP_TUTORIAL
 
 using FancyToolkit;
 using RogueLikeMap;

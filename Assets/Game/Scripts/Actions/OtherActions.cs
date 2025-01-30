@@ -15,6 +15,9 @@ namespace GameActions
         TileTargetingType targetType;
         ActionBase nestedAction;
 
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
+
         public override string GetDescription()
         {
             var descr = $"Clean {MyTile.GetTargetingTypeName(targetType, tag)} and {nestedAction.GetDescription()} for each";
@@ -119,6 +122,9 @@ namespace GameActions
     {
         int amount;
         ActionBase nestedAction;
+
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
 
         public override string GetDescription()
         {
@@ -361,6 +367,9 @@ namespace GameActions
         int amount;
         ActionBase nestedAction;
         string id;
+
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
 
         public override string GetDescription()
            => $"For every {(amount > 1 ? $"{amount}" : "")} `{TileCtrl.current.Get(id).title}` on board {nestedAction.GetDescription()}";

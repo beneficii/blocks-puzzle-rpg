@@ -9,6 +9,8 @@ namespace GameActions
         int turns;
         ActionBase nestedAction;
 
+        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+
         int turnsLeft;
 
         public override bool OverrideDescriptionKey => true;

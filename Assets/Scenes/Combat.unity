@@ -2156,8 +2156,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Tags: sword, weapon, smth'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
-  m_sharedMaterial: {fileID: 6930845317417993056, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
+  m_sharedMaterial: {fileID: 8844699549706140242, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2940,8 +2940,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Snarebound Shield
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8dde7a0045eab274d954041c61832db6, type: 2}
-  m_sharedMaterial: {fileID: -6249597476541999166, guid: 8dde7a0045eab274d954041c61832db6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7a4cafcb48c9db1499b7a0727ecaa5a4, type: 2}
+  m_sharedMaterial: {fileID: -9050089387782993579, guid: 7a4cafcb48c9db1499b7a0727ecaa5a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4083,8 +4083,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0000500679, y: 1.5495999, z: 0}
-    m_Extent: {x: 15.50095, y: 2.7505, z: 0}
+    m_Center: {x: 0.00019979477, y: 1.5494001, z: 0}
+    m_Extent: {x: 15.5005, y: 2.7499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5484,7 +5484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -21.3}
+  m_AnchoredPosition: {x: 0, y: -21.300003}
   m_SizeDelta: {x: 80, y: 35.58}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &694080086
@@ -6340,8 +6340,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Deal 5 damage for each cleared sword
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
-  m_sharedMaterial: {fileID: 6930845317417993056, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
+  m_sharedMaterial: {fileID: 8844699549706140242, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6888,6 +6888,7 @@ GameObject:
   - component: {fileID: 895153446}
   - component: {fileID: 895153448}
   - component: {fileID: 895153449}
+  - component: {fileID: 895153450}
   m_Layer: 0
   m_Name: '[Template] Card'
   m_TagString: Untagged
@@ -7037,7 +7038,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895153441}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
@@ -7075,6 +7076,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &895153450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895153441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74747b93bfc62274b9fe809b70e35007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &896693126
 GameObject:
   m_ObjectHideFlags: 0
@@ -8493,8 +8506,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Cost: 12'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a4cafcb48c9db1499b7a0727ecaa5a4, type: 2}
-  m_sharedMaterial: {fileID: -9050089387782993579, guid: 7a4cafcb48c9db1499b7a0727ecaa5a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
+  m_sharedMaterial: {fileID: 6930845317417993056, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9664,8 +9677,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Tags: sword, weapon, smth'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
-  m_sharedMaterial: {fileID: 6930845317417993056, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
+  m_sharedMaterial: {fileID: 8844699549706140242, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12613,8 +12626,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Deal 5 damage for each cleared sword
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
-  m_sharedMaterial: {fileID: 6930845317417993056, guid: 32f791ccf51325c458fa8004cbbd7094, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
+  m_sharedMaterial: {fileID: 8844699549706140242, guid: 019ccc749c9227741ae32017cceeb531, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15273,8 +15286,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Snarebound Shield
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8dde7a0045eab274d954041c61832db6, type: 2}
-  m_sharedMaterial: {fileID: -6249597476541999166, guid: 8dde7a0045eab274d954041c61832db6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7a4cafcb48c9db1499b7a0727ecaa5a4, type: 2}
+  m_sharedMaterial: {fileID: -9050089387782993579, guid: 7a4cafcb48c9db1499b7a0727ecaa5a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
