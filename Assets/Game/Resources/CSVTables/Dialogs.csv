@@ -69,7 +69,7 @@ lowhealth,You look badly beaten. Good thing I have saved up half of this potion.
 ,Thanks,Health +25,
 ,"I'm fine, don't worry",,
 ,,,
-chalenge_w_d,Hey friend. Want to spar some more? Try to deal 100 damage to me in 5 turns!,,
+chalenge_w_d,Hey friend. Want to spar some more? Try to deal 100 damage to me in 7 turns!,,
 ,Let's do it,SwitchType Enemy,
 ,I'm too tired,,
 w_d_pass,"So this is what the board can do. Impressive, take my tile as a reward!",,

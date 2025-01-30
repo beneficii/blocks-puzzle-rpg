@@ -70,11 +70,18 @@ namespace Scenarios
     public class ChallengeDamage : ChallengeBase
     {
         int hpTarget;
+        int turns;
         public ChallengeDamage(StringScanner scanner)
         {
             hpTarget = scanner.NextInt();
+            turns = scanner.NextInt();
             dialogSuccess = scanner.NextString();
             dialogFail = scanner.NextString();
+        }
+
+        protected override void HandleTurn(int n)
+        {
+            if (n >= turns) isFail = true;
         }
 
         protected override IEnumerator ChallengeRoutine()
