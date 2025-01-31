@@ -45,6 +45,11 @@ public abstract class TutorialItemBase : MonoBehaviour
         }
     }
 
+    public static void SkipTutorial()
+    {
+        CurrentStepIdx = 99;
+    }
+
     protected void FinishStep()
     {
         if (Step != CurrentStep) return;
@@ -89,9 +94,9 @@ public enum TutorialStep
 {
     ClaimRewards,
     FillSkill,
-    UseSkill,
     None,
 
+    UseSkill,
     PlaceShape,
     FillLine,
 }

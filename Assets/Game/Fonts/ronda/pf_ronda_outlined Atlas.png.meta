@@ -1,0 +1,1941 @@
+fileFormatVersion: 2
+guid: 5b02406192f98f44eb30fcdbe19a8270
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2446095659819685323
+    second: pf_ronda_outlined Atlas_0
+  - first:
+      213: 2989555541410690963
+    second: pf_ronda_outlined Atlas_1
+  - first:
+      213: 5460384978501621051
+    second: pf_ronda_outlined Atlas_2
+  - first:
+      213: -2089587190450481054
+    second: pf_ronda_outlined Atlas_3
+  - first:
+      213: 9050051252624714721
+    second: pf_ronda_outlined Atlas_4
+  - first:
+      213: -2274766275076004541
+    second: pf_ronda_outlined Atlas_5
+  - first:
+      213: -5581965319693839264
+    second: pf_ronda_outlined Atlas_6
+  - first:
+      213: -7011846570778453163
+    second: pf_ronda_outlined Atlas_7
+  - first:
+      213: -8670850732281165732
+    second: pf_ronda_outlined Atlas_8
+  - first:
+      213: 8092323919907637864
+    second: pf_ronda_outlined Atlas_9
+  - first:
+      213: -8051794411453254827
+    second: pf_ronda_outlined Atlas_10
+  - first:
+      213: 5814442967450574794
+    second: pf_ronda_outlined Atlas_11
+  - first:
+      213: 3231619312651046667
+    second: pf_ronda_outlined Atlas_12
+  - first:
+      213: -1750961190144899540
+    second: pf_ronda_outlined Atlas_13
+  - first:
+      213: -5566979702286497317
+    second: pf_ronda_outlined Atlas_14
+  - first:
+      213: -8791413527215386038
+    second: pf_ronda_outlined Atlas_15
+  - first:
+      213: -5242951902825984999
+    second: pf_ronda_outlined Atlas_16
+  - first:
+      213: -8992636890952428538
+    second: pf_ronda_outlined Atlas_17
+  - first:
+      213: 3759990478790084931
+    second: pf_ronda_outlined Atlas_18
+  - first:
+      213: 2836860910313114390
+    second: pf_ronda_outlined Atlas_19
+  - first:
+      213: 6365204087243844195
+    second: pf_ronda_outlined Atlas_20
+  - first:
+      213: -1997246868272738550
+    second: pf_ronda_outlined Atlas_21
+  - first:
+      213: 5476451550960766206
+    second: pf_ronda_outlined Atlas_22
+  - first:
+      213: 8953418262361241180
+    second: pf_ronda_outlined Atlas_23
+  - first:
+      213: 5273144270923050928
+    second: pf_ronda_outlined Atlas_24
+  - first:
+      213: -4843716355190597085
+    second: pf_ronda_outlined Atlas_25
+  - first:
+      213: 4875722646080950491
+    second: pf_ronda_outlined Atlas_26
+  - first:
+      213: -682467421424925014
+    second: pf_ronda_outlined Atlas_27
+  - first:
+      213: 6539778881813719467
+    second: pf_ronda_outlined Atlas_28
+  - first:
+      213: -1150752268070496432
+    second: pf_ronda_outlined Atlas_29
+  - first:
+      213: 3568235567007214113
+    second: pf_ronda_outlined Atlas_30
+  - first:
+      213: 4150455085656846715
+    second: pf_ronda_outlined Atlas_31
+  - first:
+      213: 5035298221660392640
+    second: pf_ronda_outlined Atlas_32
+  - first:
+      213: 8489134279790881831
+    second: pf_ronda_outlined Atlas_33
+  - first:
+      213: -1817484372140716041
+    second: pf_ronda_outlined Atlas_34
+  - first:
+      213: -60365443020242932
+    second: pf_ronda_outlined Atlas_35
+  - first:
+      213: 6307117533217709812
+    second: pf_ronda_outlined Atlas_36
+  - first:
+      213: 691482482186893669
+    second: pf_ronda_outlined Atlas_37
+  - first:
+      213: 7764848629110229941
+    second: pf_ronda_outlined Atlas_38
+  - first:
+      213: -8054320860789359031
+    second: pf_ronda_outlined Atlas_39
+  - first:
+      213: -5042868452549816993
+    second: pf_ronda_outlined Atlas_40
+  - first:
+      213: 7409504471522902905
+    second: pf_ronda_outlined Atlas_41
+  - first:
+      213: 2501090940428236846
+    second: pf_ronda_outlined Atlas_42
+  - first:
+      213: 3342205269809325077
+    second: pf_ronda_outlined Atlas_43
+  - first:
+      213: 8907566191329473744
+    second: pf_ronda_outlined Atlas_44
+  - first:
+      213: -7734876749234092837
+    second: pf_ronda_outlined Atlas_45
+  - first:
+      213: -6462547661252837372
+    second: pf_ronda_outlined Atlas_46
+  - first:
+      213: -617531848015758263
+    second: pf_ronda_outlined Atlas_47
+  - first:
+      213: -4639255120539286073
+    second: pf_ronda_outlined Atlas_48
+  - first:
+      213: -4606465677897587754
+    second: pf_ronda_outlined Atlas_49
+  - first:
+      213: -3445180563869496836
+    second: pf_ronda_outlined Atlas_50
+  - first:
+      213: 6200305641874796229
+    second: pf_ronda_outlined Atlas_51
+  - first:
+      213: -8102473083180172597
+    second: pf_ronda_outlined Atlas_52
+  - first:
+      213: 2547646402448689372
+    second: pf_ronda_outlined Atlas_53
+  - first:
+      213: 6692938359024035309
+    second: pf_ronda_outlined Atlas_54
+  - first:
+      213: 7639493036056226061
+    second: pf_ronda_outlined Atlas_55
+  - first:
+      213: 5963075564562943988
+    second: pf_ronda_outlined Atlas_56
+  - first:
+      213: -8998121489824895039
+    second: pf_ronda_outlined Atlas_57
+  - first:
+      213: -7670967599738725619
+    second: pf_ronda_outlined Atlas_58
+  - first:
+      213: 2589325525999494815
+    second: pf_ronda_outlined Atlas_59
+  - first:
+      213: 2953927829591414002
+    second: pf_ronda_outlined Atlas_60
+  - first:
+      213: -2111491733761473370
+    second: pf_ronda_outlined Atlas_61
+  - first:
+      213: 742186873463543750
+    second: pf_ronda_outlined Atlas_62
+  - first:
+      213: -5282060769931210714
+    second: pf_ronda_outlined Atlas_63
+  - first:
+      213: -110773116197031256
+    second: pf_ronda_outlined Atlas_64
+  - first:
+      213: 7378797778480921828
+    second: pf_ronda_outlined Atlas_65
+  - first:
+      213: -6236017872451238803
+    second: pf_ronda_outlined Atlas_66
+  - first:
+      213: -5426660157267353386
+    second: pf_ronda_outlined Atlas_67
+  - first:
+      213: 6814534455472657147
+    second: pf_ronda_outlined Atlas_68
+  - first:
+      213: 5866104420680138932
+    second: pf_ronda_outlined Atlas_69
+  - first:
+      213: 3446256459435184199
+    second: pf_ronda_outlined Atlas_70
+  - first:
+      213: 4308389104335064232
+    second: pf_ronda_outlined Atlas_71
+  - first:
+      213: -6156562540028865466
+    second: pf_ronda_outlined Atlas_72
+  - first:
+      213: -2186896138464639391
+    second: pf_ronda_outlined Atlas_73
+  - first:
+      213: 2857964979739425276
+    second: pf_ronda_outlined Atlas_74
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 218
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53aa2d515f8bd0ed0800000000000000
+      internalID: -2446095659819685323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 238
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397b512fce80d7920800000000000000
+      internalID: 2989555541410690963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 235
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b35d774253f27cb40800000000000000
+      internalID: 5460384978501621051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 233
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2681ef9758b4003e0800000000000000
+      internalID: -2089587190450481054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_4
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 172
+        width: 118
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eb66cf3aad389d70800000000000000
+      internalID: 9050051252624714721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 224
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3456e0300286e60e0800000000000000
+      internalID: -2274766275076004541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 213
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0645913cd10e882b0800000000000000
+      internalID: -5581965319693839264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_7
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 210
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b9539b1bae0be90800000000000000
+      internalID: -7011846570778453163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_8
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 208
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5802f9f233faa780800000000000000
+      internalID: -8670850732281165732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 208
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86acd7deab5bd4070800000000000000
+      internalID: 8092323919907637864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_10
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 197
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5537adc94a7424090800000000000000
+      internalID: -8051794411453254827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_11
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 204
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acfd8a9921d01b050800000000000000
+      internalID: 5814442967450574794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_12
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 193
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0f8bdb94a409dc20800000000000000
+      internalID: 3231619312651046667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_13
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 188
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c260be5131653b7e0800000000000000
+      internalID: -1750961190144899540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_14
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 185
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd94765b47d1eb2b0800000000000000
+      internalID: -5566979702286497317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_15
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 183
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4253c4d9ff9ef580800000000000000
+      internalID: -8791413527215386038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_16
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 181
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91c4991d50b4d37b0800000000000000
+      internalID: -5242951902825984999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_17
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 179
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60415b8846cb33380800000000000000
+      internalID: -8992636890952428538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_18
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 170
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 349422f4b6b2e2430800000000000000
+      internalID: 3759990478790084931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_19
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 168
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b8764b7fd8e5720800000000000000
+      internalID: 2836860910313114390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_20
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 163
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36aa80f946fb55850800000000000000
+      internalID: 6365204087243844195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_21
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 160
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0f87df1e8a5844e0800000000000000
+      internalID: -1997246868272738550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_22
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 158
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efc47ac8ba3400c40800000000000000
+      internalID: 5476451550960766206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_23
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 158
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c56798de87ee04c70800000000000000
+      internalID: 8953418262361241180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_24
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 158
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf21cda6c8fd2940800000000000000
+      internalID: 5273144270923050928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_25
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 156
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32a5d1853a9a7ccb0800000000000000
+      internalID: -4843716355190597085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_26
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 152
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd09bf6f9eb0aa340800000000000000
+      internalID: 4875722646080950491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_27
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 143
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa6c03ffe736786f0800000000000000
+      internalID: -682467421424925014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_28
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 143
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba9ab186e36f1ca50800000000000000
+      internalID: 6539778881813719467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_29
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 138
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 057de2db8e4b700f0800000000000000
+      internalID: -1150752268070496432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_30
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 135
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12a2166c75be48130800000000000000
+      internalID: 3568235567007214113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_31
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 133
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b713acc09e0699930800000000000000
+      internalID: 4150455085656846715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_32
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 133
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cc4930fd09f0e540800000000000000
+      internalID: 5035298221660392640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_33
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 133
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72ce68d66a67fc570800000000000000
+      internalID: 8489134279790881831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_34
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 131
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ff8abdc79ff6c6e0800000000000000
+      internalID: -1817484372140716041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_35
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 129
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c00c11c03f9892ff0800000000000000
+      internalID: -60365443020242932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_36
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 116
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe541cdaf1678750800000000000000
+      internalID: 6307117533217709812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_37
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 116
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569b72767a3a89900800000000000000
+      internalID: 691482482186893669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_38
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 113
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb4bc030b842cb60800000000000000
+      internalID: 7764848629110229941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_39
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 110
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94eb1a9c9dd493090800000000000000
+      internalID: -8054320860789359031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_40
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 108
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d8eb45cd1240ab0800000000000000
+      internalID: -5042868452549816993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_41
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 108
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9738ac24f09d3d660800000000000000
+      internalID: 7409504471522902905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_42
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 108
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e283c2f75f8a5b220800000000000000
+      internalID: 2501090940428236846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_43
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 108
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5146c613cf5e16e20800000000000000
+      internalID: 3342205269809325077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_44
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 106
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4f877b1480e9b70800000000000000
+      internalID: 8907566191329473744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_45
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 89
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd44974e39238a490800000000000000
+      internalID: -7734876749234092837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_46
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 88
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4004ef2642b6056a0800000000000000
+      internalID: -6462547661252837372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_47
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 85
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94cb7895e061e67f0800000000000000
+      internalID: -617531848015758263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_48
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 83
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c508d53c0e0e9fb0800000000000000
+      internalID: -4639255120539286073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_49
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 83
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d3a2ee3fdb8210c0800000000000000
+      internalID: -4606465677897587754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_50
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 83
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf98a7fc7824030d0800000000000000
+      internalID: -3445180563869496836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_51
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 83
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ce2cc27129eb0650800000000000000
+      internalID: 6200305641874796229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_52
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 83
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcab1ead8ab3e8f80800000000000000
+      internalID: -8102473083180172597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_53
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 62
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd8814fa7ee0b5320800000000000000
+      internalID: 2547646402448689372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_54
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 35
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de5a6311af712ec50800000000000000
+      internalID: 6692938359024035309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_55
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 35
+        width: 8
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d09a336c07ee40a60800000000000000
+      internalID: 7639493036056226061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_56
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 35
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ff069ad1a911c250800000000000000
+      internalID: 5963075564562943988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_57
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 60
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cfad29dd20402380800000000000000
+      internalID: -8998121489824895039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_58
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 33
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0bda0e4c9f3b8590800000000000000
+      internalID: -7670967599738725619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_59
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 58
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f962d09d8d12fe320800000000000000
+      internalID: 2589325525999494815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_60
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 33
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4dfeed5b57ef820800000000000000
+      internalID: 2953927829591414002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_61
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 58
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a449fe847972b2e0800000000000000
+      internalID: -2111491733761473370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_62
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 33
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c790c57707cc4a00800000000000000
+      internalID: 742186873463543750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_63
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 58
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 620593e17b952b6b0800000000000000
+      internalID: -5282060769931210714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_64
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 33
+        width: 28
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a2b96e0074767ef0800000000000000
+      internalID: -110773116197031256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_65
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 58
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ecfbc72c71c66660800000000000000
+      internalID: 7378797778480921828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_66
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 58
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d648e8be8c63579a0800000000000000
+      internalID: -6236017872451238803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_67
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 33
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d06051b651a0b4b0800000000000000
+      internalID: -5426660157267353386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_68
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 31
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf29b187bf6129e50800000000000000
+      internalID: 6814534455472657147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_69
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 8
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b00df104e6986150800000000000000
+      internalID: 5866104420680138932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_70
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 8
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7409785adff83df20800000000000000
+      internalID: 3446256459435184199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_71
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 8
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ac0e0640197acb30800000000000000
+      internalID: 4308389104335064232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_72
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 8
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6445a1c1dfe7f8aa0800000000000000
+      internalID: -6156562540028865466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_73
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 8
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 166442a7c8596a1e0800000000000000
+      internalID: -2186896138464639391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pf_ronda_outlined Atlas_74
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 8
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf9ffd5c10889a720800000000000000
+      internalID: 2857964979739425276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sprites_0: 6128299156075563123
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

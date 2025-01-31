@@ -50,7 +50,7 @@ public class MyTileData : TileData, IActionParent
         if (clearAction != null)
             result.Add("Clear: Triggered when this tile is cleared by filling a line.");
         if (enterAction != null)
-            result.Add("Enter: Triggered when the tile is placed on the board.");
+            result.Add("Place: Triggered when the tile is placed on the board.");
 
 
         return new List<string>
@@ -111,7 +111,7 @@ public class TileActionContainer
 
         var pairs = new List<System.Tuple<ActionBase, string>>
         {
-            new(enterAction, "Enter"),
+            new(enterAction, "Place"),
             new(clearAction, "Clear"),
             new(endOfTurnAction, "Turn end"),
             new(passiveEffect, ""),

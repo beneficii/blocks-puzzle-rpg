@@ -42,6 +42,15 @@ public class HUDCtrl : MonoBehaviour
             OnAllClosed?.Invoke();
         }
     }
+
+    public void CloseAllButTop()
+    {
+        if (stack.Count == 0) return;
+
+        var top = stack.Pop();
+        stack.Clear();
+        stack.Push(top);
+    }
 }
 
 public abstract class UIHudBase : MonoBehaviour

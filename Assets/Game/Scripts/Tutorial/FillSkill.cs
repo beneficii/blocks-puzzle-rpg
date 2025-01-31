@@ -2,17 +2,46 @@
 using UnityEngine;
 using TileShapes;
 using GridBoard;
+using TMPro;
 
 namespace TutorialItems
 {
     public class FillSkill : TutorialItemBase
     {
         protected override TutorialStep Step => TutorialStep.FillSkill;
+        
+        [SerializeField] TextMeshProUGUI txtCaption;
 
-        void HandleEvent(UISkillButton data)
+        bool isFilled = false;
+
+        void HandleEventAviable(UISkillButton data)
         {
-            FinishStep();
+            if (isFilled) return;
+            isFilled = true;
+            if (!data.HasManualUse)
+            {
+                FinishStep();
+                return;
+            }
+
+            txtCaption.text = "Click to use";
+            //FinishStep();
         }
+
+        void HandleEventUsed(UISkillButton data)
+        {
+            if (isFilled) return;
+            isFilled = true;
+            if (!data.HasManualUse)
+            {
+                FinishStep();
+                return;
+            }
+
+            txtCaption.text = "Click to use";
+            //FinishStep();
+        }
+
 
         protected override void OnEnter()
         {
@@ -20,12 +49,14 @@ namespace TutorialItems
             {
                 FinishStep();
             }
-            UISkillButton.OnAviableToUse += HandleEvent;
+            UISkillButton.OnAviableToUse += HandleEventAviable;
+            UISkillButton.OnUsed += HandleEventUsed;
         }
 
         protected override void OnExit()
         {
-            UISkillButton.OnAviableToUse -= HandleEvent;
+            UISkillButton.OnAviableToUse -= HandleEventAviable;
+            UISkillButton.OnUsed -= HandleEventUsed;
         }
     }
 }

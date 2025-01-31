@@ -29,6 +29,8 @@ public class GameState
 
     public MapNodeAssigner nodeAssigner;
 
+    public bool skipTutorialNow = false;
+
     public bool IsMapNode
     {
         get => currentNode >= 0;
@@ -76,6 +78,16 @@ public class GameState
 
     public LevelFinishType FinishLevel(int? playerHealth = null)
     {
+        if (skipTutorialNow)
+        {
+            skipTutorialNow = false;
+            encounteredStages.Add("skipTutorial");
+            currentNode = emptyNodeId; // go to map
+            SwitchAct(1);
+            Save();
+            return LevelFinishType.SkipTutorial;
+        }
+
         if (playerHealth.HasValue)
         {
             this.playerHealth.x = playerHealth.Value;
@@ -83,7 +95,7 @@ public class GameState
 
         var stageData = StageCtrl.current.Data;
         encounteredStages.Add(stageData.id);
-
+        
         if (!IsMapNode)
         {
             currentNode = emptyNodeId; // go to map
@@ -210,5 +222,6 @@ public enum LevelFinishType
 {
     Map,
     FinishAct,
+    SkipTutorial,
     Victory,
 }

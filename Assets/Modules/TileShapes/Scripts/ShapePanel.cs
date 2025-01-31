@@ -155,7 +155,7 @@ namespace TileShapes
             }
         }
 
-        public void GenerateNew(bool initial = true, PoolQueue<TileData> tileQueue = null, int tilesToPopulate = 0)
+        public void GenerateNew(bool initial = true, PoolQueue<TileData> tileQueue = null, int tilesToPopulate = 0, int singles = 0)
         {
             Clear();
 
@@ -164,9 +164,14 @@ namespace TileShapes
             OnHintsAviable?.Invoke(true);
             var nextShapes = new Queue<Shape.Info>();
 
-            foreach (var slot in slots)
+            for (int i = 0; i < slots.Count - singles; i++)
             {
                 nextShapes.Enqueue(GetNextShape(tempGrid));
+            }
+
+            for (int i = 0; i < singles; i++)
+            {
+                nextShapes.Enqueue(GetWispShape());
             }
 
             PopulateShapesWithTiles(nextShapes, tileQueue, tilesToPopulate);

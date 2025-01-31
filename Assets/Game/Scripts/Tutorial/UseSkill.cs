@@ -26,6 +26,7 @@ namespace TutorialItems
         protected override void OnExit()
         {
             UISkillButton.OnUsed -= HandleEvent;
+            FinishStep();   // in case player didn't click this and finished level
         }
     }
 }

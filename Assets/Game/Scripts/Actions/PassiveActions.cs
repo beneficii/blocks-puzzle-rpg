@@ -221,7 +221,7 @@ namespace GameActions
         int amount;
 
         public override string GetDescription()
-            => $"{tag} tiles have {amount.SignedStr()} Power";
+            => $"All {tag} tiles have {amount.SignedStr()} Power";
 
         public AddPowerPassiveTo(string tag, int amount)
         {

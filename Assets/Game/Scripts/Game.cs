@@ -240,6 +240,12 @@ public class Game : MonoBehaviour
         };
     }
 
+    public void SkipTutorial()
+    {
+        state.skipTutorialNow = true;
+        TutorialItemBase.SkipTutorial();
+    }
+
     public void AddTilesPerTurn()
     {
         state.tilesPerTurn++;
@@ -339,12 +345,16 @@ public class Game : MonoBehaviour
 
     public List<string> GetEncounteredStages()
     {
-        return state.encounteredStages;
+        return state?.encounteredStages??new();
     }
 
-    public void FinishLevel(CombatSettings combatSettings, int? playerHealth = null)
+    public bool CanSkipTutorial()
     {
-        // probably should not happen now
+        return GetEncounteredStages().Count == 0 && (state?.currentAct??0) == -1;
+    }
+
+    public void FinishLevel(int? playerHealth = null)
+    {
         if (state == null)
         {
             LoadScene();
@@ -364,6 +374,9 @@ public class Game : MonoBehaviour
                 break;
             case LevelFinishType.FinishAct:
                 UIHudMap.current.Show();
+                break;
+            case LevelFinishType.SkipTutorial:
+                LoadScene();
                 break;
             case LevelFinishType.Victory:
                 UIHudGameOver.current.Show(true);

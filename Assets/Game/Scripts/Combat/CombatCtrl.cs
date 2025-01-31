@@ -8,6 +8,8 @@ using FancyToolkit;
 using System.Linq;
 using UnityEngine.UI;
 using DG.Tweening;
+using DialogActions;
+using static UnityEngine.Networking.UnityWebRequest;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
@@ -29,9 +31,22 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     [SerializeField] List<SpriteRenderer> bgRenders;
     [SerializeField] UIGenericButton btnEndTurn;
+    [SerializeField] UIGenericButton btnSkipTutorial;
     [SerializeField] UIHudCombat hud;
 
     System.Random endLevelRandom;
+    System.Random EndLevelRandom
+    {
+        get
+        {
+            if (endLevelRandom == null)
+            {
+                endLevelRandom = Game.current.CreateStageRng();
+            }
+
+            return endLevelRandom;
+        }
+    }
 
     Board board;
     ShapePanel shapePanel;
@@ -60,6 +75,10 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     }
 
     List<BuffBase> buffs = new();
+
+    List<UICombatReward.Data> specialCombatRewards;
+
+    //bool dontCheckQueue = false;
 
     public void AddBuff(BuffBase buff)
     {
@@ -98,7 +117,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     void HandleAllHudsClosed()
     {
         //if (dontCheckQueue) return;
-
         if (hud.IsOpen) return;
         CheckQueue();
     }
@@ -111,10 +129,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             var player = CombatArena.current.player;
             if (player) playerHp = player.health.Value;
 
-            Game.current.FinishLevel(new()
-            {
-                tilesPerTurn = tilesPerTurn,
-            }, playerHp);
+            Game.current.FinishLevel(playerHp);
             return;
         }
 
@@ -154,7 +169,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
                 .OfType<MyTileData>()
                 .ToList();
 
-        UIHudSelectTile.current.ShowChoise(list.RandN(3, endLevelRandom));
+        UIHudSelectTile.current.ShowChoise(list.RandN(3, EndLevelRandom));
     }
 
     public void ShowSkillChoise(Rarity rarity)
@@ -163,12 +178,41 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
                 .Where(x => x.rarity == rarity)
                 .ToList();
 
-        UIHudSelectTile.current.ShowChoise(list.RandN(3, endLevelRandom));
+        UIHudSelectTile.current.ShowChoise(list.RandN(3, EndLevelRandom));
+    }
+
+    public void SetSpecialRewards(List<UICombatReward.Data> rewards)
+    {
+        specialCombatRewards = rewards;
+    }
+
+    public void SkipTutorial()
+    {
+        var rng = Game.current.CreateStageRng();
+        var rewards = new List<UICombatReward.Data>
+        {
+            new UICombatReward.DataGold(rng.Next(20, 40)),
+            new UICombatReward.DataTile(Rarity.Common),
+            new UICombatReward.DataSkill(Rarity.Common)
+        };
+
+        SetSpecialRewards(rewards);
+
+        Game.current.SkipTutorial();
+
+        InstantVictory();
+        HUDCtrl.current.CloseAllButTop();
     }
 
     List<UICombatReward.Data> GenerateCombatRewards()
     {
-        var rng = endLevelRandom;
+        if (specialCombatRewards != null)
+        {
+            return specialCombatRewards;
+        }
+
+
+        var rng = EndLevelRandom;
         var stageData = StageCtrl.current.Data;
         var rarity = stageData.reward;
 
@@ -222,14 +266,19 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         UIHudDialog.current.Show(dialogId);
     }
 
+    void InstantVictory()
+    {
+        hud.Close();
+        UIHudRewards.current.Show(GenerateCombatRewards());
+    }
+
     IEnumerator CombatFinished(bool victory)
     {
         yield return new WaitForSeconds(2f);
 
         if (victory)
         {
-            hud.Close();
-            UIHudRewards.current.Show(GenerateCombatRewards());
+            InstantVictory();
         }
         else
         {
@@ -344,7 +393,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     public void InitShop()
     {
         var stageData = StageCtrl.current.Data;
-        var rng = endLevelRandom;
+        var rng = EndLevelRandom;
         var list = new List<MyTileData>();
 
         void AddRarity(Rarity rarity, int count)
@@ -369,16 +418,16 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     public void InitCamp()
     {
         var stageData = StageCtrl.current.Data;
-        var rng = endLevelRandom;
+        var rng = EndLevelRandom;
 
         var rarity = Rarity.Common; //ToDo: stageData.reward rarity
         bool noSkills = Game.current.GetSkills().Count == 0; //Game.current.IsFirstEncounter();
         var list = SkillCtrl.current.GetAll()
                 .Where(x => x.rarity == rarity)
-                .Where(x => !noSkills || (x.clickCondition is not SkillConditions.Once.Builder))
+                .Where(x => !noSkills || (x.clickCondition is SkillConditions.Charge.Builder))
                 .Cast<IHasInfo>()
                 .ToList()
-                .RandN(3, endLevelRandom);
+                .RandN(3, EndLevelRandom);
 
         string dialog;
 
@@ -460,6 +509,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     IEnumerator Start()
     {
+        btnSkipTutorial.gameObject.SetActive(Game.current.CanSkipTutorial());
         if (Game.current.GetStateType() == Game.StateType.Map)
         {
             UIHudMap.current.Show();
@@ -467,7 +517,6 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
 
         var stageData = StageCtrl.current.Data;
-        endLevelRandom = Game.current.CreateStageRng();
         if (Game.current.bgDict.TryGetValue(stageData.background, out var bgSprite))
         {
             foreach (var item in bgRenders) item.sprite = bgSprite;

@@ -91,7 +91,7 @@ public class UIHoverInfo : MonoBehaviour
 
     public void SetCost(int price)
     {
-        if (txtCost) txtCost.text = $"Cost: {price}";
+        if (txtCost) txtCost.text = $"{price}";
     }
 
     void Show(Unit unit)

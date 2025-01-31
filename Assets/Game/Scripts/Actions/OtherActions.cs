@@ -75,7 +75,7 @@ namespace GameActions
 
         public override string GetDescription()
         {
-            return $"Trigger \"Enter\" effects of {MyTile.GetTargetingTypeName(targetType, tag)}";
+            return $"Trigger \"Place\" effects of {MyTile.GetTargetingTypeName(targetType, tag)}";
         }
 
         public TriggerPlace(string tag, TileTargetingType targetType)
