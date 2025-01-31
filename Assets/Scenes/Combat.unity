@@ -3948,8 +3948,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0001502037, y: 1.5505999, z: 0}
-    m_Extent: {x: 15.499849, y: 2.7501998, z: 0}
+    m_Center: {x: -0.0000500679, y: 1.5502, z: 0}
+    m_Extent: {x: 15.50075, y: 2.7505999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12045,7 +12045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 2969340}
-  txtCaption: {fileID: 0}
+  txtCaption: {fileID: 1074011331}
 --- !u!1001 &1426483004
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -30,16 +30,7 @@ namespace TutorialItems
 
         void HandleEventUsed(UISkillButton data)
         {
-            if (isFilled) return;
-            isFilled = true;
-            if (!data.HasManualUse)
-            {
-                FinishStep();
-                return;
-            }
-
-            txtCaption.text = "Click to use";
-            //FinishStep();
+            FinishStep();
         }
 
 
