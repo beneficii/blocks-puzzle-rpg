@@ -55,7 +55,7 @@ namespace FancyToolkit
             current = this;
             //DontDestroyOnLoad(gameObject);
 
-            VolumeMusic = PlayerPrefs.GetFloat(prefsKeyMusicVolume, 1f);
+            VolumeMusic = PlayerPrefs.GetFloat(prefsKeyMusicVolume, .4f);
             VolumeSound = PlayerPrefs.GetFloat(prefsKeySoundVolume, 1f);
             var randClip = randomMusic.Rand();
             if (randClip != null)
