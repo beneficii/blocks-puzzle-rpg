@@ -377,26 +377,7 @@ public class Unit : MonoBehaviour, IDamagable, IInfoTextProvider, IHintContainer
         }*/
     }
 
-#if UNITY_EDITOR
-    [EasyButtons.Button]
-    public void SaveVisualData()
-    {
-        if (!visuals)
-        {
-            Debug.LogError("Visuals not set!");
-            return;
-        }
 
-        visuals.hpPos = parentHp.localPosition;
-        visuals.actionPos = moveIndicator.transform.localPosition;
-        visuals.flipX = render.flipX;
-        /*visuals.shadow = new(
-            shadow.localPosition.x,
-            shadow.localScale.x
-        );*/
-        UnityEditor.EditorUtility.SetDirty(visuals);
-
-    }
 
     public string GetInfoText(int size)
     {
@@ -434,6 +415,27 @@ public class Unit : MonoBehaviour, IDamagable, IInfoTextProvider, IHintContainer
     }
 
     public bool ShouldShowHoverInfo() => true;
+
+#if UNITY_EDITOR
+    [EasyButtons.Button]
+    public void SaveVisualData()
+    {
+        if (!visuals)
+        {
+            Debug.LogError("Visuals not set!");
+            return;
+        }
+
+        visuals.hpPos = parentHp.localPosition;
+        visuals.actionPos = moveIndicator.transform.localPosition;
+        visuals.flipX = render.flipX;
+        /*visuals.shadow = new(
+            shadow.localPosition.x,
+            shadow.localScale.x
+        );*/
+        UnityEditor.EditorUtility.SetDirty(visuals);
+
+    }
 #endif
 
     [System.Serializable]
