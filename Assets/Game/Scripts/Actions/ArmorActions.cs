@@ -52,12 +52,8 @@ namespace GameActions
         }
     }
 
-    public class DefenseAnd : ActionBase
+    public class DefenseAnd : ActionBaseWithNested
     {
-        ActionBase nestedAction;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
-
         public override string GetDescription()
             => $"Gain X ({parent.Power}) armor and {nestedAction.GetDescription()}";
 
@@ -66,12 +62,6 @@ namespace GameActions
         public DefenseAnd(ActionBase nestedAction)
         {
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using GridBoard;
 using NUnit.Framework;
 
-public partial class UICombatReward : MonoBehaviour, IHasNestedInfo
+public partial class UICombatReward : MonoBehaviour, IHasNestedInfo, IHoverInfoContainer
 {
     public static event System.Action<UICombatReward> OnClicked;
 
@@ -54,6 +54,8 @@ public partial class UICombatReward : MonoBehaviour, IHasNestedInfo
     }
 
     public IHasInfo GetInfo() => data.GetInfo();
+
+    public IHoverInfoTarget GetHoverInfoTarget() => data.GetHoverInfoTarget();
 }
 
 public enum RewardType

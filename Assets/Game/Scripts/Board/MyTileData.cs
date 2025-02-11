@@ -23,7 +23,6 @@ public class MyTileData : TileData, IActionParent
 
     public string VfxId => type.ToString();
 
-
     public string GetDescription(TileActionContainer actionContainer)
     {
         var lines = new List<string>();
@@ -74,9 +73,62 @@ public class MyTileData : TileData, IActionParent
 
     public override IHasInfo GetExtraInfo()
         => GetExtraInfo(new(this, this));
+
+    public override string GetInfoText(int size)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(title
+            //.Size(size*3/2)
+            .Center()
+            .Bold());
+
+        //sb.AppendLine();
+        sb.AppendLine(GetDescription());
+
+        var tags = GetTags();
+        if (tags.Count > 0)
+        {
+            sb.AppendLine();
+            sb.AppendLine(string.Join(", ", tags)
+                .Alpha(150));
+        }
+
+        return sb.ToString();
+    }
+
+    public override string GetHintText()
+    {
+        var sb = new StringBuilder();
+
+        sb.Append(title
+            .Bold());
+
+
+        sb.Append(" - ");
+        sb.AppendLine(GetDescription());
+
+        /*
+        var tags = GetTags();
+        if (tags.Count > 0)
+        {
+            sb.AppendLine();
+            sb.AppendLine(string.Join(", ", tags)
+                .Alpha(150));
+        }*/
+
+        return sb.ToString();
+    }
+
+    public override List<IHintProvider> GetHintProviders()
+    {
+        return new TileActionContainer(this, this).GetHintProviders();
+    }
 }
 
-public class TileActionContainer
+
+
+public class TileActionContainer : IHintContainer
 {
     public ActionBase clearAction;
     public ActionBase endOfTurnAction;
@@ -128,7 +180,7 @@ public class TileActionContainer
             var sb = new StringBuilder();
             if (!action.OverrideDescriptionKey && !string.IsNullOrEmpty(item.Item2))
             {
-                sb.Append($"<b>{item.Item2}: </b>");
+                sb.Append($"<u>{item.Item2}</u>: ");
             }
 
             sb.Append(descr);
@@ -136,5 +188,22 @@ public class TileActionContainer
         }
 
         return lines;
+    }
+
+    public List<IHintProvider> GetHintProviders()
+    {
+        var result = new List<IHintProvider>();
+
+        foreach (var item in AllActions())
+        {
+            result.AddRange(item.GetHints());
+        }
+
+        if (clearAction != null)
+            result.Add(new ActionHint.Clear());
+        if (enterAction != null)
+            result.Add(new ActionHint.Place());
+
+        return result;
     }
 }

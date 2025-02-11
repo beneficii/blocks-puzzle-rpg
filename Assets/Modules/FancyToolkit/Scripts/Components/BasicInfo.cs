@@ -1,26 +1,28 @@
 ﻿using FancyToolkit;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace FancyToolkit
 {
-    public class BasicInfo : MonoBehaviour, IHasInfo
+    public class BasicInfo : MonoBehaviour, IInfoTextProvider, IHoverInfoTarget
     {
         [SerializeField] string title;
         [SerializeField] string description;
+        public string GetInfoText(int size)
+        {
+            var sb = new StringBuilder();
 
-        public string GetDescription() => description;
+            sb.AppendLine(title
+                .Center()
+                .Bold());
 
-        public IHasInfo GetExtraInfo() => null;
+            sb.AppendLine();
+            sb.AppendLine(description);
 
-        public Sprite GetIcon() => null;
+            return sb.ToString();
+        }
 
-        public List<string> GetTags() => new();
-
-        public string GetTitle() => title;
-
-        public List<string> GetTooltips() => new();
-
-        public bool ShouldShowInfo() => true;
+        public bool ShouldShowHoverInfo() => true;
     }
 }

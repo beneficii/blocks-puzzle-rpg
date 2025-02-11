@@ -94,10 +94,10 @@ teacher_glyph_draw,"If you hope to defeat evil, you must accept glyphs that brin
 ,Spikes,GetGlyph star,
 ,Fire,GetGlyph fire,
 ,,,
-bat_vampire,"You encounter an injured monster. It doesn’t attack but crawls closer, as if seeking your blood.",,
+bat_vampire,"You encounter an injured monster. It doesn’t attack but crawls closer, as if seeking your blood.",,N
 ,Let it,Health -10; Dialog bat_vampire_2,
 ,Walk away,,
-bat_vampire_2,"The monster sips your blood and gazes at you with a strange gratitude. Using its teeth, it carves a glyph into your board.",,
+bat_vampire_2,"The monster sips your blood and gazes at you with a strange gratitude. Using its teeth, it carves a glyph into your board.",,N
 ,continue,GetGlyph bat,
 ,,,
 error,I seem to be lost,,

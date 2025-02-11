@@ -1,11 +1,12 @@
 ﻿using FancyToolkit;
+using GameActions;
 using GridBoard;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class SkillData : DataWithId, IHasInfo, IActionParent
+public class SkillData : DataWithId, IHasInfo, IActionParent, IIconProvider, IInfoTextProvider, IHintContainer, IHoverInfoTarget
 {
     public string idVisual;
     public string name;
@@ -93,10 +94,31 @@ public class SkillData : DataWithId, IHasInfo, IActionParent
         return container.onClick?.GetExtraInfo();
     }
 
-    public IHasInfo GetExtraInfo() => GetExtraInfo(new SkillActionContainer(this, this));
+    public IHasInfo GetExtraInfo() => null;
+
+    public List<IHintProvider> GetHintProviders()
+    {
+        return new SkillActionContainer(this, this)?.GetHintProviders();
+    }
+
+    public string GetInfoText(int size)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(name
+            .Center()
+            .Bold());
+
+        //sb.AppendLine();
+        sb.AppendLine(GetDescription());
+
+        return sb.ToString();
+    }
+
+    public bool ShouldShowHoverInfo() => true;
 }
 
-public class SkillActionContainer
+public class SkillActionContainer : IHintContainer
 {
     public SkillClickCondition clickCondition;
     public ActionBase onClick;
@@ -122,5 +144,17 @@ public class SkillActionContainer
         {
             item.Init(parent);
         }
+    }
+
+    public List<IHintProvider> GetHintProviders()
+    {
+        var result = new List<IHintProvider>();
+
+        foreach (var item in AllActions())
+        {
+            result.AddRange(item.GetHints());
+        }
+
+        return result;
     }
 }

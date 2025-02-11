@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 951e5f1f9cf518440895ca946c44a3ba
+guid: 36f37a7c05b820f418770738d69ed63d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7949130026306969052
-    second: damage_bar_0
+      213: 765795478549385516
+    second: speech_corner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.04347826, y: 0.5}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -126,22 +126,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: damage_bar_0
+      name: speech_corner_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 69
-        height: 12
+        width: 24
+        height: 19
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdd1b6384abf05e60800000000000000
-      internalID: 7949130026306969052
+      spriteID: c21598d2ee6a0aa00800000000000000
+      internalID: 765795478549385516
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []

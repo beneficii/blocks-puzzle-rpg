@@ -279,6 +279,36 @@ public class MyTile : Tile, IActionParent
         => FindTileTargets(parent, targetType, (x) => x.HasTag(tag));
 
     public Component AsComponent() => this;
+
+    public override string GetInfoText(int size)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(data.title
+            //.Size(size*3/2)
+            .Center()
+            .Bold());
+
+        sb.AppendLine();
+        sb.AppendLine(GetDescription());
+
+        var tags = GetTags();
+        if (tags.Count > 0)
+        {
+            sb.AppendLine();
+            sb.AppendLine(string.Join(", ", tags)
+                .Alpha(150));
+        }
+
+        return sb.ToString();
+    }
+
+    public override List<IHintProvider> GetHintProviders()
+    {
+        return actionContainer?.GetHintProviders();
+    }
+
+    public override bool ShouldShowHoverInfo() => data?.ShouldShowHoverInfo()??false;
 }
 
 public enum TileTargetingType

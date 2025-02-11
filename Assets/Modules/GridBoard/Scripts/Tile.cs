@@ -8,7 +8,7 @@ using UnityEditor;
 
 namespace GridBoard
 {
-    public class Tile : MonoBehaviour, IHasInfo
+    public class Tile : MonoBehaviour, IHasInfo, IIconProvider, IInfoTextProvider, IHintContainer, IHoverInfoTarget
     {
         public const float scale = 40 / 35f;
         public const float rScale = 35 / 40f;
@@ -404,6 +404,12 @@ namespace GridBoard
         {
             return ((IHasInfo)data).GetExtraInfo();
         }
+
+        public virtual List<IHintProvider> GetHintProviders() => null;
+
+        public virtual bool ShouldShowHoverInfo() => false;
+
+        public virtual string GetInfoText(int size) => "";
 
         public enum RenderLayer
         {

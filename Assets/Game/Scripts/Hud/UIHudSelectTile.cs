@@ -50,9 +50,9 @@ public class UIHudSelectTile : UIHudBase
         return this;
     }
 
-    public UIHudSelectTile ShowChoise(List<MyTileData> list) => ShowChoise(list.Cast<IHasInfo>().ToList());
-    public UIHudSelectTile ShowChoise(List<SkillData> list) => ShowChoise(list.Cast<IHasInfo>().ToList());
-    public UIHudSelectTile ShowChoise(List<IHasInfo> list)
+    public UIHudSelectTile ShowChoise(List<MyTileData> list) => ShowChoise(list.Cast<IInfoTextProvider>().ToList());
+    public UIHudSelectTile ShowChoise(List<SkillData> list) => ShowChoise(list.Cast<IInfoTextProvider>().ToList());
+    public UIHudSelectTile ShowChoise(List<IInfoTextProvider> list)
     {
         Opened();
         Clear();

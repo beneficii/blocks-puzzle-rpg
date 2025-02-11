@@ -4,16 +4,22 @@ using UnityEngine.UI;
 using FancyToolkit;
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
+using TMPro;
 
-public class UISelectTileCard : MonoBehaviour, IHasNestedInfo
+public class UISelectTileCard : MonoBehaviour, IHintContainer, IHoverInfoTarget
 {
     public static event System.Action<UISelectTileCard, SelectTileType> OnSelectCard;
 
-    [SerializeField] UIHoverInfo infoPanel;
+    [SerializeField] UIInfoPanel infoPanel;
     [SerializeField] CanvasGroup cg;
     [SerializeField] Button btnBuy;
     [SerializeField] Button btnSelect;
     [SerializeField] Image imgBg;
+    [SerializeField] TextMeshProUGUI txtCost;
+    [SerializeField] Image imgFrame;
+    [SerializeField] Image imgIcon;
+
 
     [SerializeField] Sprite spriteBgSpecial;
     [SerializeField] AudioClip soundSelect;
@@ -21,25 +27,23 @@ public class UISelectTileCard : MonoBehaviour, IHasNestedInfo
 
     SelectTileType type;
     int price;
-    public IHasInfo data { get; private set; }
+    public IInfoTextProvider data;
 
-    public void Init(SelectTileType type, IHasInfo data, int price = 0)
+    public void Init(SelectTileType type, IInfoTextProvider data, int price = 0)
     {
         this.type = type;
         this.data = data;
         this.price = price;
-        infoPanel.Init(data);
+
+        infoPanel.InitText(data);
+        infoPanel.InitIcon(data as IIconProvider);
+        
         if (type == SelectTileType.Shop)
         {
-            infoPanel.SetCost(price);
+            txtCost.text = $"{price}";
         }
-        else
-        {
-            infoPanel.HideCost();
-        }
-
-        btnBuy.gameObject.SetActive(type == SelectTileType.Shop);
-        btnSelect.gameObject.SetActive(type == SelectTileType.Choise);
+        if (btnBuy) btnBuy.gameObject.SetActive(type == SelectTileType.Shop);
+        if (btnSelect) btnSelect.gameObject.SetActive(type == SelectTileType.Choise);
 
         if (data is MyTileData tileData)
         {
@@ -47,10 +51,17 @@ public class UISelectTileCard : MonoBehaviour, IHasNestedInfo
         }
         else if (data is SkillData skillData)
         {
-            infoPanel.imgIcon.transform.localScale = Vector3.one * 2;
-            infoPanel.imgFrame.gameObject.SetActive(false);
+            imgIcon.transform.localScale = Vector3.one * 2;
+            imgFrame.gameObject.SetActive(false);
         }
     }
+
+    public GenericBullet CreateBullet(string vfxId = null)
+    {
+        return Game.current.MakeBullet(imgIcon.transform.position, vfxId)
+            .SetSprite(imgIcon.sprite);
+    }
+
 
     void SelectedTile(MyTileData tileData)
     {
@@ -66,7 +77,7 @@ public class UISelectTileCard : MonoBehaviour, IHasNestedInfo
 
         var vfxId = tileData?.type.ToString();
 
-        infoPanel.CreateBullet(vfxId)
+        CreateBullet(vfxId)
                 .SetSpleen(UnityEngine.Random.Range(0, 1) == 1 ? Vector2.left : Vector2.right)
                 .SetTarget(MainUI.current.uiBtnTiles)
                 .SetAction(x =>
@@ -84,7 +95,7 @@ public class UISelectTileCard : MonoBehaviour, IHasNestedInfo
         var player = CombatArena.current.player;
         if (player)
         {
-            infoPanel.CreateBullet("Spell")
+            CreateBullet("Spell")
                 .SetSpleen(UnityEngine.Random.Range(0, 1) == 1 ? Vector2.left : Vector2.right)
                 .SetTarget(player)
                 .SetAction(x =>
@@ -135,5 +146,15 @@ public class UISelectTileCard : MonoBehaviour, IHasNestedInfo
         cg.blocksRaycasts = false;
     }
 
-    public IHasInfo GetInfo() => data?.GetExtraInfo();
+    public List<IHintProvider> GetHintProviders()
+    {
+        if (data is IHintContainer hintContainer)
+        {
+            return hintContainer.GetHintProviders();
+        }
+
+        return new();
+    }
+
+    public bool ShouldShowHoverInfo() => true;
 }

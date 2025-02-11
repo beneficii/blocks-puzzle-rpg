@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using TMPro;
+using UnityEngine.UI;
 
 public class UIHudDialog : UIHudBase
 {
@@ -24,8 +26,10 @@ public class UIHudDialog : UIHudBase
 
     [SerializeField] UITemplateItem templateOption;
 
-
     [SerializeField] GameObject objSmallBoard;
+
+    [SerializeField] Panel uiMainText;
+
 
     Dictionary<string, List<DialogData>> dict;
     string nextDialogID;
@@ -66,7 +70,10 @@ public class UIHudDialog : UIHudBase
         Assert.IsTrue(list.Count > 0);
         Assert.IsNotNull(CombatArena.current.enemy);
         var mainText = list[0];
-        CombatArena.current.enemy.SetDialog(mainText.text, mainText.IsNarration());
+        //CombatArena.current.enemy.SetDialog(mainText.text, mainText.IsNarration());
+        //TutorialCtrl.current.ShowText(TutorialPanel.Board, mainText.text, !mainText.IsNarration());
+        uiMainText.Show(mainText.text, !mainText.IsNarration());
+        StartCoroutine(uiMainText.BackupRefresh());
 
         if (list.Count == 1)
         {
@@ -90,7 +97,11 @@ public class UIHudDialog : UIHudBase
         Clear();
 
         Assert.IsNotNull(CombatArena.current.enemy);
-        CombatArena.current.enemy.SetDialog(message);
+        //CombatArena.current.enemy.SetDialog(message);
+        uiMainText.Show(message, true);
+        StartCoroutine(uiMainText.BackupRefresh());
+
+        //TutorialCtrl.current.ShowText(TutorialPanel.Board, message);
 
         // ToDo: maybe custom options
         templateOption.Create<UIDIalogOption>()
@@ -122,7 +133,10 @@ public class UIHudDialog : UIHudBase
             return;
         }
 
-        if (CombatArena.current.enemy) CombatArena.current.enemy.SetDialog(null);
+
+        //if (CombatArena.current.enemy) CombatArena.current.enemy.SetDialog(null);
+        //TutorialCtrl.current.HideAll();
+        uiMainText.Hide();
         if (nextStageType != StageType.None && nextStageType != StageType.Dialog)
         {
             CombatCtrl.current.AddState(new CombatStates.InitStageType(nextStageType));
@@ -146,6 +160,33 @@ public class UIHudDialog : UIHudBase
         }
     }
 
+
+    [System.Serializable]
+    public class Panel
+    {
+        public RectTransform parent;
+        public TMP_Text txt;
+        public GameObject speechCorner;
+
+        public void Show(string message, bool isSpeech = false)
+        {
+            parent.gameObject.SetActive(true);
+            txt.text = message;
+            speechCorner.SetActive(isSpeech);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(parent);
+        }
+
+        public IEnumerator BackupRefresh()
+        {
+            yield return null;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(parent);
+        }
+
+        public void Hide()
+        {
+            parent.gameObject.SetActive(false);
+        }
+    }
 }
 
 [System.Serializable]

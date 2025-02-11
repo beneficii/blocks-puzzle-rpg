@@ -12,6 +12,7 @@ public partial class UICombatReward
         public abstract void Click(UICombatReward ui);
 
         public virtual IHasInfo GetInfo() => null;
+        public virtual IHoverInfoTarget GetHoverInfoTarget() => null;
     }
 
     public class DataGold : Data
@@ -101,6 +102,7 @@ public partial class UICombatReward
         GlyphData data;
 
         public override IHasInfo GetInfo() => data;
+        public override IHoverInfoTarget GetHoverInfoTarget() => data;
 
         public DataGlyph(string id)
         {

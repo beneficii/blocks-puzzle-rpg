@@ -58,12 +58,8 @@ namespace GameActions
         }
     }
 
-    public class DamageAnd : ActionBase
+    public class DamageAnd : ActionBaseWithNested
     {
-        ActionBase nestedAction;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
-
         public override string GetDescription()
             => $"Deal X ({parent.Power}) damage and {nestedAction.GetDescription()}";
 
@@ -72,12 +68,6 @@ namespace GameActions
         public DamageAnd(ActionBase nestedAction)
         {
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)

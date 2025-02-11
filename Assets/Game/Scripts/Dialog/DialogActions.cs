@@ -11,6 +11,8 @@ public abstract class DialogAction
     public abstract void Execute();
     public virtual string CheckErrors() => null;
     public virtual IHasInfo GetInfo() => null;
+
+    public virtual IHoverInfoTarget GetHoverInfoTarget() => null;
 }
 
 namespace DialogActions
@@ -152,6 +154,7 @@ namespace DialogActions
 
         public override string GetDescription() => $"Learn '{SkillCtrl.current.Get(id).name}' skill";
         public override IHasInfo GetInfo() => SkillCtrl.current.Get(id);
+        public override IHoverInfoTarget GetHoverInfoTarget() => SkillCtrl.current.Get(id);
 
         public GetSkill(StringScanner scanner)
         {
@@ -170,6 +173,7 @@ namespace DialogActions
 
         public override string GetDescription() => $"Get {GlyphCtrl.current.Get(id).name} Glyph";
         public override IHasInfo GetInfo() => GlyphCtrl.current.Get(id);
+        public override IHoverInfoTarget GetHoverInfoTarget() => GlyphCtrl.current.Get(id);
 
         public GetGlyph(StringScanner scanner)
         {
@@ -187,6 +191,7 @@ namespace DialogActions
         public string id;
 
         public override IHasInfo GetInfo() => TileCtrl.current.Get(id);
+        public override IHoverInfoTarget GetHoverInfoTarget() => TileCtrl.current.Get(id);
         public override string GetDescription() => $"Get '{TileCtrl.current.Get(id).title}' tile";
 
         public GetTile(StringScanner scanner)

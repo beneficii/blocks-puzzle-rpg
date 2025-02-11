@@ -1,12 +1,13 @@
 ﻿using FancyToolkit;
 using GridBoard;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace GameActions
 {
-    public abstract class ClearAction : ActionBase
+    public abstract class ClearAction : ActionBaseWithNested
     {
         public sealed override IEnumerator Run(int multiplier = 1)
         {
@@ -27,16 +28,23 @@ namespace GameActions
     {
         int amount;
         string tag;
-        ActionBase nestedAction;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
 
         public override string GetDescription()
         {
-            string descr = $"Consume all {tag} matched and {nestedAction.GetDescription()} for each";
+            string descr = $"Erase all {tag} matched and {nestedAction.GetDescription()} for each";
             if (amount != 1) descr += $" {amount}";
 
             return descr;
+        }
+
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            foreach (var item in base.GetHints())
+            {
+                yield return item;
+            }
+
+            yield return new ActionHint.Erase();
         }
 
         public ConsumeClearedAnd(int amount, string tag, ActionBase nestedAction)
@@ -44,12 +52,6 @@ namespace GameActions
             this.amount = amount;
             this.tag = tag;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         protected override IEnumerator Run(LineClearData match, int multiplier = 1)
@@ -87,10 +89,16 @@ namespace GameActions
     {
         int amount;
         string tag;
-        ActionBase nestedAction;
 
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            foreach (var item in base.GetHints())
+            {
+                yield return item;
+            }
 
+            yield return new ActionHint.Cleared();
+        }
 
         public override string GetDescription()
            => $"{nestedAction.GetDescription()} for each {amount} {tag} cleared";
@@ -100,12 +108,6 @@ namespace GameActions
             this.amount = amount;
             this.tag = tag;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         protected override IEnumerator Run(LineClearData match, int multiplier = 1)

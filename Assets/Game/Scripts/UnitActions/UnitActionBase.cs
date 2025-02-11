@@ -1,9 +1,9 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using GridBoard;
 using FancyToolkit;
-using System.Linq;
 
 namespace UnitAction
 {
@@ -12,6 +12,8 @@ namespace UnitAction
         protected Unit parent;
         public GameObject GetIndicatorPrefab()
             => Game.current.unitActionPrefabs.Get(ActionVisualId);
+
+        public virtual IEnumerable<IHintProvider> GetHints() => Enumerable.Empty<IHintProvider>();
 
         public virtual IHasInfo GetExtraInfo() => null;
 
@@ -144,6 +146,11 @@ namespace UnitAction
 
         public override IHasInfo GetExtraInfo() => GetData();
         TileData GetData() => TileCtrl.current.Get(tileId ?? parent.data.specialTile);
+
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            yield return GetData();
+        }
 
         public SpawnTile(int count, string tileId)
         {

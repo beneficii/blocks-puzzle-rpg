@@ -5,8 +5,9 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
 
-public class UIGlyph : MonoBehaviour, IHasInfo, IActionParent
+public class UIGlyph : MonoBehaviour, IHasInfo, IActionParent, IIconProvider, IInfoTextProvider, IHintContainer, IHintProvider, IHoverInfoTarget
 {
     [SerializeField] Image imgIcon;
 
@@ -71,9 +72,54 @@ public class UIGlyph : MonoBehaviour, IHasInfo, IActionParent
     {
         return data.GetExtraInfo(actions);
     }
+
+    public string GetInfoText(int size)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(data.name
+            .Center()
+            .Bold());
+
+        sb.AppendLine();
+        sb.AppendLine(GetDescription());
+
+        return sb.ToString();
+    }
+
+    public List<IHintProvider> GetHintProviders()
+    {
+        var results = new List<IHintProvider>();
+
+        foreach (var item in actions)
+        {
+            foreach (var hint in item.GetHints())
+            {
+                results.Add(hint);
+            }
+        }
+
+        return results;
+    }
+
+    public string GetHintText()
+    {
+        var sb = new StringBuilder();
+
+        sb.Append(data.name
+            .Center()
+            .Bold());
+
+        sb.Append(" - ");
+        sb.Append(GetDescription());
+
+        return sb.ToString();
+    }
+
+    public bool ShouldShowHoverInfo() => data.ShouldShowHoverInfo();
 }
 
-public class GlyphData : DataWithId, IHasInfo, IActionParent
+public class GlyphData : DataWithId, IHasInfo, IActionParent, IIconProvider, IInfoTextProvider, IHintContainer, IHintProvider, IHoverInfoTarget
 {
     public string idVisual;
     public Sprite sprite;
@@ -140,6 +186,55 @@ public class GlyphData : DataWithId, IHasInfo, IActionParent
 
         return GetExtraInfo(actions);
     }
+
+
+    public string GetInfoText(int size)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(name
+            .Center()
+            .Bold());
+
+        sb.AppendLine();
+        sb.AppendLine(GetDescription());
+
+        return sb.ToString();
+    }
+
+    public List<IHintProvider> GetHintProviders()
+    {
+        var results = new List<IHintProvider>();
+        var actions = this.actions
+                .Select(x => x.Build())
+                .ToList();
+
+        foreach (var item in actions)
+        {
+            foreach (var hint in item.GetHints())
+            {
+                results.Add(hint);
+            }
+        }
+
+        return results;
+    }
+
+    public string GetHintText()
+    {
+        var sb = new StringBuilder();
+
+        sb.Append(name
+            .Center()
+            .Bold());
+
+        sb.Append(" - ");
+        sb.Append(GetDescription());
+
+        return sb.ToString();
+    }
+
+    public bool ShouldShowHoverInfo() => true;
 }
 
 

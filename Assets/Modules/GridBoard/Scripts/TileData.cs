@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GridBoard
 {
-    public class TileData : DataWithId, IHasInfo
+    public class TileData : DataWithId, IHasInfo, IInfoTextProvider, IIconProvider, IHintProvider, IHintContainer, IHoverInfoTarget
     {
         public const string anyTag = "any";
         public const string nonEmpty = "nonempty";
@@ -43,12 +43,20 @@ namespace GridBoard
 
         public virtual IHasInfo GetExtraInfo() => null;
 
+        public virtual List<IHintProvider> GetHintProviders() => new();
+        public virtual string GetHintText() => description;
+
         public Sprite GetIcon() => sprite;
+
+        public virtual string GetInfoText(int size) => description;
 
         public List<string> GetTags()
         {
             var result = tags.ToList();
-            result.Add(type.ToString().ToLower());
+            if (type != Tile.Type.None)
+            {
+                result.Add(type.ToString().ToLower());
+            }
 
             return result;
         }
@@ -62,6 +70,8 @@ namespace GridBoard
             || (tag == nonEmpty && id != "empty")
             || type.ToString().ToLower() == tag
             || tags.Contains(tag);
+
+        public virtual bool ShouldShowHoverInfo() => !isEmpty;
 
         public bool ShouldShowInfo() => !isEmpty;
     }

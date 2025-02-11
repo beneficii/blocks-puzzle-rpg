@@ -4,7 +4,7 @@ using TMPro;
 using Unity.Services.Analytics;
 using UnityEngine;
 
-public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
+public class UIDIalogOption : MonoBehaviour, IHasNestedInfo, IHoverInfoContainer
 {
     [SerializeField] TextMeshProUGUI txtMessage;
     [SerializeField] AudioClip sound;
@@ -12,6 +12,17 @@ public class UIDIalogOption : MonoBehaviour, IHasNestedInfo
     DialogData data;
 
     List<DialogAction> actions;
+
+    public IHoverInfoTarget GetHoverInfoTarget()
+    {
+        foreach (DialogAction action in actions)
+        {
+            var info = action.GetHoverInfoTarget();
+            if (info != null) return info;
+        }
+
+        return null;
+    }
 
     public IHasInfo GetInfo()
     {

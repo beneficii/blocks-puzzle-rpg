@@ -3,12 +3,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
-public class Unit : MonoBehaviour, IDamagable
+public class Unit : MonoBehaviour, IDamagable, IInfoTextProvider, IHintContainer, IHintProvider, IHoverInfoTarget
 {
     public static event System.Action<Unit, int> OnReceiveDamage;
     public static event System.Action<DeathEventArgs> OnAboutToDie;
@@ -120,7 +121,7 @@ public class Unit : MonoBehaviour, IDamagable
         });
 
         iconArmor.Init(refArmor);
-        SetDialog(null);
+        //SetDialog(null);
         LoadVisualData();
         animator = GetComponent<UnitAnimator>();
         animator.Init(visuals);
@@ -396,6 +397,43 @@ public class Unit : MonoBehaviour, IDamagable
         UnityEditor.EditorUtility.SetDirty(visuals);
 
     }
+
+    public string GetInfoText(int size)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(data.name
+            .Center()
+            .Bold());
+
+        sb.AppendLine();
+        sb.AppendLine(GetDescription());
+
+        return sb.ToString();
+    }
+
+    public List<IHintProvider> GetHintProviders()
+    {
+        if (nextAction == null) return new();
+
+        return nextAction.GetHints().ToList();
+    }
+
+    public string GetHintText()
+    {
+        var sb = new StringBuilder();
+
+        sb.Append(data.name
+            .Center()
+            .Bold());
+
+        sb.Append(" - ");
+        sb.Append(GetDescription());
+
+        return sb.ToString();
+    }
+
+    public bool ShouldShowHoverInfo() => true;
 #endif
 
     [System.Serializable]

@@ -37,6 +37,12 @@ public abstract class SkillClickCondition
     }
 
     public abstract void OnClicked();
+
+    public string GetSkillProgress(int filled, int barLength)
+    {
+        string bar = new string('◼', filled) + new string('◻', barLength - filled);
+        return $"{bar} ({filled}/{barLength})";
+    }
 }
 
 namespace SkillConditions
@@ -88,6 +94,7 @@ namespace SkillConditions
         {
             if (parent)
             {
+                //return $"Clear lines to charge\n{GetSkillProgress(currentCharge, maxCharge)}";
                 return $"Clear lines to charge ({currentCharge}/{maxCharge})";
             }
             else
@@ -149,6 +156,7 @@ namespace SkillConditions
         {
             if (parent)
             {
+                //return $"Clear lines to activate\n{GetSkillProgress(currentCharge, maxCharge)}";
                 return $"Clear lines to activate ({currentCharge}/{maxCharge})";
             }
             else

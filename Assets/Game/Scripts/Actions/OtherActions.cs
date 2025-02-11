@@ -1,26 +1,32 @@
 ﻿using FancyToolkit;
 using GridBoard;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace GameActions
 {
-    public class ConsumeTagAnd : ActionBase
+    public class ConsumeTagAnd : ActionBaseWithNested
     {
         int amount;
         string tag;
         TileTargetingType targetType;
-        ActionBase nestedAction;
 
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            foreach (var hint in base.GetHints())
+            {
+                yield return hint;
+            }
 
+            yield return new ActionHint.Erase();
+        }
 
         public override string GetDescription()
         {
-            var descr = $"Clean {MyTile.GetTargetingTypeName(targetType, tag)} and {nestedAction.GetDescription()} for each";
+            var descr = $"Erase {MyTile.GetTargetingTypeName(targetType, tag)} and {nestedAction.GetDescription()} for each";
             if (amount > 1) descr += $" {amount}";
 
             return descr;
@@ -32,12 +38,6 @@ namespace GameActions
             this.tag = tag;
             this.targetType = targetType;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)
@@ -118,13 +118,9 @@ namespace GameActions
         }
     }
 
-    public class ConsumeArmorAnd : ActionBase
+    public class ConsumeArmorAnd : ActionBaseWithNested
     {
         int amount;
-        ActionBase nestedAction;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
-
 
         public override string GetDescription()
         {
@@ -142,12 +138,6 @@ namespace GameActions
         {
             this.amount = amount;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)
@@ -297,21 +287,18 @@ namespace GameActions
         string tag;
         string id;
 
-        public override IHasInfo GetExtraInfo()
+        
+        TileData GetData() => TileCtrl.current.Get(id);
+
+        public override IEnumerable<IHintProvider> GetHints()
         {
-            if (id == "empty")
+            var data = GetData() as MyTileData;
+            if (!data?.isEmpty??false)
             {
-                return null;
+                yield return data;
             }
-            else
-            {
-                return GetData();
-            }
-            
         }
 
-
-        TileData GetData() => TileCtrl.current.Get(id);
 
         public override string GetDescription()
         {
@@ -362,13 +349,10 @@ namespace GameActions
         }
     }
 
-    public class ForOnBoard : ActionBase
+    public class ForOnBoard : ActionBaseWithNested
     {
         int amount;
-        ActionBase nestedAction;
         string id;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
 
 
         public override string GetDescription()
@@ -380,12 +364,6 @@ namespace GameActions
             this.amount = amount;
             this.id = id;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)

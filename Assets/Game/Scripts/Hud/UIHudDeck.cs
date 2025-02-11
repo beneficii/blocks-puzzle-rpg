@@ -16,9 +16,9 @@ public class UIHudDeck : UIHudBase
         }
     }
 
-    [SerializeField] UIHoverInfo templateInfoCard;
+    [SerializeField] UISelectTileCard templateInfoCard;
 
-    List<UIHoverInfo> cards = new();
+    List<UISelectTileCard> cards = new();
 
     public void Show()
     {
@@ -28,7 +28,7 @@ public class UIHudDeck : UIHudBase
         foreach (var item in Game.current.GetDeck())
         {
             var card = UIUtils.CreateFromTemplate(templateInfoCard);
-            card.Init(item);
+            card.Init(SelectTileType.None, item);
             cards.Add(card);
         } 
 

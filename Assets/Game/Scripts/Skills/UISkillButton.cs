@@ -7,7 +7,7 @@ using GridBoard;
 using FancyTweens;
 using System.Text;
 
-public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
+public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent, IIconProvider, IInfoTextProvider, IHintContainer, IHoverInfoTarget
 {
     public static event System.Action<UISkillButton> OnUsed;
     public static event System.Action<UISkillButton> OnAviableToUse;
@@ -137,4 +137,25 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent
 
     public List<string> GetTags() => data.GetTags();
     public IHasInfo GetExtraInfo() => data.GetExtraInfo(actionContainer);
+
+    public bool ShouldShowHoverInfo() => data.ShouldShowHoverInfo();
+
+    public List<IHintProvider> GetHintProviders()
+    {
+        return actionContainer?.GetHintProviders();
+    }
+
+    public string GetInfoText(int size)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(data.name
+            .Center()
+            .Bold());
+
+        sb.AppendLine();
+        sb.AppendLine(GetDescription());
+
+        return sb.ToString();
+    }
 }

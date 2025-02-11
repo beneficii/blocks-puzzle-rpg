@@ -9,7 +9,8 @@ using System.Linq;
 using UnityEngine.UI;
 using DG.Tweening;
 using DialogActions;
-using static UnityEngine.Networking.UnityWebRequest;
+using UnityEditor.VersionControl;
+using CombatStates;
 
 public class CombatCtrl : MonoBehaviour, ILineClearHandler
 {
@@ -358,7 +359,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         shapePanel = FindAnyObjectByType<ShapePanel>();
 
-        shapePanel.OnOutOfShapes.Add(TurnRoutine);
+        //shapePanel.OnOutOfShapes.Add(TurnRoutine);
         shapePanel.OnDeadEnd += HandleDeadEnd;
         arena.player.board = board;
         arena.enemy.board = board;
@@ -409,7 +410,9 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         AddRarity(Rarity.Uncommon, 2);
         //list.Add(TileCtrl.current.Get<MyTileData>("health"));
 
-        CombatArena.current.enemy?.SetDialog("Take a look at the tiles I offer");
+        //CombatArena.current.enemy?.SetDialog("Take a look at the tiles I offer");
+        TutorialCtrl.current.ShowText(TutorialPanel.Board, "Take a look at the tiles I offer", true);
+
         UIHudSelectTile.current.ShowShop(list, rng);
     }
 
@@ -425,7 +428,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var list = SkillCtrl.current.GetAll()
                 .Where(x => x.rarity == rarity)
                 .Where(x => !noSkills || (x.clickCondition is SkillConditions.Charge.Builder))
-                .Cast<IHasInfo>()
+                .Cast<IInfoTextProvider>()
                 .ToList()
                 .RandN(3, EndLevelRandom);
 
@@ -441,7 +444,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             list.Add(TileCtrl.current.Get<MyTileData>("health"));
         }
 
-        CombatArena.current.enemy.SetDialog(dialog);
+        //CombatArena.current.enemy.SetDialog(dialog);
+        TutorialCtrl.current.ShowText(TutorialPanel.Board, dialog);
 
         UIHudSelectTile.current.ShowChoise(list)
             .SetCanSkip(false);

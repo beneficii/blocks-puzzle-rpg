@@ -1,6 +1,7 @@
 ﻿using FancyToolkit;
 using GridBoard;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameActions
@@ -10,7 +11,10 @@ namespace GameActions
         int count;
         string tileId;
 
-        public override IHasInfo GetExtraInfo() => GetData();
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            yield return GetData() as MyTileData;
+        }
 
         TileData GetData() => TileCtrl.current.Get(tileId);
 

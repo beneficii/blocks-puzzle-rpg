@@ -7,7 +7,7 @@ using GridBoard;
 
 namespace GameActions
 {
-    public abstract class PassiveEffect : ActionBase
+    public abstract class PassiveEffect : ActionBaseWithNested
     {
         public override IEnumerator Run(int multiplier = 1)
         {
@@ -18,9 +18,6 @@ namespace GameActions
     public class OnPlayerDamage : PassiveEffect
     {
         int amount;
-        ActionBase nestedAction;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
 
         public override string GetDescription()
         {
@@ -42,12 +39,6 @@ namespace GameActions
         {
             this.amount = amount;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         void HandlePlayerDamage(Unit unit, int damage)
@@ -82,9 +73,6 @@ namespace GameActions
     public class OnTilePlaced : PassiveEffect
     {
         string tag;
-        ActionBase nestedAction;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
 
         public override string GetDescription()
         {
@@ -95,12 +83,6 @@ namespace GameActions
         {
             this.tag = tag;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         void HandleTilePlaced(Tile tile)
@@ -167,13 +149,10 @@ namespace GameActions
         }
     }
 
-    public class IfEnoughOnBoard : ActionBase
+    public class IfEnoughOnBoard : ActionBaseWithNested
     {
         int amount;
-        ActionBase nestedAction;
         string id;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
 
         public override string GetDescription()
         {
@@ -185,12 +164,6 @@ namespace GameActions
             this.id = id;
             this.amount = amount;
             this.nestedAction = nestedAction;
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)

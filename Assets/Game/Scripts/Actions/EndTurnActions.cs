@@ -4,12 +4,9 @@ using UnityEngine;
 
 namespace GameActions
 {
-    public class EveryNTurns : ActionBase
+    public class EveryNTurns : ActionBaseWithNested
     {
         int turns;
-        ActionBase nestedAction;
-
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
 
         int turnsLeft;
 
@@ -41,7 +38,6 @@ namespace GameActions
         public override void Init(IActionParent parent)
         {
             base.Init(parent);
-            nestedAction.Init(parent);
             turnsLeft = turns;
         }
 

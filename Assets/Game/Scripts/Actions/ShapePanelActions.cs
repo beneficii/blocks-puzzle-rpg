@@ -3,6 +3,7 @@ using GridBoard;
 using System.Collections;
 using UnityEngine;
 using TileShapes;
+using System.Collections.Generic;
 
 namespace GameActions
 {
@@ -11,8 +12,12 @@ namespace GameActions
         int count;
         string tileId;
 
-        public override IHasInfo GetExtraInfo() => GetData();
         TileData GetData() => TileCtrl.current.Get(tileId);
+
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            yield return GetData() as MyTileData;
+        }
 
         public AddTileToShape(int count, string tileId)
         {

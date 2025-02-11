@@ -61,8 +61,12 @@ namespace GameActions
         string id;
         int count;
 
-        public override IHasInfo GetExtraInfo() => GetData();
         TileData GetData() => TileCtrl.current.Get(id);
+
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            yield return GetData() as MyTileData;
+        }
 
         public override string GetDescription()
         {
@@ -158,13 +162,19 @@ namespace GameActions
     }
 
 
-    public class EraseAnd : ActionBase
+    public class EraseAnd : ActionBaseWithNested
     {
         TileTargetingType targeting;
         string tag;
-        ActionBase nestedAction;
 
-        public override IHasInfo GetExtraInfo() => nestedAction?.GetExtraInfo();
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            foreach (var item in base.GetHints())
+            {
+                yield return item;
+            }
+            yield return new ActionHint.Erase();
+        }
 
         public EraseAnd(TileTargetingType targeting, string tag, ActionBase nestedAction)
         {
@@ -176,12 +186,6 @@ namespace GameActions
         public override string GetDescription()
         {
             return $"Erase {MyTile.GetTargetingTypeName(targeting, tag)} and {nestedAction.GetDescription()} for each erased";
-        }
-
-        public override void Init(IActionParent parent)
-        {
-            base.Init(parent);
-            nestedAction.Init(parent);
         }
 
         public override IEnumerator Run(int multiplier = 1)

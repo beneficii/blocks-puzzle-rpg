@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using GridBoard;
@@ -10,6 +11,7 @@ public abstract class ActionBase
     protected IActionParent parent;
     public virtual bool OverrideDescriptionKey => false;
     public virtual IHasInfo GetExtraInfo() => null;
+    public virtual IEnumerable<IHintProvider> GetHints() => Enumerable.Empty<IHintProvider>();
 
     public virtual ActionStatType StatType => ActionStatType.None;
 
@@ -83,6 +85,31 @@ public abstract class ActionBase
     protected virtual void Remove()
     {
 
+    }
+}
+
+namespace GameActions
+{
+    public abstract class ActionBaseWithNested : ActionBase
+    {
+        protected ActionBase nestedAction;
+
+        public override void Init(IActionParent parent)
+        {
+            base.Init(parent);
+            nestedAction?.Init(parent);
+        }
+
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            if (nestedAction != null)
+            {
+                foreach (var item in nestedAction?.GetHints())
+                {
+                    yield return item;
+                }
+            }
+        }
     }
 }
 
