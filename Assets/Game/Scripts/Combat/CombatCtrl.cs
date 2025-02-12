@@ -359,6 +359,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         shapePanel = FindAnyObjectByType<ShapePanel>();
 
         //shapePanel.OnOutOfShapes.Add(TurnRoutine);
+        shapePanel.OnOutOfShapes.Add(HandleOutOfShapes);
         shapePanel.OnDeadEnd += HandleDeadEnd;
         arena.player.board = board;
         arena.enemy.board = board;
@@ -388,6 +389,12 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var clearer = FindAnyObjectByType<LineClearer>();
         if (clearer) WorldUpdateCtrl.current.AddSubscriber(clearer);
         WorldUpdateCtrl.current.AddSubscriber(shapePanel);
+    }
+
+    public IEnumerator HandleOutOfShapes()
+    {
+        HandleDeadEnd();
+        yield return null;
     }
 
     public void InitShop()

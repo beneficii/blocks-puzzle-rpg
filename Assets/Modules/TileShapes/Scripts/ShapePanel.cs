@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using GridBoard;
 using System.Linq;
 using FancyToolkit;
+using UnityEditor.Graphs;
 
 namespace TileShapes
 {
@@ -114,6 +115,23 @@ namespace TileShapes
             }
 
             shapes.Clear();
+        }
+
+        public Shape CreateClone(Shape shape)
+        {
+            var slot = shape.transform.parent;
+            if (!slot)
+            {
+                Debug.LogError("Could not get shape slot");
+                return null;
+            }
+
+
+            var instance = Instantiate(prefabShape, slot.position, slot.rotation, slot);
+            instance.Init(shape.data, shape.rotation, board, this);
+            instance.InitClone(shape);
+
+            return instance;
         }
 
         void SetSlotShape(Transform slot, Shape.Info info)
@@ -265,9 +283,30 @@ namespace TileShapes
             }
         }
 
+
+        void HandleMouseShapeGrab()
+        {
+            var clone = CreateClone(currentShapeUnderMouse);
+            currentShapeUnderMouse.gameObject.SetActive(false);
+
+            currentDraggedShape = clone;
+            currentDraggedShape.MouseDown();
+            //currentShapeUnderMouse.MouseDown();
+            //currentDraggedShape = currentShapeUnderMouse;
+        }
+
+        void HandleMouseShapeRelease()
+        {
+            currentDraggedShape.MouseUp();
+            currentDraggedShape = null;
+        }
+
+        public float shapeDragStartTime;
+        public Vector2 shapeDragStartPos;
         private void Update()
         {
             if (WorldUpdateCtrl.current.IsUpdating) return;
+            if (FancyInputCtrl.IsMouseOverUI()) return;
 
             RaycastHit2D hit = Physics2D.Raycast(Helpers.MouseToWorldPosition(), Vector2.zero, 10, layerMask);
             var trans = hit.transform;
@@ -276,20 +315,28 @@ namespace TileShapes
                 SetShapeUnderMouse(trans);
             }
 
-            if (Input.GetMouseButtonDown(0))
+            //if (Input.GetMouseButtonDown(0))
+            if (currentDraggedShape == null && Input.GetMouseButtonDown(0))
             {
                 if (currentShapeUnderMouse)
                 {
-                    currentShapeUnderMouse.MouseDown();
-                    currentDraggedShape = currentShapeUnderMouse;
+                    shapeDragStartTime = Time.time;
+                    shapeDragStartPos = Input.mousePosition;
+
+                    HandleMouseShapeGrab();
                 }
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (currentDraggedShape)
             {
-                if (currentDraggedShape)
+                // use drag controls
+                if (Input.GetMouseButtonUp(0) && (Time.time - shapeDragStartTime > .4f || Vector2.Distance((Vector2)Input.mousePosition, shapeDragStartPos) > 40))
                 {
-                    currentDraggedShape.MouseUp();
-                    currentDraggedShape = null;
+                    HandleMouseShapeRelease();
+                }
+                // use click controls
+                else if (Input.GetMouseButtonDown(0))
+                {
+                    HandleMouseShapeRelease();
                 }
             }
         }

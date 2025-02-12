@@ -1,8 +1,0 @@
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/CMakeFiles/edit_cache.dir
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/CMakeFiles/rebuild_cache.dir
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/GameActivity/CMakeFiles/game.dir
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
-D:/workspace/BlocksLike/.utmp/RelWithDebInfo/673s3v84/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

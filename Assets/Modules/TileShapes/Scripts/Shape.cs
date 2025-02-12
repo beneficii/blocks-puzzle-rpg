@@ -37,6 +37,8 @@ namespace TileShapes
         bool isDragging;
         Vector3 prevDragPosition;
 
+        Shape isCloneOf;
+
         void Clear()
         {
             if (tiles == null) return;
@@ -73,6 +75,12 @@ namespace TileShapes
         public void Init(Info info, Board board, ShapePanel parent)
         {
             Init(info.data, info.rotation, board, parent);
+        }
+
+        public void InitClone(Shape other)
+        {
+            isCloneOf = other;
+            SetDragState(true);
         }
 
         Vector2 moveSpeed;
@@ -123,7 +131,9 @@ namespace TileShapes
 
         public void MouseDown()
         {
-            if (FancyInputCtrl.IsMouseOverUI()) return;
+
+            //parent.CreateClone(this);
+            //gameObject.SetActive(false);
 
             SetDragState(true);
         }
@@ -140,7 +150,23 @@ namespace TileShapes
         {
             //DropAt(DragPosition());
             yield return DropAt(position);
-            if (shouldDestroy) Destroy(gameObject);
+
+            if (shouldDestroy)  // shape found a place
+            {
+                Destroy(gameObject);
+                if (isCloneOf != null)  // is clone
+                {
+                    Destroy(isCloneOf.gameObject);
+                }
+            }
+            else    // wrong place. show original, destroy clone
+            {
+                if (isCloneOf != null)
+                {
+                    isCloneOf.gameObject.SetActive(true);
+                    Destroy(gameObject);
+                }
+            }
         }
 
 
@@ -190,6 +216,12 @@ namespace TileShapes
                 //foreach (var block in placed) block.SetBg(data.spriteIdx);
                 OnDropped?.Invoke(this, pos);
                 OnDroppedStatic?.Invoke(this, pos);
+
+                if (isCloneOf)
+                {
+                    isCloneOf.OnDropped?.Invoke(isCloneOf, pos);
+                    OnDroppedStatic?.Invoke(isCloneOf, pos);
+                }
                 soundPlace?.PlayWithRandomPitch(0.2f);
                 transform.localScale = Vector3.zero;
                 shouldDestroy = true;
