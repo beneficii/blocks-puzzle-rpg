@@ -12,6 +12,8 @@ namespace FancyToolkit
 {
     public class InfoDisplayCtrl : MonoBehaviour
     {
+        public static System.Action<IHoverInfoTarget> OnHovered;
+
         static InfoDisplayCtrl _current;
         public static InfoDisplayCtrl current
         {
@@ -122,6 +124,8 @@ namespace FancyToolkit
                 return;
             }
 
+            OnHovered?.Invoke(target);
+
             panelParent.gameObject.SetActive(true);
             if (target is IIconProvider iconProvider)
             {
@@ -131,7 +135,6 @@ namespace FancyToolkit
             {
                 infoPanel.InitIcon(null);
             }
-
 
             bool mainPanelVisible = false;
             if (target is IInfoTextProvider infoText)

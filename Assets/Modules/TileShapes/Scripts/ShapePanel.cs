@@ -127,8 +127,8 @@ namespace TileShapes
 
 
             var instance = Instantiate(prefabShape, slot.position, slot.rotation, slot);
-            instance.Init(shape.data, shape.rotation, board, this);
             instance.InitClone(shape);
+            instance.Init(shape.data, shape.rotation, board, this);
 
             return instance;
         }
@@ -300,6 +300,23 @@ namespace TileShapes
             currentDraggedShape = null;
         }
 
+        bool HandleMouseScroll()
+        {
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll > 0f) // Scroll up
+            {
+                currentDraggedShape.Rotate(-1);
+                return true;
+            }
+            else if (scroll < 0f) // Scroll down
+            {
+                currentDraggedShape.Rotate(+1);
+                return true;
+            }
+
+            return false;
+        }
+
         public float shapeDragStartTime;
         public Vector2 shapeDragStartPos;
         private void Update()
@@ -337,6 +354,12 @@ namespace TileShapes
                 {
                     HandleMouseShapeRelease();
                 }
+                // rotate shape
+                else if (Input.GetMouseButtonDown(1))
+                {
+                    currentDraggedShape.Rotate();
+                }
+                else HandleMouseScroll();
             }
         }
 

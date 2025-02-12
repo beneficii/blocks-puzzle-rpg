@@ -76,9 +76,9 @@ public class Unit : MonoBehaviour, IDamagable, IInfoTextProvider, IHintContainer
         if (isCombatVisible)
         {
             if (nextAction != null) lines.Add(nextAction.GetLongDescription());
-            lines.Add("");
-            if (damage > 0) lines.Add($"Damage: {damage}");
-            if (defense > 0) lines.Add($"Defense: {defense}");
+            //lines.Add("");
+            //if (damage > 0) lines.Add($"Damage: {damage}");
+            //if (defense > 0) lines.Add($"Defense: {defense}");
         }
 
         return string.Join("\n", lines);

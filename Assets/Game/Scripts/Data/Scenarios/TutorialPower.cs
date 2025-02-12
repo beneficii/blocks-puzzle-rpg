@@ -33,7 +33,7 @@ namespace Scenarios
             var specialTile = StageCtrl.current.Data?.specialTile;
             board.LoadLayoutByName("tutorial_power", TileCtrl.current.Get(specialTile));
             TutorialCtrl.current.ShowText(TutorialPanel.Board, "Hover over tiles or units to see their effects and actions.");
-            yield return new EventWaiter<Transform>(ref UIHoverInfoCtrl.OnHovered);
+            yield return new EventWaiter<IHoverInfoTarget>(ref InfoDisplayCtrl.OnHovered);
             
             TutorialCtrl.current.ShowText(TutorialPanel.Board, "Some tiles have Power (X) number, it is used in effects like damage or defense. Deal 50 damage to win.");
 

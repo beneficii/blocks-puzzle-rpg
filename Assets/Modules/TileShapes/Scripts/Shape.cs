@@ -54,10 +54,19 @@ namespace TileShapes
         {
             this.board = board;
             this.parent = parent;
+            this.data = data;
+            SetRotation(rotation);
+            
+            SetDragState(false);
+            StartCoroutine(UpdateShapeCollider());
+        }
+
+        public void SetRotation(int rotation)
+        {
             Clear();
             tiles = new List<Tile>();
-            this.data = data;
             this.rotation = rotation;
+
             foreach (var item in data.GetTiles(rotation))
             {
                 var instance = Instantiate(board.prefabTile, transform);
@@ -67,9 +76,11 @@ namespace TileShapes
                 instance.Init(item.data);
                 tiles.Add(instance);
             }
+        }
 
-            SetDragState(false);
-            StartCoroutine(UpdateShapeCollider());
+        public void Rotate(int direction = +1)
+        {
+            SetRotation(((rotation + direction) % 4 + 4) % 4);
         }
 
         public void Init(Info info, Board board, ShapePanel parent)
@@ -87,7 +98,6 @@ namespace TileShapes
 
         void CalculateMouseSpeed()
         {
-
             float height = Helpers.Camera.orthographicSize * 2.0f;
             float width = height * Helpers.Camera.aspect;
 
@@ -180,6 +190,11 @@ namespace TileShapes
             foreach (var child in tiles)
             {
                 Collider2D tileCollider = child.GetComponent<Collider2D>();
+                if (isCloneOf)
+                {
+                    tileCollider.enabled = false;
+                    continue;
+                }
                 var prevBounds = bounds;
                 if (!boundsSet)
                 {

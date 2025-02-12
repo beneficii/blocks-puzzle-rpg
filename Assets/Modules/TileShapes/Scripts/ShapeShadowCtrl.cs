@@ -21,6 +21,7 @@ namespace TileShapes
         Shape currentShape;
 
         Vector2Int? cachedGridPos = null;
+        int? cachedRotation = null;
 
         List<Transform> GetBlocks(int count)
         {
@@ -89,8 +90,9 @@ namespace TileShapes
             if (!currentShape) return;
 
             var gridPos = board.CheckGridPos(currentShape.transform.position);
-            if (gridPos == cachedGridPos) return;
+            if (gridPos == cachedGridPos && currentShape.rotation == cachedRotation) return;
             cachedGridPos = gridPos;
+            cachedRotation = currentShape.rotation;
 
             if (gridPos.HasValue)
             {

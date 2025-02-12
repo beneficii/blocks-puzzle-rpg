@@ -47,7 +47,7 @@ namespace Scenarios
                 }
             });
 
-            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Enemy is about to attack, clear shields to grant you armor");
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "You can see enemy intent in the icon above them. Enemy is about to attack, clear shields to grant you armor.");
             Game.current.CreateGhostCursor(shapePanel.GetShapeMidPos(), board.GetAllowedMidPos());
             yield return new EventWaiter<Shape, Vector2Int>(ref Shape.OnDroppedStatic);
             TutorialCtrl.current.ShowText(TutorialPanel.Board, "Your armor will fade at the start of each turn. Now finish the beast! (Press \"End Turn\" to get new shapes)");
