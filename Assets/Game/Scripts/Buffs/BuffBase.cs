@@ -14,16 +14,17 @@ public abstract class BuffBase
     public void SetBoard(Board board)
     {
         if (this.board == board) return;
-
+        
         if (board)
         {
+            this.board = board;
             Add();
         }
         else
         {
             Remove();
+            this.board = board;
         }
-        this.board = board;
     }
 
     protected virtual void Add()

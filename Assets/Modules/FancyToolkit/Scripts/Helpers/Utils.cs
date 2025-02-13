@@ -92,6 +92,16 @@ namespace FancyToolkit
             return diffX * diffX + diffY * diffY;
         }
     }
+
+    public static class MathUtil
+    {
+        public static bool MoveTowards(ref float value, float target, float speed)
+        {
+            value = Mathf.MoveTowards(value, target, speed);
+
+            return value == target;
+        }
+    }
 }
 
 

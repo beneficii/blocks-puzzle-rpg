@@ -38,10 +38,9 @@ public abstract class SkillClickCondition
 
     public abstract void OnClicked();
 
-    public string GetSkillProgress(int filled, int barLength)
+    public virtual void DebugAddCharge(int value)
     {
-        string bar = new string('◼', filled) + new string('◻', barLength - filled);
-        return $"{bar} ({filled}/{barLength})";
+
     }
 }
 
@@ -55,9 +54,18 @@ namespace SkillConditions
         public override bool StartingValue => true;
         public override string GetErrorUnusable() => "Only once per combat";
 
+        public override void Init(UISkillButton parent)
+        {
+            base.Init(parent);
+
+            parent.SetProgress("Use Once", 1, 1);
+        }
+
         public override void OnClicked()
         {
             CanUse = false;
+            parent.SetProgress("Used", 0, 1);
+            parent.CooldownFill = 0;
         }
 
         public class Builder : FactoryBuilder<SkillClickCondition>
@@ -77,7 +85,7 @@ namespace SkillConditions
             this.maxCharge = maxCharge;
         }
 
-        int CurrentCharge
+        protected int CurrentCharge
         {
             get => currentCharge;
             set
@@ -87,6 +95,9 @@ namespace SkillConditions
                 CanUse = full;
                 var fill = full ? 0f : 1f - (currentCharge / (float)maxCharge);
                 parent.CooldownFill = fill;
+
+                string caption = full ? "Click to use" : $"{currentCharge} / {maxCharge}";
+                parent.SetProgress(caption, currentCharge, maxCharge);
             }
         }
 
@@ -109,11 +120,16 @@ namespace SkillConditions
         {
         }
 
-        void AddCharge(int value)
+        virtual protected void AddCharge(int value)
         {
             if (CanUse) return; // is already charged
             CurrentCharge = Mathf.Min(currentCharge + value, maxCharge);
             if (CanUse) Unlocked();
+        }
+
+        public override void DebugAddCharge(int value)
+        {
+            AddCharge(value);
         }
 
         public override void Init(UISkillButton parent)
@@ -152,12 +168,14 @@ namespace SkillConditions
     {
         public override bool AutoActivate => true;
 
+        int activatedTimes = 0;
+
         public override string GetDescription()
         {
             if (parent)
             {
                 //return $"Clear lines to activate\n{GetSkillProgress(currentCharge, maxCharge)}";
-                return $"Clear lines to activate ({currentCharge}/{maxCharge})";
+                return $"Clear lines to activate. (Activated {activatedTimes} times)";
             }
             else
             {
@@ -172,6 +190,25 @@ namespace SkillConditions
         protected override void Unlocked()
         {
             parent.OnClick();
+            activatedTimes++;
+        }
+
+        public override void OnClicked()
+        {
+        }
+
+        protected override void AddCharge(int value)
+        {
+            var tmp = currentCharge + value;
+
+            while (tmp >= maxCharge)
+            {
+                CanUse = true;
+                Unlocked();
+                tmp -= maxCharge;
+            }
+
+            CurrentCharge = tmp;
         }
 
         public class Builder2 : FactoryBuilder<SkillClickCondition, int>

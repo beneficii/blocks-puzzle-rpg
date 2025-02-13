@@ -143,11 +143,13 @@ namespace GameActions
 
     public class AddBuff : ActionBase
     {
+        FactoryBuilder<BuffBase> buffBuilder;
         BuffBase nestedBuff;
 
-        public AddBuff(BuffBase nestedBuff)
+        public AddBuff(FactoryBuilder<BuffBase> builder)
         {
-            this.nestedBuff = nestedBuff;
+            this.buffBuilder = builder;
+            this.nestedBuff = builder.Build();
         }
 
         public override string GetDescription()
@@ -161,12 +163,13 @@ namespace GameActions
                 .SetTarget(player)
                 .Wait();
 
-            CombatCtrl.current.AddBuff(nestedBuff);
+            CombatCtrl.current.AddBuff(buffBuilder.Build());
         }
 
+        
         public class Builder : FactoryBuilder<ActionBase, FactoryBuilder<BuffBase>>
         {
-            public override ActionBase Build() => new AddBuff(value.Build());
+            public override ActionBase Build() => new AddBuff(value);
         }
     }
 }

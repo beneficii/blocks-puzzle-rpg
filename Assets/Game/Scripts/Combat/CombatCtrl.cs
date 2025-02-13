@@ -257,6 +257,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     void HandleDeadEnd()
     {
+        if (!btnEndTurn.IsInteractable()) return;
         btnEndTurn.SetNeedsAttention(true);
     }
 
@@ -275,6 +276,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
     IEnumerator CombatFinished(bool victory)
     {
         yield return new WaitForSeconds(2f);
+        TutorialCtrl.current.HideAll();
 
         if (victory)
         {
@@ -360,7 +362,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
         //shapePanel.OnOutOfShapes.Add(TurnRoutine);
         shapePanel.OnOutOfShapes.Add(HandleOutOfShapes);
-        shapePanel.OnDeadEnd += HandleDeadEnd;
+        //shapePanel.OnDeadEnd += HandleDeadEnd;
         arena.player.board = board;
         arena.enemy.board = board;
 
@@ -451,7 +453,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         }
 
         //CombatArena.current.enemy.SetDialog(dialog);
-        TutorialCtrl.current.ShowText(TutorialPanel.Board, dialog);
+        TutorialCtrl.current.ShowText(TutorialPanel.Board, dialog, true);
 
         UIHudSelectTile.current.ShowChoise(list)
             .SetCanSkip(false);
@@ -460,6 +462,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     void HandleCardSelected(UISelectTileCard card, SelectTileType type)
     {
+        TutorialCtrl.current.HideAll();
+
         var stageData = StageCtrl.current.Data;
         if (stageData.type == StageType.Camp)
         {

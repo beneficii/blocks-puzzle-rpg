@@ -29,7 +29,13 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
+      - name: Zip up the WebGL build
+        run: |
+          cd build/WebGL
+          zip -r ../webgl-build.zip .  # zip all contents in current directory
+          cd ../..
+
       - uses: actions/upload-artifact@v4
         with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}/**
+          name: Build-WebGL
+          path: build/webgl-build.zip

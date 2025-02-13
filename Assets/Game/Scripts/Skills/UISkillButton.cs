@@ -6,6 +6,7 @@ using FancyToolkit;
 using GridBoard;
 using FancyTweens;
 using System.Text;
+using TMPro;
 
 public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent, IIconProvider, IInfoTextProvider, IHintContainer, IHoverInfoTarget
 {
@@ -18,6 +19,11 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent, IIconProvid
     [SerializeField] Image imgCdFill;
     [SerializeField] UIShaderComponent shaderCtrl;
     [SerializeField] AudioClip sound;
+
+    [SerializeField] Slider sliderProgress;
+    [SerializeField] TextMeshProUGUI txtProgress;
+
+    [SerializeField] UISliderTweener progressTweener;
 
     public SkillData data { get; private set; }
 
@@ -38,7 +44,6 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent, IIconProvid
 
     public string VfxId => data.VfxId;
 
-
     public bool HasManualUse => !(actionContainer.clickCondition?.AutoActivate??true);
 
     public float CooldownFill
@@ -47,6 +52,13 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent, IIconProvid
         set => imgCdFill.fillAmount = value;
     }
 
+    public void SetProgress(string caption, int value, int maxValue = 0)
+    {
+        txtProgress.text = caption;
+        //if (maxValue > 0) sliderProgress.maxValue = maxValue;
+        //sliderProgress.value = value;
+        progressTweener.SetValue(value, maxValue);
+    }
 
     public void Init(SkillData data, Board board)
     {
@@ -158,4 +170,36 @@ public class UISkillButton : MonoBehaviour, IHasInfo, IActionParent, IIconProvid
 
         return sb.ToString();
     }
+
+#if UNITY_EDITOR
+    void DebugAddCharge(int value)
+    {
+        actionContainer?.clickCondition?.DebugAddCharge(value);
+    }
+
+    [ContextMenu("Add 1 Charge")]
+    public void Add1Charge()
+    {
+        DebugAddCharge(1);
+    }
+    [ContextMenu("Add 5 Charge")]
+    public void Add5Charge()
+    {
+        DebugAddCharge(5);
+    }
+    [ContextMenu("Add 20 Charge")]
+    public void Add20Charge()
+    {
+        DebugAddCharge(20);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            actionContainer?.clickCondition?.DebugAddCharge(1);
+        }
+    }
+
+#endif
 }

@@ -38,6 +38,11 @@ namespace FancyToolkit
             imgHighlight.gameObject.SetActive(value);
         }
 
+        public bool IsInteractable()
+        {
+            return button.interactable;
+        }
+
         public void SetInteractable(bool value)
         {
             EnsureInit();
