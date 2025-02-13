@@ -27,9 +27,9 @@ namespace TileShapes
 
         public Info GetInfo() => new Info(data, rotation);
 
-        List<Tile> tiles;
+        public List<Tile> tiles { get; private set; }
 
-        Board board;
+        public Board board { get; private set; }
         ShapePanel parent;
 
         bool shouldDestroy;
@@ -91,7 +91,7 @@ namespace TileShapes
         public void InitClone(Shape other)
         {
             isCloneOf = other;
-            SetDragState(true);
+            //SetDragState(true);
         }
 
         Vector2 moveSpeed;

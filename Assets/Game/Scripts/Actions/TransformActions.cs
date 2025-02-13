@@ -119,6 +119,64 @@ namespace GameActions
         }
     }
 
+    public class EraseAround : TileActionBase
+    {
+        int count;
+
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            yield return new ActionHint.Erase();
+        }
+
+        public override string GetDescription()
+        {
+            if (count < 9)
+            {
+                return $"Erase {count} surrounding tiles";
+            }
+            else
+            {
+                return $"Erase surrounding tiles";
+            }
+        }
+
+        public EraseAround(int count = 9)
+        {
+            if (count > 0)
+            {
+                this.count = count;
+            }
+            else
+            {
+                this.count = 9;
+            }
+        }
+
+        public override IEnumerator Run(int multiplier = 1)
+        {
+            var data = TileCtrl.current.emptyTile;
+            var targets = MyTile.FindTileTargets(parent, TileTargetingType.Around, TileData.nonEmpty).ToList();
+            foreach (var item in targets.Shuffled().Take(count * multiplier))
+            {
+                MakeBullet(parent)
+                        .SetTarget(item)
+                        .SetSpleen(default)
+                        .SetAudio(AudioCtrl.current?.clipPop)
+                        .SetTileAction(x =>
+                        {
+                            x.Init(data);
+                            x.isActionLocked = true;
+                        });
+
+                yield return new WaitForSeconds(.1f);
+            }
+        }
+        public class Builder : FactoryBuilder<ActionBase, int>
+        {
+            public override ActionBase Build() => new EraseAround(value);
+        }
+    }
+
     public class TransformIn : ActionBase
     {
         TileTargetingType targetType;

@@ -434,6 +434,26 @@ namespace GridBoard
             return result;
         }
 
+        public List<Vector2Int> GetTileGridPositions(Vector2Int origin, List<Tile.Info> deltaInfos, bool strict)
+        {
+            var result = new List<Vector2Int>();
+
+            foreach (var info in deltaInfos)
+            {
+                var pos = info.pos + origin;
+                if (!InBounds(pos.x, pos.y)) return null;
+
+                if (strict)
+                {
+                    if (IsOcupied(pos.x, pos.y)) return null;
+                }
+
+                result.Add(pos);
+            }
+
+            return result;
+        }
+
         public bool CanFit(int x, int y, List<Tile.Info> deltaInfos)
         {
             var origin = new Vector2Int(x, y);

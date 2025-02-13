@@ -8,7 +8,7 @@ id,act,units,minLevel,type,reward,specialTile,background,dialog,scenario,conditi
 6,1,bat_2,2,Enemy,common,batCurse,bg2,,,,1,"Your arcane skills were growing, yet the trials proved too steep a climb."
 boss_dragon,1,dragon,0,Boss,uncommon,dragonFire,bg4,dragon1,,,1,"You stood before the brink of greatness, but the dragon’s shadow loomed too large."
 ,,,,,,,,,,,,
-ending_demo,1,warrior,100,Dialog,uncommon,empty,bg4,demo_ending,,,0,
+ending_demo,1,paladin,100,Dialog,uncommon,empty,bg4,demo_ending,,,0,
 ,,,,,,,,,,,,
 dino_2,1,dino_2,1,Elite,uncommon,brokenSword,bg5	,,,,1,"You showed promise, but the path of mastery proved too much to bear."
 ,,,,,,,,,,,,
@@ -37,7 +37,7 @@ warrior_chal_s,1,warrior_chs,3,Dialog,common,steelcrest,Bg4,challenge_w_s,Challe
 ,,,,,,,,,,,,
 bat_vampire,1,bat_2,0,Dialog,common,batCurse,bg2,bat_vampire,,Not HealthBelow 20,1,
 ,,,,,,,,,,,,
-teacher_glyphs,1,Wizard_b,0,Dialog,common,empty,bg3,teacher_glyph1,,,1,
+teacher_glyphs,1,Wizard_b,0,Dialog,common,empty,bg3,teacher_glyph1,,,2,
 teacher_glyphs2,1,Wizard_b,5,Dialog,common,empty,bg6,teacher_glyph_draw,,VisitedAll teacher_glyphs,1,
 ,,,,,,,,,,,,
 bowman_stray_arrow,1,bowman,2,Dialog,common,empty,bg6,bowman_stray_arrow,,,1,"Your arcane skills were growing, yet the trials proved too steep a climb."

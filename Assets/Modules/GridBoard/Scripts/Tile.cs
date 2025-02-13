@@ -32,6 +32,7 @@ namespace GridBoard
         [SerializeField] protected ProgressBar progressBar;
 
         [SerializeField] List<Sprite> bgSprites;
+        [SerializeField] Sprite bgSprite1;
         [SerializeField] Sprite bgSprite2;
         [SerializeField] ParticleSystem particleBreak;
 
@@ -103,6 +104,7 @@ namespace GridBoard
         public void Init(TileData data, int level = -1)
         {
             if (this.data != null) Clean();
+
 
             this.data = data;
             iconRender.sprite = data.sprite;
@@ -245,6 +247,11 @@ namespace GridBoard
             isTaken = true;
         }
 
+        public void SetPreviewColor(bool value)
+        {
+            bgRender.sprite = value ? bgSprite2 : bgSprite1;
+        }
+
         
         public virtual IEnumerator FadeOut(float fadeSpeed)
         {
@@ -262,6 +269,11 @@ namespace GridBoard
             }
 
             transform.localScale = Vector3.zero;
+        }
+
+        void Awake()
+        {
+            bgSprite1 = bgRender.sprite;
         }
 
         IEnumerator SpawnRoutine()

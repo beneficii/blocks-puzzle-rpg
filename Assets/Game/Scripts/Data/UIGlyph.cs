@@ -77,7 +77,7 @@ public class UIGlyph : MonoBehaviour, IHasInfo, IActionParent, IIconProvider, II
     {
         var sb = new StringBuilder();
 
-        sb.AppendLine(data.name
+        sb.AppendLine($"{data.name} Glyph"
             .Center()
             .Bold());
 
@@ -192,7 +192,7 @@ public class GlyphData : DataWithId, IHasInfo, IActionParent, IIconProvider, IIn
     {
         var sb = new StringBuilder();
 
-        sb.AppendLine(name
+        sb.AppendLine($"{name} Glyph"
             .Center()
             .Bold());
 

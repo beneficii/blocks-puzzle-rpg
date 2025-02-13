@@ -96,6 +96,7 @@ namespace FancyToolkit
         public void InitHints(IHintContainer hintContainer)
         {
             List<IHintProvider> hintProviders = hintContainer?.GetHintProviders() ?? new();
+            hintProviders = hintProviders.Where(x => x is not null).ToList();
             for (int i = 0; i < hintPanelList.Count; i++)
             {
                 var ui = hintPanelList[i];
