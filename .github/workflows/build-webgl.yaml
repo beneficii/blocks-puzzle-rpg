@@ -32,7 +32,7 @@ jobs:
       - name: Zip up the WebGL build
         run: |
           cd build/WebGL
-          zip -r ../webgl-build.zip .  # zip all contents in current directory
+          sudo zip -r ../webgl-build.zip .  # zip all contents in current directory
           cd ../..
 
       - uses: actions/upload-artifact@v4
