@@ -19,6 +19,8 @@ namespace FancyToolkit
         [SerializeField] UIShaderComponent shaderComponent;
         [SerializeField] AudioClip sound;
 
+        [SerializeField] bool hideAfterUse;
+
         Color clrTextNormal;
 
         bool initDone;
@@ -64,6 +66,10 @@ namespace FancyToolkit
         public void OnClicked()
         {
             sound?.PlayNow();
+            if (hideAfterUse)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
