@@ -192,7 +192,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var rewards = new List<UICombatReward.Data>
         {
             new UICombatReward.DataGold(rng.Next(20, 40)),
-            new UICombatReward.DataTile(Rarity.Common),
+            new UICombatReward.DataTile(Rarity.Uncommon),
             new UICombatReward.DataSkill(Rarity.Common)
         };
 

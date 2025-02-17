@@ -185,6 +185,11 @@ namespace GameActions
 
         TileData GetData() => TileCtrl.current.Get(id);
 
+        public override IEnumerable<IHintProvider> GetHints()
+        {
+            yield return GetData() as MyTileData;
+        }
+
         public override string GetDescription()
             => $"Transform {MyTile.GetTargetingTypeName(targetType, tag)} into '{GetData().title}'";
 

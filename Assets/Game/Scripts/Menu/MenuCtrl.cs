@@ -9,14 +9,26 @@ using UnityEngine.Events;
 public class MenuCtrl : MonoBehaviour
 {
     [SerializeField] UIGenericButton templateButton;
-    List<GameObject> allPanels = new();
 
+    public const string PrefsKeyVisitedWishlist = "Wishlist_visited_v0.1";
 
-    public string steamAppUrl = "https://store.steampowered.com/app/3126090";
+    //private string steamURL = "steam://openurl/https://store.steampowered.com/app/3126090/";
+    //public string steamAppUrl = "https://store.steampowered.com/app/3126090";
+
+    public static void WishlistPage()
+    {
+        PlayerPrefs.SetInt(PrefsKeyVisitedWishlist, 1);
+        Application.OpenURL("steam://openurl/https://store.steampowered.com/app/3126090/");
+    }
+
+    public static bool ShouldShowWishlist()
+    {
+        return !PlayerPrefs.HasKey(PrefsKeyVisitedWishlist);
+    }
 
     public void OpenWishlistPage()
     {
-        Application.OpenURL(steamAppUrl);
+        WishlistPage();
     }
 
     void AddButton(string caption, UnityAction action)
@@ -32,9 +44,9 @@ public class MenuCtrl : MonoBehaviour
         AddButton("New Game", BtnPlay);
         AddButton("Credits", BtnCredits);
         AddButton("Settings", BtnSettings);
-#if !UNITY_WEBGL
+//#if !UNITY_WEBGL
         AddButton("Exit", BtnExit);
-#endif
+//#endif
     }
 
     public void ClosePanels()
@@ -75,6 +87,13 @@ public class MenuCtrl : MonoBehaviour
 
     void BtnExit()
     {
-        Application.Quit();
+        if (ShouldShowWishlist())
+        {
+            UIWishlistBeforeExit.HandleQuit();
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 }

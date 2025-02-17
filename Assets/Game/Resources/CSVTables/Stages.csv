@@ -20,7 +20,7 @@ enemy2,1,reptile,3,Dialog,Rare,empty,bg6,reptile1,,,1,You challenged the reptile
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,
 ,,,,,,,,,,,,
-tutorial1,-1,dino,0,Enemy,common,empty,bg1,tutorial,Tutorial1,,0,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
+tutorial1,-1,dino,0,Enemy,uncommon,empty,bg1,tutorial,Tutorial1,,0,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
 tutorial2,-1,warrior_tut,0,Enemy,common,steelcrest,bg1,tutorial_power,TutorialPower,,0,"You wanted to know if you can, but forgot to ask yourself if you should."
 tutorial3,-1,Wizard_b,0,Camp,common,empty,bg1,,,,0,"Your journey ended as it began, with only the faintest whisper of the Arcane Board’s power."
 ,,,,,,,,,,,,
