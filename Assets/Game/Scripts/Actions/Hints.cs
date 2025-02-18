@@ -24,7 +24,7 @@ namespace ActionHint
     {
         public string GetHintText()
         {
-            return $"<b>Erase</b> - Make tile empty";
+            return $"<b>Erase</b> - Make ocupied tiles empty";
         }
     }
 

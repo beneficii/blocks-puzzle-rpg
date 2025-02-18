@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class MenuCtrl : MonoBehaviour
 {
     [SerializeField] UIGenericButton templateButton;
+    [SerializeField] bool isDemo = true;
 
     public const string PrefsKeyVisitedWishlist = "Wishlist_visited_v0.1";
 
@@ -21,9 +22,9 @@ public class MenuCtrl : MonoBehaviour
         Application.OpenURL("steam://openurl/https://store.steampowered.com/app/3126090/");
     }
 
-    public static bool ShouldShowWishlist()
+    public bool ShouldShowWishlist()
     {
-        return !PlayerPrefs.HasKey(PrefsKeyVisitedWishlist);
+        return isDemo && !PlayerPrefs.HasKey(PrefsKeyVisitedWishlist);
     }
 
     public void OpenWishlistPage()
