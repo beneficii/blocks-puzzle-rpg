@@ -1735,7 +1735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   templateButton: {fileID: 1607005516}
-  isDemo: 0
+  isDemo: 1
 --- !u!82 &748588608
 AudioSource:
   m_ObjectHideFlags: 0

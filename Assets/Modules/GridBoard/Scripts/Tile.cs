@@ -98,7 +98,7 @@ namespace GridBoard
         {
             if (isFadedOut) return;
             var instance = Instantiate(particleBreak, transform.position, Quaternion.identity);
-            Destroy(instance, .4f);
+            Destroy(instance.gameObject, .4f);
         }
 
         public void Init(TileData data, int level = -1)

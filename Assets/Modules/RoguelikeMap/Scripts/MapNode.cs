@@ -6,7 +6,7 @@ using FancyToolkit;
 
 namespace RogueLikeMap
 {
-    public class MapNode : MonoBehaviour
+    public class MapNode : MonoBehaviour, IHoverInfoContainer
     {
         public static event System.Action<MapNode> OnClicked;
 
@@ -120,5 +120,7 @@ namespace RogueLikeMap
         {
             ClearTweens();
         }
+
+        public IHoverInfoTarget GetHoverInfoTarget() => info?.type;
     }
 }

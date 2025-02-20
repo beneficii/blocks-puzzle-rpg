@@ -307,7 +307,8 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
             yield break; // ToDo: maybe soome warning
         }
         btnEndTurn.SetInteractable(false);
-        EndTurnInProgress = true;   // ToDo: maybe lock button
+        EndTurnInProgress = true;
+        FancyUpdateCtrl.current.AddInputBlock();
         if (!arena.enemy) yield break;   // Let's wait end of combat
 
         yield return new WaitForSeconds(delay);
@@ -344,6 +345,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         btnEndTurn.SetInteractable(true);
         EndTurnInProgress = false;
         OnTurnFinished?.Invoke();
+        FancyUpdateCtrl.current.RemoveInputBlock();
     }
 
     IEnumerator InitCombat()
@@ -550,7 +552,7 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
 
     private void Update()
     {
-#if UNITY_EDITOR || UNITY_WEBGL
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Z))
         {
             arena.player.AnimAttack(1);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
 using static UnityEngine.GraphicsBuffer;
 
 
@@ -48,8 +49,20 @@ namespace FancyToolkit
             return null;
         }
 
+        public string dbgWorldSource;
+        public string dbgUiCanvas;
+        public string dbgState;
+
         IHoverInfoTarget GetInfoSourceUnderMouse()
         {
+            dbgWorldSource = "";
+            dbgUiCanvas = "";
+            dbgState = "";
+            Canvas uiCanvas = null;
+            IHoverInfoTarget uiTarget = null;
+            SpriteRenderer worldSource = null;
+            IHoverInfoTarget worldTarget = null;
+
             // try to find UI element
             var pointerData = new PointerEventData(EventSystem.current)
             {
@@ -65,21 +78,26 @@ namespace FancyToolkit
             if (results.Count > 0)
             {
                 var obj = results[0].gameObject.transform;
+                uiCanvas = obj.GetComponentInParent<Canvas>();
+                
+                Assert.IsTrue(uiCanvas, "Found UI element without canvas!");
+                dbgUiCanvas = uiCanvas.name;
                 do
                 {
                     var target = GetHoverInfoTarget(obj);
-                    if (target?.ShouldShowHoverInfo()??false) return target;
+                    if (target?.ShouldShowHoverInfo()??false)
+                    {
+                        uiTarget = target;
+                        if (!uiCanvas) return target;   // should not happen really
+                        break;
+                    }
 
                     obj = obj.parent;
                 } while (obj);
-
-                // if UI is found under mouse, then it blocks world info objects
-                return null;
             }
             
 
             // try to find world info Objects
-
             var hits = Physics2D.RaycastAll(Helpers.MouseToWorldPosition(), Vector2.zero, 10);
 
             foreach (var hit in hits)
@@ -87,10 +105,32 @@ namespace FancyToolkit
                 var tr = hit.transform;
                 if (!tr) continue;
                 var target = GetHoverInfoTarget(tr);
-                if (target?.ShouldShowHoverInfo() ?? false) return target;
+                if (target?.ShouldShowHoverInfo() ?? false)
+                {
+                    worldTarget = target;
+                    worldSource = tr.GetComponentInParent<SpriteRenderer>();
+                    if (!worldSource) worldSource = tr.GetComponentInChildren<SpriteRenderer>();
+                    if (worldSource) dbgWorldSource = worldSource.name; else dbgWorldSource = "-";
+                    if (!worldSource)
+                    {
+                        return uiCanvas ? uiTarget : target;
+                    }
+                    break;
+                }
             }
+            dbgState = "state 1";
+            // check which one was higher in priority
+            if (!uiCanvas) return worldTarget;
+            dbgState = "state 2";
+            if (worldTarget == null || !worldSource) return uiTarget;
+            dbgState = "state 3";
 
-            return null;
+            if (worldSource.sortingLayerID < uiCanvas.sortingLayerID) return uiTarget;
+            dbgState = "state 4";
+            if (worldSource.sortingLayerID > uiCanvas.sortingLayerID) return worldTarget;
+            dbgState = $"state 5 {worldSource.sortingOrder} < {uiCanvas.sortingOrder}";
+
+            return worldSource.sortingOrder < uiCanvas.sortingOrder ? uiTarget : worldTarget;
         }
 
         public void InitHints(IHintContainer hintContainer)

@@ -20,7 +20,7 @@ public class StageData : DataWithId
     public string gameOverText;
 }
 
-public class NodeTypeStage : NodeType
+public class NodeTypeStage : NodeType, IInfoTextProvider
 {
     public StageType type;
     public string definedId;
@@ -69,6 +69,38 @@ public class NodeTypeStage : NodeType
         return data;
     }
 
+    public string GetInfoText(int size)
+    {
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine(type.ToString().Bold().Center());
+        sb.AppendLine();
+        switch (type)
+        {
+            case StageType.Enemy:
+                sb.AppendLine("Normal Enemy");
+                break;
+            case StageType.Elite:
+                sb.AppendLine("Strong Enemy");
+                break;
+            case StageType.Shop:
+                sb.AppendLine("Place to buy tiles");
+                break;
+            case StageType.Dialog:
+                sb.AppendLine("Unknown encounter");
+                break;
+            case StageType.Camp:
+                sb.AppendLine("Place to learn skills or heal");
+                break;
+            case StageType.Boss:
+                sb.AppendLine("Very strong enemy");
+                break;
+            default:
+                break;
+        }
+
+        return sb.ToString();
+    }
+
     public override void Run(NodeInfo info)
     {
         Game.current.EnterLevel(info.index);
@@ -78,6 +110,8 @@ public class NodeTypeStage : NodeType
     {
         UIHudMap.current.Close();
     }
+
+    public override bool ShouldShowHoverInfo() => true;
 }
 
 [System.Serializable]

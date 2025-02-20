@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RogueLikeMap
 {
-    public class NodeType
+    public class NodeType : IHoverInfoTarget
     {
         public Sprite sprite;
 
@@ -36,6 +36,6 @@ namespace RogueLikeMap
             Debug.Log("Node::RunCurrent");
         }
 
-        
+        public virtual bool ShouldShowHoverInfo() => false;
     }
 }
