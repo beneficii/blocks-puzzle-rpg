@@ -19,6 +19,8 @@ public class UIHudSettings : UIHudBase
     [SerializeField] Slider sliderSound;
     [SerializeField] Slider sliderMusic;
 
+    [SerializeField] Toggle fullscreenToggle;
+
     float prevTimescale = 1f;
 
     float cachedSound;
@@ -28,6 +30,18 @@ public class UIHudSettings : UIHudBase
     {
         sliderSound.onValueChanged.AddListener(OnSoundSlider);
         sliderMusic.onValueChanged.AddListener(OnMusicSlider);
+        fullscreenToggle.onValueChanged.AddListener(HandleFullscreenToggle);
+        if (ScreenSizeCtrl.current)
+        {
+            fullscreenToggle.isOn = ScreenSizeCtrl.current.GetFullscreenState();
+        }
+    }
+
+    public void HandleFullscreenToggle(bool value)
+    {
+        if (!ScreenSizeCtrl.current) return;
+
+        ScreenSizeCtrl.current.OnToggleValueChanged(value);
     }
 
     public void OnSoundSlider(float value)

@@ -99,6 +99,9 @@ public class UIGlyph : MonoBehaviour, IHasInfo, IActionParent, IIconProvider, II
             }
         }
 
+        results.Add(new GlyphData.Hint());
+
+
         return results;
     }
 
@@ -217,6 +220,8 @@ public class GlyphData : DataWithId, IHasInfo, IActionParent, IIconProvider, IIn
             }
         }
 
+        results.Add(new Hint());
+
         return results;
     }
 
@@ -235,6 +240,12 @@ public class GlyphData : DataWithId, IHasInfo, IActionParent, IIconProvider, IIn
     }
 
     public bool ShouldShowHoverInfo() => true;
+
+
+    public class Hint : IHintProvider
+    {
+        public string GetHintText() => "<b>Glyph</b> - Activates at the start of each combat";
+    }
 }
 
 

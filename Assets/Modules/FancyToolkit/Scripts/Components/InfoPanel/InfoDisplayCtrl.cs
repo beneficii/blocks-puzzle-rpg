@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
-using static UnityEngine.GraphicsBuffer;
 
 
 namespace FancyToolkit
@@ -30,8 +29,6 @@ namespace FancyToolkit
         [SerializeField] UIInfoPanel infoPanel;
         [SerializeField] List<UIInfoPanel> hintPanelList;
 
-        [SerializeField] List<GameObject> dbgHovered;
-
         IHoverInfoTarget cachedObject;
 
         IHoverInfoTarget GetHoverInfoTarget(Component obj)
@@ -49,15 +46,8 @@ namespace FancyToolkit
             return null;
         }
 
-        public string dbgWorldSource;
-        public string dbgUiCanvas;
-        public string dbgState;
-
         IHoverInfoTarget GetInfoSourceUnderMouse()
         {
-            dbgWorldSource = "";
-            dbgUiCanvas = "";
-            dbgState = "";
             Canvas uiCanvas = null;
             IHoverInfoTarget uiTarget = null;
             SpriteRenderer worldSource = null;
@@ -72,7 +62,6 @@ namespace FancyToolkit
             var results = new List<RaycastResult>();
 
             EventSystem.current.RaycastAll(pointerData, results);
-            dbgHovered = results.Select(r => r.gameObject).ToList();
 
 
             if (results.Count > 0)
@@ -81,7 +70,6 @@ namespace FancyToolkit
                 uiCanvas = obj.GetComponentInParent<Canvas>();
                 
                 Assert.IsTrue(uiCanvas, "Found UI element without canvas!");
-                dbgUiCanvas = uiCanvas.name;
                 do
                 {
                     var target = GetHoverInfoTarget(obj);
@@ -110,7 +98,6 @@ namespace FancyToolkit
                     worldTarget = target;
                     worldSource = tr.GetComponentInParent<SpriteRenderer>();
                     if (!worldSource) worldSource = tr.GetComponentInChildren<SpriteRenderer>();
-                    if (worldSource) dbgWorldSource = worldSource.name; else dbgWorldSource = "-";
                     if (!worldSource)
                     {
                         return uiCanvas ? uiTarget : target;
@@ -118,17 +105,12 @@ namespace FancyToolkit
                     break;
                 }
             }
-            dbgState = "state 1";
             // check which one was higher in priority
             if (!uiCanvas) return worldTarget;
-            dbgState = "state 2";
             if (worldTarget == null || !worldSource) return uiTarget;
-            dbgState = "state 3";
 
             if (worldSource.sortingLayerID < uiCanvas.sortingLayerID) return uiTarget;
-            dbgState = "state 4";
             if (worldSource.sortingLayerID > uiCanvas.sortingLayerID) return worldTarget;
-            dbgState = $"state 5 {worldSource.sortingOrder} < {uiCanvas.sortingOrder}";
 
             return worldSource.sortingOrder < uiCanvas.sortingOrder ? uiTarget : worldTarget;
         }

@@ -32,6 +32,11 @@ public class MenuCtrl : MonoBehaviour
         WishlistPage();
     }
 
+    public void OpenDiscordPage()
+    {
+        Application.OpenURL("https://discordapp.com/invite/coldwildgames");
+    }
+
     void AddButton(string caption, UnityAction action)
     {
         var button = UIUtils.CreateFromTemplate(templateButton);

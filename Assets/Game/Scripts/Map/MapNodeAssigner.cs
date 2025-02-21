@@ -150,10 +150,10 @@ public class MapNodeAssigner
         {
             StageType.Enemy,
             StageType.Dialog,
-            StageType.Shop,
         };
 
         if (node.info.pos.x > 2) set.Add(StageType.Camp);
+        if (node.info.pos.x > 2) set.Add(StageType.Shop);
         if (node.info.pos.x > 3) set.Add(StageType.Elite);
 
 
