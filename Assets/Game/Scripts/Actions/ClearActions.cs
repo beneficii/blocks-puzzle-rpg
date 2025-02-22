@@ -31,7 +31,7 @@ namespace GameActions
 
         public override string GetDescription()
         {
-            string descr = $"Erase all {tag} matched and {nestedAction.GetDescription()} for each";
+            string descr = $"Drain {tag} tiles and {nestedAction.GetDescription()} for each";
             if (amount != 1) descr += $" {amount}";
 
             return descr;
@@ -44,7 +44,7 @@ namespace GameActions
                 yield return item;
             }
 
-            yield return new ActionHint.Erase();
+            yield return new ActionHint.Drain();
         }
 
         public ConsumeClearedAnd(int amount, string tag, ActionBase nestedAction)

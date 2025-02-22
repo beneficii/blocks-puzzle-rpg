@@ -28,6 +28,15 @@ namespace ActionHint
         }
     }
 
+    public class Drain : IHintProvider
+    {
+        public string GetHintText()
+        {
+            return $"<b>Drain</b> - Erase tiles in current clear";
+        }
+    }
+    
+
     public class Cleared : IHintProvider
     {
         public string GetHintText()

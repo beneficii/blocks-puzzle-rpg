@@ -469,17 +469,17 @@ public class CombatCtrl : MonoBehaviour, ILineClearHandler
         var stageData = StageCtrl.current.Data;
         if (stageData.type == StageType.Camp)
         {
-            if (Game.current.GetSkills().Count < 2)
+            if (card.data is TileData)
             {
-                AddState(new CombatStates.Dialog("teacher0"));
+                AddState(new CombatStates.Dialog("camp_healing"));
             }
-            else
+            else if (card.data is SkillData)
             {
-                if (card.data is TileData)
+                if (Game.current.GetSkills().Count < 2)
                 {
-                    AddState(new CombatStates.Dialog("camp_healing"));
+                    AddState(new CombatStates.Dialog("teacher0"));
                 }
-                else if (card.data is SkillData)
+                else
                 {
                     AddState(new CombatStates.Dialog("camp_skill"));
                 }

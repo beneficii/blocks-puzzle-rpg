@@ -35,7 +35,7 @@ namespace Scenarios
             TutorialCtrl.current.ShowText(TutorialPanel.Board, "Hover over tiles or units to see their effects and actions.");
             yield return new EventWaiter<IHoverInfoTarget>(ref InfoDisplayCtrl.OnHovered);
             
-            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Some tiles have Power (X) number, it is used in effects like damage or defense. Deal 50 damage to win.");
+            TutorialCtrl.current.ShowText(TutorialPanel.Board, "Some tiles have Power (Pwr) number, it is used in effects like damage or defense. Deal 50 damage to win.");
 
             Unit.OnReceiveDamage += HandleUnitDamage;
             yield return new WaitUntil(() => enemyLow);

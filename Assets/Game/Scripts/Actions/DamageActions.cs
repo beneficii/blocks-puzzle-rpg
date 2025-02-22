@@ -8,7 +8,7 @@ namespace GameActions
     public class Damage : ActionBase
     {
         public override string GetDescription()
-            => $"Deal X ({parent.Power}) damage";
+            => $"Deal Pwr ({parent.Power}) damage";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 
@@ -61,7 +61,7 @@ namespace GameActions
     public class DamageAnd : ActionBaseWithNested
     {
         public override string GetDescription()
-            => $"Deal X ({parent.Power}) damage and {nestedAction.GetDescription()}";
+            => $"Deal Pwr ({parent.Power}) damage and {nestedAction.GetDescription()}";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 
@@ -90,7 +90,7 @@ namespace GameActions
     public class DamagePlayer : ActionBase
     {
         public override string GetDescription()
-            => $"Deal X ({parent.Power}) damage to the player";
+            => $"Deal Pwr ({parent.Power}) damage to the player";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 
@@ -113,7 +113,7 @@ namespace GameActions
     public class DamageBoth : ActionBase
     {
         public override string GetDescription()
-            => $"Deal X ({parent.Power}) damage to both player and enemy";
+            => $"Deal Pwr ({parent.Power}) damage to both player and enemy";
 
         public override ActionStatType StatType => ActionStatType.Damage;
 

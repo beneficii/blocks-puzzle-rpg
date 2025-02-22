@@ -14,7 +14,7 @@ namespace GameActions
         }
 
         public override string GetDescription()
-            => $"Heal {value} health when bought";
+            => $"Heal {value} health when picked";
 
         public override IEnumerator Run(int multiplier = 1)
         {

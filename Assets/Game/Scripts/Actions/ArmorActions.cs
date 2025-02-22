@@ -7,7 +7,7 @@ namespace GameActions
     public class Defense : ActionBase
     {
         public override string GetDescription()
-            => $"Gain X ({parent.Power}) armor";
+            => $"Gain Pwr ({parent.Power}) armor";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
@@ -55,7 +55,7 @@ namespace GameActions
     public class DefenseAnd : ActionBaseWithNested
     {
         public override string GetDescription()
-            => $"Gain X ({parent.Power}) armor and {nestedAction.GetDescription()}";
+            => $"Gain Pwr ({parent.Power}) armor and {nestedAction.GetDescription()}";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
@@ -84,7 +84,7 @@ namespace GameActions
     public class EnemyDefense : ActionBase
     {
         public override string GetDescription()
-            => $"Enemy gains X ({parent.Power}) armor";
+            => $"Enemy gains Pwr ({parent.Power}) armor";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
@@ -110,7 +110,7 @@ namespace GameActions
     public class DefenseBoth : ActionBase
     {
         public override string GetDescription()
-            => $"You and enemy gain X ({parent.Power}) armor";
+            => $"You and enemy gain Pwr ({parent.Power}) armor";
 
         public override ActionStatType StatType => ActionStatType.Defense;
 
